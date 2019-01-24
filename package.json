@@ -1,0 +1,13 @@
+{
+  "name": "livecode_19_sketchbook",
+  "version": "0.0.1",
+  "description": "Example sketchbook project for coding small \"sketches\".",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED"
+}

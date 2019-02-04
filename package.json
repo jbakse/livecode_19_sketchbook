@@ -4,7 +4,9 @@
   "description": "Example sketchbook project for coding small \"sketches\".",
   "main": "index.html",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "docco": "^0.8.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

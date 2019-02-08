@@ -6,16 +6,21 @@
 
 // ## Describe State Data
 
-// This section declares and initializes our program state variables.
-// The data is all stored in unorganized global variables. This is a key target for clean up.
-let x = 100;
-let y = 10;
-let deltaX = 5;
-let deltaY = 7;
+// x, y, deltaX, and deltaY are pretty vague names for global variables.
+// They are changed to more specifically describe their role. The redundancy in these
+// names strongly suggests this data should be organized into a data object.
+// This version introduces `ballRadius`, which is used by the step function
+// to improve collision detection.
+
+let ballX = 100;
+let ballY = 10;
+let ballDeltaX = 5;
+let ballDeltaY = 7;
+let ballRadius = 10;
 
 // ## Setup
 
-// P5 calls the `setup()` function once at the beginning. First the code creates a canvas to draw into. Then it sets some general p5 settings.
+// In addition to creating the canvas, I also set up the p5 environment to use HSB colorMode.
 
 window.setup = function() {
   createCanvas(600, 600);
@@ -23,11 +28,9 @@ window.setup = function() {
   frameRate(60);
 };
 
-// > This code will be loaded as a Javascript module, encapsulating its scope. P5 doesn't isn't module-aware, so we need to export `setup()` and `draw()` as properties on the global `window` object where p5 expects them.
-
 // ## Draw
 
-// P5 calls `draw()` once per frame. I like to separate updating state and drawing, so my draw() function is usually just redirects to functions that do those things.
+// I like to separate updating state and drawing, so my draw() function is usually just redirects to functions that do those things.
 window.draw = function() {
   stepApp();
   drawApp();
@@ -37,17 +40,15 @@ window.draw = function() {
 
 // The `stepApp()` function updates the program state. It should avoid drawing.
 function stepApp() {
-  // This part moves the ball based on its velocity.
-  // This is a very basic physics simulation with a simple discreet numeric integration.
-  x += deltaX;
-  y += deltaY;
+  // forces + physics
+  ballX += ballDeltaX;
+  ballY += ballDeltaY;
 
-  // This part bounces the ball off the edges of the screen.
-  // This is a very basic collision detection and collision response.
-  if (x > width) deltaX = -abs(deltaX);
-  if (y > height) deltaY = -abs(deltaY);
-  if (x < 0) deltaX = abs(deltaX);
-  if (y < 0) deltaY = abs(deltaY);
+  // collisions
+  if (ballX > width - ballRadius) ballDeltaX = -abs(ballDeltaX);
+  if (ballY > height - ballRadius) ballDeltaY = -abs(ballDeltaY);
+  if (ballX < 0 + ballRadius) ballDeltaX = abs(ballDeltaX);
+  if (ballY < 0 + ballRadius) ballDeltaY = abs(ballDeltaY);
 }
 
 // ## DrawApp
@@ -57,5 +58,5 @@ function drawApp() {
   background(0, 0, 0.2);
   noStroke();
   fill(0, 1, 1);
-  ellipse(x, y, 20, 20);
+  ellipse(ballX, ballY, ballRadius * 2, ballRadius * 2);
 }

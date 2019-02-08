@@ -1,16 +1,23 @@
-a; // # Version 2
+// # Version 1
 
-// This is a very simple implementation of a bouncing ball animation. Each frame it moves the ball in a straight line, bouncing it when it hits the edge of the screen.
+// This is a very simple implementation of a bouncing ball animation. Each frame it
+// moves the ball in a straight line, bouncing it when it hits the edge of the screen.
 
-// This version is written in a basic imperative style.
+// This version is written in an imperative style. It is short and fairly clear but needs some
+// clean-up before it should be expanded.
 
 // ## Describe State Data
 
 // This section declares and initializes our program state variables.
 // The data is all stored in unorganized global variables. This is a key target for clean up.
+
+// the horizontal position of the ball
 let x = 100;
+// the vertical position of the ball
 let y = 10;
+// the horizontal velocity of the ball
 let deltaX = 5;
+// the vertical velocity of the ball
 let deltaY = 7;
 
 // ## Setup
@@ -39,6 +46,7 @@ window.draw = function() {
 
   // This part bounces the ball off the edges of the screen.
   // This is a very basic collision detection and collision response.
+  // This code does not take into account the width of the ball, a visible mistake.
   if (x > width) deltaX = -abs(deltaX);
   if (y > height) deltaY = -abs(deltaY);
   if (x < 0) deltaX = abs(deltaX);

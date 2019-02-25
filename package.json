@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Example sketchbook project for coding small \"sketches\".",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  },
   "devDependencies": {
     "docco": "^0.8.0"
   },

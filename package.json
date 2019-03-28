@@ -3,12 +3,15 @@
   "version": "0.0.1",
   "description": "Example sketchbook project for coding small \"sketches\".",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  },
   "devDependencies": {
     "docco": "^0.8.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "literate": "docco ./sketches/bounce.js"
   },
   "author": "",
   "license": "UNLICENSED"

@@ -37,7 +37,6 @@ window.setup = function() {
 // ## Draw
 
 // P5 calls `draw()` once per frame. The draw function should draw one frame of animation.
-å;
 window.draw = function() {
   // clear the drawing
   background(40, 40, 40);
@@ -45,15 +44,15 @@ window.draw = function() {
   // This part moves the ball based on its velocity.
   // This is a very basic physics simulation with a simple discreet numeric integration.
   ballX += ballDeltaX;
-  ballY += deltaY;
+  ballY += ballDeltaY;
 
   // This part bounces the ball off the edges of the screen.
   // This is a very basic collision detection and collision response.
   // This code does not take into account the width of the ball, a visible mistake.
   if (ballX > width) ballDeltaX = -abs(ballDeltaX);
-  if (ballY > height) deltaY = -abs(deltaY);
+  if (ballY > height) ballDeltaY = -abs(ballDeltaY);
   if (ballX < 0) ballDeltaX = abs(ballDeltaX);
-  if (ballY < 0) deltaY = abs(deltaY);
+  if (ballY < 0) ballDeltaY = abs(ballDeltaY);
 
   // draw the ball
   noStroke();

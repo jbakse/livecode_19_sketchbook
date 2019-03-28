@@ -53,7 +53,7 @@ Person.prototype.talk = function() {
 };
 
 Person.prototype.sleep = function() {
-  console.log(`zzzzz.`);
+  console.log("zzzzz.");
 };
 
 // create another constructor

@@ -37,15 +37,16 @@ window.draw = function() {
 
       noise_scroll += settings.noise_resolution * settings.scroll_speed;
       noise_scroll2 += settings.noise2_resolution * settings.scroll_speed;
+      let cut = (0.5 + betterNoise(x, y, 10, 0.002)) * frameCount * 1.25;
 
-      let distance = settings.spacing * 3;
+      let distance = Math.max(50 - cut, 0);
       let endX = nx + sin(angle) * distance;
       let endY = ny + cos(angle) * distance;
 
       if (settings.quick) {
         quickLine(nx, ny, endX, endY, map(angle, -PI, PI, 200, 255));
       } else {
-        shadowLine(nx, ny, endX, endY, map(angle, -PI, PI, 200, 255));
+        shadowLine(nx, ny, endX, endY, map(angle, -PI, PI, 255, 255));
       }
     }
   }
@@ -62,14 +63,15 @@ function quickLine(x, y, x2, y2, color = 255) {
 }
 
 function shadowLine(x, y, x2, y2, color = 255) {
+  let len = dist(x, y, x2, y2);
   stroke(0, 20);
-  strokeWeight(3);
+  strokeWeight(Math.min(5, len) + 4);
   line(x, y, x2, y2);
-  strokeWeight(2);
+  strokeWeight(Math.min(5, len) + 2);
   line(x, y, x2, y2);
 
   stroke(color);
-  strokeWeight(1);
+  strokeWeight(Math.min(5, len));
   line(x, y, x2, y2);
 }
 

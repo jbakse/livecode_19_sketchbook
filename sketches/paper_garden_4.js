@@ -24,7 +24,7 @@ var LEAF_SORTING_FUNC = sortOuterIn;
 
 var PLANT_COUNT = 50;
 var PLANT_SPACING = 130;
-var PLANT_CULL = 0.85;
+var PLANT_CULL = 0.55;
 
 var LEAF_COUNT = 70;
 var LEAF_RADIUS = 18;
@@ -247,18 +247,19 @@ function drawCircle(center, radius) {
   }
 
   // add a dashed clone of the stroke to give some slight variation to weight and color
-  var dash_path = path.clone();
-  dash_path.style = {
-    dashOffset: randomRange(0, 200),
-    dashArray: [randomRange(0, 50), 200],
-    strokeColor: new Color(0.3, 0.3, 0.3),
-    strokeWidth: STROKE * 1.3,
-    strokeCap: "round",
-    fillColor: undefined,
-    strokeScaling: true
-  };
+  // var dash_path = path.clone();
+  // dash_path.style = {
+  //   dashOffset: randomRange(0, 200),
+  //   dashArray: [randomRange(0, 50), 200],
+  //   strokeColor: new Color(0.3, 0.3, 0.3),
+  //   strokeWidth: STROKE * 1.3,
+  //   strokeCap: "round",
+  //   fillColor: undefined,
+  //   strokeScaling: true
+  // };
+  // return new Group([back_path, path, dash_path]);
 
-  return new Group([back_path, path, dash_path]);
+  return new Group([back_path, path]);
 }
 
 ///////////////////////////////////////////
@@ -313,9 +314,12 @@ function downloadAsSVG(fileName) {
   var svgData = project.exportSVG({ asString: true });
   var url = "data:image/svg+xml;utf8," + encodeURIComponent(svgData);
 
+  var el = document.createElement("div");
+  el.textContent = svgData;
+  document.body.append(el);
   // create a link to the data, and "click" it
-  var link = document.createElement("a");
-  link.download = fileName;
-  link.href = url;
-  link.click();
+  // var link = document.createElement("a");
+  // link.download = fileName;
+  // link.href = url;
+  // link.click();
 }

@@ -2,27 +2,13 @@
 <html lang="en">
   <head>
     <title>Sketchbook</title>
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        position: relative;
-      }
-      #sketch-frame {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: 100%;
-        /* border: 1px solid red; */
-      }
-    </style>
+    <link rel="stylesheet" href="sketchbook.css" />
   </head>
   <body>
+    <div id="menu">
+      <div id="title">Sketchbook</div>
+      <nav id="breadcrumbs"></nav>
+    </div>
     <iframe id="sketch-frame" src="" frameborder="0"></iframe>
     <script src="lib/handlebars-v4.1.1.js"></script>
     <script src="sketchbook.js"></script>

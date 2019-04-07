@@ -1,3 +1,5 @@
+//require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+
 // # Version 1
 
 // This is a very simple implementation of a bouncing ball animation. Each frame it
@@ -37,7 +39,6 @@ window.setup = function() {
 // ## Draw
 
 // P5 calls `draw()` once per frame. The draw function should draw one frame of animation.
-å;
 window.draw = function() {
   // clear the drawing
   background(40, 40, 40);

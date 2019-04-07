@@ -1,0 +1,112 @@
+[
+    {
+        "type": "file",
+        "name": "grass_grow.js"
+    },
+    {
+        "type": "file",
+        "name": "grid_init.js"
+    },
+    {
+        "type": "file",
+        "name": "hello_p5.js"
+    },
+    {
+        "type": "file",
+        "name": "hello_world.js"
+    },
+    {
+        "name": "discovering_oop",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "bounce_1_basics.js"
+            },
+            {
+                "type": "file",
+                "name": "bounce_2_cleanup.js"
+            },
+            {
+                "type": "file",
+                "name": "bounce_3_data_object.js"
+            },
+            {
+                "type": "file",
+                "name": "bounce_4_multiple_balls.js"
+            },
+            {
+                "type": "file",
+                "name": "object.js"
+            },
+            {
+                "type": "file",
+                "name": "object_es6.js"
+            }
+        ]
+    },
+    {
+        "name": "donkey",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "clean_donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "new_donkey.js"
+            }
+        ]
+    },
+    {
+        "name": "paper_garden",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "paper_garden.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_3.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_2.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_4.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_4js.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_circle_study.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_plotter.js"
+            },
+            {
+                "type": "file",
+                "name": "paperjs_util.js"
+            },
+            {
+                "type": "file",
+                "name": "plotter_test.js"
+            },
+            {
+                "type": "file",
+                "name": "subtract_test.js"
+            }
+        ]
+    }
+]

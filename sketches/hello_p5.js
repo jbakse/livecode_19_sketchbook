@@ -12,3 +12,6 @@ function draw() {
   fill(255, 0, 0);
   ellipse(300, 300, 100, 100);
 }
+
+var x = 2;
+x;

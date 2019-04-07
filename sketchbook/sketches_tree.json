@@ -73,11 +73,11 @@
             },
             {
                 "type": "file",
-                "name": "paper_garden_3.js"
+                "name": "paper_garden_2.js"
             },
             {
                 "type": "file",
-                "name": "paper_garden_2.js"
+                "name": "paper_garden_3.js"
             },
             {
                 "type": "file",
@@ -106,6 +106,32 @@
             {
                 "type": "file",
                 "name": "subtract_test.js"
+            }
+        ]
+    },
+    {
+        "name": "dot",
+        "type": "folder",
+        "children": [
+            {
+                "name": "01_basic",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "basic.js"
+                    }
+                ]
+            },
+            {
+                "name": "02_advanced",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "advanced.js"
+                    }
+                ]
             }
         ]
     }

@@ -10,7 +10,7 @@ for (let i = 0; i < grid_width * grid_height; i++) {
     top: false,
     left: false,
     right: false,
-    bottom: false
+    bottom: false,
   };
 }
 

@@ -31,8 +31,15 @@ body {
   display: flex;
 }
 
+.dropdown:not(:last-child)::after {
+  content: "›";
+  position: absolute;
+  top: 0;
+  right: -7px;
+}
+
 .dropdown {
-  margin-right: 5px;
+  margin-right: 10px;
   position: relative;
 }
 .dropdown .title {

@@ -1,12 +1,13 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    // es6: true,
     node: true
   },
   extends: "eslint:recommended",
   parserOptions: {
-    sourceType: "module"
+    sourceType: "module",
+    ecmaVersion: 7
   },
   globals: require("./p5Globals.js"),
   //require("./p5Globals.js"),

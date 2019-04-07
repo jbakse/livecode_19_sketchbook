@@ -1,3 +1,4 @@
+/* global Handlebars */
 console.log("Sketchbook");
 
 const context = {
@@ -5,12 +6,12 @@ const context = {
   fileName: "",
   fileTitle: "",
   fileExtensions: [],
-  libraries: []
+  libraries: [],
 };
 
 async function main() {
   const urlParams = new URLSearchParams(window.location.search);
-  const sketchPath = "sketches/" + urlParams.get("sketch");
+  const sketchPath = "/sketches/" + urlParams.get("sketch");
 
   context.path = sketchPath;
   context.fileName = getFileName(sketchPath);
@@ -31,7 +32,7 @@ function last(a) {
   return a[a.length - 1];
 }
 function getFileName(url) {
-  const fileNameRegex = /[^\/]+?(?=\?|$)/;
+  const fileNameRegex = /[^/]+?(?=\?|$)/;
   const fileName = fileNameRegex.exec(url)[0];
   return fileName;
 }
@@ -45,6 +46,7 @@ async function getText(path) {
 function readDirectives(text) {
   const requireRegex = /^\/\/ ?require (.*?)$/gm;
   const libraries = [];
+  let match_info;
   while ((match_info = requireRegex.exec(text))) {
     libraries.push(match_info[1]);
   }

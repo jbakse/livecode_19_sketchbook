@@ -1,5 +1,5 @@
-//require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
-//require https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.5/dat.gui.js
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+// require https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.5/dat.gui.js
 
 console.log("hi!");
 

@@ -17,29 +17,77 @@ async function main() {
 
   await buildNav(tree, path);
 
-  // for .js sketches
+  const fileName = getFileName(path);
+  const fileExtensions = fileName.split(".").splice(1);
+
+  if (last(fileExtensions) === "js") showJS(path);
+  if (last(fileExtensions) === "txt") showTXT(path);
+  if (last(fileExtensions) === "md") showMD(path);
+}
+
+async function showMD(path) {
+  const fileName = getFileName(path);
+  const sketchPath = "../sketches/" + path;
+  let content = await getText(sketchPath);
+  const md = new markdownit();
+  content = md.render(content);
+  console.log(content);
+
+  const page = await buildTemplate("md.handlebars", {
+    fileName,
+    sketchPath,
+    content,
+  });
+  console.log(page);
+  document.getElementById("sketch-frame").srcdoc = page;
+}
+
+async function showTXT(path) {
+  const fileName = getFileName(path);
+  const sketchPath = "../sketches/" + path;
+  const content = await getText(sketchPath);
+
+  const page = await buildTemplate("txt.handlebars", {
+    fileName,
+    sketchPath,
+    content,
+  });
+
+  document.getElementById("sketch-frame").srcdoc = page;
+}
+
+async function showJS(path) {
+  const fileName = getFileName(path);
+  const fileExtensions = fileName.split(".").splice(1);
   const sketchPath = "../sketches/" + path;
   const sketch = await getText(sketchPath);
   const directives = readDirectives(sketch);
 
   const context = {
     sketchPath,
-    fileName: getFileName(path),
+    fileName,
+    fileExtensions,
     fileTitle: getFileName(path).split(".")[0],
-    fileExtensions: getFileName(path)
-      .split(".")
-      .splice(1),
     libraries: directives.requires,
   };
 
-  const page = await buildTemplate("layout.handlebars", context);
+  const page = await buildTemplate("js.handlebars", context);
 
   document.getElementById("sketch-frame").srcdoc = page;
+
+  console.log(hljs);
+  const sourcePage = await buildTemplate("txt.handlebars", {
+    fileName,
+    sketchPath,
+    content: hljs.highlight("js", sketch).value,
+  });
+
+  document.getElementById("source-frame").srcdoc = sourcePage;
 }
 
 async function buildNav(tree, path) {
   const pathParts = path.split("/");
-  console.log(path, pathParts);
+
   const folders = getFolders(tree, path);
 
   if (folders) {
@@ -68,8 +116,8 @@ async function buildNav(tree, path) {
 
 function defaultFile(tree, path) {
   const item = getItem(tree, path);
-  console.log(item);
 
+  if (!item) return path;
   if (item.type === "file") return path;
   if (item.children.length === 0) return path;
 
@@ -82,7 +130,6 @@ function defaultFile(tree, path) {
 }
 
 function getItem(tree, path) {
-  console.log(path);
   const pathParts = path.split("/");
   const items = [tree];
   for (const pathPart of pathParts) {

@@ -1,20 +1,20 @@
 module.exports = {
   env: {
-    browser: true
+    browser: true,
   },
   extends: "eslint:recommended",
   parserOptions: {
-    ecmaVersion: 8
+    ecmaVersion: 8,
   },
   globals: require("./p5Globals.js"),
 
-  //require("./p5Globals.js"),
+  // require("./p5Globals.js"),
   rules: {
     indent: ["error", 2],
     quotes: ["error", "double"],
     semi: ["error", "always"],
     "linebreak-style": ["error", "unix"],
     "no-unused-vars": ["error", { vars: "local" }],
-    "no-console": "off"
-  }
+    "no-console": "off",
+  },
 };

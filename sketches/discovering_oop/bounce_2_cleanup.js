@@ -1,3 +1,5 @@
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+
 // # Version 2
 
 // This is a very simple implementation of a bouncing ball animation. Each frame it moves the ball in a straight line, bouncing it when it hits the edge of the screen.

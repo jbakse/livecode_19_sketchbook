@@ -42,6 +42,7 @@ body {
   margin-right: 10px;
   position: relative;
 }
+
 .dropdown .title {
   padding-left: 5px;
   padding-right: 5px;
@@ -77,6 +78,14 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+#content {
+  display: flex;
+  flex-grow: 1;
+}
+#source-frame {
+  flex-grow: 1;
+}
 #sketch-frame {
   /* position: absolute;
   top: 0;
@@ -86,4 +95,8 @@ body {
   height: 100%; */
   /* border: 1px solid red; */
   flex-grow: 1;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,4 +1,4 @@
-//require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
 let hay1X = 300;
 let hay1Y = 100;

@@ -29,6 +29,7 @@ body {
 #breadcrumbs {
   padding-left: 30px;
   display: flex;
+  flex-grow: 1;
 }
 
 .dropdown:not(:last-child)::after {
@@ -72,6 +73,11 @@ body {
 
 .dropdown:hover .items {
   display: block;
+}
+
+#options {
+  margin-right: 10px;
+  font-size: 24px;
 }
 
 body {

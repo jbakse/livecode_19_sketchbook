@@ -1,5 +1,5 @@
 /* global Handlebars */
-console.log("Sketchbook");
+console.log("%c Sketchbook ", "color: yellow; background: #000;");
 
 main();
 
@@ -28,7 +28,6 @@ async function main() {
   document.getElementById("toggle-source").onclick = (e) => {
     document.getElementById("source-frame").classList.toggle("hidden");
   };
-  console.log(urlParams.has("source"));
   if (urlParams.has("source")) {
     document.getElementById("source-frame").classList.remove("hidden");
   }
@@ -38,16 +37,17 @@ async function showMD(path) {
   const fileName = getFileName(path);
   const sketchPath = "../sketches/" + path;
   let source = await getText(sketchPath);
+
+  /* global markdownit */
   const md = new markdownit();
-  content = md.render(source);
-  console.log(content);
+  const content = md.render(source);
 
   const page = await buildTemplate("md.handlebars", {
     fileName,
     sketchPath,
     content,
   });
-  console.log(page);
+
   document.getElementById("sketch-frame").srcdoc = page;
 
   const source_page = await buildTemplate("txt.handlebars", {
@@ -102,7 +102,6 @@ async function showJS(path) {
 
   // hilightedSource = hilightedSource.join("\n");
   hilightedSource = `<div class="source">${hilightedSource}</div>`;
-  console.log(hilightedSource);
 
   const sourcePage = await buildTemplate("txt.handlebars", {
     fileName,

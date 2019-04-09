@@ -8,8 +8,8 @@ var MARGIN = 50;
 
 ////////////////////////////////////////////////
 // drawing settings
-var GAPPY = 0;
-var SLOPPY = 0;
+var GAPPY = 3;
+var SLOPPY = 2;
 var SHADOW_BLUR = 0;
 var ROUGH = 0.1;
 var STROKE = 1.0;
@@ -22,9 +22,9 @@ var LEAF_SORTING_FUNC = sortOuterIn;
 ////////////////////////////////////////////////
 // plant settings
 
-var PLANT_COUNT = 50;
+var PLANT_COUNT = 1000;
 var PLANT_SPACING = 130;
-var PLANT_CULL = 0.5;
+var PLANT_CULL = 0.85;
 
 var LEAF_COUNT = 70;
 var LEAF_RADIUS = 18;
@@ -41,8 +41,16 @@ var plant_types = ["leafy", "flowery", "viney"];
 
 ///////////////////////////////////////////
 // kick off
-makeScene();
+// makeScene();
 
+var firstFrame = true;
+function onFrame() {
+  if (firstFrame) {
+    console.log("hi");
+    makeScene();
+    firstFrame = false;
+  }
+}
 ///////////////////////////////////////////
 // application
 
@@ -276,23 +284,48 @@ function drawCirclePlotter(center, radius, hide) {
 
   var children;
 
-  children = project.activeLayer.children.slice();
-  for (var i = 0; i < children.length; i++) {
-    // if (children[i]) {
-    subtract(children[i], back_path);
-    // }
-  }
+  //   children = project.activeLayer.children.slice();
+  //   for (var i = 0; i < children.length; i++) {
+  //     // if (children[i]) {
+  //     subtract(children[i], back_path);
+  //     // }
+  //   }
 
-  children = project.activeLayer.children.slice();
-  for (var i = 0; i < children.length; i++) {
-    // if (children[i]) {
-    subtract(children[i], path);
-    // }
-  }
+  removeHiddenLines(back_path);
+  //   children = project.activeLayer.children.slice();
+  //   for (var i = 0; i < children.length; i++) {
+  //     // if (children[i]) {
+  //     subtract(children[i], path);
+  //     // }
+  //   }
+
+  removeHiddenLines(path);
 
   if (hide !== true) path.addTo(project.activeLayer);
 
   return path;
+}
+
+function removeHiddenLines(path) {
+  // this cached_bounds buisness is a crummy hack
+  // it speeds this process up 10x by only trying to remove hidden lines
+  // if hte bounds of the lines intersect
+  // but .bounds is kinda slow, so it caches the bounds
+  // faster, but will break if the line has moved
+  path.cached_bounds = path.bounds;
+  var children = project.activeLayer.children.slice();
+  for (var i = 0; i < children.length; i++) {
+    var other_bounds = children[i].cached_bounds;
+    if (!other_bounds) {
+      other_bounds = children[i].cached_bounds = children[i].bounds;
+    }
+
+    if (path.cached_bounds.intersects(other_bounds)) {
+      subtract(children[i], path);
+    }
+  }
+
+  //   console.log(hits + "/" + tests);
 }
 
 ///////////////////////////////////////////

@@ -1,3 +1,6 @@
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+// require https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.5/dat.gui.js
+
 console.log("hi!");
 
 let settings = {
@@ -6,7 +9,7 @@ let settings = {
   noise2_resolution: 0.004,
   scroll_speed: 0.1,
   quick: true,
-  export: false
+  export: false,
 };
 
 let noise_scroll = 0;

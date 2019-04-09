@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sketchbook</title>
+    <link rel="stylesheet" href="sketchbook.css" />
+  </head>
+  <body>
+    <div id="menu">
+      <div id="title">sketchbook</div>
+      <nav id="breadcrumbs"></nav>
+      <div id="options"><div id="toggleSource">◨</div></div>
+    </div>
+    <div id="content">
+      <iframe id="source-frame" class="hidden" src="" frameborder="0"></iframe>
+      <iframe id="sketch-frame" src="" frameborder="0"></iframe>
+    </div>
+
+    <script src="lib/handlebars-v4.1.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"></script>
+    <script src="sketchbook.js"></script>
+  </body>
+</html>

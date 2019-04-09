@@ -1,0 +1,17 @@
+{
+  "name": "sketchbook",
+  "version": "0.0.1",
+  "description": "Javascript Sketch Viewer",
+  "main": "sketchbook.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "directory-structure-json": "^1.0.0"
+  }
+}

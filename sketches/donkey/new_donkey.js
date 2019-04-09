@@ -1,3 +1,5 @@
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+
 let hay1X = 300;
 let hay1Y = 100;
 let hay2X = 100;
@@ -7,10 +9,10 @@ let hay3Y = 500;
 let donkeyX = 300;
 let donkeyY = 300;
 
-window.setup = function() {
+function setup() {
   createCanvas(600, 600);
   background(50, 50, 50);
-};
+}
 
 window.draw = function() {
   for (let i = 0; i < 100; i++) {

@@ -1,3 +1,5 @@
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
+
 // # Version 2
 
 // This is a very simple implementation of a bouncing ball animation. Each frame it moves the ball in a straight line, bouncing it when it hits the edge of the screen.
@@ -14,7 +16,7 @@ let ball = {
   y: 10,
   deltaX: 5,
   deltaY: 7,
-  radius: 10
+  radius: 10,
 };
 
 let ball2 = {
@@ -22,7 +24,7 @@ let ball2 = {
   y: 10,
   deltaX: 7,
   deltaY: 6,
-  radius: 20
+  radius: 20,
 };
 
 // ## Setup

@@ -20,7 +20,7 @@ let ballY = 10;
 // the horizontal velocity of the ball
 let ballDeltaX = 5;
 // the vertical velocity of the ball
-let deltaY = 7;
+let ballDeltaY = 7;
 
 // ## Setup
 
@@ -41,7 +41,7 @@ window.setup = function() {
 // P5 calls `draw()` once per frame. The draw function should draw one frame of animation.
 window.draw = function() {
   // clear the drawing
-  background(40, 40, 40);
+  background(10, 10, 10);
 
   // This part moves the ball based on its velocity.
   // This is a very basic physics simulation with a simple discreet numeric integration.

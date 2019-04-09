@@ -23,14 +23,23 @@ async function main() {
   if (last(fileExtensions) === "js") showJS(path);
   if (last(fileExtensions) === "txt") showTXT(path);
   if (last(fileExtensions) === "md") showMD(path);
+
+  // source view ui
+  document.getElementById("toggle-source").onclick = (e) => {
+    document.getElementById("source-frame").classList.toggle("hidden");
+  };
+  console.log(urlParams.has("source"));
+  if (urlParams.has("source")) {
+    document.getElementById("source-frame").classList.remove("hidden");
+  }
 }
 
 async function showMD(path) {
   const fileName = getFileName(path);
   const sketchPath = "../sketches/" + path;
-  let content = await getText(sketchPath);
+  let source = await getText(sketchPath);
   const md = new markdownit();
-  content = md.render(content);
+  content = md.render(source);
   console.log(content);
 
   const page = await buildTemplate("md.handlebars", {
@@ -40,6 +49,13 @@ async function showMD(path) {
   });
   console.log(page);
   document.getElementById("sketch-frame").srcdoc = page;
+
+  const source_page = await buildTemplate("txt.handlebars", {
+    fileName,
+    sketchPath,
+    content: source,
+  });
+  document.getElementById("source-frame").srcdoc = source_page;
 }
 
 async function showTXT(path) {
@@ -53,6 +69,7 @@ async function showTXT(path) {
     content,
   });
 
+  document.getElementById("source-frame").srcdoc = page;
   document.getElementById("sketch-frame").srcdoc = page;
 }
 
@@ -75,11 +92,22 @@ async function showJS(path) {
 
   document.getElementById("sketch-frame").srcdoc = page;
 
-  console.log(hljs);
+  /* globals hljs */
+  var hilightedSource = hljs.highlight("js", sketch, true).value;
+  // hilightedSource = hilightedSource.split("\n");
+
+  // hilightedSource = hilightedSource.map((line) => {
+  //   return `<div class="line">${line}</div>`;
+  // });
+
+  // hilightedSource = hilightedSource.join("\n");
+  hilightedSource = `<div class="source">${hilightedSource}</div>`;
+  console.log(hilightedSource);
+
   const sourcePage = await buildTemplate("txt.handlebars", {
     fileName,
     sketchPath,
-    content: hljs.highlight("js", sketch).value,
+    content: hilightedSource,
   });
 
   document.getElementById("source-frame").srcdoc = sourcePage;
@@ -100,7 +128,7 @@ async function buildNav(tree, path) {
           .join("/");
         return {
           title: child.name,
-          href: `?sketch=${filePath}`,
+          href: `?sketch=${filePath}&source`,
           type: child.type,
         };
       });

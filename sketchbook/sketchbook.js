@@ -3,6 +3,8 @@ console.log("%c Sketchbook ", "color: yellow; background: #000;");
 
 main();
 
+console.log(js2md);
+
 async function main() {
   const response = await fetch("sketches_tree.json");
   const tree = {
@@ -93,20 +95,18 @@ async function showJS(path) {
   document.getElementById("sketch-frame").srcdoc = page;
 
   /* globals hljs */
-  var hilightedSource = hljs.highlight("js", sketch, true).value;
-  // hilightedSource = hilightedSource.split("\n");
+  // var hilightedSource = hljs.highlight("js", sketch, true).value;
+  // hilightedSource = `<div class="source">${hilightedSource}</div>`;
 
-  // hilightedSource = hilightedSource.map((line) => {
-  //   return `<div class="line">${line}</div>`;
-  // });
+  var mdSource = js2md(sketch);
+  console.log(mdSource);
+  const md = new markdownit();
+  const htmlSource = `<div class="md">${md.render(mdSource)}</div>`;
 
-  // hilightedSource = hilightedSource.join("\n");
-  hilightedSource = `<div class="source">${hilightedSource}</div>`;
-
-  const sourcePage = await buildTemplate("txt.handlebars", {
+  const sourcePage = await buildTemplate("md.handlebars", {
     fileName,
     sketchPath,
-    content: hilightedSource,
+    content: htmlSource,
   });
 
   document.getElementById("source-frame").srcdoc = sourcePage;

@@ -1,38 +1,67 @@
-/* global Handlebars */
+/* global Handlebars js2md*/
 console.log("%c Sketchbook ", "color: yellow; background: #000;");
 
+import Path from "./js/path.js";
+import settings from "./settings.js";
+const urlParams = new URLSearchParams(window.location.search);
+
+console.log(settings);
 main();
 
-console.log(js2md);
-
 async function main() {
-  const response = await fetch("sketches_tree.json");
-  const tree = {
-    name: "root",
-    type: "folder",
-    children: await response.json(),
-  };
+  const tree = await loadTree();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  let path = urlParams.get("sketch") || "";
-  path = defaultFile(tree, path);
+  const sourcePath = defaultFile(tree, urlParams.get("sketch") || "");
 
-  await buildNav(tree, path);
+  console.log("filename", Path.filename(sourcePath));
+  console.log("root", Path.root(sourcePath));
+  console.log("lastExtension", Path.lastExtension(sourcePath));
+  console.log("extensions", Path.extensions(sourcePath));
 
-  const fileName = getFileName(path);
-  const fileExtensions = fileName.split(".").splice(1);
+  await buildNav(tree, sourcePath);
 
-  if (last(fileExtensions) === "js") showJS(path);
-  if (last(fileExtensions) === "txt") showTXT(path);
-  if (last(fileExtensions) === "md") showMD(path);
+  if (Path.lastExtension(sourcePath) === "js") showJS(sourcePath);
+  if (Path.lastExtension(sourcePath) === "txt") showTXT(sourcePath);
+  if (Path.lastExtension(sourcePath) === "md") showMD(sourcePath);
 
   // source view ui
-  document.getElementById("toggle-source").onclick = (e) => {
+  document.getElementById("toggle-source").onclick = () => {
     document.getElementById("source-frame").classList.toggle("hidden");
   };
   if (urlParams.has("source")) {
     document.getElementById("source-frame").classList.remove("hidden");
   }
+}
+
+async function showJS(sourcePath) {
+  const source = await getText("../sketches/" + sourcePath);
+  const directives = readDirectives(source);
+
+  const fileName = Path.filename(sourcePath); //getFileName(sourcePath);
+  const sketchPath = "../sketches/" + sourcePath;
+
+  const context = {
+    sketchPath: "../sketches/" + sourcePath,
+    fileName: Path.filename(sourcePath),
+    fileTitle: Path.root(sourcePath),
+    libraries: directives.requires,
+  };
+
+  const page = await buildTemplate("plugins/js/js.handlebars", context);
+  document.getElementById("sketch-frame").srcdoc = page;
+
+  /* globals hljs */
+  // var hilightedSource = hljs.highlight("js", sketch, true).value;
+  // hilightedSource = `<div class="source">${hilightedSource}</div>`;
+
+  const md = new markdownit();
+  var mdSource = js2md(source);
+  const htmlSource = `<div class="md">${md.render(mdSource)}</div>`;
+
+  context.content = htmlSource;
+  const sourcePage = await buildTemplate("plugins/md/md.handlebars", context);
+
+  document.getElementById("source-frame").srcdoc = sourcePage;
 }
 
 async function showMD(path) {
@@ -75,43 +104,6 @@ async function showTXT(path) {
   document.getElementById("sketch-frame").srcdoc = page;
 }
 
-async function showJS(path) {
-  const fileName = getFileName(path);
-  const fileExtensions = fileName.split(".").splice(1);
-  const sketchPath = "../sketches/" + path;
-  const sketch = await getText(sketchPath);
-  const directives = readDirectives(sketch);
-
-  const context = {
-    sketchPath,
-    fileName,
-    fileExtensions,
-    fileTitle: getFileName(path).split(".")[0],
-    libraries: directives.requires,
-  };
-
-  const page = await buildTemplate("js.handlebars", context);
-
-  document.getElementById("sketch-frame").srcdoc = page;
-
-  /* globals hljs */
-  // var hilightedSource = hljs.highlight("js", sketch, true).value;
-  // hilightedSource = `<div class="source">${hilightedSource}</div>`;
-
-  var mdSource = js2md(sketch);
-  console.log(mdSource);
-  const md = new markdownit();
-  const htmlSource = `<div class="md">${md.render(mdSource)}</div>`;
-
-  const sourcePage = await buildTemplate("md.handlebars", {
-    fileName,
-    sketchPath,
-    content: htmlSource,
-  });
-
-  document.getElementById("source-frame").srcdoc = sourcePage;
-}
-
 async function buildNav(tree, path) {
   const pathParts = path.split("/");
 
@@ -139,6 +131,16 @@ async function buildNav(tree, path) {
     const el = createElementFromHTML(`<div class="path">${path}</div>`);
     document.getElementById("breadcrumbs").appendChild(el);
   }
+}
+
+async function loadTree() {
+  const response = await fetch("sketches_tree.json");
+  const tree = {
+    name: settings.sketchPath,
+    type: "folder",
+    children: await response.json(),
+  };
+  return tree;
 }
 
 function defaultFile(tree, path) {

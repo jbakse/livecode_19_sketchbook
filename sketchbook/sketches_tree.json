@@ -49,11 +49,11 @@
             },
             {
                 "type": "file",
-                "name": "bounce_4_multiple_balls.js"
+                "name": "bounce_3_data_object.js"
             },
             {
                 "type": "file",
-                "name": "bounce_3_data_object.js"
+                "name": "bounce_4_multiple_balls.js"
             },
             {
                 "type": "file",
@@ -89,11 +89,19 @@
         "children": [
             {
                 "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
                 "name": "connect.js"
             },
             {
                 "type": "file",
                 "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
             },
             {
                 "type": "file",

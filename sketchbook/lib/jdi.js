@@ -26,7 +26,6 @@ function js2md(text, extname = "js") {
   let wasCodeBlock = false;
   let isCodeBlock = false;
   for (const chunk of text) {
-    console.log(chunk);
     // ### blank lines
     // We ignore empty lines in order to avoid creating excessive code blocks.
     // Empty lines are being preserved in the transformed `.md` file. They can

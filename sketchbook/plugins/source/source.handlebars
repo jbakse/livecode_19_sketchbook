@@ -6,17 +6,13 @@
 
   <base target="_parent">
 
-  {{#libraries}}
-  <script src="{{.}}"></script>
-  {{/libraries}}
-
   <link rel="stylesheet" href="plugins/common/common.css">
-  <link rel="stylesheet" href="plugins/js/js.css">
+  <link rel="stylesheet" href="plugins/source/syntax.css">
+  <link rel="stylesheet" href="plugins/source/source.css">
 </head>
 
 <body>
-  {{{html}}}
-  <script src="{{fileInfo.path}}"></script>
+  {{{formattedSource}}}
 </body>
 
 </html>

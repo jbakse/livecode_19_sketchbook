@@ -1,7 +1,9 @@
 /* global Handlebars js2md*/
 console.log("%c Sketchbook ", "color: yellow; background: #000;");
 
+import Tree from "./js/tree.js";
 import Path from "./js/path.js";
+import Nav from "./js/nav.js";
 import settings from "./settings.js";
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -9,16 +11,16 @@ console.log(settings);
 main();
 
 async function main() {
-  const tree = await loadTree();
+  const tree = await Tree.load("sketches_tree.json", settings.sketchPath);
 
-  const sourcePath = defaultFile(tree, urlParams.get("sketch") || "");
+  const sourcePath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
 
-  console.log("filename", Path.filename(sourcePath));
+  console.log("filename", Path.name(sourcePath));
   console.log("root", Path.root(sourcePath));
   console.log("lastExtension", Path.lastExtension(sourcePath));
   console.log("extensions", Path.extensions(sourcePath));
 
-  await buildNav(tree, sourcePath);
+  await Nav.buildNav(tree, sourcePath);
 
   if (Path.lastExtension(sourcePath) === "js") showJS(sourcePath);
   if (Path.lastExtension(sourcePath) === "txt") showTXT(sourcePath);
@@ -34,189 +36,106 @@ async function main() {
 }
 
 async function showJS(sourcePath) {
-  const source = await getText("../sketches/" + sourcePath);
-  const directives = readDirectives(source);
+  const rawSource = await getText("../sketches/" + sourcePath);
 
-  const fileName = Path.filename(sourcePath); //getFileName(sourcePath);
-  const sketchPath = "../sketches/" + sourcePath;
+  // directives
+  const directives = readDirectives(rawSource);
 
+  // format source
+  /* globals hljs */
+  var formattedSource = hljs.highlight("js", rawSource, true).value;
+  formattedSource = `<pre class="source">${formattedSource}</pre>`;
+
+  // render source
+  // empty
+
+  // prepare template info
   const context = {
-    sketchPath: "../sketches/" + sourcePath,
-    fileName: Path.filename(sourcePath),
-    fileTitle: Path.root(sourcePath),
+    rawSource,
+    formattedSource,
     libraries: directives.requires,
+    fileInfo: Path.info("../sketches/" + sourcePath),
   };
 
-  const page = await buildTemplate("plugins/js/js.handlebars", context);
-  document.getElementById("sketch-frame").srcdoc = page;
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate(
+    "plugins/source/source.handlebars",
+    context
+  );
+  const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
 
-  /* globals hljs */
-  // var hilightedSource = hljs.highlight("js", sketch, true).value;
-  // hilightedSource = `<div class="source">${hilightedSource}</div>`;
-
-  const md = new markdownit();
-  var mdSource = js2md(source);
-  const htmlSource = `<div class="md">${md.render(mdSource)}</div>`;
-
-  context.content = htmlSource;
-  const sourcePage = await buildTemplate("plugins/md/md.handlebars", context);
-
-  document.getElementById("source-frame").srcdoc = sourcePage;
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
+  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
 }
 
-async function showMD(path) {
-  const fileName = getFileName(path);
-  const sketchPath = "../sketches/" + path;
-  let source = await getText(sketchPath);
+// async function showMDJS() {
+// var markdownSource = js2md(rawSource);
+// const md = new markdownit();
+// const formattedSource = `<div class="md">${md.render(markdownSource)}</div>`;
+// }
 
+async function showMD(sourcePath) {
+  let rawSource = await getText("../sketches/" + sourcePath);
+
+  // format source
+  const formattedSource = `<pre class="source">${rawSource}</pre>`;
+
+  // render source
   /* global markdownit */
   const md = new markdownit();
-  const content = md.render(source);
+  const html = md.render(rawSource);
 
-  const page = await buildTemplate("md.handlebars", {
-    fileName,
-    sketchPath,
-    content,
-  });
-
-  document.getElementById("sketch-frame").srcdoc = page;
-
-  const source_page = await buildTemplate("txt.handlebars", {
-    fileName,
-    sketchPath,
-    content: source,
-  });
-  document.getElementById("source-frame").srcdoc = source_page;
-}
-
-async function showTXT(path) {
-  const fileName = getFileName(path);
-  const sketchPath = "../sketches/" + path;
-  const content = await getText(sketchPath);
-
-  const page = await buildTemplate("txt.handlebars", {
-    fileName,
-    sketchPath,
-    content,
-  });
-
-  document.getElementById("source-frame").srcdoc = page;
-  document.getElementById("sketch-frame").srcdoc = page;
-}
-
-async function buildNav(tree, path) {
-  const pathParts = path.split("/");
-
-  const folders = getFolders(tree, path);
-
-  if (folders) {
-    for (let i = 0; i < pathParts.length; i++) {
-      const title = pathParts[i];
-      const items = folders[i].children.map((child) => {
-        let filePath = pathParts
-          .slice(0, i)
-          .concat(child.name)
-          .join("/");
-        return {
-          title: child.name,
-          href: `?sketch=${filePath}&source`,
-          type: child.type,
-        };
-      });
-
-      const el = buildDropdown({ title, items });
-      document.getElementById("breadcrumbs").appendChild(el);
-    }
-  } else {
-    const el = createElementFromHTML(`<div class="path">${path}</div>`);
-    document.getElementById("breadcrumbs").appendChild(el);
-  }
-}
-
-async function loadTree() {
-  const response = await fetch("sketches_tree.json");
-  const tree = {
-    name: settings.sketchPath,
-    type: "folder",
-    children: await response.json(),
+  // prepare template info
+  const context = {
+    rawSource,
+    formattedSource,
+    html,
+    fileInfo: Path.info("../sketches/" + sourcePath),
   };
-  return tree;
+
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate(
+    "plugins/source/source.handlebars",
+    context
+  );
+  const sketchSrcDoc = await buildTemplate("plugins/md/md.handlebars", context);
+
+  // inject pages
+  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
 }
 
-function defaultFile(tree, path) {
-  const item = getItem(tree, path);
+async function showTXT(sourcePath) {
+  let rawSource = await getText("../sketches/" + sourcePath);
 
-  if (!item) return path;
-  if (item.type === "file") return path;
-  if (item.children.length === 0) return path;
+  // format source
+  const formattedSource = `<pre class="source">${rawSource}</pre>`;
 
-  if (path.length) {
-    path = path + "/" + item.children[0].name;
-  } else {
-    path = item.children[0].name;
-  }
-  return defaultFile(tree, path);
-}
+  // render source
+  const html = `<pre class="txt">${rawSource}</pre>`;
 
-function getItem(tree, path) {
-  const pathParts = path.split("/");
-  const items = [tree];
-  for (const pathPart of pathParts) {
-    if (pathPart === "") break;
-    tree = tree.children.find((o) => o.name === pathPart);
-    if (tree === undefined) return false;
-    // if (tree.type === "file") break;
-    items.push(tree);
-  }
-  return last(items);
-}
+  // prepare template info
+  const context = {
+    rawSource,
+    formattedSource,
+    html,
+    fileInfo: Path.info("../sketches/" + sourcePath),
+  };
 
-function getFolders(tree, path) {
-  const pathParts = path.split("/");
-  const folders = [tree];
-  for (const pathPart of pathParts) {
-    if (pathPart === "") break;
-    tree = tree.children.find((o) => o.name === pathPart);
-    if (tree === undefined) return false;
-    if (tree.type === "file") break;
-    folders.push(tree);
-  }
-  return folders;
-}
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate(
+    "plugins/source/source.handlebars",
+    context
+  );
+  const sketchSrcDoc = await buildTemplate(
+    "plugins/txt/txt.handlebars",
+    context
+  );
 
-function buildDropdown(context) {
-  const templateText = `
-  <div class="dropdown">
-    <div class="title">
-      {{title}}
-    </div>
-    <ul class="items">
-        {{#items}}
-        <li class="{{this.type}}"><a href="{{this.href}}">{{this.title}}</a></li>
-        {{/items}}
-    </ul>
-  </div>`;
-
-  const template = Handlebars.compile(templateText);
-  const markup = template(context);
-  const el = createElementFromHTML(markup);
-  return el;
-}
-
-function createElementFromHTML(htmlString) {
-  var div = document.createElement("div");
-  div.innerHTML = htmlString.trim();
-  return div.firstChild;
-}
-
-function last(a) {
-  return a[a.length - 1];
-}
-
-function getFileName(url) {
-  const fileNameRegex = /[^/]+?(?=\?|$)/;
-  const fileName = fileNameRegex.exec(url)[0];
-  return fileName;
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
+  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
 }
 
 async function getText(path) {
@@ -241,3 +160,15 @@ function readDirectives(text) {
   }
   return { requires };
 }
+
+// unused
+
+// function last(a) {
+//   return a[a.length - 1];
+// }
+
+// function getFileName(url) {
+//   const fileNameRegex = /[^/]+?(?=\?|$)/;
+//   const fileName = fileNameRegex.exec(url)[0];
+//   return fileName;
+// }

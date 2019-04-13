@@ -1,25 +1,42 @@
-const Path = {
-  filename(path) {
-    const fileNameRegex = /[^/]+?(?=\?|$)/;
-    const parts = fileNameRegex.exec(path);
-    if (parts && parts.length) return parts[0];
-    return "";
-  },
-  root(path) {
-    return Path.filename(path)
-      .split(".")
-      .shift();
-  },
-  lastExtension(path) {
-    const parts = Path.filename(path).split(".");
-    if (parts.length > 1) return parts.pop();
-    return undefined;
-  },
-  extensions(path) {
-    const parts = Path.filename(path).split(".");
-    if (parts.length > 1) return parts.splice(1).join(".");
-    return undefined;
-  },
-};
+function name(path) {
+  const fileNameRegex = /[^/]+?(?=\?|$)/;
+  const parts = fileNameRegex.exec(path);
+  if (parts && parts.length) return parts[0];
+  return "";
+}
 
-export default Path;
+function root(path) {
+  return name(path)
+    .split(".")
+    .shift();
+}
+
+function lastExtension(path) {
+  const parts = name(path).split(".");
+  if (parts.length > 1) return parts.pop();
+  return undefined;
+}
+
+function extensions(path) {
+  const parts = name(path).split(".");
+  if (parts.length > 1) return parts.splice(1).join(".");
+  return undefined;
+}
+
+function info(path) {
+  return {
+    path: path,
+    name: name(path),
+    root: root(path),
+    lastExtension: lastExtension(path),
+    extensions: extensions(path),
+  };
+}
+
+export default {
+  name,
+  root,
+  lastExtension,
+  extensions,
+  info,
+};

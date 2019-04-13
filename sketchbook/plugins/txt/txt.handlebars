@@ -2,37 +2,16 @@
 <html lang="en">
 
 <head>
-    <title>{{fileTitle}}</title>
-    <link rel="stylesheet" href="syntax.css">
-    <style>
-        @import url("https://fonts.googleapis.com/css?family=Barlow");
+    <title>{{fileInfo.name}}</title>
 
-        body {
-            background: #333;
-            color: #DDD;
-            white-space: pre;
-            font-family: "Barlow", sans-serif;
-            line-height: 1.6;
+    <base target="_parent">
 
-        }
-
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-            background-color: #333;
-
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #AAA;
-            border: 3px solid transparent;
-            border-radius: 9px;
-            background-clip: content-box;
-        }
-    </style>
+    <link rel="stylesheet" href="plugins/common/common.css">
+    <link rel="stylesheet" href="plugins/txt/txt.css">
 </head>
 
-<body>{{{content}}}</body>
-
+<body>
+    {{{html}}}
+</body>
 
 </html>

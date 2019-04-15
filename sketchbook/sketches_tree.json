@@ -1,39 +1,13 @@
 [
     {
-        "type": "file",
-        "name": "01_hello_p5.js"
-    },
-    {
-        "type": "file",
-        "name": "bounce_5_dry.js"
-    },
-    {
-        "type": "file",
-        "name": "bounce_6_array.js"
-    },
-    {
-        "type": "file",
-        "name": "bounce_live.js"
-    },
-    {
-        "type": "file",
-        "name": "grass_grow.js"
-    },
-    {
-        "type": "file",
-        "name": "hello_world.js"
-    },
-    {
-        "type": "file",
-        "name": "object_live.js"
-    },
-    {
-        "type": "file",
-        "name": "readme.md"
-    },
-    {
-        "type": "file",
-        "name": "readme.txt"
+        "name": "animation",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "grass_grow.js"
+            }
+        ]
     },
     {
         "name": "discovering_oop",
@@ -57,11 +31,27 @@
             },
             {
                 "type": "file",
+                "name": "bounce_5_dry.js"
+            },
+            {
+                "type": "file",
+                "name": "bounce_6_array.js"
+            },
+            {
+                "type": "file",
+                "name": "bounce_live.js"
+            },
+            {
+                "type": "file",
                 "name": "object.js"
             },
             {
                 "type": "file",
                 "name": "object_es6.js"
+            },
+            {
+                "type": "file",
+                "name": "object_live.js"
             }
         ]
     },
@@ -80,6 +70,40 @@
             {
                 "type": "file",
                 "name": "new_donkey.js"
+            }
+        ]
+    },
+    {
+        "name": "tests",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "filkit.png"
+            },
+            {
+                "type": "file",
+                "name": "hello_p5.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_paper.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_world.js"
+            },
+            {
+                "type": "file",
+                "name": "readme.md"
+            },
+            {
+                "type": "file",
+                "name": "readme.txt"
+            },
+            {
+                "type": "file",
+                "name": "yaml.yaml"
             }
         ]
     },

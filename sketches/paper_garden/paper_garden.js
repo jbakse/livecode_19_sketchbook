@@ -1,3 +1,6 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
+
 /*eslint no-undef: 0*/
 
 var width = 1000;
@@ -56,7 +59,7 @@ function createPlant(cluster_point, plant_point, tint) {
     fillColor: new Color(1 - tint, 1 - tint, 1 - tint),
     shadowColor: new Color(0, 0, 0, 0.3),
     shadowBlur: 16,
-    shadowOffset: new Point(randomRange(-2, 2), randomRange(0.5, 2))
+    shadowOffset: new Point(randomRange(-2, 2), randomRange(0.5, 2)),
   };
 }
 

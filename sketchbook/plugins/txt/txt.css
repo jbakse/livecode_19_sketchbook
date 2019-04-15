@@ -1,0 +1,6 @@
+.txt {
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.6em;
+}

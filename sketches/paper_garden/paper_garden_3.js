@@ -1,3 +1,5 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
 /*eslint no-undef: 0*/
 
 var WIDTH = 600;
@@ -116,14 +118,14 @@ function createDot(cluster_point, dot_point, r) {
     fillColor: new Color(1, 1, 1, 1),
     shadowColor: new Color(1, 1, 1, 1),
     shadowBlur: 4,
-    shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1))
+    shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1)),
   };
 
   var path = new Path.Circle(cluster_point + dot_point, r);
   var pressure = randomRange(-0.5, 0.5);
   path.style = {
     strokeColor: new Color(0.3, 0.3, 0.3) + new Color(0.1, 0.1, 0.1) * pressure,
-    strokeWidth: 1 - pressure * 0.1
+    strokeWidth: 1 - pressure * 0.1,
   };
 
   //   path.clone().translate(randomPoint() * 0.3);

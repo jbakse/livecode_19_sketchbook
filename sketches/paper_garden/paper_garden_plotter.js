@@ -1,3 +1,5 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
 /*global project Rectangle Point Group Path Color*/
 
 ////////////////////////////////////////////////
@@ -8,12 +10,12 @@ var MARGIN = 50;
 
 ////////////////////////////////////////////////
 // drawing settings
-var GAPPY = 2;
-var SLOPPY = 3;
+var GAPPY = 3;
+var SLOPPY = 2;
 var SHADOW_BLUR = 0;
 var ROUGH = 0.1;
 var STROKE = 1.0;
-var DRAW_CIRCLE_FUNC = drawCircle;
+var DRAW_CIRCLE_FUNC = drawCirclePlotter;
 
 // sorting functions: sortTopDown, sortBottomUp, sortInnerOut, sortOuterIn
 var PLANT_SORTING_FUNC = sortTopDown;
@@ -24,7 +26,7 @@ var LEAF_SORTING_FUNC = sortOuterIn;
 
 var PLANT_COUNT = 50;
 var PLANT_SPACING = 130;
-var PLANT_CULL = 0.55;
+var PLANT_CULL = 0.85;
 
 var LEAF_COUNT = 70;
 var LEAF_RADIUS = 18;
@@ -41,8 +43,16 @@ var plant_types = ["leafy", "flowery", "viney"];
 
 ///////////////////////////////////////////
 // kick off
-makeScene();
+// makeScene();
 
+var firstFrame = true;
+function onFrame() {
+  if (firstFrame) {
+    console.log("hi");
+    makeScene();
+    firstFrame = false;
+  }
+}
 ///////////////////////////////////////////
 // application
 
@@ -52,6 +62,10 @@ function makeScene() {
 
   // draw plants
   createPlants();
+  //   createVine(new Point(100, 100), new Point(10, 10), 50);
+
+  //   project.activeLayer.strokeColor = "red";
+  //   project.activeLayer.fillColor = new Color(0, 1, 0, 0.1);
 
   // fit drawing onto canvas
   project.activeLayer.fitBounds(
@@ -79,19 +93,16 @@ function createPlants() {
   }
 
   // create and place plants
-  var plants = [];
+
   for (i = 0; i < points.length; i++) {
     var point = points[i];
-    var plant = createPlant();
-    plants.push(plant);
-    plant.name = "plant_" + i;
-    plant.position = point;
-  }
+    var plant = createPlant(point);
 
-  return plants;
+    // plant.position = point;
+  }
 }
 
-function createPlant() {
+function createPlant(p) {
   // choose a random plant type
   var plant_type = pick(plant_types);
 
@@ -102,68 +113,58 @@ function createPlant() {
   points.sort(LEAF_SORTING_FUNC);
 
   // make the parts
-  var parts = new Group();
+
   for (var i = 0; i < points.length; i++) {
     var point = points[i];
     // choose a random part generator (createLeaf, createFlower, createVine) from the config for this plant type
     var part_function = pick(plant_configs[plant_type]);
     // make the part
-    var part = part_function(point, LEAF_RADIUS);
-    part.name = "part_" + i;
-    parts.addChild(part);
+    part_function(p, point, LEAF_RADIUS);
   }
-
-  return parts;
 }
 
-function createLeaf(center, radius) {
-  return DRAW_CIRCLE_FUNC(center, radius);
+function createLeaf(center, point, radius) {
+  return DRAW_CIRCLE_FUNC(center + point, radius);
 }
 
-function createFlower(center, radius) {
-  var position = center;
-  var offset = center / 4;
+function createFlower(center, point, radius) {
+  var position = center + point;
+  var offset = point / 4;
 
-  var flower_group = new Group();
-  var blocker_group = new Group();
   for (var i = 0; i < 5; i++) {
     var r = map(i, 0, 5, radius, radius * 0.25);
     var circle = DRAW_CIRCLE_FUNC(position, r);
-    flower_group.addChild(circle);
-
-    var blocker = new Path.Circle(position, r * 0.8);
-    blocker.style = {
-      fillColor: "white",
-      shadowColor: new Color(1, 1, 1, 1),
-      shadowBlur: SHADOW_BLUR
-    };
-    blocker_group.addChild(blocker);
-
     offset = offset + [0, radius * 0.3];
     offset *= 0.75;
     position += offset;
   }
 
-  return new Group([flower_group, blocker_group]);
+  position = center + point;
+  offset = point / 4;
+  for (i = 0; i < 5; i++) {
+    r = map(i, 0, 5, radius, radius * 0.25);
+
+    circle = DRAW_CIRCLE_FUNC(position, r * 0.5, true);
+    offset = offset + [0, radius * 0.3];
+    offset *= 0.75;
+    position += offset;
+  }
 }
 
-function createVine(center, radius) {
+function createVine(center, point, radius) {
   var length = pick([8, 8, 8, 9, 9, 10, 20, 30, 40]);
   var offset_x = 0;
 
-  var vine_group = new Group();
   for (var i = 0; i < length; i++) {
     var offset_point = [offset_x, i * radius * 0.6];
     offset_x += randomRange(-radius, radius) * 0.5;
     offset_x *= 0.5;
-    var circle = DRAW_CIRCLE_FUNC(center + offset_point, radius * 0.4);
-    vine_group.addChild(circle);
-    circle.sendToBack();
+    var circle = DRAW_CIRCLE_FUNC(center + point + offset_point, radius * 0.4);
+
+    // circle.sendToBack();
   }
 
-  vine_group.addChild(createLeaf(center, radius));
-
-  return vine_group;
+  DRAW_CIRCLE_FUNC(center + point, radius);
 }
 
 ///////////////////////////////////////////
@@ -229,7 +230,7 @@ function drawCircle(center, radius) {
     fillColor: new Color(1, 1, 1, 1),
     shadowColor: new Color(1, 1, 1, 1),
     shadowBlur: SHADOW_BLUR,
-    shadowOffset: 0
+    shadowOffset: 0,
   };
 
   // create stroke circle
@@ -239,7 +240,7 @@ function drawCircle(center, radius) {
   path.style = {
     fillColor: new Color(1, 1, 1, 1),
     strokeColor: new Color(0.3, 0.3, 0.3), // + new Color(0.1, 0.1, 0.1) * pressure,
-    strokeWidth: STROKE
+    strokeWidth: STROKE,
   };
 
   for (var s = 0; s < path.segments.length; s++) {
@@ -247,19 +248,86 @@ function drawCircle(center, radius) {
   }
 
   // add a dashed clone of the stroke to give some slight variation to weight and color
-  // var dash_path = path.clone();
-  // dash_path.style = {
-  //   dashOffset: randomRange(0, 200),
-  //   dashArray: [randomRange(0, 50), 200],
-  //   strokeColor: new Color(0.3, 0.3, 0.3),
-  //   strokeWidth: STROKE * 1.3,
-  //   strokeCap: "round",
-  //   fillColor: undefined,
-  //   strokeScaling: true
-  // };
-  // return new Group([back_path, path, dash_path]);
+  var dash_path = path.clone();
+  dash_path.style = {
+    dashOffset: randomRange(0, 200),
+    dashArray: [randomRange(0, 50), 200],
+    strokeColor: new Color(0.3, 0.3, 0.3),
+    strokeWidth: STROKE * 1.3,
+    strokeCap: "round",
+    fillColor: undefined,
+    strokeScaling: true,
+  };
 
-  return new Group([back_path, path]);
+  // return new Group([back_path, path, dash_path]);
+}
+
+function drawCirclePlotter(center, radius, hide) {
+  // create backing blocker
+  var back_path = new Path.Circle(center, radius + GAPPY);
+  //   back_path.name = "back";
+  back_path.translate(randomPoint() * SLOPPY);
+  //   back_path.style = {
+  //     fillColor: new Color(1, 0, 0, 0.1)
+  //   };
+  back_path.remove();
+
+  // create stroke circle
+  var path = new Path.Circle(center, radius);
+  //   path.name = "front";
+  path.style = {
+    strokeColor: "black",
+  };
+
+  for (var s = 0; s < path.segments.length; s++) {
+    path.segments[s].point += randomPoint() * ROUGH * radius;
+  }
+  path.remove();
+
+  var children;
+
+  //   children = project.activeLayer.children.slice();
+  //   for (var i = 0; i < children.length; i++) {
+  //     // if (children[i]) {
+  //     subtract(children[i], back_path);
+  //     // }
+  //   }
+
+  removeHiddenLines(back_path);
+  //   children = project.activeLayer.children.slice();
+  //   for (var i = 0; i < children.length; i++) {
+  //     // if (children[i]) {
+  //     subtract(children[i], path);
+  //     // }
+  //   }
+
+  removeHiddenLines(path);
+
+  if (hide !== true) path.addTo(project.activeLayer);
+
+  return path;
+}
+
+function removeHiddenLines(path) {
+  // this cached_bounds buisness is a crummy hack
+  // it speeds this process up 10x by only trying to remove hidden lines
+  // if hte bounds of the lines intersect
+  // but .bounds is kinda slow, so it caches the bounds
+  // faster, but will break if the line has moved
+  path.cached_bounds = path.bounds;
+  var children = project.activeLayer.children.slice();
+  for (var i = 0; i < children.length; i++) {
+    var other_bounds = children[i].cached_bounds;
+    if (!other_bounds) {
+      other_bounds = children[i].cached_bounds = children[i].bounds;
+    }
+
+    if (path.cached_bounds.intersects(other_bounds)) {
+      subtract(children[i], path);
+    }
+  }
+
+  //   console.log(hits + "/" + tests);
 }
 
 ///////////////////////////////////////////
@@ -295,6 +363,41 @@ function shuffle(a) {
   return a;
 }
 
+function subtract(a, b) {
+  if (!b.closed) {
+    return false;
+  }
+  if (a.closed) {
+    a.splitAt(0);
+  }
+  var crossings = a.getCrossings(b);
+
+  var kept = [];
+  var removed = [];
+  for (var i = crossings.length - 1; i >= 0; i--) {
+    var splitPart = a.splitAt(crossings[i].offset);
+    if (b.contains(splitPart.getPointAt(splitPart.length * 0.5))) {
+      splitPart.strokeColor = "blue";
+      splitPart.remove();
+      removed.push(splitPart);
+    } else {
+      kept.push(splitPart);
+    }
+  }
+
+  if (b.contains(a.getPointAt(a.length * 0.5))) {
+    a.remove();
+    removed.push(a);
+  } else {
+    kept.push(a);
+  }
+
+  return {
+    kept: kept,
+    removed: removed,
+  };
+}
+
 ///////////////////////////////////////////
 // DOWNLOAD SVG
 
@@ -314,12 +417,9 @@ function downloadAsSVG(fileName) {
   var svgData = project.exportSVG({ asString: true });
   var url = "data:image/svg+xml;utf8," + encodeURIComponent(svgData);
 
-  var el = document.createElement("div");
-  el.textContent = svgData;
-  document.body.append(el);
   // create a link to the data, and "click" it
-  // var link = document.createElement("a");
-  // link.download = fileName;
-  // link.href = url;
-  // link.click();
+  var link = document.createElement("a");
+  link.download = fileName;
+  link.href = url;
+  link.click();
 }

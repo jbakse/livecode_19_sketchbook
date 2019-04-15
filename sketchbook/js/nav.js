@@ -57,6 +57,4 @@ function createElementFromHTML(htmlString) {
 
 export default {
   buildNav,
-  buildDropdown,
-  createElementFromHTML,
 };

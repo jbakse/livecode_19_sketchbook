@@ -12,7 +12,15 @@
 </head>
 
 <body>
-  {{{formattedSource}}}
+
+  {{#formattedSource}}
+  <pre class="formatted source">{{{.}}}</pre>
+  {{/formattedSource}}
+
+  {{^formattedSource}}
+  <pre class="raw source">{{{rawSource}}}</pre>
+  {{/formattedSource}}
+
 </body>
 
 </html>

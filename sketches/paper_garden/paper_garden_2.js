@@ -1,3 +1,5 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
 /*eslint no-undef: 0*/
 
 var width = 600;
@@ -127,7 +129,7 @@ function createDot(cluster_point, dot_point, cluster_color) {
     strokeColor: "black",
     shadowColor: new Color(1, 1, 1, 1),
     shadowBlur: 5,
-    shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1))
+    shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1)),
   };
   path.clone();
   path.clone();
@@ -161,7 +163,7 @@ function createFlower(cluster_point, dot_point, base_color) {
       strokeColor: "black",
       shadowColor: new Color(1, 1, 1, 1),
       shadowBlur: 2,
-      shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1))
+      shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1)),
     };
     path.clone();
     path.clone();
@@ -203,7 +205,7 @@ function createVine(cluster_point, dot_point, base_color) {
       strokeColor: "black",
       shadowColor: new Color(1, 1, 1, 1),
       shadowBlur: 5,
-      shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1))
+      shadowOffset: new Point(randomRange(-1, 1), randomRange(1, 1)),
     };
     path.clone();
     path.clone();

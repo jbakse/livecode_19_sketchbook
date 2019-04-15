@@ -11,7 +11,11 @@ module.exports = {
   // require("./p5Globals.js"),
   rules: {
     indent: ["error", 2],
-    quotes: ["error", "double"],
+    quotes: [
+      "error",
+      "double",
+      { "avoid-escape": true, allowTemplateLiterals: true },
+    ],
     semi: ["error", "always"],
     "linebreak-style": ["error", "unix"],
     "no-unused-vars": ["error", { vars: "local" }],

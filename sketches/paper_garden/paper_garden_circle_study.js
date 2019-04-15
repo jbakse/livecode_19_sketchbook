@@ -1,3 +1,5 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
 /*global project Point Group Path Color dat*/
 
 ////////////////////////////////////////////////
@@ -11,11 +13,9 @@ var STROKE = 1.0;
 draw();
 function draw() {
   project.activeLayer.removeChildren();
-
   drawCircle([280, 290], 50);
   drawCircle([330, 300], 50);
   drawCircle([310, 340], 50);
-  //   drawing.push(drawCircle([330, 350], 50, drawing));
 }
 
 function drawCircle(center, radius) {
@@ -24,38 +24,38 @@ function drawCircle(center, radius) {
   back_path.name = "back";
   back_path.translate(randomPoint() * SLOPPY);
   back_path.style = {
-    fillColor: new Color(1, 0, 0, 0.1),
+    fillColor: new Color(1, 1, 1, 1),
     shadowColor: new Color(1, 1, 1, 1),
     shadowBlur: SHADOW_BLUR,
-    shadowOffset: 0
+    shadowOffset: 0,
   };
-  back_path.remove();
 
   // create stroke circle
   var path = new Path.Circle(center, radius);
   path.name = "front";
   path.style = {
-    strokeColor: "black"
+    fillColor: new Color(1, 1, 1, 1),
+    strokeColor: new Color(0.3, 0.3, 0.3),
+    strokeWidth: STROKE,
   };
 
   for (var s = 0; s < path.segments.length; s++) {
     path.segments[s].point += randomPoint() * ROUGH * radius;
   }
-  path.remove();
 
-  console.log(project.activeLayer.children);
-  var children = project.activeLayer.children;
-  for (var i = 0; i < children.length; i++) {
-    // if (children[i] === path) continue;
-    // if (children[i] === back_path) continue;
+  // add a dashed clone of the stroke to give some slight variation to weight and color
+  var dash_path = path.clone();
+  dash_path.style = {
+    dashOffset: randomRange(0, 200),
+    dashArray: [randomRange(0, 50), 200],
+    strokeColor: new Color(0.3, 0.3, 0.3),
+    strokeWidth: STROKE * 1.3,
+    strokeCap: "round",
+    fillColor: undefined,
+    strokeScaling: true,
+  };
 
-    subtract(children[i], back_path);
-    subtract(children[i], path);
-  }
-
-  path.addTo(project.activeLayer);
-
-  return path;
+  return new Group([back_path, path, dash_path]);
 }
 
 function randomRange(min, max) {
@@ -73,7 +73,7 @@ var settings = {
   SLOPPY: SLOPPY,
   SHADOW_BLUR: SHADOW_BLUR,
   ROUGH: ROUGH,
-  STROKE: STROKE
+  STROKE: STROKE,
 };
 
 var gui = new dat.GUI();
@@ -90,37 +90,4 @@ function update() {
   ROUGH = settings.ROUGH;
   STROKE = settings.STROKE;
   draw();
-}
-
-function subtract(a, b) {
-  if (!b.closed) {
-    return false;
-  }
-  if (a.closed) {
-    a.splitAt(0);
-  }
-  var crossings = a.getCrossings(b);
-
-  var kept = [];
-  var removed = [];
-  for (var i = crossings.length - 1; i >= 0; i--) {
-    var splitPart = a.splitAt(crossings[i].offset);
-    if (b.contains(splitPart.getPointAt(splitPart.length * 0.5))) {
-      splitPart.remove();
-      removed.push(splitPart);
-    } else {
-      kept.push(splitPart);
-    }
-  }
-  if (b.contains(a.getPointAt(a.length * 0.5))) {
-    a.remove();
-    removed.push(a);
-  } else {
-    kept.push(a);
-  }
-
-  return {
-    kept: kept,
-    removed: removed
-  };
 }

@@ -1,3 +1,6 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+// paperscript
+
 /*global project Point Group Path Color dat*/
 
 ////////////////////////////////////////////////
@@ -54,6 +57,6 @@ function subtract(a, b) {
 
   return {
     kept: kept,
-    removed: removed
+    removed: removed,
   };
 }

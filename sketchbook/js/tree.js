@@ -1,3 +1,9 @@
+export default {
+  load,
+  defaultFile,
+  getFolders,
+};
+
 async function load(data, initialPath) {
   const response = await fetch(data);
   const tree = {
@@ -23,19 +29,6 @@ function defaultFile(tree, path) {
   return defaultFile(tree, path);
 }
 
-function getItem(tree, path) {
-  const pathParts = path.split("/");
-  const items = [tree];
-  for (const pathPart of pathParts) {
-    if (pathPart === "") break;
-    tree = tree.children.find((o) => o.name === pathPart);
-    if (tree === undefined) return false;
-    // if (tree.type === "file") break;
-    items.push(tree);
-  }
-  return items[items.length - 1];
-}
-
 function getFolders(tree, path) {
   const pathParts = path.split("/");
   const folders = [tree];
@@ -49,9 +42,18 @@ function getFolders(tree, path) {
   return folders;
 }
 
-export default {
-  load,
-  defaultFile,
-  getItem,
-  getFolders,
-};
+//////////////////////////////////////////////////////////////////////
+// Private
+
+function getItem(tree, path) {
+  const pathParts = path.split("/");
+  const items = [tree];
+  for (const pathPart of pathParts) {
+    if (pathPart === "") break;
+    tree = tree.children.find((o) => o.name === pathPart);
+    if (tree === undefined) return false;
+    // if (tree.type === "file") break;
+    items.push(tree);
+  }
+  return items[items.length - 1];
+}

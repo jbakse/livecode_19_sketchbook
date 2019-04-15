@@ -1,3 +1,5 @@
+// require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
+
 /*eslint no-undef: 0*/
 
 ////////////////////////////////////////////////
@@ -43,7 +45,7 @@ paper.setup(canvas);
 
 var plantGenerator = createPlants();
 
-view.onFrame = e => {
+view.onFrame = (e) => {
   let v = plantGenerator.next().value;
   project.activeLayer.applyMatrix = false;
   project.activeLayer.fitBounds(
@@ -133,7 +135,7 @@ function createFlower(center, radius) {
     blocker.style = {
       fillColor: "white",
       shadowColor: new Color(1, 1, 1, 1),
-      shadowBlur: SHADOW_BLUR
+      shadowBlur: SHADOW_BLUR,
     };
     blocker_group.addChild(blocker);
 
@@ -205,7 +207,7 @@ function createCircleDrawn(center, radius) {
     fillColor: new Color(1, 1, 1, 1),
     shadowColor: new Color(1, 1, 1, 1),
     shadowBlur: SHADOW_BLUR,
-    shadowOffset: 0
+    shadowOffset: 0,
   };
 
   // create stroke circle
@@ -215,7 +217,7 @@ function createCircleDrawn(center, radius) {
   path.style = {
     fillColor: "white",
     strokeColor: new Color(0.3, 0.3, 0.3), // + new Color(0.1, 0.1, 0.1) * pressure,
-    strokeWidth: STROKE
+    strokeWidth: STROKE,
   };
 
   for (var s = 0; s < path.segments.length; s++) {
@@ -233,7 +235,7 @@ function createCircleDrawn(center, radius) {
     strokeWidth: STROKE * 1.3,
     strokeCap: "round",
     fillColor: undefined,
-    strokeScaling: true
+    strokeScaling: true,
   };
 
   return new Group([back_path, path, dash_path]);
@@ -265,7 +267,7 @@ function debugPoints(points, radius) {
 function debugPoint(point, radius) {
   var path = new Path.Circle(point, radius);
   path.style = {
-    strokeColor: new Color(0, 1, 1, 1)
+    strokeColor: new Color(0, 1, 1, 1),
   };
   return path;
 }

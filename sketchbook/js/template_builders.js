@@ -5,6 +5,7 @@ export default {
   js: showJS,
   md: showMD,
   txt: showTXT,
+  direct: showDirect,
 };
 
 // context_format = {
@@ -27,10 +28,16 @@ async function showJS(sourcePath) {
   let html;
   // paperscript
 
-  const paperscriptRegex = /^\/\/ ?paperscript$/gm;
+  const paperscriptRegex = /^\/\/ ?paperscript ?(\d*)? ?(\d*)?$/gm;
   const attributes = [];
-  if (paperscriptRegex.test(rawSource)) {
-    html = '<canvas id="paper-canvas"></canvas>';
+  let r = paperscriptRegex.exec(rawSource);
+  if (r) {
+    console.log(paperscriptRegex.test(rawSource));
+
+    console.log("result", r);
+    const w = r[1] || 512;
+    const h = r[2] || 512;
+    html = `<canvas id="paper-canvas" width="${w}" height="${h}"></canvas>`;
     attributes.push('type="text/paperscript"');
     attributes.push('canvas="paper-canvas"');
   }
@@ -134,6 +141,35 @@ async function showTXT(sourcePath) {
   // inject pages
   document.getElementById("source-frame").srcdoc = sourceSrcDoc;
   document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
+}
+
+async function showDirect(sourcePath) {
+  let rawSource = await getText(sourcePath);
+
+  // format source
+  const formattedSource = rawSource;
+
+  // render source
+  const content = rawSource;
+
+  // prepare template info
+  const context = {
+    rawSource,
+    formattedSource,
+    content,
+    fileInfo: Path.info(sourcePath),
+  };
+
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate(
+    "plugins/source/source.handlebars",
+    context
+  );
+
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
+
+  document.getElementById("sketch-frame").src = sourcePath;
 }
 
 async function getText(path) {

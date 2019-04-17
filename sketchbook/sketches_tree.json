@@ -10,6 +10,34 @@
         ]
     },
     {
+        "name": "broken",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "paper_garden_4js.js"
+            }
+        ]
+    },
+    {
+        "name": "donkey",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "clean_donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "new_donkey.js"
+            }
+        ]
+    },
+    {
         "name": "discovering_oop",
         "type": "folder",
         "children": [
@@ -56,20 +84,44 @@
         ]
     },
     {
-        "name": "donkey",
+        "name": "paper_garden",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "clean_donkey.js"
+                "name": "paper_garden.js"
             },
             {
                 "type": "file",
-                "name": "donkey.js"
+                "name": "paper_garden_2.js"
             },
             {
                 "type": "file",
-                "name": "new_donkey.js"
+                "name": "paper_garden_3.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_4.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_circle_study.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_plotter.js"
+            },
+            {
+                "type": "file",
+                "name": "plotter_test.js"
+            },
+            {
+                "type": "file",
+                "name": "paperjs_util.js"
+            },
+            {
+                "type": "file",
+                "name": "subtract_test.js"
             }
         ]
     },
@@ -87,11 +139,11 @@
             },
             {
                 "type": "file",
-                "name": "hello_paper.js"
+                "name": "hello_world.js"
             },
             {
                 "type": "file",
-                "name": "hello_world.js"
+                "name": "hello_paper.js"
             },
             {
                 "type": "file",
@@ -130,58 +182,6 @@
             {
                 "type": "file",
                 "name": "synth_1.js"
-            }
-        ]
-    },
-    {
-        "name": "broken",
-        "type": "folder",
-        "children": [
-            {
-                "name": "paper_garden",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "paper_garden.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_2.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_3.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_4.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_4js.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_circle_study.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_plotter.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paperjs_util.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "plotter_test.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "subtract_test.js"
-                    }
-                ]
             }
         ]
     },

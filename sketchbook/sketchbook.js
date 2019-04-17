@@ -35,7 +35,7 @@ async function main() {
   if (builders.hasOwnProperty(extensions)) {
     builders[extensions](sourcePath);
   } else {
-    builders["txt"](sourcePath);
+    builders["direct"](sourcePath);
   }
 }
 

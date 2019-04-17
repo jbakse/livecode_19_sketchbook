@@ -5,7 +5,7 @@
 // This is a very simple implementation of a bouncing ball animation. Each frame it
 // moves the ball in a straight line, bouncing it when it hits the edge of the screen.
 
-// This version is written in an imperative style. It is short and fairly clear but needs some
+// This version is written in an imperative style. It is short and fairly clear, but it needs some
 // clean-up before it should be expanded.
 
 // ## Describe State Data
@@ -13,38 +13,34 @@
 // This section declares and initializes our program state variables.
 // The data is all stored in unorganized global variables. This is a key target for clean up.
 
-// the horizontal position of the ball
+// Horizontal position of the ball:
 let ballX = 100;
-// the vertical position of the ball
+// Vertical position of the ball:
 let ballY = 10;
-// the horizontal velocity of the ball
+// Horizontal velocity of the ball:
 let ballDeltaX = 5;
-// the vertical velocity of the ball
+// Vertical velocity of the ball:
 let ballDeltaY = 7;
 
-// ## Setup
+// ## setup()
 
-// P5 calls the `setup()` function once at the beginning. First the code creates
-// a canvas to draw into. Then it sets some general p5 settings.
+// [p5.js](https://p5js.org) calls the `setup()` function once at the beginning. Here, `setup()` creates
+// a canvas to draw into and sets the frame rate.
 
-window.setup = function() {
+function setup() {
   createCanvas(600, 600);
   frameRate(60);
-};
+}
 
-// > This code will be loaded as a Javascript module, encapsulating its scope.
-// > P5 doesn't isn't module-aware, so we need to export `setup()` and `draw()`
-// > as properties on the global `window` object where p5 expects them.
+// ## draw()
 
-// ## Draw
-
-// P5 calls `draw()` once per frame. The draw function should draw one frame of animation.
-window.draw = function() {
+// p5 calls `draw()` once per frame. The draw function should draw one frame of animation.
+function draw() {
   // clear the drawing
   background(10, 10, 10);
 
   // This part moves the ball based on its velocity.
-  // This is a very basic physics simulation with a simple discreet numeric integration.
+  // This is a very basic physics simulation using discreet numeric integration.
   ballX += ballDeltaX;
   ballY += ballDeltaY;
 
@@ -60,4 +56,4 @@ window.draw = function() {
   noStroke();
   fill(255, 0, 0);
   ellipse(ballX, ballY, 20, 20);
-};
+}

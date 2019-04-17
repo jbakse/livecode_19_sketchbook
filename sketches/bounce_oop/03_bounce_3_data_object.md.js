@@ -1,14 +1,13 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
-// # Version 2
+// # Version 3
 
-// This is a very simple implementation of a bouncing ball animation. Each frame it moves the ball in a straight line, bouncing it when it hits the edge of the screen.
-
-// This version is written in a structured, procedural style. The data is organized into a data object.
+// In this version the data is organized into a [plain-old-data](https://en.wikipedia.org/wiki/Passive_data_structure) object.
+// Using the data object explicity groups the related data, making the code more readable.
 
 // ## Describe State Data
 
-// Move the data into a POD, Plain Old Data object. This doesn't change the program very much, but
+// Group the data into a Plain Old Data object. This doesn't change the program very much, but
 // more organized data will be easier to work with as the program grows.
 
 let ball = {
@@ -19,22 +18,24 @@ let ball = {
   radius: 10,
 };
 
-// ## Setup
+// ## setup()
 
-window.setup = function() {
+function setup() {
   createCanvas(600, 600);
-  colorMode(HSB, 1);
   frameRate(60);
-};
+}
 
-// ## Draw
+// ## draw()
 
-window.draw = function() {
+function draw() {
   stepApp();
   drawApp();
-};
+}
 
-// ## StepApp
+// ## stepApp()
+
+// This fucntion is mostly the same, but now variables are now accessed through "dot" notation.
+// When reading this code it is clear that `x`, `y`, `deltaX`, `deltaY`, and `radius` are all properties of `ball`.
 
 function stepApp() {
   // forces + physics
@@ -48,11 +49,11 @@ function stepApp() {
   if (ball.y < 0 + ball.radius) ball.deltaY = abs(ball.deltaY);
 }
 
-// ## DrawApp
+// ## drawApp()
 
 function drawApp() {
-  background(0, 0, 0.2);
+  background(10);
   noStroke();
-  fill(0, 1, 1);
+  fill(255, 0, 0);
   ellipse(ball.x, ball.y, ball.radius * 2, ball.radius * 2);
 }

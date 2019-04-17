@@ -1,11 +1,53 @@
 [
     {
+        "type": "file",
+        "name": "01_hello.md"
+    },
+    {
         "name": "animation",
         "type": "folder",
         "children": [
             {
                 "type": "file",
                 "name": "grass_grow.js"
+            }
+        ]
+    },
+    {
+        "name": "bounce_oop",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "01_bounce_1_basics.md.js"
+            },
+            {
+                "type": "file",
+                "name": "02_bounce_2_cleanup.md.js"
+            },
+            {
+                "type": "file",
+                "name": "03_bounce_3_data_object.md.js"
+            },
+            {
+                "type": "file",
+                "name": "04_bounce_4_multiple_balls.md.js"
+            },
+            {
+                "type": "file",
+                "name": "05_bounce_5_dry.md.js"
+            },
+            {
+                "type": "file",
+                "name": "06_bounce_6_array.md.js"
+            },
+            {
+                "type": "file",
+                "name": "07_bounce_7_more_balls.md.js"
+            },
+            {
+                "type": "file",
+                "name": "08_bounce_8_oop.md.js"
             }
         ]
     },
@@ -38,52 +80,6 @@
         ]
     },
     {
-        "name": "discovering_oop",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "bounce_1_basics.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_2_cleanup.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_3_data_object.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_4_multiple_balls.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_5_dry.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_6_array.js"
-            },
-            {
-                "type": "file",
-                "name": "bounce_live.js"
-            },
-            {
-                "type": "file",
-                "name": "object.js"
-            },
-            {
-                "type": "file",
-                "name": "object_es6.js"
-            },
-            {
-                "type": "file",
-                "name": "object_live.js"
-            }
-        ]
-    },
-    {
         "name": "paper_garden",
         "type": "folder",
         "children": [
@@ -93,11 +89,11 @@
             },
             {
                 "type": "file",
-                "name": "paper_garden_2.js"
+                "name": "paper_garden_3.js"
             },
             {
                 "type": "file",
-                "name": "paper_garden_3.js"
+                "name": "paper_garden_2.js"
             },
             {
                 "type": "file",
@@ -113,11 +109,11 @@
             },
             {
                 "type": "file",
-                "name": "plotter_test.js"
+                "name": "paperjs_util.js"
             },
             {
                 "type": "file",
-                "name": "paperjs_util.js"
+                "name": "plotter_test.js"
             },
             {
                 "type": "file",
@@ -139,11 +135,11 @@
             },
             {
                 "type": "file",
-                "name": "hello_world.js"
+                "name": "hello_paper.js"
             },
             {
                 "type": "file",
-                "name": "hello_paper.js"
+                "name": "hello_world.js"
             },
             {
                 "type": "file",

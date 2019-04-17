@@ -58,6 +58,10 @@ function js2md(text, extname = "js") {
     // Did we just close a code block?
     if (!isCodeBlock && wasCodeBlock) {
       // If yes, append `\`\`\`` to close the code block.
+      // remove trailing empty line in code -jb
+      if (md[md.length - 1] === "") {
+        md.pop();
+      }
       md.push("```");
     }
 

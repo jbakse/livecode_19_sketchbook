@@ -12,6 +12,8 @@ x. the sketchbook/js/\* modules export everything, narrow down
 . change "plugin" to "view"? or actually put some of the show\*() code in so they are more like plugins.
 . shoudld the show\*() functions be DRYer? they all have the same general steps, and could be, but keeping them seperate makes it easier to handle special cases (maybe)
 
+. get rid of highlight.js, move to prism.
+
 # ORIGINAL FEATURE PLAN
 
 x.creates table of contents of

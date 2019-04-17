@@ -1,19 +1,22 @@
-// # Version 2
+// require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
-// This is a very simple implementation of a bouncing ball animation. Each frame it moves the ball in a straight line, bouncing it when it hits the edge of the screen.
+// # Version 6
 
-// This version creates collects the physics and collision into a code to reduce code repetition.
-// Reducing repetion in code is usually a good thing. It makes the code shorter, easier to read, and easier to maintain.
+// This version continues to clean up the code by combining the `ball` and `ball2` into an array called `balls`.
 
 // ## Describe State Data
 
+// First we create the empty array.
+
 let balls = [];
+
+// Then we add data objects to it.
 balls[0] = {
   x: 100,
   y: 10,
   deltaX: 5,
   deltaY: 7,
-  radius: 10
+  radius: 10,
 };
 
 balls[1] = {
@@ -21,36 +24,39 @@ balls[1] = {
   y: 10,
   deltaX: 7,
   deltaY: 6,
-  radius: 20
+  radius: 20,
 };
 
-// ## Setup
+// ## setup()
 
-window.setup = function() {
+function setup() {
   createCanvas(600, 600);
-  colorMode(HSB, 1);
   frameRate(60);
 
+  /*
   for (let i = 0; i < 50; i++) {
     balls[i] = {
       x: 100,
       y: 100,
       deltaX: random(-5, 5),
       deltaY: random(-5, 5),
-      radius: random(5, 20)
+      radius: random(5, 20),
     };
   }
-};
+  */
+}
 
-// ## Draw
+// ## draw()
 
-window.draw = function() {
+function draw() {
   stepApp();
   drawApp();
-};
+}
 
-// ## StepApp
+// ## stepApp()
 
+// Organizing the ball data as entries in an array explains the list relationship to Javascript.
+// Now we can iterate over the items in the list—the balls—rather than calling stepBall explicitly for each ball.
 function stepApp() {
   for (const ball of balls) {
     stepBall(ball);
@@ -69,24 +75,19 @@ function stepBall(b) {
   if (b.y < 0 + b.radius) b.deltaY = abs(b.deltaY);
 }
 
-// ## DrawApp
+// ## drawApp()
 
 function drawApp() {
-  background(0, 0, 0.2);
+  background(10);
   for (const ball of balls) {
     drawBall(ball);
   }
 }
 
-// `drawBall()` uses `push()` and `pop()` to isolate any p5 state changes
-// Without `push()` and `pop()`, this function would have two side effects
-// —changing the fill color and disabling stroke—that would spill into future
-// drawing elsewhere in the code
-
 function drawBall(b) {
   push();
   noStroke();
-  fill(0, 1, 1);
+  fill(255, 0, 0);
   ellipse(b.x, b.y, b.radius * 2, b.radius * 2);
   pop();
 }

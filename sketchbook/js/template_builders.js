@@ -4,6 +4,7 @@ import Path from "./path.js";
 export default {
   js: showJS,
   md: showMD,
+  "md.js": showMDJS,
   txt: showTXT,
   direct: showDirect,
 };
@@ -48,6 +49,7 @@ async function showJS(sourcePath) {
   // format source
   /* globals hljs */
   var formattedSource = hljs.highlight("js", rawSource, true).value;
+  console.log(formattedSource);
 
   // render source
   // empty
@@ -67,6 +69,58 @@ async function showJS(sourcePath) {
     "plugins/source/source.handlebars",
     context
   );
+  const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
+
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
+  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
+}
+
+async function showMDJS(sourcePath) {
+  const rawSource = await getText(sourcePath);
+  let html;
+  // paperscript
+
+  const paperscriptRegex = /^\/\/ ?paperscript ?(\d*)? ?(\d*)?$/gm;
+  const attributes = [];
+  let r = paperscriptRegex.exec(rawSource);
+  if (r) {
+    console.log(paperscriptRegex.test(rawSource));
+
+    console.log("result", r);
+    const w = r[1] || 512;
+    const h = r[2] || 512;
+    html = `<canvas id="paper-canvas" width="${w}" height="${h}"></canvas>`;
+    attributes.push('type="text/paperscript"');
+    attributes.push('canvas="paper-canvas"');
+  }
+
+  // directives
+  const directives = readDirectives(rawSource);
+
+  // format source
+  /* globals hljs */
+  // var formattedSource = hljs.highlight("js", rawSource, true).value;
+  var markdownSource = js2md(rawSource);
+  const md = new markdownit();
+  const content = `<div class="md">${md.render(markdownSource)}</div>`;
+  // console.log(content);
+
+  // render source
+  // empty
+
+  // prepare template info
+  const context = {
+    rawSource,
+    content,
+    libraries: directives.requires,
+    attributes,
+    html,
+    fileInfo: Path.info(sourcePath),
+  };
+
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate("plugins/md/md.handlebars", context);
   const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
 
   // inject pages

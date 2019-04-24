@@ -4,17 +4,25 @@
         "name": "01_hello.md"
     },
     {
-        "name": "animation",
+        "name": "01_donkey",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "grass_grow.js"
+                "name": "clean_donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "donkey.js"
+            },
+            {
+                "type": "file",
+                "name": "new_donkey.js"
             }
         ]
     },
     {
-        "name": "bounce_oop",
+        "name": "02_bounce_oop",
         "type": "folder",
         "children": [
             {
@@ -52,35 +60,7 @@
         ]
     },
     {
-        "name": "broken",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "paper_garden_4js.js"
-            }
-        ]
-    },
-    {
-        "name": "donkey",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "clean_donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "new_donkey.js"
-            }
-        ]
-    },
-    {
-        "name": "paper_garden",
+        "name": "04_paper_garden",
         "type": "folder",
         "children": [
             {
@@ -89,15 +69,19 @@
             },
             {
                 "type": "file",
-                "name": "paper_garden_3.js"
-            },
-            {
-                "type": "file",
                 "name": "paper_garden_2.js"
             },
             {
                 "type": "file",
+                "name": "paper_garden_3.js"
+            },
+            {
+                "type": "file",
                 "name": "paper_garden_4.js"
+            },
+            {
+                "type": "file",
+                "name": "paper_garden_4js.js"
             },
             {
                 "type": "file",
@@ -122,7 +106,103 @@
         ]
     },
     {
-        "name": "tests",
+        "name": "05_tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
+                "name": "connect.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "synth_1.js"
+            }
+        ]
+    },
+    {
+        "name": "06_animation",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "grass_grow.js"
+            }
+        ]
+    },
+    {
+        "name": "03_firenotes",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "name": "demo_firestore",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
+            },
+            {
+                "name": "demo_complete",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "demo_vue",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "99_tests",
         "type": "folder",
         "children": [
             {
@@ -152,56 +232,30 @@
             {
                 "type": "file",
                 "name": "yaml.yaml"
-            }
-        ]
-    },
-    {
-        "name": "tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adsr.png"
             },
             {
-                "type": "file",
-                "name": "connect.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_tone.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
-            }
-        ]
-    },
-    {
-        "name": "dot",
-        "type": "folder",
-        "children": [
-            {
-                "name": "01_basic",
+                "name": "dot",
                 "type": "folder",
                 "children": [
                     {
-                        "type": "file",
-                        "name": "basic.js"
-                    }
-                ]
-            },
-            {
-                "name": "02_advanced",
-                "type": "folder",
-                "children": [
+                        "name": "01_basic",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "basic.js"
+                            }
+                        ]
+                    },
                     {
-                        "type": "file",
-                        "name": "advanced.js"
+                        "name": "02_advanced",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "advanced.js"
+                            }
+                        ]
                     }
                 ]
             }

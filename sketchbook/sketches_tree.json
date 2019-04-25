@@ -4,12 +4,21 @@
         "name": "01_hello.md"
     },
     {
-        "name": "animation",
+        "name": "firenotes",
+        "type": "folder",
+        "children": {
+            "name": "firenotes",
+            "type": "folder",
+            "children": []
+        }
+    },
+    {
+        "name": "broken",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "grass_grow.js"
+                "name": "paper_garden_4js.js"
             }
         ]
     },
@@ -31,11 +40,11 @@
             },
             {
                 "type": "file",
-                "name": "04_bounce_4_multiple_balls.md.js"
+                "name": "05_bounce_5_dry.md.js"
             },
             {
                 "type": "file",
-                "name": "05_bounce_5_dry.md.js"
+                "name": "04_bounce_4_multiple_balls.md.js"
             },
             {
                 "type": "file",
@@ -48,16 +57,6 @@
             {
                 "type": "file",
                 "name": "08_bounce_8_oop.md.js"
-            }
-        ]
-    },
-    {
-        "name": "broken",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "paper_garden_4js.js"
             }
         ]
     },
@@ -89,11 +88,11 @@
             },
             {
                 "type": "file",
-                "name": "paper_garden_3.js"
+                "name": "paper_garden_2.js"
             },
             {
                 "type": "file",
-                "name": "paper_garden_2.js"
+                "name": "paper_garden_3.js"
             },
             {
                 "type": "file",
@@ -118,6 +117,36 @@
             {
                 "type": "file",
                 "name": "subtract_test.js"
+            }
+        ]
+    },
+    {
+        "name": "tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
+                "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "connect.js"
+            },
+            {
+                "type": "file",
+                "name": "midi.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "synth_1.js"
             }
         ]
     },
@@ -156,28 +185,12 @@
         ]
     },
     {
-        "name": "tone_js",
+        "name": "animation",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "adsr.png"
-            },
-            {
-                "type": "file",
-                "name": "connect.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_tone.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
+                "name": "grass_grow.js"
             }
         ]
     },

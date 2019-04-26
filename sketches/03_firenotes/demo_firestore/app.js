@@ -4,7 +4,7 @@ var config = {
   databaseURL: "https://marknotes-jbakse.firebaseio.com",
   projectId: "marknotes-jbakse",
   storageBucket: "marknotes-jbakse.appspot.com",
-  messagingSenderId: "307129956026"
+  messagingSenderId: "307129956026",
 };
 firebase.initializeApp(config);
 
@@ -15,6 +15,19 @@ async_read();
 
 //////////////////////////////////
 // CRUD - Create
+
+function callback_create() {
+  // this is how creating a record might look if the firestore api used node-style callbacks. It doesn't though.
+  notes.add(
+    {
+      title: "The Diamond Age: or A Young Lady's Illustrated Primer",
+      author: "Neal Stephenson",
+    },
+    function(err, docRef) {
+      console.log("Document written with ID: ", docRef, docRef.id);
+    }
+  );
+}
 
 function promise_create() {
   notes
@@ -27,7 +40,7 @@ function promise_create() {
 async function async_create() {
   let docRef = await notes.add({
     title: "Cryptonomicon",
-    author: "Neal Stephenson"
+    author: "Neal Stephenson",
   });
   console.log("Document written with ID: ", docRef, docRef.id);
 }
@@ -64,9 +77,9 @@ async function async_delete(id) {
 // Listen
 
 function listen() {
-  var observer = notes.onSnapshot(querySnapshot => {
+  var observer = notes.onSnapshot((querySnapshot) => {
     console.log(`Received query snapshot of size ${querySnapshot.size}`);
-    querySnapshot.docChanges().forEach(change => {
+    querySnapshot.docChanges().forEach((change) => {
       console.log(change.type, change.doc.data());
     });
   });

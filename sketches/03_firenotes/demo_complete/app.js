@@ -5,7 +5,7 @@ var config = {
   databaseURL: "https://marknotes-jbakse.firebaseio.com",
   projectId: "marknotes-jbakse",
   storageBucket: "marknotes-jbakse.appspot.com",
-  messagingSenderId: "307129956026"
+  messagingSenderId: "307129956026",
 };
 firebase.initializeApp(config);
 
@@ -22,11 +22,11 @@ var app = new Vue({
   // initial data
   data: () => ({
     notes: [],
-    newNoteTitle: ""
+    newNoteTitle: "",
   }),
 
   firestore: {
-    notes: notesSorted
+    notes: notesSorted,
   },
 
   // computed property for form validation state
@@ -42,7 +42,7 @@ var app = new Vue({
       }
       notes.add({
         title: value,
-        score: 0
+        score: 0,
       });
       this.newNoteTitle = "";
     },
@@ -53,20 +53,20 @@ var app = new Vue({
 
     updateScore: function(note) {
       notes.doc(note.id).update({
-        score: parseInt(note.score) || 0
+        score: parseInt(note.score) || 0,
       });
     },
 
     incrementScore: function(note, amount) {
       notes.doc(note.id).update({
-        score: (note.score || 0) + amount
+        score: (note.score || 0) + amount,
       });
     },
 
     updateTitle: function(note) {
       notes.doc(note.id).update({
-        title: note.title
+        title: note.title,
       });
-    }
-  }
+    },
+  },
 });

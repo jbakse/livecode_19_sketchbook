@@ -142,26 +142,22 @@
         ]
     },
     {
+        "name": "07_aframe",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "hello.html"
+            }
+        ]
+    },
+    {
         "name": "03_firenotes",
         "type": "folder",
         "children": [
             {
                 "type": "file",
                 "name": "notes.md"
-            },
-            {
-                "name": "demo_firestore",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
             },
             {
                 "name": "demo_complete",
@@ -178,6 +174,20 @@
                     {
                         "type": "file",
                         "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "demo_firestore",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
                     }
                 ]
             },

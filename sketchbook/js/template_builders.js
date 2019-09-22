@@ -6,6 +6,7 @@ export default {
   md: showMD,
   "md.js": showMDJS,
   txt: showTXT,
+  html: showHTML,
   direct: showDirect,
 };
 
@@ -197,6 +198,34 @@ async function showTXT(sourcePath) {
   document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
 }
 
+async function showHTML(sourcePath) {
+  let rawSource = await getText(sourcePath);
+
+  // format source
+  /* globals hljs */
+  const formattedSource = hljs.highlight("js", rawSource, true).value;
+
+  // render source
+  const content = rawSource;
+
+  // prepare template info
+  const context = {
+    formattedSource,
+    content,
+    fileInfo: Path.info(sourcePath),
+  };
+
+  // build pages from templates
+  const sourceSrcDoc = await buildTemplate(
+    "plugins/source/source.handlebars",
+    context
+  );
+
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
+  document.getElementById("sketch-frame").src = sourcePath;
+}
+
 async function showDirect(sourcePath) {
   let rawSource = await getText(sourcePath);
 
@@ -209,7 +238,7 @@ async function showDirect(sourcePath) {
   // prepare template info
   const context = {
     rawSource,
-    formattedSource,
+    // formattedSource,
     content,
     fileInfo: Path.info(sourcePath),
   };

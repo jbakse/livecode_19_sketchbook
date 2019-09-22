@@ -1,0 +1,23 @@
+section {
+  margin: 10px;
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+}
+
+/* section {
+  border: 3px dotted red;
+}
+ .row {
+  border: 3px solid green;
+  margin: 10px;
+  padding: 10px;
+}
+
+.column {
+  border: 3px dashed blue;
+  margin: 10px;
+  padding: 10px;
+} */

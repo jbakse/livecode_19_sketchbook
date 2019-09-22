@@ -4,6 +4,15 @@
         "name": "01_hello.md"
     },
     {
+        "name": "firenotes",
+        "type": "folder",
+        "children": {
+            "name": "firenotes",
+            "type": "folder",
+            "children": []
+        }
+    },
+    {
         "name": "01_donkey",
         "type": "folder",
         "children": [
@@ -60,6 +69,32 @@
         ]
     },
     {
+        "name": "05_tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
+                "name": "connect.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "synth_1.js"
+            }
+        ]
+    },
+    {
         "name": "04_paper_garden",
         "type": "folder",
         "children": [
@@ -106,38 +141,22 @@
         ]
     },
     {
-        "name": "05_tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adsr.png"
-            },
-            {
-                "type": "file",
-                "name": "connect.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_tone.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
-            }
-        ]
-    },
-    {
         "name": "06_animation",
         "type": "folder",
         "children": [
             {
                 "type": "file",
                 "name": "grass_grow.js"
+            }
+        ]
+    },
+    {
+        "name": "tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "midi.js"
             }
         ]
     },
@@ -248,22 +267,22 @@
                 "type": "folder",
                 "children": [
                     {
-                        "name": "01_basic",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "basic.js"
-                            }
-                        ]
-                    },
-                    {
                         "name": "02_advanced",
                         "type": "folder",
                         "children": [
                             {
                                 "type": "file",
                                 "name": "advanced.js"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "01_basic",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "basic.js"
                             }
                         ]
                     }

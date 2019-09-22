@@ -1,32 +1,32 @@
 // require https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-full.min.js
-// paperscript
+// paperscript 600 800
 /*global project Rectangle Point Group Path Color*/
 
 ////////////////////////////////////////////////
 // composition settings
-var WIDTH = 1000;
-var HEIGHT = 1000;
-var MARGIN = 50;
+var WIDTH = 600;
+var HEIGHT = 800;
+var MARGIN = 100;
 
 ////////////////////////////////////////////////
 // drawing settings
-var GAPPY = 3;
+var GAPPY = 0;
 var SLOPPY = 2;
-var SHADOW_BLUR = 0;
+// var SHADOW_BLUR = 0;
 var ROUGH = 0.1;
 var STROKE = 1.0;
 var DRAW_CIRCLE_FUNC = drawCirclePlotter;
-
+var NO_EXTRA = false;
 // sorting functions: sortTopDown, sortBottomUp, sortInnerOut, sortOuterIn
-var PLANT_SORTING_FUNC = sortTopDown;
+var PLANT_SORTING_FUNC = sortInnerOut;
 var LEAF_SORTING_FUNC = sortOuterIn;
 
 ////////////////////////////////////////////////
 // plant settings
 
-var PLANT_COUNT = 50;
+var PLANT_COUNT = 14;
 var PLANT_SPACING = 130;
-var PLANT_CULL = 0.85;
+var PLANT_CULL = 0.4;
 
 var LEAF_COUNT = 70;
 var LEAF_RADIUS = 18;
@@ -40,6 +40,10 @@ plant_configs.leafy = [createLeaf];
 plant_configs.flowery = [createLeaf, createLeaf, createFlower];
 plant_configs.viney = [createLeaf, createLeaf, createLeaf, createVine];
 var plant_types = ["leafy", "flowery", "viney"];
+
+///////////////////////////////////////////
+// global state
+var strokeColor = "green";
 
 ///////////////////////////////////////////
 // kick off
@@ -69,7 +73,12 @@ function makeScene() {
 
   // fit drawing onto canvas
   project.activeLayer.fitBounds(
-    new Rectangle(0 + MARGIN, 0 + MARGIN, 1000 - MARGIN * 2, 1000 - MARGIN * 2)
+    new Rectangle(
+      0 + MARGIN,
+      0 + MARGIN,
+      WIDTH - MARGIN * 2,
+      HEIGHT - MARGIN * 2
+    )
   );
 }
 
@@ -82,10 +91,11 @@ function createPlants() {
 
   // remove a few random points to create some gaps
   shuffle(points);
-  points.splice(0, points.length * PLANT_CULL);
+  points.splice(0, points.length * PLANT_CULL * 0.5);
 
   // sort points
   points.sort(PLANT_SORTING_FUNC);
+  points.splice(0, points.length * PLANT_CULL * 0.5);
 
   // center cluster
   for (var i = 0; i < points.length; i++) {
@@ -106,6 +116,8 @@ function createPlant(p) {
   // choose a random plant type
   var plant_type = pick(plant_types);
 
+  strokeColor = pick(["green", "blue"]);
+
   // create a cluster of points for the leaves
   var points = clusterPoints(new Point(0, 0), LEAF_COUNT, LEAF_SPACING);
 
@@ -124,10 +136,12 @@ function createPlant(p) {
 }
 
 function createLeaf(center, point, radius) {
-  return DRAW_CIRCLE_FUNC(center + point, radius);
+  return DRAW_CIRCLE_FUNC(center + point, radius, false, true);
 }
 
 function createFlower(center, point, radius) {
+  var tempColor = strokeColor;
+  strokeColor = "red";
   var position = center + point;
   var offset = point / 4;
 
@@ -149,6 +163,8 @@ function createFlower(center, point, radius) {
     offset *= 0.75;
     position += offset;
   }
+
+  strokeColor = tempColor;
 }
 
 function createVine(center, point, radius) {
@@ -164,7 +180,7 @@ function createVine(center, point, radius) {
     // circle.sendToBack();
   }
 
-  DRAW_CIRCLE_FUNC(center + point, radius);
+  DRAW_CIRCLE_FUNC(center + point, radius, false, true);
 }
 
 ///////////////////////////////////////////
@@ -221,48 +237,51 @@ function sortInnerOut(a, b) {
 //////////////////////////////////////////
 // Drawing + Style
 
-function drawCircle(center, radius) {
-  // create backing blocker
-  var back_path = new Path.Circle(center, radius + GAPPY);
-  back_path.name = "back";
-  back_path.translate(randomPoint() * SLOPPY);
-  back_path.style = {
-    fillColor: new Color(1, 1, 1, 1),
-    shadowColor: new Color(1, 1, 1, 1),
-    shadowBlur: SHADOW_BLUR,
-    shadowOffset: 0,
-  };
+// function drawCircle(center, radius) {
+//   // create backing blocker
+//   var back_path = new Path.Circle(center, radius + GAPPY);
+//   back_path.name = "back";
+//   back_path.translate(randomPoint() * SLOPPY);
+//   back_path.style = {
+//     fillColor: new Color(1, 1, 1, 1),
+//     shadowColor: new Color(1, 1, 1, 1),
+//     shadowBlur: SHADOW_BLUR,
+//     shadowOffset: 0,
+//   };
 
-  // create stroke circle
-  var path = new Path.Circle(center, radius);
-  path.name = "front";
-  //   var pressure = randomRange(-0.5, 0.5);
-  path.style = {
-    fillColor: new Color(1, 1, 1, 1),
-    strokeColor: new Color(0.3, 0.3, 0.3), // + new Color(0.1, 0.1, 0.1) * pressure,
-    strokeWidth: STROKE,
-  };
+//   // create stroke circle
+//   var path = new Path.Circle(center, radius);
+//   path.name = "front";
+//   //   var pressure = randomRange(-0.5, 0.5);
+//   path.style = {
+//     fillColor: new Color(1, 1, 1, 1),
+//     strokeColor: new Color(0.3, 0.3, 0.3), // + new Color(0.1, 0.1, 0.1) * pressure,
+//     strokeWidth: STROKE,
+//   };
 
-  for (var s = 0; s < path.segments.length; s++) {
-    path.segments[s].point += randomPoint() * ROUGH * radius;
+//   for (var s = 0; s < path.segments.length; s++) {
+//     path.segments[s].point += randomPoint() * ROUGH * radius;
+//   }
+
+//   // add a dashed clone of the stroke to give some slight variation to weight and color
+//   var dash_path = path.clone();
+//   dash_path.style = {
+//     dashOffset: randomRange(0, 200),
+//     dashArray: [randomRange(0, 50), 200],
+//     strokeColor: new Color(0.3, 0.3, 0.3),
+//     strokeWidth: STROKE * 1.3,
+//     strokeCap: "round",
+//     fillColor: undefined,
+//     strokeScaling: true,
+//   };
+
+//   // return new Group([back_path, path, dash_path]);
+// }
+
+function drawCirclePlotter(center, radius, hide, extra) {
+  if (NO_EXTRA) {
+    extra = false;
   }
-
-  // add a dashed clone of the stroke to give some slight variation to weight and color
-  var dash_path = path.clone();
-  dash_path.style = {
-    dashOffset: randomRange(0, 200),
-    dashArray: [randomRange(0, 50), 200],
-    strokeColor: new Color(0.3, 0.3, 0.3),
-    strokeWidth: STROKE * 1.3,
-    strokeCap: "round",
-    fillColor: undefined,
-    strokeScaling: true,
-  };
-
-  // return new Group([back_path, path, dash_path]);
-}
-
-function drawCirclePlotter(center, radius, hide) {
   // create backing blocker
   var back_path = new Path.Circle(center, radius + GAPPY);
   //   back_path.name = "back";
@@ -274,15 +293,33 @@ function drawCirclePlotter(center, radius, hide) {
 
   // create stroke circle
   var path = new Path.Circle(center, radius);
-  //   path.name = "front";
   path.style = {
-    strokeColor: "black",
+    strokeColor: strokeColor,
   };
-
   for (var s = 0; s < path.segments.length; s++) {
     path.segments[s].point += randomPoint() * ROUGH * radius;
   }
   path.remove();
+
+  if (extra) {
+    var path2 = new Path.Circle(center, radius * 0.8);
+    path2.style = {
+      strokeColor: pick(["green", "blue"]),
+    };
+    for (var s = 0; s < path2.segments.length; s++) {
+      path2.segments[s].point += randomPoint() * ROUGH * radius * 2;
+    }
+    path2.remove();
+
+    var path3 = new Path.Circle(center, radius * 0.6);
+    path3.style = {
+      strokeColor: pick(["green", "blue"]),
+    };
+    for (var s = 0; s < path3.segments.length; s++) {
+      path3.segments[s].point += randomPoint() * ROUGH * radius * 1;
+    }
+    path3.remove();
+  }
 
   var children;
 
@@ -303,7 +340,13 @@ function drawCirclePlotter(center, radius, hide) {
 
   removeHiddenLines(path);
 
-  if (hide !== true) path.addTo(project.activeLayer);
+  if (hide !== true) {
+    path.addTo(project.activeLayer);
+    if (extra) {
+      path2.addTo(project.activeLayer);
+      path3.addTo(project.activeLayer);
+    }
+  }
 
   return path;
 }

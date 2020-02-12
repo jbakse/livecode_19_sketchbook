@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background: #333;
+}
+
+canvas {
+  border: 1px solid #666;
+  /* box-shadow: 10px 10px black; */
+  margin: 10px;
+}

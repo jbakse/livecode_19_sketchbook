@@ -4,15 +4,6 @@
         "name": "01_hello.md"
     },
     {
-        "name": "firenotes",
-        "type": "folder",
-        "children": {
-            "name": "firenotes",
-            "type": "folder",
-            "children": []
-        }
-    },
-    {
         "name": "01_donkey",
         "type": "folder",
         "children": [
@@ -151,22 +142,106 @@
         ]
     },
     {
-        "name": "tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "midi.js"
-            }
-        ]
-    },
-    {
         "name": "07_aframe",
         "type": "folder",
         "children": [
             {
                 "type": "file",
                 "name": "hello.html"
+            }
+        ]
+    },
+    {
+        "name": "10_css_layout",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "base.html"
+            },
+            {
+                "type": "file",
+                "name": "layout_1.css"
+            },
+            {
+                "type": "file",
+                "name": "layout_1.html"
+            },
+            {
+                "type": "file",
+                "name": "layout_2.html"
+            },
+            {
+                "type": "file",
+                "name": "layout_3.html"
+            },
+            {
+                "type": "file",
+                "name": "style.css"
+            }
+        ]
+    },
+    {
+        "name": "11_why_we_code",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adaptive.js"
+            },
+            {
+                "type": "file",
+                "name": "connected.js"
+            },
+            {
+                "type": "file",
+                "name": "customized.js"
+            },
+            {
+                "type": "file",
+                "name": "generative.js"
+            },
+            {
+                "type": "file",
+                "name": "intelligent.js"
+            },
+            {
+                "type": "file",
+                "name": "interactive.js"
+            }
+        ]
+    },
+    {
+        "name": "shaders",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "index.html"
+            }
+        ]
+    },
+    {
+        "name": "tiptap",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "main.js"
+            }
+        ]
+    },
+    {
+        "name": "tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "midi.js"
             }
         ]
     },
@@ -180,6 +255,24 @@
             },
             {
                 "name": "demo_complete",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
+            },
+            {
+                "name": "demo_livecode",
                 "type": "folder",
                 "children": [
                     {

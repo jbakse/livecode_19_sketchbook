@@ -13,11 +13,11 @@
             },
             {
                 "type": "file",
-                "name": "donkey.js"
+                "name": "new_donkey.js"
             },
             {
                 "type": "file",
-                "name": "new_donkey.js"
+                "name": "donkey.js"
             }
         ]
     },
@@ -43,11 +43,11 @@
             },
             {
                 "type": "file",
-                "name": "05_bounce_5_dry.md.js"
+                "name": "06_bounce_6_array.md.js"
             },
             {
                 "type": "file",
-                "name": "06_bounce_6_array.md.js"
+                "name": "05_bounce_5_dry.md.js"
             },
             {
                 "type": "file",
@@ -56,32 +56,6 @@
             {
                 "type": "file",
                 "name": "08_bounce_8_oop.md.js"
-            }
-        ]
-    },
-    {
-        "name": "05_tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adsr.png"
-            },
-            {
-                "type": "file",
-                "name": "connect.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_tone.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
             }
         ]
     },
@@ -152,6 +126,32 @@
         ]
     },
     {
+        "name": "05_tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
+                "name": "connect.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "synth_1.js"
+            }
+        ]
+    },
+    {
         "name": "10_css_layout",
         "type": "folder",
         "children": [
@@ -212,12 +212,82 @@
         ]
     },
     {
-        "name": "shaders",
+        "name": "20_termites",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "index.html"
+                "name": "01_termites.js"
+            }
+        ]
+    },
+    {
+        "name": "90_sketch",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "amber_01.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_01.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_02.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_03.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_04.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_05.js"
+            },
+            {
+                "type": "file",
+                "name": "noise_06.js"
+            },
+            {
+                "type": "file",
+                "name": "random_01.js"
+            },
+            {
+                "type": "file",
+                "name": "random_02.js"
+            },
+            {
+                "type": "file",
+                "name": "random_03.js"
+            },
+            {
+                "type": "file",
+                "name": "random_04.js"
+            },
+            {
+                "type": "file",
+                "name": "random_05.js"
+            },
+            {
+                "type": "file",
+                "name": "random_06.js"
+            },
+            {
+                "type": "file",
+                "name": "random_07.js"
+            },
+            {
+                "type": "file",
+                "name": "random_08.js"
+            },
+            {
+                "type": "file",
+                "name": "random_09.js"
             }
         ]
     },
@@ -232,6 +302,64 @@
             {
                 "type": "file",
                 "name": "main.js"
+            }
+        ]
+    },
+    {
+        "name": "shaders",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "city.frag"
+            },
+            {
+                "type": "file",
+                "name": "domain_warp.frag"
+            },
+            {
+                "type": "file",
+                "name": "frogger_2.frag"
+            },
+            {
+                "type": "file",
+                "name": "hello.frag"
+            },
+            {
+                "type": "file",
+                "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "island copy.png"
+            },
+            {
+                "type": "file",
+                "name": "island.frag"
+            },
+            {
+                "type": "file",
+                "name": "island.png"
+            },
+            {
+                "type": "file",
+                "name": "noise.png"
+            },
+            {
+                "type": "file",
+                "name": "random.frag"
+            },
+            {
+                "type": "file",
+                "name": "sdf.frag"
+            },
+            {
+                "type": "file",
+                "name": "texture.frag"
+            },
+            {
+                "type": "file",
+                "name": "style.css"
             }
         ]
     },
@@ -272,38 +400,6 @@
                 ]
             },
             {
-                "name": "demo_livecode",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "demo_firestore",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
-            },
-            {
                 "name": "demo_vue",
                 "type": "folder",
                 "children": [
@@ -318,6 +414,38 @@
                     {
                         "type": "file",
                         "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "demo_livecode",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
+            },
+            {
+                "name": "demo_firestore",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
                     }
                 ]
             }
@@ -360,22 +488,22 @@
                 "type": "folder",
                 "children": [
                     {
-                        "name": "02_advanced",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "advanced.js"
-                            }
-                        ]
-                    },
-                    {
                         "name": "01_basic",
                         "type": "folder",
                         "children": [
                             {
                                 "type": "file",
                                 "name": "basic.js"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "02_advanced",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "advanced.js"
                             }
                         ]
                     }

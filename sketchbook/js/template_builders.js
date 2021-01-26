@@ -143,7 +143,7 @@ async function showMD(sourcePath) {
 
   // render source
   /* global markdownit */
-  const md = new markdownit();
+  const md = new markdownit({ html: true });
   const content = md.render(rawSource);
 
   // prepare template info

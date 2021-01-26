@@ -9,10 +9,9 @@ import builders from "./js/template_builders.js";
 import settings from "./settings.js";
 const urlParams = new URLSearchParams(window.location.search);
 
-main();
-
+let tree;
 async function main() {
-  const tree = await Tree.load("sketches_tree.json", settings.sketchPath);
+  tree = await Tree.load("sketches_tree.json", settings.sketchPath);
 
   const sketchPath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
   await Nav.buildNav(tree, sketchPath);
@@ -39,14 +38,23 @@ async function main() {
   }
 }
 
-// unused
+window.ls = () => {
+  console.log("ls");
+  let ls = "";
 
-// function last(a) {
-//   return a[a.length - 1];
-// }
+  console.log(tree);
 
-// function getFileName(url) {
-//   const fileNameRegex = /[^/]+?(?=\?|$)/;
-//   const fileName = fileNameRegex.exec(url)[0];
-//   return fileName;
-// }
+  tree.children.forEach((folder) => {
+    if (folder.type === "file") return;
+    ls += `<ul>`;
+    ls += `<h2>${folder.name}</h2>`;
+    folder.children.forEach((file) => {
+      if (file.type === "folder") return;
+      ls += `<li><a href="?sketch=${folder.name}/${file.name}&amp;source">${file.name}</a></li>`;
+    });
+    ls += `</ul>`;
+  });
+  return ls;
+};
+
+main();

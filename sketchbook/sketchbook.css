@@ -26,6 +26,11 @@ body {
 #title {
 }
 
+#title a {
+  color: white;
+  text-decoration: none;
+}
+
 #breadcrumbs {
   padding-left: 30px;
   display: flex;

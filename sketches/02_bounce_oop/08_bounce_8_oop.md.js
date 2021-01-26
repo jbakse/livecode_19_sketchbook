@@ -1,53 +1,26 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
-// # Version 8
+// # Version 7
 
-// This version is written in an [Object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) style.
-// In the object-oriented programming (OOP), the code is broken down and organized using *objects*.
+// At this point the code is pretty clean. This version doesn't change anything other than adding more balls.
 
-// In this program objects are used to represent the balls.
-
-// Each object contains the data needed to represent the ball: `x`, `y`, `deltaX`, `deltaY`, `radius`.
-
-// The ball objects **also** contain the functions—`step()` and `draw()`—that act on that data.
-
-// Where version 7 used code like this `drawBall(ball)`, this OOP version uses `ball.draw()`. Instead of passing data to a function that draws that data, the ball object is asked to draw *itself*.
-
-class Ball {
-  constructor() {
-    this.x = 300;
-    this.y = 300;
-    this.deltaX = random(-5, 5);
-    this.deltaY = random(-5, 5);
-    this.radius = random(5, 20);
-  }
-
-  step() {
-    this.x += this.deltaX;
-    this.y += this.deltaY;
-
-    if (this.x > width - this.radius) this.deltaX = -abs(this.deltaX);
-    if (this.y > height - this.radius) this.deltaY = -abs(this.deltaY);
-    if (this.x < 0 + this.radius) this.deltaX = abs(this.deltaX);
-    if (this.y < 0 + this.radius) this.deltaY = abs(this.deltaY);
-  }
-
-  draw() {
-    push();
-    noStroke();
-    fill(255, 0, 0);
-    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
-    pop();
-  }
-}
+// Take a look at the complete program below. This program is written in a [procedural](https://en.wikipedia.org/wiki/Procedural_programming) style.
+// In the procedural programming paradigm, procedures/functions are the primary way of breaking down and organizing code.
 
 let balls = [];
 
 function setup() {
   createCanvas(600, 600);
   frameRate(60);
+
   for (let i = 0; i < 50; i++) {
-    balls.push(new Ball());
+    balls[i] = {
+      x: 300,
+      y: 300,
+      deltaX: random(-5, 5),
+      deltaY: random(-5, 5),
+      radius: random(5, 20),
+    };
   }
 }
 
@@ -58,13 +31,31 @@ function draw() {
 
 function stepApp() {
   for (const ball of balls) {
-    ball.step();
+    stepBall(ball);
   }
+}
+
+function stepBall(b) {
+  b.x += b.deltaX;
+  b.y += b.deltaY;
+
+  if (b.x > width - b.radius) b.deltaX = -abs(b.deltaX);
+  if (b.y > height - b.radius) b.deltaY = -abs(b.deltaY);
+  if (b.x < 0 + b.radius) b.deltaX = abs(b.deltaX);
+  if (b.y < 0 + b.radius) b.deltaY = abs(b.deltaY);
 }
 
 function drawApp() {
   background(10);
   for (const ball of balls) {
-    ball.draw();
+    drawBall(ball);
   }
+}
+
+function drawBall(b) {
+  push();
+  noStroke();
+  fill(255, 0, 0);
+  ellipse(b.x, b.y, b.radius * 2, b.radius * 2);
+  pop();
 }

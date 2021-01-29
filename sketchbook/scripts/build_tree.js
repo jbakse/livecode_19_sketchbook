@@ -15,28 +15,28 @@ function onStructure(err, structure, total) {
     total.files,
     " files"
   );
-  structure = removeUnderscoreFiles(structure);
+  structure = removeHiddenFiles(structure);
 
   const structure_json = JSON.stringify(structure, null, 4);
   fs.writeFile("sketches_tree.json", structure_json, "utf8", () => {});
   //   console.log("the structure looks like: ", structure_json);
 }
 
-function removeUnderscoreFiles(structure) {
+function removeHiddenFiles(structure) {
   structure = structure.filter((object) => {
-    if (object.type === "file" && object.name.startsWith("_")) {
+    if (/*object.type === "file" &&*/ object.name.startsWith("_")) {
       console.log("remove file", object.name);
       return false;
     }
-    if (object.type === "file" && object.name.startsWith(".")) {
+    if (/*object.type === "file" &&*/ object.name.startsWith(".")) {
       console.log("remove file", object.name);
       return false;
     }
     return true;
   });
-  structure.forEach(function(object) {
+  structure.forEach(function (object) {
     if (object.type === "folder" && object.children.length > 0) {
-      object.children = removeUnderscoreFiles(object.children);
+      object.children = removeHiddenFiles(object.children);
     }
   });
   return structure;

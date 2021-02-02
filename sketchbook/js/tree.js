@@ -34,7 +34,7 @@ function getFolders(tree, path) {
   const pathParts = path.split("/");
   const folders = [tree];
   for (const pathPart of pathParts) {
-    if (pathPart === "") break;
+    if (pathPart === "") continue;
     tree = tree.children.find((o) => o.name === pathPart);
     if (tree === undefined) return false;
     if (tree.type === "file") break;

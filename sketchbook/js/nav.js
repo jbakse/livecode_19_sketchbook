@@ -3,12 +3,19 @@ import Tree from "./tree.js";
 
 async function buildNav(tree, path) {
   const pathParts = path.split("/");
+  if (pathParts[0] === "") {
+    pathParts.shift();
+  }
 
   const folders = Tree.getFolders(tree, path);
+
+  console.log("pathParts", pathParts);
+  console.log("folders", folders);
 
   if (folders) {
     for (let i = 0; i < pathParts.length; i++) {
       const title = pathParts[i];
+
       const items = folders[i].children.map((child) => {
         let filePath = pathParts.slice(0, i).concat(child.name).join("/");
         return {

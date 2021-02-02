@@ -14,6 +14,9 @@ async function main() {
   tree = await Tree.load("sketches_tree.json", settings.sketchPath);
 
   const sketchPath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
+
+  console.log(sketchPath);
+
   await Nav.buildNav(tree, sketchPath);
 
   // source view ui
@@ -40,13 +43,11 @@ async function main() {
 
 window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
   if (currentDepth > maxDepth) return;
-  console.log("ls", path, maxDepth, currentDepth);
   let markup = "<ul>";
+  console.log("t", tree);
   const branch = Tree.getItem(tree, path);
-  console.log(branch);
 
   branch.children.forEach((item) => {
-    console.log("branch each item", item.name, item.type);
     if (item.type === "file") {
       markup += `<li><a href="?sketch=${path}/${item.name}&amp;source">${item.name}</a></li>`;
     }

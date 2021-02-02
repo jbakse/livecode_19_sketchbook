@@ -4,24 +4,6 @@
         "name": "01_hello.md"
     },
     {
-        "name": "01_donkey",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "clean_donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "new_donkey.js"
-            }
-        ]
-    },
-    {
         "name": "02_bounce_oop",
         "type": "folder",
         "children": [
@@ -39,11 +21,11 @@
             },
             {
                 "type": "file",
-                "name": "05_bounce_5_dry.md.js"
+                "name": "04_bounce_4_multiple_balls.md.js"
             },
             {
                 "type": "file",
-                "name": "04_bounce_4_multiple_balls.md.js"
+                "name": "05_bounce_5_dry.md.js"
             },
             {
                 "type": "file",
@@ -68,42 +50,100 @@
             {
                 "type": "file",
                 "name": "10_bounce_10_oop_oloo.md.js"
+            },
+            {
+                "type": "file",
+                "name": "_bounce_live.js"
+            },
+            {
+                "type": "file",
+                "name": "_object.js"
+            },
+            {
+                "type": "file",
+                "name": "_object_es6.js"
+            },
+            {
+                "type": "file",
+                "name": "_object_live.js"
             }
         ]
     },
     {
-        "name": "06_animation",
+        "name": "03_firenotes",
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "grass_grow.js"
-            }
-        ]
-    },
-    {
-        "name": "05_tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adsr.png"
+                "name": "demo_complete",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "connect.js"
+                "name": "demo_firestore",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "hello_tone.js"
+                "name": "demo_livecode",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "demo_vue",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "app.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
             },
             {
                 "type": "file",
                 "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
             }
         ]
     },
@@ -111,6 +151,10 @@
         "name": "04_paper_garden",
         "type": "folder",
         "children": [
+            {
+                "type": "file",
+                "name": "paperjs_util.js"
+            },
             {
                 "type": "file",
                 "name": "paper_garden.js"
@@ -141,15 +185,47 @@
             },
             {
                 "type": "file",
-                "name": "paperjs_util.js"
-            },
-            {
-                "type": "file",
                 "name": "plotter_test.js"
             },
             {
                 "type": "file",
                 "name": "subtract_test.js"
+            }
+        ]
+    },
+    {
+        "name": "05_tone_js",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "adsr.png"
+            },
+            {
+                "type": "file",
+                "name": "connect.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_tone.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "synth_1.js"
+            }
+        ]
+    },
+    {
+        "name": "06_animation",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "grass_grow.js"
             }
         ]
     },
@@ -244,100 +320,98 @@
         ]
     },
     {
-        "name": "90_sketch",
+        "name": "99_tests",
+        "type": "folder",
+        "children": [
+            {
+                "name": "dot",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "01_basic",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "basic.js"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "02_advanced",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "advanced.js"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "hello_image.png"
+            },
+            {
+                "type": "file",
+                "name": "hello_md.md"
+            },
+            {
+                "type": "file",
+                "name": "hello_p5.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_paper.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_text.txt"
+            },
+            {
+                "type": "file",
+                "name": "hello_world.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_yaml.yaml"
+            }
+        ]
+    },
+    {
+        "name": "AfterClass2_OOP",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "amber_01.js"
+                "name": "week_2.js"
             },
             {
                 "type": "file",
-                "name": "noise_02.js"
+                "name": "week_2_class.js"
             },
             {
                 "type": "file",
-                "name": "noise_03.js"
+                "name": "week_2_oop.js"
+            }
+        ]
+    },
+    {
+        "name": "donkey",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "clean_donkey.js"
             },
             {
                 "type": "file",
-                "name": "noise_01.js"
+                "name": "donkey.js"
             },
             {
                 "type": "file",
-                "name": "noise_04.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_05.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_06.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_07.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_08.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_09.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_10.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_12a.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_11.js"
-            },
-            {
-                "type": "file",
-                "name": "noise_12b.js"
-            },
-            {
-                "type": "file",
-                "name": "random_01.js"
-            },
-            {
-                "type": "file",
-                "name": "random_02.js"
-            },
-            {
-                "type": "file",
-                "name": "random_03.js"
-            },
-            {
-                "type": "file",
-                "name": "random_04.js"
-            },
-            {
-                "type": "file",
-                "name": "random_05.js"
-            },
-            {
-                "type": "file",
-                "name": "random_06.js"
-            },
-            {
-                "type": "file",
-                "name": "random_07.js"
-            },
-            {
-                "type": "file",
-                "name": "random_08.js"
-            },
-            {
-                "type": "file",
-                "name": "random_09.js"
+                "name": "new_donkey.js"
             }
         ]
     },
@@ -360,20 +434,6 @@
         ]
     },
     {
-        "name": "random",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "challenge_01.js"
-            },
-            {
-                "type": "file",
-                "name": "challenge_02.js"
-            }
-        ]
-    },
-    {
         "name": "oop",
         "type": "folder",
         "children": [
@@ -384,12 +444,16 @@
         ]
     },
     {
-        "name": "tone_js",
+        "name": "random",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "midi.js"
+                "name": "challenge_01.js"
+            },
+            {
+                "type": "file",
+                "name": "challenge_02.js"
             }
         ]
     },
@@ -419,11 +483,11 @@
             },
             {
                 "type": "file",
-                "name": "island.frag"
+                "name": "island copy.png"
             },
             {
                 "type": "file",
-                "name": "island copy.png"
+                "name": "island.frag"
             },
             {
                 "type": "file",
@@ -452,158 +516,161 @@
         ]
     },
     {
-        "name": "AfterClass2_OOP",
+        "name": "sketching",
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "week_2.js"
+                "name": "01_intro",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "amber_01.js"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "week_2_oop.js"
+                "name": "02_random",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "ani_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "ani_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "ani_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "branch_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "branch_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "branch_02b.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "branch_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "drops_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "drops_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "drops_03.js"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "week_2_class.js"
+                "name": "03_noise",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "ani_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flow_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flow_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "prison_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "prison_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_09.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_10.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_11.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_12a.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_12b.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_13.js"
+                    }
+                ]
+            },
+            {
+                "name": "04_parameters",
+                "type": "folder",
+                "children": []
             }
         ]
     },
     {
-        "name": "03_firenotes",
+        "name": "tone_js",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "name": "demo_complete",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "demo_firestore",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
-            },
-            {
-                "name": "demo_vue",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "demo_livecode",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
+                "name": "midi.js"
             }
         ]
     },
     {
-        "name": "99_tests",
+        "name": "_07_aframe",
         "type": "folder",
         "children": [
             {
                 "type": "file",
-                "name": "hello_image.png"
+                "name": "hello.html"
+            }
+        ]
+    },
+    {
+        "name": "_tiptap",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "index.html"
             },
             {
                 "type": "file",
-                "name": "hello_md.md"
-            },
-            {
-                "type": "file",
-                "name": "hello_p5.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_paper.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_text.txt"
-            },
-            {
-                "type": "file",
-                "name": "hello_world.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_yaml.yaml"
-            },
-            {
-                "name": "dot",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "01_basic",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "basic.js"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "02_advanced",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "advanced.js"
-                            }
-                        ]
-                    }
-                ]
+                "name": "main.js"
             }
         ]
     }

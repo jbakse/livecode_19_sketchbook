@@ -7,11 +7,13 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "node ./scripts/build_tree.js"
+    "start": "node ./scripts/build_tree.js",
+    "watch": "watch 'npm run start' ../sketches"
   },
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
-    "directory-structure-json": "^1.0.0"
+    "directory-structure-json": "^1.0.0",
+    "watch": "^1.0.2"
   }
 }

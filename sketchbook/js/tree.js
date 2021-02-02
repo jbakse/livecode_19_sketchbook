@@ -2,6 +2,7 @@ export default {
   load,
   defaultFile,
   getFolders,
+  getItem,
 };
 
 async function load(data, initialPath) {
@@ -48,12 +49,14 @@ function getFolders(tree, path) {
 function getItem(tree, path) {
   const pathParts = path.split("/");
   const items = [tree];
+
   for (const pathPart of pathParts) {
-    if (pathPart === "") break;
+    if (pathPart === "") continue;
     tree = tree.children.find((o) => o.name === pathPart);
     if (tree === undefined) return false;
     // if (tree.type === "file") break;
     items.push(tree);
   }
+
   return items[items.length - 1];
 }

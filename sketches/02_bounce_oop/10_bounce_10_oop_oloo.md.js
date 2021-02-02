@@ -1,26 +1,22 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
-// # Version 8
+// # Version 10
 
-// This version is written in an [Object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) style.
-// In the object-oriented programming (OOP), the code is broken down and organized using *objects*.
+// This version doesn't change the program behavior.
+// Like version 8, this version is written using an object-oriented approach.
 
-// In this program objects are used to represent the balls.
+// This version uses the Objects Linking to Other Objects—OLOO—approach to oop.
+// see: [You Don't Know Javascript: prototypes](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/ch6.md)
 
-// Each object contains the data needed to represent the ball: `x`, `y`, `deltaX`, `deltaY`, `radius`.
-
-// The ball objects **also** contain the functions—`step()` and `draw()`—that act on that data.
-
-// Where version 7 used code like this `drawBall(ball)`, this OOP version uses `ball.draw()`. Instead of passing data to a function that draws that data, the ball object is asked to draw *itself*.
-
-class Ball {
-  constructor() {
+const Ball = {
+  init() {
     this.x = 300;
     this.y = 300;
     this.deltaX = random(-5, 5);
     this.deltaY = random(-5, 5);
     this.radius = random(5, 20);
-  }
+    return this;
+  },
 
   step() {
     this.x += this.deltaX;
@@ -30,7 +26,7 @@ class Ball {
     if (this.y > height - this.radius) this.deltaY = -abs(this.deltaY);
     if (this.x < 0 + this.radius) this.deltaX = abs(this.deltaX);
     if (this.y < 0 + this.radius) this.deltaY = abs(this.deltaY);
-  }
+  },
 
   draw() {
     push();
@@ -38,8 +34,8 @@ class Ball {
     fill(255, 0, 0);
     ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
     pop();
-  }
-}
+  },
+};
 
 let balls = [];
 
@@ -47,7 +43,8 @@ function setup() {
   createCanvas(600, 600);
   frameRate(60);
   for (let i = 0; i < 50; i++) {
-    balls.push(new Ball());
+    const b = Object.create(Ball).init();
+    balls.push(b);
   }
 }
 

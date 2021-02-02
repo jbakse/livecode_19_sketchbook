@@ -9,10 +9,9 @@ import builders from "./js/template_builders.js";
 import settings from "./settings.js";
 const urlParams = new URLSearchParams(window.location.search);
 
-main();
-
+let tree;
 async function main() {
-  const tree = await Tree.load("sketches_tree.json", settings.sketchPath);
+  tree = await Tree.load("sketches_tree.json", settings.sketchPath);
 
   const sketchPath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
   await Nav.buildNav(tree, sketchPath);
@@ -39,14 +38,36 @@ async function main() {
   }
 }
 
-// unused
+window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
+  if (currentDepth > maxDepth) return;
+  console.log("ls", path, maxDepth, currentDepth);
+  let markup = "<ul>";
+  const branch = Tree.getItem(tree, path);
+  console.log(branch);
 
-// function last(a) {
-//   return a[a.length - 1];
-// }
+  branch.children.forEach((item) => {
+    console.log("branch each item", item.name, item.type);
+    if (item.type === "file") {
+      markup += `<li><a href="?sketch=${path}/${item.name}&amp;source">${item.name}</a></li>`;
+    }
+    if (item.type === "folder") {
+      markup += `<li>`;
+      markup += `<h${currentDepth + 1}>${item.name}</h1>`;
+      markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
+      markup += `</li>`;
+    }
+  });
 
-// function getFileName(url) {
-//   const fileNameRegex = /[^/]+?(?=\?|$)/;
-//   const fileName = fileNameRegex.exec(url)[0];
-//   return fileName;
-// }
+  markup += "</ul>";
+  return markup;
+};
+
+main();
+
+// ls += `<ul>`;
+// ls += `<h2>${item.name}</h2>`;
+// item.children.forEach((file) => {
+//   if (file.type === "folder") return;
+//   ls += `<li><a href="?sketch=${item.name}/${file.name}&amp;source">${file.name}</a></li>`;
+// });
+// ls += `</ul>`;

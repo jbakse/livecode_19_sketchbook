@@ -10,10 +10,7 @@ async function buildNav(tree, path) {
     for (let i = 0; i < pathParts.length; i++) {
       const title = pathParts[i];
       const items = folders[i].children.map((child) => {
-        let filePath = pathParts
-          .slice(0, i)
-          .concat(child.name)
-          .join("/");
+        let filePath = pathParts.slice(0, i).concat(child.name).join("/");
         return {
           title: child.name,
           href: `?sketch=${filePath}&source`,

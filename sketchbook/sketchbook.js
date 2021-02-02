@@ -38,23 +38,36 @@ async function main() {
   }
 }
 
-window.ls = () => {
-  console.log("ls");
-  let ls = "";
+window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
+  if (currentDepth > maxDepth) return;
+  console.log("ls", path, maxDepth, currentDepth);
+  let markup = "<ul>";
+  const branch = Tree.getItem(tree, path);
+  console.log(branch);
 
-  console.log(tree);
-
-  tree.children.forEach((folder) => {
-    if (folder.type === "file") return;
-    ls += `<ul>`;
-    ls += `<h2>${folder.name}</h2>`;
-    folder.children.forEach((file) => {
-      if (file.type === "folder") return;
-      ls += `<li><a href="?sketch=${folder.name}/${file.name}&amp;source">${file.name}</a></li>`;
-    });
-    ls += `</ul>`;
+  branch.children.forEach((item) => {
+    console.log("branch each item", item.name, item.type);
+    if (item.type === "file") {
+      markup += `<li><a href="?sketch=${path}/${item.name}&amp;source">${item.name}</a></li>`;
+    }
+    if (item.type === "folder") {
+      markup += `<li>`;
+      markup += `<h${currentDepth + 1}>${item.name}</h1>`;
+      markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
+      markup += `</li>`;
+    }
   });
-  return ls;
+
+  markup += "</ul>";
+  return markup;
 };
 
 main();
+
+// ls += `<ul>`;
+// ls += `<h2>${item.name}</h2>`;
+// item.children.forEach((file) => {
+//   if (file.type === "folder") return;
+//   ls += `<li><a href="?sketch=${item.name}/${file.name}&amp;source">${file.name}</a></li>`;
+// });
+// ls += `</ul>`;

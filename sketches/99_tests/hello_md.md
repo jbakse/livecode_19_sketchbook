@@ -8,4 +8,6 @@ This is a [Markdown](https://daringfireball.net/projects/markdown/syntax) file!
 
 ### Header 3
 
-Details
+- a
+- b
+- c

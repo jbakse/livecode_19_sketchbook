@@ -154,7 +154,9 @@ blockquote {
   padding-left: 15px;
 }
 
-.ls h2 {
+.ls h2,
+.ls h3,
+.ls h4 {
   margin: 0;
 }
 .ls {
@@ -169,6 +171,9 @@ blockquote {
   margin-top: 0;
 
   margin-right: 20px;
+}
+
+.ls li {
   break-inside: avoid;
 }
 

@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 /* eslint-env node */
+
 var DirectoryStructureJSON = require("directory-structure-json");
 var basepath = "../sketches";
 var fs = require("fs");

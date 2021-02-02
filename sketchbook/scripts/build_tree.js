@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 /* eslint-env node */
+
 var DirectoryStructureJSON = require("directory-structure-json");
 var basepath = "../sketches";
 var fs = require("fs");
@@ -34,7 +36,7 @@ function removeUnderscoreFiles(structure) {
     }
     return true;
   });
-  structure.forEach(function(object) {
+  structure.forEach(function (object) {
     if (object.type === "folder" && object.children.length > 0) {
       object.children = removeUnderscoreFiles(object.children);
     }

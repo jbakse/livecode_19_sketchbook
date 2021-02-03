@@ -226,6 +226,10 @@
             {
                 "type": "file",
                 "name": "grass_grow.js"
+            },
+            {
+                "type": "file",
+                "name": "untitled.js"
             }
         ]
     },
@@ -398,6 +402,16 @@
         ]
     },
     {
+        "name": "demos",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "dallas_oop.js"
+            }
+        ]
+    },
+    {
         "name": "donkey",
         "type": "folder",
         "children": [
@@ -444,6 +458,28 @@
         ]
     },
     {
+        "name": "play",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "ball.js"
+            },
+            {
+                "type": "file",
+                "name": "bricks.js"
+            },
+            {
+                "type": "file",
+                "name": "p5.play.js"
+            },
+            {
+                "type": "file",
+                "name": "paddle.js"
+            }
+        ]
+    },
+    {
         "name": "random",
         "type": "folder",
         "children": [
@@ -471,11 +507,27 @@
             },
             {
                 "type": "file",
+                "name": "frogger.frag"
+            },
+            {
+                "type": "file",
                 "name": "frogger_2.frag"
             },
             {
                 "type": "file",
                 "name": "hello.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsight_blend.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsight_splash.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsign_blend_2.frag"
             },
             {
                 "type": "file",
@@ -495,6 +547,14 @@
             },
             {
                 "type": "file",
+                "name": "march.frag"
+            },
+            {
+                "type": "file",
+                "name": "march_2.frag"
+            },
+            {
+                "type": "file",
                 "name": "noise.png"
             },
             {
@@ -504,6 +564,10 @@
             {
                 "type": "file",
                 "name": "sdf.frag"
+            },
+            {
+                "type": "file",
+                "name": "soft_voronoi.frag"
             },
             {
                 "type": "file",
@@ -593,6 +657,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "f_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "prison_01.js"
                     },
                     {
@@ -630,13 +698,40 @@
                     {
                         "type": "file",
                         "name": "unknown_13.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_14.js"
                     }
                 ]
             },
             {
                 "name": "04_parameters",
                 "type": "folder",
-                "children": []
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "bonsai_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "tweakpane_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "tweakpane_02.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "text",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "cfg.js"
             }
         ]
     },

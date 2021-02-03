@@ -9,8 +9,8 @@ async function buildNav(tree, path) {
 
   const folders = Tree.getFolders(tree, path);
 
-  console.log("pathParts", pathParts);
-  console.log("folders", folders);
+  // console.log("pathParts", pathParts);
+  // console.log("folders", folders);
 
   if (folders) {
     for (let i = 0; i < pathParts.length; i++) {

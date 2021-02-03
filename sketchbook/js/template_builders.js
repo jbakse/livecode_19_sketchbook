@@ -34,9 +34,9 @@ async function showJS(sourcePath) {
   const attributes = [];
   let r = paperscriptRegex.exec(rawSource);
   if (r) {
-    console.log(paperscriptRegex.test(rawSource));
+    // console.log(paperscriptRegex.test(rawSource));
 
-    console.log("result", r);
+    // console.log("result", r);
     const w = r[1] || 512;
     const h = r[2] || 512;
     html = `<canvas id="paper-canvas" width="${w}" height="${h}"></canvas>`;
@@ -50,7 +50,7 @@ async function showJS(sourcePath) {
   // format source
   /* globals hljs */
   var formattedSource = hljs.highlight("js", rawSource, true).value;
-  console.log(formattedSource);
+  // console.log(formattedSource);
 
   // render source
   // empty
@@ -86,9 +86,9 @@ async function showMDJS(sourcePath) {
   const attributes = [];
   let r = paperscriptRegex.exec(rawSource);
   if (r) {
-    console.log(paperscriptRegex.test(rawSource));
+    // console.log(paperscriptRegex.test(rawSource));
 
-    console.log("result", r);
+    // console.log("result", r);
     const w = r[1] || 512;
     const h = r[2] || 512;
     html = `<canvas id="paper-canvas" width="${w}" height="${h}"></canvas>`;

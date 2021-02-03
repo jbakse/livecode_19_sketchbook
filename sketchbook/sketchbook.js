@@ -15,7 +15,7 @@ async function main() {
 
   const sketchPath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
 
-  console.log(sketchPath);
+  // console.log(sketchPath);
 
   await Nav.buildNav(tree, sketchPath);
 
@@ -44,7 +44,7 @@ async function main() {
 window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
   if (currentDepth > maxDepth) return;
   let markup = "<ul>";
-  console.log("t", tree);
+  // console.log("t", tree);
   const branch = Tree.getItem(tree, path);
 
   branch.children.forEach((item) => {

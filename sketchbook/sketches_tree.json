@@ -402,6 +402,54 @@
         ]
     },
     {
+        "name": "airtable",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "build.10.1.airtable.browser.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            }
+        ]
+    },
+    {
+        "name": "block_invaders",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "animate.js"
+            },
+            {
+                "type": "file",
+                "name": "animate_p5.js"
+            },
+            {
+                "type": "file",
+                "name": "animate_t.js"
+            },
+            {
+                "type": "file",
+                "name": "canvas.js"
+            },
+            {
+                "type": "file",
+                "name": "input.js"
+            },
+            {
+                "type": "file",
+                "name": "invaders_01.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            }
+        ]
+    },
+    {
         "name": "demos",
         "type": "folder",
         "children": [
@@ -426,6 +474,16 @@
             {
                 "type": "file",
                 "name": "new_donkey.js"
+            }
+        ]
+    },
+    {
+        "name": "jsscad",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "tree_01.js"
             }
         ]
     },
@@ -661,6 +719,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "f_02.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "prison_01.js"
                     },
                     {
@@ -712,6 +774,10 @@
                     {
                         "type": "file",
                         "name": "bonsai_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bonsai_02.js"
                     },
                     {
                         "type": "file",

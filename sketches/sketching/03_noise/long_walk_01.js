@@ -38,10 +38,16 @@ function drawWorld() {
 
   const currentColumn = Math.floor(camera_x / 32);
 
-  for (let col = currentColumn - 3; col < currentColumn + 3; col++) {
+  for (let col = currentColumn - 13; col < currentColumn + 13; col++) {
     wave1(col * 32) > 0 ? fill(255) : noFill();
 
     rect(col * 32, 240 - 32, 32, 32);
+  }
+
+  for (let col = currentColumn - 13; col < currentColumn + 13; col++) {
+    wave1(col * 32) > 0.5 ? fill(255) : noFill();
+
+    rect(col * 32, 240 - 64, 32, 32);
   }
 }
 
@@ -64,7 +70,7 @@ function plotFunction() {
 }
 
 function wave1(x) {
-  return sin(x * 0.02);
+  return sin(x * 10000000.12);
 }
 
 function plot(f, pos = 0) {

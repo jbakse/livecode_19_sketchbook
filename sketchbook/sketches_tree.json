@@ -450,6 +450,21 @@
         ]
     },
     {
+        "name": "compform",
+        "type": "folder",
+        "children": [
+            {
+                "name": "04_parameters",
+                "type": "folder",
+                "children": []
+            },
+            {
+                "type": "file",
+                "name": "spiral_01.js"
+            }
+        ]
+    },
+    {
         "name": "demos",
         "type": "folder",
         "children": [

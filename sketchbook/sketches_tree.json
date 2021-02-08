@@ -445,7 +445,7 @@
             },
             {
                 "type": "file",
-                "name": "notes.md"
+                "name": "nodes.md"
             }
         ]
     },
@@ -456,6 +456,10 @@
             {
                 "type": "file",
                 "name": "dallas_oop.js"
+            },
+            {
+                "type": "file",
+                "name": "james_map.js"
             }
         ]
     },
@@ -711,6 +715,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "flow_01a.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "flow_02.js"
                     },
                     {
@@ -720,6 +728,10 @@
                     {
                         "type": "file",
                         "name": "f_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_01.js"
                     },
                     {
                         "type": "file",

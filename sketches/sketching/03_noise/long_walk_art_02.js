@@ -16,6 +16,7 @@ function setup() {
   noSmooth();
   noStroke();
   colorMode(HSB, 10);
+  createDiv("a = left; d = right. go check out the statues");
   c.style.width = "512px";
   c.style.height = "256px";
   c.style.imageRendering = "pixelated";

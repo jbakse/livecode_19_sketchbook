@@ -6,8 +6,6 @@ let player_facing = 1;
 const timeScale = 0.004;
 let atlas, tiles;
 
-const flowerColors = ["red", "orange", "yellow", "pink", "white"];
-
 function preload() {
   // art by [munro hoberman](https://munrohoberman.com/)
   atlas = loadImage("../sketches/sketching/03_noise/long_walk.png");
@@ -27,9 +25,9 @@ function setup() {
 
 function slice(img, cols, rows, size) {
   tiles = [];
-  for (x = 0; x < cols; x++) {
+  for (let x = 0; x < cols; x++) {
     tiles[x] = [];
-    for (y = 0; y < rows; y++) {
+    for (let y = 0; y < rows; y++) {
       const g = createGraphics(size, size);
       //   g.noSmooth();
       g.image(img, 0, 0, size, size, x * size, y * size, size, size);
@@ -53,12 +51,19 @@ function draw() {
   drawWorld();
 }
 
+function signpow(a, b) {
+  return pow(abs(a), b) * Math.sign(a);
+}
 function drawWorld() {
   // camera
   camera_x = lerp(camera_x, player_x + 32 * player_facing, 0.1);
 
   // sky
-  background(6, 3, map(cos(frameCount * timeScale), -1, 1, 0, 10));
+  background(
+    6,
+    7,
+    map(signpow(cos(frameCount * timeScale), 0.6), -1, 1, 0, 10)
+  );
 
   backLayer();
   frontLayer();
@@ -77,7 +82,8 @@ function drawWorld() {
   push();
   blendMode(MULTIPLY);
   noStroke();
-  const t = map(cos(frameCount * timeScale), -1, 1, 6, 0);
+
+  const t = map(signpow(cos(frameCount * timeScale), 0.8), -1, 1, 6, 0);
   fill(5, t, 10 - t, 8);
   rect(0, 0, 128, 64);
   pop();
@@ -99,17 +105,19 @@ function backLayer() {
   translate(-camera_x * 0.5 + 64, 0);
   const backColumn = Math.floor(camera_x / 32);
   for (let col = backColumn - 4; col < backColumn + 5; col++) {
+    const placeStatue = col && col % 50 === 0;
+    if (placeStatue) {
+      const statueTop = floor(noise(col, 11) * 4);
+      const statueBottom = floor(noise(col, 12) * 4);
+      image(tiles[statueTop][8], col * 16, 16, 16, 16);
+      image(tiles[statueBottom][9], col * 16, 32, 16, 16);
+    }
+
     const placeTree = noise(col * 0.25, 10) > 0.5;
-    if (placeTree) {
+    if (placeTree && !placeStatue) {
       const treeType = floor(noise(col, 11) * 4);
       image(tiles[treeType][6], col * 16, 16 + 4, 16, 16);
       image(tiles[treeType][7], col * 16, 32 + 4, 16, 16);
-    }
-
-    if (col && col % 50 === 0 && !placeTree) {
-      const statueType = floor(noise(col, 11) * 2);
-      image(tiles[statueType][8], col * 16, 16, 16, 16);
-      image(tiles[statueType][9], col * 16, 32, 16, 16);
     }
   }
 
@@ -140,7 +148,6 @@ function frontLayer() {
     const placeFlower = sin(col) > 0.0;
     if (placeFlower) {
       const flowerType = floor(noise(col, 3) * 4);
-      const flowerColor = flowerColors[floor(noise(col) * 5)];
 
       image(tiles[flowerType][3], col * 16, 32, 16, 16);
     }
@@ -152,9 +159,7 @@ function frontLayer() {
     }
 
     // signs
-
-    if (col && col % 50 === 0) {
-      const statueType = floor(noise(col, 11) * 2);
+    if (col && col % 100 === 0) {
       image(tiles[3][5], col * 16, 32, 16, 16);
     }
 

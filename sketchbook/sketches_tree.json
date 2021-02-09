@@ -746,7 +746,23 @@
                     },
                     {
                         "type": "file",
+                        "name": "long_walk.png"
+                    },
+                    {
+                        "type": "file",
                         "name": "long_walk_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_art.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_min_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_min_02.js"
                     },
                     {
                         "type": "file",

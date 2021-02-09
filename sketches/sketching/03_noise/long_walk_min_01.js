@@ -5,20 +5,15 @@ let player_x = 0;
 
 function setup() {
   pixelDensity(1);
-  const c = createCanvas(128, 64);
+  const c = createCanvas(128, 64).canvas;
   noSmooth();
-  c.canvas.style.width = "512px";
-  c.canvas.style.height = "256px";
-  c.canvas.style.imageRendering = "pixelated";
-  console.log(c.canvas);
-
-  frameRate(60);
+  colorMode(HSB, 10);
+  c.style.width = "512px";
+  c.style.height = "256px";
+  c.style.imageRendering = "pixelated";
 }
 
 function draw() {
-  a;
-  background(0);
-
   if (keyIsDown(65 /*a*/)) {
     player_x -= 2;
   }
@@ -31,32 +26,35 @@ function draw() {
 }
 
 function drawWorld() {
-  // if (abs(camera_x - player_x) > 64)
+  // camera
   camera_x = lerp(camera_x, player_x, 0.05);
-
   translate(-floor(camera_x) + 64, 0);
 
+  // sky
+  background(6, 3, 9);
   const currentColumn = Math.floor(camera_x / 16);
 
   for (let col = currentColumn - 4; col < currentColumn + 5; col++) {
-    // floor
-    noStroke();
-    noise(col) > 0.5 ? fill(50) : fill(80);
-    rect(col * 16, 48, 16, 16);
-
     // flower
     noStroke();
-    noise(col, 2) > 0.6 ? fill(100) : noFill();
+    const flowerColors = ["red", "orange", "yellow", "pink", "white"];
+    const flowerColor = flowerColors[floor(noise(col) * 5)];
+    sin(col) > 0.0 ? fill(flowerColor) : noFill();
     rect(col * 16, 32, 16, 16);
+
+    // grass
+    noStroke();
+    col % 2 ? fill(3, 10, 7) : fill(3, 9, 6);
+    rect(col * 16, 48, 16, 16);
 
     // clouds
     noStroke();
-    noise(col * 0.1, 3) > 0.5 ? fill(150) : noFill();
+    noise(col * 0.1, 3) > 0.5 ? fill("white") : noFill();
     rect(col * 16, 0, 16, 16);
   }
 
   // draw old man
   noStroke();
-  fill("yellow");
+  fill("white");
   rect(player_x - 16, 32, 16, 16);
 }

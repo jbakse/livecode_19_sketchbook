@@ -15,7 +15,7 @@ async function main() {
 
   const sketchPath = Tree.defaultFile(tree, urlParams.get("sketch") || "");
 
-  // console.log(sketchPath);
+  console.log(`%c ${sketchPath} `, "color: yellow; background: #000;");
 
   await Nav.buildNav(tree, sketchPath);
 
@@ -52,10 +52,10 @@ window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
       markup += `<li><a href="?sketch=${path}/${item.name}&amp;source">${item.name}</a></li>`;
     }
     if (item.type === "folder") {
-      markup += `<li>`;
+      markup += "<li>";
       markup += `<h${currentDepth + 1}>${item.name}</h1>`;
       markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
-      markup += `</li>`;
+      markup += "</li>";
     }
   });
 

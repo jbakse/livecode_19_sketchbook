@@ -6,9 +6,7 @@ function name(path) {
 }
 
 function root(path) {
-  return name(path)
-    .split(".")
-    .shift();
+  return name(path).split(".").shift();
 }
 
 function lastExtension(path) {
@@ -23,6 +21,13 @@ function extensions(path) {
   return undefined;
 }
 
+function directory(path) {
+  const parts = path.split("/");
+  parts.pop();
+
+  return parts.join("/") + "/";
+}
+
 function info(path) {
   return {
     path: path,
@@ -30,6 +35,7 @@ function info(path) {
     root: root(path),
     lastExtension: lastExtension(path),
     extensions: extensions(path),
+    directory: directory(path),
   };
 }
 

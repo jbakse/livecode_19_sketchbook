@@ -70,6 +70,7 @@ async function showJS(sourcePath) {
     "plugins/source/source.handlebars",
     context
   );
+
   const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
 
   // inject pages
@@ -100,7 +101,7 @@ async function showMDJS(sourcePath) {
   const directives = readDirectives(rawSource);
 
   // format source
-  /* globals hljs */
+  /* globals js2md */
   // var formattedSource = hljs.highlight("js", rawSource, true).value;
   var markdownSource = js2md(rawSource);
   const md = new markdownit();
@@ -202,7 +203,6 @@ async function showHTML(sourcePath) {
   let rawSource = await getText(sourcePath);
 
   // format source
-  /* globals hljs */
   const formattedSource = hljs.highlight("js", rawSource, true).value;
 
   // render source
@@ -230,7 +230,7 @@ async function showDirect(sourcePath) {
   let rawSource = await getText(sourcePath);
 
   // format source
-  const formattedSource = rawSource;
+  // const formattedSource = rawSource;
 
   // render source
   const content = rawSource;

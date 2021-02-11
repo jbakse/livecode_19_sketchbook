@@ -2,7 +2,7 @@
 
 /* globals sketch_directory */
 
-const TIME_SCALE = 0.01;
+const TIME_SCALE = 0.001;
 let atlas, tiles;
 
 let camera_x = 0;
@@ -28,7 +28,7 @@ function setup() {
   noStroke();
   colorMode(HSB, 10);
 
-  tiles = slice(atlas, 4, 10, 8);
+  tiles = slice(atlas, 8, 10, 8);
 }
 
 function draw() {
@@ -37,12 +37,14 @@ function draw() {
 }
 
 function handleInput() {
+  const boost = keyIsDown(SHIFT) ? 1.2 : 0.8;
+
   if (keyIsDown(65 /*a*/)) {
-    player_x -= 2;
+    player_x -= 2 * boost;
     player_facing = -1;
   }
   if (keyIsDown(68 /*d*/)) {
-    player_x += 2;
+    player_x += 2 * boost;
     player_facing = 1;
   }
 }
@@ -54,11 +56,33 @@ function drawWorld() {
   // time -1 midnight, 1 noon
   time = signedPow(cos(frameCount * TIME_SCALE), 0.6);
 
+  // calc desert intensity
+  const targetCol = Math.floor(camera_x / 16);
+  const desertIntensity = map(
+    sin((targetCol - 100) * 0.01),
+    0.9,
+    0.95,
+    0,
+    1,
+    true
+  );
+
   // sky
   background(6, 7, map(time, -1, 1, 0, 10));
   backLayer();
+
+  if (desertIntensity > 0) {
+    push();
+    colorMode(RGB, 1);
+    fill(1, 1, 0.5, desertIntensity * 0.5 * map(time, -1, 1, 0, 1));
+    rect(0, 0, width, height);
+    pop();
+  }
+
   frontLayer();
+
   oldMan();
+
   night();
   torch();
 }
@@ -70,22 +94,29 @@ function backLayer() {
   const targetCol = Math.floor(camera_x / 32);
 
   for (let col = targetCol - 4; col <= targetCol + 4; col++) {
+    const desertOffset = sin((col - 50) * 0.02) > 0.75 ? 4 : 0;
+
     // multiples of 50, except 0
     const placeStatue = col && col % 50 === 0;
     if (placeStatue) {
       const statueTop = noiseInt(0, 4, col, 1);
       const statueBottom = noiseInt(0, 4, col, 2);
-      image(tiles[statueTop][8], col * 16, 16, 16, 16);
-      image(tiles[statueBottom][9], col * 16, 32, 16, 16);
+      image(tiles[statueTop + desertOffset][8], col * 16, 16, 16, 16);
+      image(tiles[statueBottom + desertOffset][9], col * 16, 32, 16, 16);
     }
 
     // half the time, medium frequency
     const placeTree = noiseBool(0.5, col * 0.25, 1);
     if (placeTree && !placeStatue) {
       const treeType = noiseInt(0, 4, col, 11);
-      image(tiles[treeType][6], col * 16, 16 + 4, 16, 16);
-      image(tiles[treeType][7], col * 16, 32 + 4, 16, 16);
+      image(tiles[treeType + desertOffset][6], col * 16, 16 + 4, 16, 16);
+      image(tiles[treeType + desertOffset][7], col * 16, 32 + 4, 16, 16);
     }
+
+    // if (desertOffset) {
+    //   fill(1, 10, 10, 5);
+    //   rect(col * 16, 0, 16, 64);
+    // }
   }
 
   pop();
@@ -98,6 +129,8 @@ function frontLayer() {
   const targetColumn = Math.floor(camera_x / 16);
 
   for (let col = targetColumn - 4; col < targetColumn + 5; col++) {
+    const desertOffset = sin((col - 100) * 0.01) > 0.75 ? 4 : 0;
+
     // clouds
     const cloudiness = 0.5;
     const placeClouds = noiseBool(cloudiness, col * 0.1, 1);
@@ -111,7 +144,7 @@ function frontLayer() {
       if (last) cloudType = 3;
       if (!(first && last)) {
         //skip a cloud if its the first and last
-        image(tiles[cloudType][4], col * 16, 2, 16, 16);
+        image(tiles[cloudType + desertOffset][4], col * 16, 2, 16, 16);
       }
     }
 
@@ -119,13 +152,13 @@ function frontLayer() {
     const placeFlower = sin(col) > 0.0;
     if (placeFlower) {
       const flowerType = noiseInt(0, 4, col, 3);
-      image(tiles[flowerType][3], col * 16, 32, 16, 16);
+      image(tiles[flowerType + desertOffset][3], col * 16, 32, 16, 16);
     }
 
     // special
     if (!placeFlower && noiseBool(0.2, col)) {
       const specialType = noiseInt(0, 3, col, 3);
-      image(tiles[specialType][5], col * 16, 32, 16, 16);
+      image(tiles[specialType + desertOffset][5], col * 16, 32, 16, 16);
     }
 
     // signs
@@ -135,7 +168,7 @@ function frontLayer() {
 
     // grass
     const grassType = noiseInt(0, 4, col);
-    image(tiles[grassType][1], col * 16, 48, 16, 16);
+    image(tiles[grassType + desertOffset][1], col * 16, 48, 16, 16);
   }
   pop();
 }

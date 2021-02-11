@@ -9,10 +9,11 @@ module.exports = {
   },
   rules: {
     indent: ["error", 2],
-    quotes: ["error", "double"],
+    quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],
     "linebreak-style": ["error", "unix"],
     "no-unused-vars": ["error", { vars: "local" }],
     "no-console": "off",
+    "no-prototype-builtins": "off",
   },
 };

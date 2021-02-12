@@ -571,6 +571,82 @@
         ]
     },
     {
+        "name": "river",
+        "type": "folder",
+        "children": [
+            {
+                "name": "assets",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "laoth.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius.png"
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "index.md"
+            },
+            {
+                "type": "file",
+                "name": "river_01.js"
+            },
+            {
+                "type": "file",
+                "name": "river_01_clean.js"
+            },
+            {
+                "type": "file",
+                "name": "river_02.js"
+            },
+            {
+                "name": "_figures",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "blender.png"
+                    }
+                ]
+            },
+            {
+                "name": "_renders",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "laoth.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sketch_01_render_01.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sketch_01_render_02.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius.png"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "shaders",
         "type": "folder",
         "children": [
@@ -770,6 +846,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "long_walk_demo.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "long_walk_min_01.js"
                     },
                     {
@@ -857,10 +937,6 @@
                     {
                         "type": "file",
                         "name": "p5_dom_style.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "river_01.js"
                     },
                     {
                         "type": "file",

@@ -6,6 +6,8 @@
 // but if you sample on a multiple of PI it falls apart
 // still stick to ints, and its good
 
+//www.random.org/
+
 function sinRand(n) {
   const f = Math.abs(_fract(Math.sin(n * 100000) * 100000));
   return f;

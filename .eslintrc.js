@@ -18,7 +18,7 @@ module.exports = {
     ],
     semi: ["error", "always"],
     "linebreak-style": ["error", "unix"],
-    "no-unused-vars": ["error", { vars: "local" }],
+    // "no-unused-vars": ["error", { vars: "local" }],
     "no-console": "off",
   },
 };

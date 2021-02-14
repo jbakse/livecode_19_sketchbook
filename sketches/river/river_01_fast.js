@@ -7,11 +7,35 @@ const NOISE_DETAIL = 4;
 const NORMAL_CONTRAST = 100;
 const LIT_CONTRAST = 20;
 
-/* exported setup draw renderHeightMap renderNormalMap renderLit*/
+// this sketch tries two alternate rendering methods
+// version 1: same as previous sketch, renders to the canvas directly using ellipse(), on my machine a 2x pixel density canvas
+// version 2: bumpPixel directly sets the canvas pixel values
+// version 3: renders to 1024x1024 graphics
+
+// speed test 100 particles, 100 steps,
+// version 1: 390 ms
+// version 2: 230 ms
+// version 3a (hidden): 390ms
+// version 3b (shown): 1200ms
+
+// version 1 always draws at least 2x2 pixels, even if the radius was .5 or .25
+
+// version 2 is fastest and targets a single pixel for finer detail
+// version 2 doesn't have antialiasing
+
+// version 3 uses ellipse but does draw single pixel ellipses, its not much slower if you don't display the render
+
+// interested in doing a version with drawing to a float array for HDR
+// also could look at moving to float, exr?
+// exr code in smudge?
+
+/* exported setup draw renderHeightMap  renderNormalMap renderLit */
+let render;
 
 function setup() {
   createCanvas(512, 512);
-
+  render = createGraphics(1024, 1024);
+  render.background(0);
   colorMode(RGB, 1);
 
   noStroke();
@@ -83,11 +107,13 @@ function renderLit() {
 }
 
 function draw() {
-  colorMode(HSB, 1);
-  for (let particle = 0; particle < 10; particle++) {
+  render.colorMode(HSB, 1);
+  render.fill(1, 1, 1, 0.2);
+  render.noStroke();
+
+  for (let particle = 0; particle < 100; particle++) {
     let x = random(width);
     let y = random(height);
-    fill(1, 1, 1, 0.2);
 
     for (let step = 0; step < 1000; step++) {
       const n = totalNoiseNormal(x, y);
@@ -95,7 +121,20 @@ function draw() {
       y -= n.y * FLOW_SPEED;
       x += random(-TURBULENCE, TURBULENCE);
       y += random(-TURBULENCE, TURBULENCE);
-      ellipse(x, y, 1, 1);
+
+      render.ellipse(x * 2, y * 2, 1, 1);
     }
   }
+
+  image(render, 0, 0, 512, 512);
+}
+
+function bumpPixel(x, y) {
+  x = floor(x * 2) * 0.5;
+  y = floor(y * 2) * 0.5;
+  let d = pixelDensity();
+  let i = (y * d * width * d + x * d) * 4;
+  //pixels[i] = pixels[i] + 50;
+  //pixels[i] = pixels[i] * 0.8 + 255 * 0.2;
+  pixels[i] = lerp(pixels[i], 255, 0.2);
 }

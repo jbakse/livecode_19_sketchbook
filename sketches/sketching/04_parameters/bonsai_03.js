@@ -13,16 +13,19 @@ const params = {
   max_life: 30,
   max_twisting: 0.21,
   max_yearning: 0.5,
+  max_branchChance: 1.0,
+
   min_branchAngle: 0.01,
   min_branchAt: 3,
   min_life: 15,
   min_twisting: 0,
   min_yearning: 0,
+  min_branchChance: 0.5,
 };
 
 window.setup = function () {
   createCanvas(600, 600);
-  noiseSeed(1);
+  noiseSeed(2);
   noiseDetail(8);
 
   pane.addFolder({
@@ -31,7 +34,7 @@ window.setup = function () {
 
   pane.addInput(params, "min_yearning", {
     label: "yearning",
-    min: 0,
+    min: -1,
     max: 1,
     step: 0.01,
   });
@@ -53,6 +56,12 @@ window.setup = function () {
     max: 10,
     step: 1,
   });
+  pane.addInput(params, "min_branchChance", {
+    label: "branchC",
+    min: 0,
+    max: 1,
+    step: 0.01,
+  });
   pane.addInput(params, "min_life", {
     label: "life",
     min: 5,
@@ -66,7 +75,7 @@ window.setup = function () {
 
   pane.addInput(params, "max_yearning", {
     label: "yearning",
-    min: 0,
+    min: -1,
     max: 1,
     step: 0.01,
   });
@@ -87,6 +96,12 @@ window.setup = function () {
     min: 3,
     max: 10,
     step: 1,
+  });
+  pane.addInput(params, "max_branchChance", {
+    label: "branchC",
+    min: 0,
+    max: 1,
+    step: 0.01,
   });
   pane.addInput(params, "max_life", {
     label: "life",
@@ -128,7 +143,7 @@ function draw() {
 
   noLoop();
 }
-
+let leafId;
 function tree(id, x = 0, y = 0, dX = 0, dY = -2, life) {
   let step = 0;
 
@@ -141,8 +156,16 @@ function tree(id, x = 0, y = 0, dX = 0, dY = -2, life) {
     params.max_branchAngle,
     id
   );
+  const _branchChance = noiseRange(
+    params.min_branchChance,
+    params.max_branchChance,
+    id
+  );
 
-  if (life === undefined) life = _life;
+  if (life === undefined) {
+    life = _life;
+    leafId = 0;
+  }
 
   while (life > 0) {
     const oldX = x;
@@ -161,12 +184,44 @@ function tree(id, x = 0, y = 0, dX = 0, dY = -2, life) {
     line(oldX, oldY, x, y);
 
     if (step == _branchAt) {
-      const [dX1, dY1] = rotateXY(dX, dY, PI * _branchAngle);
-      const [dX2, dY2] = rotateXY(dX, dY, PI * -_branchAngle);
-      tree(id, x, y, dX1, dY1, life);
-      tree(id, x, y, dX2, dY2, life);
+      if (noise(id, life, 1) < _branchChance) {
+        const [dX1, dY1] = rotateXY(
+          dX,
+          dY,
+          PI * _branchAngle * noiseRange(0.5, 1, id, life, 1)
+        );
+        tree(id, x, y, dX1, dY1, life);
+      }
+      if (noise(id, life, 2) < _branchChance) {
+        const [dX2, dY2] = rotateXY(
+          dX,
+          dY,
+          PI * -_branchAngle * noiseRange(0.5, 1, id, life, 2)
+        );
+        tree(id, x, y, dX2, dY2, life - 1);
+      }
       break;
     }
+  }
+  if (life < _branchAt * 2 + 1) {
+    push();
+    colorMode(HSB, 1);
+
+    let c = noise(id) * 10 + noise(leafId) * 0.2;
+    fill(c % 1, 1, map(life, 0, _branchAt, 1, 0.5));
+    noStroke();
+    // for (let l = 0; l < 1; l++) {
+    push();
+    translate(
+      x + noiseRange(-5, 5, leafId, 1),
+      y + noiseRange(-5, 5, leafId, 2)
+    );
+    rotate(atan2(dX, -dY));
+    ellipse(0, 0, 5, 10);
+    pop();
+    leafId++;
+    // }
+    pop();
   }
 }
 

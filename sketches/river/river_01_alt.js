@@ -129,12 +129,12 @@ function draw() {
   image(render, 0, 0, 512, 512);
 }
 
-function bumpPixel(x, y) {
-  x = floor(x * 2) * 0.5;
-  y = floor(y * 2) * 0.5;
-  let d = pixelDensity();
-  let i = (y * d * width * d + x * d) * 4;
-  //pixels[i] = pixels[i] + 50;
-  //pixels[i] = pixels[i] * 0.8 + 255 * 0.2;
-  pixels[i] = lerp(pixels[i], 255, 0.2);
-}
+// function bumpPixel(x, y) {
+//   x = floor(x * 2) * 0.5;
+//   y = floor(y * 2) * 0.5;
+//   let d = pixelDensity();
+//   let i = (y * d * width * d + x * d) * 4;
+//   //pixels[i] = pixels[i] + 50;
+//   //pixels[i] = pixels[i] * 0.8 + 255 * 0.2;
+//   pixels[i] = lerp(pixels[i], 255, 0.2);
+// }

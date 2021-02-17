@@ -450,6 +450,72 @@
         ]
     },
     {
+        "name": "bookshelf",
+        "type": "folder",
+        "children": [
+            {
+                "name": "bookself_02",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "bookshelf_01",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    }
+                ]
+            },
+            {
+                "name": "bookshelf_design",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "lib",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "airtable.browser.js"
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            }
+        ]
+    },
+    {
         "name": "compform",
         "type": "folder",
         "children": [
@@ -535,6 +601,16 @@
         ]
     },
     {
+        "name": "p5party",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "map_01.js"
+            }
+        ]
+    },
+    {
         "name": "play",
         "type": "folder",
         "children": [
@@ -602,6 +678,10 @@
             },
             {
                 "type": "file",
+                "name": "river_01_alt.js"
+            },
+            {
+                "type": "file",
                 "name": "river_01_clean.js"
             },
             {
@@ -619,16 +699,130 @@
                 ]
             },
             {
+                "name": "_outtakes",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "laoth_01.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_02.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_03.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_04.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_05.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_06.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_07.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "laoth_08.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_01.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_03.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_05.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_07.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_09.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_10.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_11.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_12.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_13.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_14.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "makwa_15.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_01.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_02.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_03.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_04.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_05.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_06.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_07.jpg"
+                    },
+                    {
+                        "type": "file",
+                        "name": "thexius_08.jpg"
+                    }
+                ]
+            },
+            {
                 "name": "_renders",
                 "type": "folder",
                 "children": [
                     {
                         "type": "file",
-                        "name": "laoth.png"
+                        "name": "laoth_01.png"
                     },
                     {
                         "type": "file",
-                        "name": "makwa.png"
+                        "name": "makwa_01.png"
                     },
                     {
                         "type": "file",
@@ -640,7 +834,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "thexius.png"
+                        "name": "thexius_01.png"
                     }
                 ]
             }
@@ -932,11 +1126,19 @@
                     },
                     {
                         "type": "file",
+                        "name": "bonsai_03.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "p5_dom_style.css"
                     },
                     {
                         "type": "file",
                         "name": "p5_dom_style.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "salt_01.js"
                     },
                     {
                         "type": "file",

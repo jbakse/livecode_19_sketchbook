@@ -5,7 +5,7 @@ console.log("Hello, Airtable");
 var Airtable = require("airtable");
 console.log(Airtable);
 
-// use the airtable librar to get a variable that represents one of our bases
+// use the airtable library to get a variable that represents one of our bases
 var base = new Airtable({ apiKey: "keyOcvpATRSQc6y9M" }).base(
   "appkFaDUnYFiYcvny"
 );
@@ -40,26 +40,36 @@ function gotAllBooks(err) {
   showBooks();
 }
 
-// loop through the books, create an h2 for each one, and add it to the page
+// create the book-spines on the shelf
 function showBooks() {
   console.log("showBooks()");
+
+  // find the shelf element
   const shelf = document.getElementById("shelf");
-  console.log(shelf);
+
+  // loop through the books loaded from the Airtable API
   books.forEach((book) => {
+    // create the div, set its text and class
     const div = document.createElement("div");
     div.innerText = book.fields.title;
     div.classList.add("book-spine");
+    // when the user clicks this book spine, call showBook and send the book data and this spine element
     div.addEventListener("click", () => {
-      showBook(book);
+      showBook(book, div);
     });
+    // put the newly created book spine on the shelf
     shelf.appendChild(div);
   });
 }
 
-function showBook(book) {
+// show the detail info for a book, and highlight the active book-spine
+function showBook(book, div) {
   console.log("showBook()", book);
+
+  // find the book detail element
   const bookDetail = document.getElementById("book-detail");
 
+  // populate the template with the data in the provided book
   bookDetail.getElementsByClassName("title")[0].innerText = book.fields.title; //
   bookDetail.getElementsByClassName("description")[0].innerText =
     book.fields.description;
@@ -67,5 +77,16 @@ function showBook(book) {
   bookDetail.getElementsByClassName("cover-image")[0].src =
     book.fields.cover_image[0].url;
 
+  // remove the .active class from any book spines that have it...
+  const shelf = document.getElementById("shelf");
+  const bookSpines = shelf.getElementsByClassName("active");
+  for (const bookSpine of bookSpines) {
+    bookSpine.classList.remove("active");
+  }
+  // ...and set it on the one just clicked
+  div.classList.add("active");
+
+  // reveal the detail element, we only really need this the first time
+  // but its not hurting to do it more than once
   bookDetail.classList.remove("hidden");
 }

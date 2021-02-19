@@ -607,6 +607,18 @@
             {
                 "type": "file",
                 "name": "map_01.js"
+            },
+            {
+                "type": "file",
+                "name": "map_02.js"
+            },
+            {
+                "type": "file",
+                "name": "p5.party.js"
+            },
+            {
+                "type": "file",
+                "name": "p5.party.js.map"
             }
         ]
     },
@@ -671,6 +683,16 @@
             {
                 "type": "file",
                 "name": "index.md"
+            },
+            {
+                "name": "production",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "makwa.blend"
+                    }
+                ]
             },
             {
                 "type": "file",

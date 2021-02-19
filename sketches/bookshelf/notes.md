@@ -1,137 +1,203 @@
-# Security
+# Part 1: Introduction
 
-- Propery security is out of scope of this introduction.
-- These demos are not secure.
-- The things you make—following these demos—won't be secure.
-- Because security is not considered, it would be possible for someone to vandalize the data in your databases.
-- If you are using Airtable just for this project, thats mostly fine.
-- If you have other data in Airtable, you may want to create a seperate account for just class stuff.
+This demo is an introduction to using Airtable to build a custom backend database for a simple data-driven web page.
+I'm going to show you how build this [Bookshelf Demo](https://jbakse.github.io/livecode_19_sketchbook/sketchbook/sketchbook.html?sketch=/bookshelf/bookself_02/index.html&source)
 
-# Introduction
+This document contains my notes for the video.
 
-- I'm going to show you how build this!
+### Key Features:
 
-  - Bookshelf demo.
-  - Displays a list of books at the top.
-  - Clicking a book title shows more information below.
-  - This is an example of a master-detail interface.
-  - Rather than hard coding the content in HTML, this demo loads the data from an Airtable Database.
+- `Show the Bookshelf Demo`
+- Displays a list of books at the top.
+- Clicking a book title shows more information below.
+- This is an example of a master-detail interface.
+- Rather than hard coding the content in HTML, this demo loads the data from an Airtable Database.
 
-- What is Airtable
+## What is Airtable
 
-  - Airtable is a web application that combines aspects of a spreadsheet (easy to use, like google sheets) and a database (structured data, like a "real" database).
-  - Airtable lets you define structured collections of data: a _book_ has a title, a description, a cover image, etc. a _user_profile_ has a first name, last name, join date, etc.
-  - Airtable also lets you set up relationships. Like a user profile can contain a list of books.
-  - Relationships are a big deal in databases, but we'll be sticking with a simple structure with only one collection of data.
-  - The airtable database is here, but you can't look at it unless you are logged in as me. [Airtable Bookshelf](https://airtable.com/tblSiPSl6eQSiWWx4/viw6rjrE6HiFXk59D?blocks=hide)
+Airtable is a web application that combines aspects of a spreadsheet (easy to use, like google sheets) and a database (structured data, like a "real" database). Go take a look at [Airtable](https://airtable.com/product)
 
-- Why Airtable
+- `Show Airtable`
+- Airtable lets you define structured collections of data: a **book** has a _title_, a _description_, a _cover_image_, etc. a **user_profile** has a _first_name_, _last_name_, _join_date_, etc.
+- Airtable also lets you define relationships. For example you can set up a user profile to contain a list of books. Relationships are a big deal in databases, but we'll be sticking with a simple structure with only one collection of data.
+- Once you have your data structure defined, it provides a nice, modern UI for users and a full API for javascript.
 
-  - Airtable is pretty useful because it provides an easy to use interface for both humans and javascript.
-  - Multiple people can access the same database and view and edit the content in a nice, easy visual interface.
-  - The tools for humans are pretty powerful, you can set up specific views for different people or roles on the team. These views can visualize the data in different ways and filter and sort the data based on what each person needes.
-  - Airtable also provides a fairly easy to use API for javascript programming.
-  - With the API your webpage's javascript can request the data stored in your Airtable database and show that information on your webpage. This lets you design the UI/UX and visuals exactly how you want them.
+### Why Airtable?
 
-- Next
-  - I'll be showing you how to build the book shelf demo in a few parts.
-  - Setting up The Databas
-  - Using the Javascript API
-  - Building the Front End
+- Airtable is pretty useful because it provides an easy to use interface for both humans and javascript.
+- Multiple people can access the same database and view and edit the content in a nice, easy visual interface.
+- These tools are pretty powerful. You can set up specific views of the data for different purposes. These views can filter and sort the data and visualize it in different ways.
+- `Show the structure of the Bookshelf demo table`
+- `Add a book`
 
-# Setting up The Database
+- For example its easy to set up a basic public form for adding information. [Go add your own book.](https://airtable.com/shr9lOYgav5K6qLnW)
+- `Show the form`
+- `Add a book`
 
-- Because we are not considering security. Create an account just for these projects. This limits the damage that a vandal (or a coding mistake) could cause.
+### The Airtable API
 
-- Create a new base.
+- Airtable provides an API—Application Programming Interface—for javascript programming.
+- Using this API, your webpage's javascript can request the data stored in your Airtable database and show that information on your webpage. This lets you design the UI/UX and visuals exactly how you want them.
+- You can also write data to airtable with the API, but this demo will only cover reading and displaying the data.
+- A really nice thing about Airtable is that it creates custom documentation for using the API and library that reflects the content and structure of your base.
+- `Access the documentation via the help menu.`
 
-  - A base is a database. Each database can have multiple tables.
-  - Tables hold multiple records/rows that share a structure.
-  - Each row/record has several fields/columns.
-  - Each field has a name and a type.
+## A Note about Security
 
-- Clean up the default table
+- This demo is very insecure.
+- The Airtable API uses a secret key (a password) to verify that your Javascript has permission to access your database.
+- In this demo, the secret key is included near the top of main.js.
+- Because Javascript is run on the client, main.js is published publicly, and so is the secret key!
+- With that secret key, anyone can alter or delete the contents of the database.
+- Proper security is out of the scope of this demo. The demo is insecure, and things you base on this demo will be insecure too.
+- If you are using Airtable just for this class, that is mostly fine. You won't have much data to lose.
+- If you have other data in Airtable, you should create a separate account for just class stuff.
 
-  - Airtable creates a basic table for you, with a few columns already defined.
-  - Rename "Table 1" -> "books"
-  - I'm going to be working with this table using Javascript. Its a good idea to use a consistent naming strategy. I'll be using short, descriptive names written in all lowercase and using \_ to seperate words.
-  - Rename field "Name" -> "title"
-  - This is the primary field, and can't be deleted.
-  - Delete the other fields.
+## Next
 
+I'll be showing you how to build the Bookshelf demo in a few parts.
+
+- Setting up The Database
+- Using the Javascript API
+- Building the Front End
+
+# Part 2: Setting up The Database
+
+## Create an Airtable Account
+
+Create a free account on Airtable. If you already have an account, create a second one just for this class. This limits the damage that a vandal (or a coding mistake) could cause. Remember, this code is not secure.
+
+## Creating a new base.
+
+- Airtable calls its databases just bases.
+- An Airtable account can have multiple bases, usually all related data is kept in a single base.
+- You would use multiple bases if you had multiple, unrelated projects.
+- `Create a new base named 'bookshelf_demo'`
+
+## Creating the table
+
+- Each base can have multiple tables.
+- Tables hold multiple records/rows that share a structure.
+- Each row/record has several fields/columns.
+- Each field has a name and a type.
+- When you create a base, Airtable adds a basic table automatically.
+- `Rename "Table 1" -> "books"`
+- I'm going to be working with this table using Javascript. Its a good idea to use a consistent naming strategy. I'll be using short, descriptive names written in all lowercase and using \_ to seperate words.
+- `Rename field "Name" -> "title"`
+- This is the primary field, and can't be deleted.
+- `Delete the other fields.`
 - Now we have to think about the data we need to keep in our database.
 
   - We already have a field for the book title. The field name is "title" and the type is "single line text". Good.
-  - We also have a description paragraph, a cover image, and link to more informaiton.
-  - Create a field named "description" with type "Long Text"
-  - Create a field named "cover_image" of type attachment. We'll be able to upload images into our database with this type!
-  - Create a field named "more_url" with type url
+  - We also need a description paragraph, a cover image, and link to more information.
 
-- And lets add some content.
+- `Create a field named "description" with type "Long Text"`
+- `Create a field named "more_url" with type url`
+- `Create a field named "cover_image" of type "Attachment".`
+- We'll be able to upload images into our database with this type!
 
-  - You can type right into the fields.
-  - You can also right click a row and choose "expand record".
+## Adding Content
 
-- Review
+- You can type right into the fields.
+- You can also right click a row and choose "expand record".
 
-  - We started by creating a playground account.
-  - We created a new database and set up a single table.
-  - We defined fields with well chosen names and field types to store our data.
-  - We used the Airtable interface as a general CMS for entering our data.
+## Review
 
-- Next
-  - In the next video we'll look at the API that Airtable provides so that you can access this data using Javascript.
+- We started by creating a playground account.
+- We created a new database and set up a single table.
+- We defined fields with well chosen names and field types to store our data.
+- We used the Airtable interface as a general CMS for entering our data.
 
-# Using the Javascript API
+## Next
 
-- What is the Javascript API?
+- In the next video we'll look at the Airtable JS API
 
-  - Airtable provides access to its data through a Javascript API and library.
-  - Application Programming Interface
-  - The interface follows a common design approach, called REST.
-  - Very briefly: A REST interface allows a client (your javascript) to send a server (airtable) independent requests for information.
-  - Using this rest iterface direclty is possible, but Airtable makes things easier by providing a small Javascript library.
-  - A really nice thing about Airtable is that it creates custom documentation for your databases!
-  - Acces it via the help menu.
-  - Choose Javascript, and turn on show API key.
-  - The documentation include code and output examples that reflect your data!
+# Part 3: Using the Javascript API
 
-- Setting up
+Airtable provides access to its data through a Javascript API and Library.
 
-  - Create an HTML
-    - HTML template
-  - We'll start by making an example page.
-  - create a js folder
-  - create a main.js, console.log("Hello, Airtable");
-  - add the script tag to your page`<script src="js/main.js"></script>`
+- API stands for Application Programming Interface
+- An API provides a way for your code to communicate with other code.
+- The Airtable API follows a common design approach, called [REST](https://en.wikipedia.org/wiki/Representational_state_transfer).
+- Very briefly: A REST interface allows a client (your javascript) to send a server (airtable) independent requests for information over HTTP the communication protocol used on the web.
+- You can use the Airtable REST interface directly or you can use a small Javascript Library provided by Airtable that makes common things easier.
+- A really nice thing about Airtable is that it creates custom documentation for your base.
+- The documentation includes code snippets and output examples that reflect your data!
 
-- Adding the Library - Library
+- `Access the documentation via the help menu.`
 
-  - https://github.com/airtable/airtable.js/
-  - Releases -> Latest -> Download Source code .zip
-  - unzip it
-  - open build folder
-  - copy airtable.browser.js into your project's js folder
-  - add the script tag to your page `<script src="js/airtable.browser.js"></script>`
-  - in your main js use `require` airtable to import the library into a variable called Airtable, and lets console log it to make sure its working.
+- `Choose Javascript, and turn on show API key.`
 
-- Turning on API access
+- `Tour the docs`
 
-  - Click the Avatar Icon and choose "Account"
-  - Generate an API Key
-  - See the note about creating a read only account/key.
-  - Your javascript will need this key to access your airtable data.
-  - Since your javascript code will be on your front end, anyone one who looks at your code will find it. If we were building this system to be secure, we'd have to do things another way.
+## Setting up
 
-- Trying out the API
-  - The generated docs have code examples showing how to connect to airtable, select a base, and request records.
-  - The code is somewhat complicated for beginners. It uses javascript patterns you might not be like function parameters.
-  - It is also a bit complicated because the airtable API is paginated. It doesn't return all the records at once, instead it returns them in pages (like google search results).
-  - The maximum page size is 100, so airtable gives us the first 100 records, and then we request more.
-  - I've built an example that uses the airtable library to load the books and log them to the console.
-  - It would be a good idea to study that code and try to understand what each part does.
-  - You should also study the console log to see what data is in each record provided by Airtable. In addition to your field data, there is an Airtable generated Id. There are also methods you can use to modify the data.
-  - You can use this code in your own projects, but you'll need to make some alterations because your tables and fields will have different names.
+We'll start by making an example page.
+
+- `Create a folder for the project`
+- `Open in VS Code`
+- `Create an HTML`
+- `Check with Live Server`
+- `Create a JS folder`
+- `Create a main.js`
+
+```
+console.log("Hello, Airtable");`
+```
+
+- `add the script tag to your page`
+
+```
+<script src="js/main.js"></script>
+```
+
+- `Check with Live Server`
+
+Then we need to get the Airtable library
+
+- Visit: https://github.com/airtable/airtable.js/
+- Navigate: Releases -> Latest -> Download Source code .zip
+- `copy airtable.browser.js into your project's js folder`
+- `add the script tag to your page` - <script src="js/airtable.browser.js"></script>
+
+- require and log the library to make sure we are loading it correctly
+
+```
+var Airtable = require("airtable");
+console.log(Airtable);
+```
+
+## Turning on API access
+
+By default, the API is disabled. You need to turn it on for your account if you want to use it for API access.
+
+- `Click the Avatar Icon and choose "Account"`
+- Generate an API Key
+- See the note about creating a read only account/key.
+- Your javascript will need this key to access your airtable data.
+
+## Trying out the API
+
+- The generated docs have code examples showing how to connect to airtable, select a base, and request records.
+- The code is somewhat complicated for beginners. It uses javascript patterns you might not be used to, such as callback functions.
+- It is also a bit complicated because the airtable API is paginated. It doesn't return all the records at once, instead it returns them in pages (like google search results).
+- The maximum page size is 100, so airtable gives us the first 100 records, and then we request more.
+- I've built an example that uses the airtable library to load the books and log them to the console.
+- `Add the bookshelf_01 code`
+- `Tour the code`
+- You can view the code in the glitch project.
+- Study the code.
+- Study the console logs.
+  - Your field data
+  - Airtable generated Id
+  - methods to modify the data.
+- Fork and modify the code.
+- You might even want to try to make your own base, and get it working with your fork.
+- You can use this code in your own projects, but you'll need to make some alterations because your tables and fields will have different names.
+
+## Next
+
+In the next video we'll look at the front end code in `bookshelf_02`
 
 # Building the Front End
 

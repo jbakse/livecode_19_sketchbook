@@ -33,6 +33,10 @@ body {
   cursor: pointer;
 }
 
+.shelf .book-spine.active {
+  background: red;
+}
+
 .shelf .book-spine:hover {
   background: #f00;
 }

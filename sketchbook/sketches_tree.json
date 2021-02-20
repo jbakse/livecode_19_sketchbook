@@ -1173,6 +1173,16 @@
                 ]
             },
             {
+                "name": "06_pixels",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "meta_01.js"
+                    }
+                ]
+            },
+            {
                 "name": "phaser",
                 "type": "folder",
                 "children": [

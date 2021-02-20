@@ -38,20 +38,15 @@ function setup() {
     shared.map = array2D(8, 8, 0);
   }
 
-  console.log(tile_editor);
-
-  tile_editor = new TileEditor(10, 300, 8 * 24, 9 * 24);
+  tile_editor = new TileEditor(10, 10, 8 * 24, 9 * 24);
   tile_editor.setup();
 
-  map_editor = new MapEditor(10, 10, 8 * 24, 8 * 24);
+  map_editor = new MapEditor(300, 10, 8 * 24, 8 * 24);
   map_editor.setup();
 }
 
 function draw() {
   background(0);
-
-  // draw map
-
   tile_editor.draw();
   map_editor.draw();
 }

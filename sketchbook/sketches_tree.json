@@ -1178,6 +1178,10 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "automata_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "meta_01.js"
                     }
                 ]

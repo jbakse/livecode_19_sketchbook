@@ -869,6 +869,14 @@
             {
                 "type": "file",
                 "name": "roguelite_01.js"
+            },
+            {
+                "type": "file",
+                "name": "roguelite_02a.js"
+            },
+            {
+                "type": "file",
+                "name": "roguelite_03.js"
             }
         ]
     },

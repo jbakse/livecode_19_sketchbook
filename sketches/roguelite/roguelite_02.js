@@ -113,10 +113,7 @@ function generateLevel() {
   level = {};
   level.map = generateMap();
   const d = new Deck(range(0, 16));
-  d.shuffle();
-  if (old_level) {
-    d.cutAt(old_level.exit_room);
-  }
+
   level.sprites = [];
 
   {

@@ -27,122 +27,263 @@
 const FLOOR = 0;
 const WALL = 1;
 
-const controls = {
-  left: false,
-  right: false,
-  up: false,
-  down: false,
-};
+class InputManager {
+  constructor() {
+    this.is_down = {
+      left: false,
+      right: false,
+      up: false,
+      down: false,
+    };
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") controls.left = true;
-  if (e.key === "ArrowRight") controls.right = true;
-  if (e.key === "ArrowUp") controls.up = true;
-  if (e.key === "ArrowDown") controls.down = true;
-  if (e.key === "a") controls.left = true;
-  if (e.key === "d") controls.right = true;
-  if (e.key === "w") controls.up = true;
-  if (e.key === "s") controls.down = true;
-});
+    this.down_count = {
+      left: 0,
+      right: 0,
+      up: 0,
+      down: 0,
+    };
 
-document.addEventListener("keyup", (e) => {
-  if (e.key === "ArrowLeft") controls.left = false;
-  if (e.key === "ArrowRight") controls.right = false;
-  if (e.key === "ArrowUp") controls.up = false;
-  if (e.key === "ArrowDown") controls.down = false;
-  if (e.key === "a") controls.left = false;
-  if (e.key === "d") controls.right = false;
-  if (e.key === "w") controls.up = false;
-  if (e.key === "s") controls.down = false;
-});
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") this.is_down.left = true;
+      if (e.key === "ArrowRight") this.is_down.right = true;
+      if (e.key === "ArrowUp") this.is_down.up = true;
+      if (e.key === "ArrowDown") this.is_down.down = true;
+      if (e.key === "a") this.is_down.left = true;
+      if (e.key === "d") this.is_down.right = true;
+      if (e.key === "w") this.is_down.up = true;
+      if (e.key === "s") this.is_down.down = true;
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "ArrowLeft") this.is_down.left = false;
+      if (e.key === "ArrowRight") this.is_down.right = false;
+      if (e.key === "ArrowUp") this.is_down.up = false;
+      if (e.key === "ArrowDown") this.is_down.down = false;
+      if (e.key === "a") this.is_down.left = false;
+      if (e.key === "d") this.is_down.right = false;
+      if (e.key === "w") this.is_down.up = false;
+      if (e.key === "s") this.is_down.down = false;
+    });
+  }
+  step() {
+    if (!this.is_down.left) this.down_count.left = 0;
+    if (!this.is_down.right) this.down_count.right = 0;
+    if (!this.is_down.up) this.down_count.up = 0;
+    if (!this.is_down.down) this.down_count.down = 0;
+
+    if (this.is_down.left) this.down_count.left++;
+    if (this.is_down.right) this.down_count.right++;
+    if (this.is_down.up) this.down_count.up++;
+    if (this.is_down.down) this.down_count.down++;
+  }
+  button(button) {
+    return !!this.is_down[button];
+  }
+  buttonDown(button, rate = 10) {
+    return this.down_count[button] % rate === 1;
+  }
+}
+
+class Sprite {
+  constructor(col, row) {
+    this.col = col;
+    this.row = row;
+  }
+  step() {}
+  draw() {}
+  bump(/*bumper*/) {
+    return true;
+  }
+}
+class Entrance extends Sprite {
+  draw() {
+    push();
+    translate(this.col * 8, this.row * 8);
+    fill(100);
+    triangle(8, 0, 8, 8, 0, 8);
+    pop();
+  }
+}
+
+class Exit extends Sprite {
+  bump(/*bumper*/) {
+    generateLevel();
+    return true;
+  }
+  draw() {
+    push();
+    translate(this.col * 8, this.row * 8);
+    fill(250);
+    triangle(8, 0, 8, 8, 0, 8);
+    pop();
+  }
+}
+
+class Treasure extends Sprite {
+  step() {}
+  bump(bumper) {
+    array_remove(level.sprites, this);
+    bumper.hasOwnProperty("treasure") && bumper.treasure++;
+    return true;
+  }
+  draw() {
+    push();
+    translate(this.col * 8, this.row * 8);
+    fill("yellow");
+    triangle(0, 8, 4, 4, 8, 8);
+    pop();
+  }
+}
+class Player extends Sprite {
+  constructor(col, row) {
+    super(col, row);
+    this.treasure = 0;
+  }
+
+  move(x, y) {
+    const target_col = this.col + x;
+    const target_row = this.row + y;
+    if (level.map[target_col][target_row] === WALL) return false;
+
+    for (const sprite of level.sprites) {
+      if (sprite === this) continue;
+      if (sprite.col === target_col && sprite.row === target_row) {
+        const allowed = sprite.bump(this);
+        if (!allowed) return false;
+      }
+    }
+    this.col = target_col;
+    this.row = target_row;
+
+    level.visited[floor(this.col / 8)][floor(this.row / 8)] = true;
+
+    return true;
+  }
+
+  step() {
+    if (input.buttonDown("left")) player.move(-1, 0);
+    if (input.buttonDown("right")) player.move(1, 0);
+    if (input.buttonDown("up")) player.move(0, -1);
+    if (input.buttonDown("down")) player.move(0, 1);
+  }
+
+  draw() {
+    push();
+    translate(this.col * 8, this.row * 8);
+    fill("red");
+    ellipseMode(CORNER);
+    ellipse(0, 0, 8, 8);
+    pop();
+  }
+}
 
 let level;
-let player;
+let player = new Player();
+let input = new InputManager();
 
 function setup() {
   createCanvas(512, 528);
   noStroke();
-  player = new Player();
   generateLevel();
 }
 
-function draw() {
-  background(0);
-  scale(2);
-
-  if (frameCount % 5 === 0) {
-    if (controls.left) player.move(-1, 0);
-    if (controls.right) player.move(1, 0);
-    if (controls.up) player.move(0, -1);
-    if (controls.down) player.move(0, 1);
-  }
-
-  drawMap(level.map);
+function step() {
+  input.step();
   for (const sprite of level.sprites) {
     sprite.step();
   }
-  player.step();
-  for (const sprite of level.sprites) {
-    sprite.draw();
-  }
-  player.draw();
+}
 
+function draw() {
+  step();
+
+  background(0);
+  scale(2);
+  drawMap(level.map);
+  for (const sprite of level.sprites) {
+    if (level.visited[floor(sprite.col / 8)][floor(sprite.row / 8)]) {
+      sprite.draw();
+    }
+  }
+  drawUI();
+}
+
+function drawUI() {
+  push();
+  fill("yellow");
   for (let t = 0; t < player.treasure; t++) {
-    fill("yellow");
     ellipse(t * 8 + 4, 260, 3, 3);
   }
+  pop();
 }
 
 function generateLevel() {
   const old_level = level;
   level = {};
+
+  level.visited = [];
+  level.visited[0] = [];
+  level.visited[1] = [];
+  level.visited[2] = [];
+  level.visited[3] = [];
+
   level.map = generateMap();
   const d = new Deck(range(0, 16));
 
   if (old_level) {
-    //d.nextUntil(old_level.exit_room);
     d.remove(old_level.exit_room);
   }
+
   level.sprites = [];
 
+  // place entrance
   {
-    let x, y;
+    let col, row;
     if (old_level) {
-      x = old_level.exit.col;
-      y = old_level.exit.row;
+      col = old_level.exit.col;
+      row = old_level.exit.row;
     } else {
       const room = d.next();
-      const row = floor(room / 4);
-      const col = room % 4;
-      x = col * 8 + randomInt(2, 6);
-      y = row * 8 + randomInt(2, 6);
+      const room_col = room % 4;
+      const room_row = floor(room / 4);
+      col = room_col * 8 + randomInt(2, 6);
+      row = room_row * 8 + randomInt(2, 6);
     }
-    level.entrance = new Entrance(x, y);
+    level.entrance = new Entrance(col, row);
     level.sprites.push(level.entrance);
-    player.col = x;
-    player.row = y;
   }
+
+  // place player
+  player.col = level.entrance.col;
+  player.row = level.entrance.row;
+  level.sprites.push(player);
+
+  level.visited[floor(player.col / 8)][floor(player.row / 8)] = true;
+
+  // place exit
   {
     const room = d.next();
-    const row = floor(room / 4);
-    const col = room % 4;
-    const x = col * 8 + randomInt(2, 6);
-    const y = row * 8 + randomInt(2, 6);
-    level.exit = new Exit(x, y);
+    const room_col = room % 4;
+    const room_row = floor(room / 4);
+    const col = room_col * 8 + randomInt(2, 6);
+    const row = room_row * 8 + randomInt(2, 6);
+    level.exit = new Exit(col, row);
     level.sprites.push(level.exit);
     level.exit_room = room;
   }
 
-  {
+  // place treasure
+  times(3, () => {
     const room = d.next();
-    const row = floor(room / 4);
-    const col = room % 4;
-    const x = col * 8 + randomInt(2, 6);
-    const y = row * 8 + randomInt(2, 6);
-    const treasure = new Treasure(x, y);
+    const room_col = room % 4;
+    const room_row = floor(room / 4);
+    const col = room_col * 8 + randomInt(2, 6);
+    const row = room_row * 8 + randomInt(2, 6);
+    const treasure = new Treasure(col, row);
     level.sprites.push(treasure);
-  }
+  });
 }
+
 function generateMap() {
   const m = [];
   for (let col = 0; col < 32; col++) {
@@ -191,105 +332,13 @@ function generateMap() {
   return m;
 }
 
-class Player {
-  constructor(col = 0, row = 0) {
-    this.col = col;
-    this.row = row;
-    this.treasure = 0;
-  }
-
-  move(x, y) {
-    const target_col = this.col + x;
-    const target_row = this.row + y;
-    if (level.map[target_col][target_row] === WALL) return false;
-
-    for (const sprite of level.sprites) {
-      if (sprite === this) continue;
-      if (sprite.col === target_col && sprite.row === target_row) {
-        const result = sprite.bump();
-        if (!result) return false;
-      }
-    }
-    this.col = target_col;
-    this.row = target_row;
-    return true;
-  }
-
-  step() {}
-
-  draw() {
-    push();
-    translate(this.col * 8, this.row * 8);
-    fill("red");
-    ellipseMode(CORNER);
-    ellipse(0, 0, 8, 8);
-    pop();
-  }
-}
-
-class Entrance {
-  constructor(col, row) {
-    this.col = col;
-    this.row = row;
-  }
-
-  step() {}
-  bump() {
-    return true;
-  }
-  draw() {
-    push();
-    translate(this.col * 8, this.row * 8);
-    fill(100);
-    triangle(8, 0, 8, 8, 0, 8);
-    pop();
-  }
-}
-
-class Exit {
-  constructor(col, row) {
-    this.col = col;
-    this.row = row;
-  }
-
-  step() {}
-  bump() {
-    generateLevel();
-    return false;
-  }
-  draw() {
-    push();
-    translate(this.col * 8, this.row * 8);
-    fill(250);
-    triangle(8, 0, 8, 8, 0, 8);
-    pop();
-  }
-}
-
-class Treasure {
-  constructor(col, row) {
-    this.col = col;
-    this.row = row;
-  }
-
-  step() {}
-  bump() {
-    array_remove(level.sprites, this);
-    player.treasure++;
-    return true;
-  }
-  draw() {
-    push();
-    translate(this.col * 8, this.row * 8);
-    fill("yellow");
-    triangle(0, 8, 4, 4, 8, 8);
-    pop();
-  }
-}
-
 function drawMap(m) {
   for (let col = 0; col < 32; col++) {
     for (let row = 0; row < 32; row++) {
+      const room_col = floor(col / 8);
+      const room_row = floor(row / 8);
+
+      if (!level.visited[room_col][room_row]) continue;
       push();
       translate(col * 8, row * 8);
       if (m[col][row] === FLOOR) fill(20);
@@ -311,6 +360,7 @@ class Deck {
   shuffle() {
     shuffle(this.a, true);
   }
+
   next() {
     const value = this.a[this.index];
     this.index++;
@@ -349,4 +399,12 @@ function array_remove(a, item) {
   if (index > -1) {
     a.splice(index, 1);
   }
+}
+
+function times(t, f) {
+  let a = [];
+  for (let i = 0; i < t; i++) {
+    a.push(f(i));
+  }
+  return a;
 }

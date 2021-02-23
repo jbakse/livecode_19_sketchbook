@@ -10,6 +10,7 @@ module.exports = {
 
   // require("./p5Globals.js"),
   rules: {
+    "no-prototype-builtins": "off",
     indent: ["error", 2],
     quotes: [
       "error",

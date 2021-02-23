@@ -99,21 +99,23 @@ function generateLevel() {
   level.map = generateMap();
   const d = new Deck(range(0, 16));
 
+  if (old_level) {
+    //d.nextUntil(old_level.exit_room);
+    d.remove(old_level.exit_room);
+  }
   level.sprites = [];
 
   {
-    const room = d.next();
-    const row = floor(room / 4);
-    const col = room % 4;
-    let x = col * 8 + randomInt(2, 6);
-    let y = row * 8 + randomInt(2, 6);
-
-    // if we have an old level, override the entrance with old exit position
-    // since we aren't using the room from the deck,
-    // we might end up putting something else in this room if we are putting enough things in
+    let x, y;
     if (old_level) {
       x = old_level.exit.col;
       y = old_level.exit.row;
+    } else {
+      const room = d.next();
+      const row = floor(room / 4);
+      const col = room % 4;
+      x = col * 8 + randomInt(2, 6);
+      y = row * 8 + randomInt(2, 6);
     }
     level.entrance = new Entrance(x, y);
     level.sprites.push(level.entrance);
@@ -128,6 +130,7 @@ function generateLevel() {
     const y = row * 8 + randomInt(2, 6);
     level.exit = new Exit(x, y);
     level.sprites.push(level.exit);
+    level.exit_room = room;
   }
 
   {
@@ -298,19 +301,34 @@ function drawMap(m) {
 }
 
 class Deck {
-  constructor(a) {
-    this.a = shuffle(a);
+  constructor(a, keepShuffled = true) {
+    this.a = a;
+    this.keepShuffled = keepShuffled;
+    if (this.keepShuffled) this.shuffle();
     this.index = 0;
   }
 
+  shuffle() {
+    shuffle(this.a, true);
+  }
   next() {
     const value = this.a[this.index];
     this.index++;
     if (this.index === this.a.length) {
-      this.a = shuffle(this.a);
+      if (this.keepShuffled) this.shuffle();
       this.index = 0;
     }
     return value;
+  }
+
+  nextUntil(v) {
+    while (this.next() !== v) {
+      //noop
+    }
+  }
+
+  remove(v) {
+    array_remove(this.a, v);
   }
 }
 

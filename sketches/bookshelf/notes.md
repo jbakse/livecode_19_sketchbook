@@ -55,17 +55,18 @@ Airtable is a web application that combines aspects of a spreadsheet (easy to us
 
 ## Next
 
-I'll be showing you how to build the Bookshelf demo in a few parts.
+I'll be showing you how to build the Bookshelf demo in a few videos.
 
-- Setting up The Database
-- Using the Javascript API
-- Building the Front End
+1. Setting up The Database
+2. Using the Javascript API
+3. Building the Front End
 
 # Part 2: Setting up The Database
 
 ## Create an Airtable Account
 
-Create a free account on Airtable. If you already have an account, create a second one just for this class. This limits the damage that a vandal (or a coding mistake) could cause. Remember, this code is not secure.
+In this video I'm going to talk about setting up your database in Airtable.
+You'll want to start by creating a free account on Airtable. If you already have an account, create a second one just for this class. This limits the damage that a vandal (or a coding mistake) could cause. Remember, this demo code publishes the API key and is not secure.
 
 ## Creating a new base.
 

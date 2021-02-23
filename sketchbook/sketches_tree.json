@@ -454,7 +454,21 @@
         "type": "folder",
         "children": [
             {
-                "name": "bookself_02",
+                "name": "bookshelf_01",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    }
+                ]
+            },
+            {
+                "name": "bookshelf_02",
                 "type": "folder",
                 "children": [
                     {
@@ -468,20 +482,6 @@
                     {
                         "type": "file",
                         "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "bookshelf_01",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "main.js"
                     }
                 ]
             },
@@ -863,6 +863,16 @@
         ]
     },
     {
+        "name": "roguelite",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "roguelite_01.js"
+            }
+        ]
+    },
+    {
         "name": "shaders",
         "type": "folder",
         "children": [
@@ -1179,6 +1189,14 @@
                     {
                         "type": "file",
                         "name": "automata_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "automata_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "automata_03.js"
                     },
                     {
                         "type": "file",

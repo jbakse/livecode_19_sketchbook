@@ -2,10 +2,11 @@
 console.log("Hello, Airtable");
 
 // load the airtable library, call it "Airtable"
+console.log(require);
 var Airtable = require("airtable");
 console.log(Airtable);
 
-// use the airtable librar to get a variable that represents one of our bases
+// use the airtable library to get a variable that represents one of our bases
 var base = new Airtable({ apiKey: "keyOcvpATRSQc6y9M" }).base(
   "appkFaDUnYFiYcvny"
 );

@@ -20,9 +20,13 @@ function setup() {
 
 function draw() {
   // g.background("gray");
-
+  //   if (frameCount % 60 === 0) {
+  g.blendMode(LIGHTEST);
+  g.fill(random(255), random(255), random(255), 10);
+  g.ellipse(64, 64, 96, 96);
+  //   }
   g.loadPixels();
-  for (let i = 0; i < 128 * 24; i++) {
+  for (let i = 0; i < 128 * 64; i++) {
     const x = floor(random(64) + random(64));
     const y = floor(random(128));
     const c = getC(g, x, y);

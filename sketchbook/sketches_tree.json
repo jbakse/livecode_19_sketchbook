@@ -402,6 +402,60 @@
         ]
     },
     {
+        "name": "after_class_coding",
+        "type": "folder",
+        "children": [
+            {
+                "name": "block_invaders",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "animate.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "animate_p5.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "animate_t.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "canvas.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "invaders_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "nodes.md"
+                    }
+                ]
+            },
+            {
+                "name": "text_effects",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "airtable",
         "type": "folder",
         "children": [
@@ -412,40 +466,6 @@
             {
                 "type": "file",
                 "name": "notes.md"
-            }
-        ]
-    },
-    {
-        "name": "block_invaders",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "animate.js"
-            },
-            {
-                "type": "file",
-                "name": "animate_p5.js"
-            },
-            {
-                "type": "file",
-                "name": "animate_t.js"
-            },
-            {
-                "type": "file",
-                "name": "canvas.js"
-            },
-            {
-                "type": "file",
-                "name": "input.js"
-            },
-            {
-                "type": "file",
-                "name": "invaders_01.js"
-            },
-            {
-                "type": "file",
-                "name": "nodes.md"
             }
         ]
     },
@@ -525,6 +545,24 @@
                 "children": []
             },
             {
+                "name": "06_pixels",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "pixels_coding_challenge_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "pixels_coding_challenge_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "pixels_worksheet_01.js"
+                    }
+                ]
+            },
+            {
                 "type": "file",
                 "name": "spiral_01.js"
             }
@@ -569,6 +607,16 @@
             {
                 "type": "file",
                 "name": "tree_01.js"
+            }
+        ]
+    },
+    {
+        "name": "libraries",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "webm-writer-0.3.0.js"
             }
         ]
     },
@@ -868,11 +916,19 @@
         "children": [
             {
                 "type": "file",
+                "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "input_manager.js"
+            },
+            {
+                "type": "file",
                 "name": "roguelite_01.js"
             },
             {
                 "type": "file",
-                "name": "roguelite_02a.js"
+                "name": "roguelite_02.js"
             },
             {
                 "type": "file",
@@ -1208,7 +1264,37 @@
                     },
                     {
                         "type": "file",
+                        "name": "automata_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "color_wars_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "lichen.frag"
+                    },
+                    {
+                        "type": "file",
                         "name": "meta_01.js"
+                    },
+                    {
+                        "name": "renders",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "automata_04_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "automata_04_2.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "automata_04_3.webm"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1241,6 +1327,24 @@
             {
                 "type": "file",
                 "name": "midi.js"
+            }
+        ]
+    },
+    {
+        "name": "util",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "emitter.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber_01.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber_demo.js"
             }
         ]
     },

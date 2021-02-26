@@ -57,6 +57,19 @@ li,
 table,
 pre {
   margin: 15px 0;
+  font-size: 30px;
+  max-width: 30em;
+}
+.two-up p {
+  display: flex;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.two-up p img {
+  display: block;
+  margin-right: 1em;
+  flex: 1 1 50%;
 }
 
 img {

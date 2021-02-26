@@ -26,63 +26,10 @@
 
 const FLOOR = 0;
 const WALL = 1;
-
-class InputManager {
-  constructor() {
-    this.is_down = {
-      left: false,
-      right: false,
-      up: false,
-      down: false,
-    };
-
-    this.down_count = {
-      left: 0,
-      right: 0,
-      up: 0,
-      down: 0,
-    };
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") this.is_down.left = true;
-      if (e.key === "ArrowRight") this.is_down.right = true;
-      if (e.key === "ArrowUp") this.is_down.up = true;
-      if (e.key === "ArrowDown") this.is_down.down = true;
-      if (e.key === "a") this.is_down.left = true;
-      if (e.key === "d") this.is_down.right = true;
-      if (e.key === "w") this.is_down.up = true;
-      if (e.key === "s") this.is_down.down = true;
-    });
-
-    document.addEventListener("keyup", (e) => {
-      if (e.key === "ArrowLeft") this.is_down.left = false;
-      if (e.key === "ArrowRight") this.is_down.right = false;
-      if (e.key === "ArrowUp") this.is_down.up = false;
-      if (e.key === "ArrowDown") this.is_down.down = false;
-      if (e.key === "a") this.is_down.left = false;
-      if (e.key === "d") this.is_down.right = false;
-      if (e.key === "w") this.is_down.up = false;
-      if (e.key === "s") this.is_down.down = false;
-    });
-  }
-  step() {
-    if (!this.is_down.left) this.down_count.left = 0;
-    if (!this.is_down.right) this.down_count.right = 0;
-    if (!this.is_down.up) this.down_count.up = 0;
-    if (!this.is_down.down) this.down_count.down = 0;
-
-    if (this.is_down.left) this.down_count.left++;
-    if (this.is_down.right) this.down_count.right++;
-    if (this.is_down.up) this.down_count.up++;
-    if (this.is_down.down) this.down_count.down++;
-  }
-  button(button) {
-    return !!this.is_down[button];
-  }
-  buttonDown(button, rate = 10) {
-    return this.down_count[button] % rate === 1;
-  }
-}
+const ROOM_COLS = 5;
+const ROOM_ROWS = 5;
+const ROOM_WIDTH = 8;
+const ROOM_HEIGHT = 8;
 
 class Sprite {
   constructor(col, row) {
@@ -182,7 +129,7 @@ let player = new Player();
 let input = new InputManager();
 
 function setup() {
-  createCanvas(512, 528);
+  createCanvas(800, 800);
   noStroke();
   generateLevel();
 }
@@ -201,7 +148,11 @@ function draw() {
   scale(2);
   drawMap(level.map);
   for (const sprite of level.sprites) {
-    if (level.visited[floor(sprite.col / 8)][floor(sprite.row / 8)]) {
+    if (
+      level.visited[floor(sprite.col / ROOM_WIDTH)][
+        floor(sprite.row / ROOM_HEIGHT)
+      ]
+    ) {
       sprite.draw();
     }
   }
@@ -222,12 +173,14 @@ function generateLevel() {
   level = {};
 
   level.visited = [];
-  level.visited[0] = [];
-  level.visited[1] = [];
-  level.visited[2] = [];
-  level.visited[3] = [];
+  for (let i = 0; i < ROOM_COLS; i++) {
+    level.visited.push([]);
+  }
+
+  // level.visited = makeArray(ROOM_COLS, ROOM_ROWS);
 
   level.map = generateMap();
+
   const d = new Deck(range(0, 16));
 
   if (old_level) {
@@ -286,45 +239,64 @@ function generateLevel() {
 
 function generateMap() {
   const m = [];
-  for (let col = 0; col < 32; col++) {
+
+  for (let col = 0; col < ROOM_COLS * ROOM_WIDTH; col++) {
     m[col] = [];
-    for (let row = 0; row < 32; row++) {
+    for (let row = 0; row < ROOM_ROWS * ROOM_HEIGHT; row++) {
       m[col][row] = FLOOR;
 
       // walls
-      if (col % 8 === 0) m[col][row] = WALL;
-      if (col % 8 === 7) m[col][row] = WALL;
-      if (row % 8 === 0) m[col][row] = WALL;
-      if (row % 8 === 7) m[col][row] = WALL;
+      if (col % ROOM_WIDTH === 0) m[col][row] = WALL;
+      if (col % ROOM_WIDTH === ROOM_WIDTH - 1) m[col][row] = WALL;
+      if (row % ROOM_HEIGHT === 0) m[col][row] = WALL;
+      if (row % ROOM_HEIGHT === ROOM_HEIGHT - 1) m[col][row] = WALL;
     }
   }
 
   // doors
   // visit the upper left 9 rooms and punch doors left or down
-  for (let col = 0; col < 4; col++) {
-    for (let row = 0; row < 4; row++) {
-      let direction = random() < 0.5 ? "left" : "down";
+  for (let room_col = 0; room_col < ROOM_COLS; room_col++) {
+    for (let room_row = 0; room_row < ROOM_ROWS; room_row++) {
+      let direction = random() < 0.5 ? "right" : "down";
 
-      if (col === 3) {
+      if (room_col === ROOM_COLS - 1) {
         direction = "down";
       }
-      if (row === 3) {
-        direction = "left";
+
+      if (room_row === ROOM_ROWS - 1) {
+        direction = "right";
       }
-      if (col === 3 && row === 3) {
+      if (room_col === ROOM_COLS - 1 && room_row === ROOM_ROWS - 1) {
         direction = "none";
       }
-      if (direction === "left") {
-        m[col * 8 + 7][row * 8 + 3] = FLOOR;
-        m[col * 8 + 8][row * 8 + 3] = FLOOR;
-        m[col * 8 + 7][row * 8 + 4] = FLOOR;
-        m[col * 8 + 8][row * 8 + 4] = FLOOR;
+      if (direction === "right") {
+        m[room_col * ROOM_WIDTH + ROOM_WIDTH - 1][
+          room_row * ROOM_HEIGHT + 3
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + ROOM_WIDTH][
+          room_row * ROOM_HEIGHT + 3
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + ROOM_WIDTH - 1][
+          room_row * ROOM_HEIGHT + 4
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + ROOM_WIDTH][
+          room_row * ROOM_HEIGHT + 4
+        ] = FLOOR;
       }
+
       if (direction === "down") {
-        m[col * 8 + 3][row * 8 + 7] = FLOOR;
-        m[col * 8 + 3][row * 8 + 8] = FLOOR;
-        m[col * 8 + 4][row * 8 + 7] = FLOOR;
-        m[col * 8 + 4][row * 8 + 8] = FLOOR;
+        m[room_col * ROOM_WIDTH + 3][
+          room_row * ROOM_HEIGHT + ROOM_HEIGHT - 1
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + 3][
+          room_row * ROOM_HEIGHT + ROOM_HEIGHT
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + 4][
+          room_row * ROOM_HEIGHT + ROOM_HEIGHT - 1
+        ] = FLOOR;
+        m[room_col * ROOM_WIDTH + 4][
+          room_row * ROOM_HEIGHT + ROOM_HEIGHT
+        ] = FLOOR;
       }
     }
   }
@@ -333,8 +305,8 @@ function generateMap() {
 }
 
 function drawMap(m) {
-  for (let col = 0; col < 32; col++) {
-    for (let row = 0; row < 32; row++) {
+  for (let col = 0; col < ROOM_WIDTH * ROOM_COLS; col++) {
+    for (let row = 0; row < ROOM_HEIGHT * ROOM_ROWS; row++) {
       const room_col = floor(col / 8);
       const room_row = floor(row / 8);
 

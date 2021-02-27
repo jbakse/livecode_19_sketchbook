@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 
 body {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 153, 153, 1) 0%,
+    rgba(153, 153, 255, 1) 100%
+  );
+
+  background-attachment: fixed;
 }
 
 main {
@@ -9,13 +16,14 @@ main {
 }
 
 .dialog {
-  border: 5px solid white;
-  border-radius: 6px;
+  border: 10px solid white;
+  /* border-radius: 6px; */
+  border-image: url("border.png") 10 10 10 10 fill stretch;
 
   margin-bottom: 0.5em;
   padding: 0.5em;
 
-  background-color: black;
+  /* background-color: black; */
   color: white;
 
   text-transform: uppercase;
@@ -26,12 +34,13 @@ main {
 }
 
 .text-effect {
-  white-space: nowrap;
   position: relative;
+  white-space: nowrap;
 }
 
 .text-effect .letter {
   display: inline-block;
+  white-space: normal;
   will-change: transform;
 }
 .text-effect.wavy .letter {

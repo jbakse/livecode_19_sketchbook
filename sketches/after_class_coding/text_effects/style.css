@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 
+body {
+}
+
+main {
+  /* prevents wild transforms from popping up scrollbars on body */
+  overflow: hidden;
+}
+
 .dialog {
   border: 5px solid white;
   border-radius: 6px;
@@ -17,16 +25,24 @@
   font-family: "Roboto Mono", monospace;
 }
 
-.text-effect.wavy .letter {
+.text-effect {
+  white-space: nowrap;
+  position: relative;
+}
+
+.text-effect .letter {
   display: inline-block;
   will-change: transform;
-
+}
+.text-effect.wavy .letter {
   animation: wavy 0.25s ease-in-out infinite alternate;
-  /* animation-name: wavy;
+  /* 
+  animation-name: wavy;
   animation-duration: 0.25s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  animation-direction: alternate; */
+  animation-direction: alternate; 
+  */
 }
 
 .text-effect.wavy .letter:nth-child(5n + 1) {
@@ -58,8 +74,6 @@
 }
 
 .text-effect.scary .letter {
-  display: inline-block;
-  will-change: transform;
   /* animation: scary 0.25s steps(1) infinite; */
   animation: scary 0.25s linear infinite;
 }
@@ -118,4 +132,10 @@
 }
 .text-effect.rainbow .letter:nth-child(7n + 7) {
   color: violet;
+}
+
+.explosive {
+  color: red;
+
+  /* border: 1px solid red; */
 }

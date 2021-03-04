@@ -52,6 +52,7 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
     if (a.type === "folder" && b.type == "file") return 1;
     return 0;
   });
+
   branch.children.forEach((item) => {
     if (item.type === "file") {
       const index = item.name.startsWith("index") ? "index" : "";

@@ -157,7 +157,13 @@ blockquote {
   line-height: 3;
   background-size: 1px 1em;
   box-shadow: inset 0 -5px #abf;
+  transition: box-shadow 0.2s;
+
   /* text-shadow: -2px 0px #ddd, 0px 1px #ddd, 3px 0px #ddd; */
+}
+
+.ls a:hover {
+  box-shadow: inset 0 -15px #abf;
 }
 
 .ls ul {

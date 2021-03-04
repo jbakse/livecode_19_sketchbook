@@ -78,22 +78,22 @@ body {
 }
 
 .dropdown .items {
-  background: white;
   position: absolute;
+  display: none;
 
-  /* left: -10px; */
+  background: white;
+
   list-style: none;
   margin: 0;
   padding-top: 10px;
   line-height: 2em;
-  display: none;
   min-width: 100%;
   padding: 0;
 }
 
 .dropdown .items li {
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 .dropdown .items li:hover {
   background-color: #ddd;

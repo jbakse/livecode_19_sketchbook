@@ -55,13 +55,16 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
 
   branch.children.forEach((item) => {
     if (item.type === "file") {
-      const index = item.name.startsWith("index") ? "index" : "";
-      const source = "";
-      markup += `<li class="file ${index}"><a href="?sketch=${path}/${item.name}&amp;${source}">${item.name}</a></li>`;
+      const indexClass = item.name.startsWith("index") ? "index" : "";
+      const sourceParam = "";
+      markup += `<li class="file ${indexClass}"><a class="file" href="?sketch=${path}/${item.name}&amp;${sourceParam}">${item.name}</a></li>`;
     }
     if (item.type === "folder") {
+      const sourceParam = "";
       markup += '<li class="folder">';
-      markup += `<h${currentDepth + 1}>${item.name}</h1>`;
+      markup += `<h${currentDepth + 1}>`;
+      markup += `<a class="folder" href="?sketch=${path}/${item.name}&amp;${sourceParam}">${item.name}</a>`;
+      markup += "</h1>";
       markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
       markup += "</li>";
     }

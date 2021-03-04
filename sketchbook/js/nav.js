@@ -23,9 +23,10 @@ async function buildNav(tree, path) {
       });
       const items = folders[i].children.map((child) => {
         let filePath = pathParts.slice(0, i).concat(child.name).join("/");
+        const source = "";
         return {
           title: child.name,
-          href: `?sketch=${filePath}&source`,
+          href: `?sketch=${filePath}&amp;${source}`,
           type: child.type,
         };
       });

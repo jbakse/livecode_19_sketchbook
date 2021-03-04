@@ -41,18 +41,25 @@ async function main() {
   }
 }
 
-window.ls = (path = "", maxDepth = 6, currentDepth = 1) => {
-  if (currentDepth > maxDepth) return;
+window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
+  if (currentDepth > maxDepth) return "";
   let markup = "<ul>";
   // console.log("t", tree);
   const branch = Tree.getItem(tree, path);
 
+  branch.children.sort((a, b) => {
+    if (a.type === "file" && b.type == "folder") return -1;
+    if (a.type === "folder" && b.type == "file") return 1;
+    return 0;
+  });
   branch.children.forEach((item) => {
     if (item.type === "file") {
-      markup += `<li><a href="?sketch=${path}/${item.name}&amp;source">${item.name}</a></li>`;
+      const index = item.name.startsWith("index") ? "index" : "";
+      const source = "";
+      markup += `<li class="file ${index}"><a href="?sketch=${path}/${item.name}&amp;${source}">${item.name}</a></li>`;
     }
     if (item.type === "folder") {
-      markup += "<li>";
+      markup += '<li class="folder">';
       markup += `<h${currentDepth + 1}>${item.name}</h1>`;
       markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
       markup += "</li>";

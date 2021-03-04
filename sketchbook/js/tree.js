@@ -22,10 +22,15 @@ function defaultFile(tree, path) {
   if (item.type === "file") return path;
   if (item.children.length === 0) return path;
 
+  let child = item.children[0];
+  for (const c of item.children) {
+    if (c.name.startsWith("index")) child = c;
+  }
+
   if (path.length) {
-    path = path + "/" + item.children[0].name;
+    path = path + "/" + child.name;
   } else {
-    path = item.children[0].name;
+    path = child.name;
   }
   return defaultFile(tree, path);
 }

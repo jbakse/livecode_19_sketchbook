@@ -1,410 +1,46 @@
 [
     {
-        "type": "file",
-        "name": "01_hello.md"
-    },
-    {
-        "name": "02_bounce_oop",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "01_bounce_1_basics.md.js"
-            },
-            {
-                "type": "file",
-                "name": "02_bounce_2_cleanup.md.js"
-            },
-            {
-                "type": "file",
-                "name": "03_bounce_3_data_object.md.js"
-            },
-            {
-                "type": "file",
-                "name": "04_bounce_4_multiple_balls.md.js"
-            },
-            {
-                "type": "file",
-                "name": "05_bounce_5_dry.md.js"
-            },
-            {
-                "type": "file",
-                "name": "06_bounce_6_array.md.js"
-            },
-            {
-                "type": "file",
-                "name": "07_bounce_7_more_balls.md.js"
-            },
-            {
-                "type": "file",
-                "name": "08_bounce_8a_oop.md.js"
-            },
-            {
-                "type": "file",
-                "name": "08_bounce_8b_oop.md.js"
-            },
-            {
-                "type": "file",
-                "name": "09_bounce_9_oop_class.md.js"
-            },
-            {
-                "type": "file",
-                "name": "10_bounce_10_oop_oloo.md.js"
-            },
-            {
-                "type": "file",
-                "name": "_bounce_live.js"
-            },
-            {
-                "type": "file",
-                "name": "_object.js"
-            },
-            {
-                "type": "file",
-                "name": "_object_es6.js"
-            },
-            {
-                "type": "file",
-                "name": "_object_live.js"
-            }
-        ]
-    },
-    {
-        "name": "03_firenotes",
-        "type": "folder",
-        "children": [
-            {
-                "name": "demo_complete",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "demo_firestore",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
-            },
-            {
-                "name": "demo_livecode",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "demo_vue",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "app.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            }
-        ]
-    },
-    {
-        "name": "04_paper_garden",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "paperjs_util.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_2.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_3.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_4.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_4js.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_circle_study.js"
-            },
-            {
-                "type": "file",
-                "name": "paper_garden_plotter.js"
-            },
-            {
-                "type": "file",
-                "name": "plotter_test.js"
-            },
-            {
-                "type": "file",
-                "name": "subtract_test.js"
-            }
-        ]
-    },
-    {
-        "name": "05_tone_js",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adsr.png"
-            },
-            {
-                "type": "file",
-                "name": "connect.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_tone.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "synth_1.js"
-            }
-        ]
-    },
-    {
-        "name": "06_animation",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "grass_grow.js"
-            },
-            {
-                "type": "file",
-                "name": "untitled.js"
-            }
-        ]
-    },
-    {
-        "name": "10_css_layout",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "base.html"
-            },
-            {
-                "type": "file",
-                "name": "layout_1.css"
-            },
-            {
-                "type": "file",
-                "name": "layout_1.html"
-            },
-            {
-                "type": "file",
-                "name": "layout_2.html"
-            },
-            {
-                "type": "file",
-                "name": "layout_3.html"
-            },
-            {
-                "type": "file",
-                "name": "style.css"
-            }
-        ]
-    },
-    {
-        "name": "11_why_we_code",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "adaptive.js"
-            },
-            {
-                "type": "file",
-                "name": "connected.js"
-            },
-            {
-                "type": "file",
-                "name": "customized.js"
-            },
-            {
-                "type": "file",
-                "name": "generative.js"
-            },
-            {
-                "type": "file",
-                "name": "intelligent.js"
-            },
-            {
-                "type": "file",
-                "name": "interactive.js"
-            }
-        ]
-    },
-    {
-        "name": "20_termites",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "01_termites.js"
-            },
-            {
-                "type": "file",
-                "name": "02_termites.js"
-            },
-            {
-                "type": "file",
-                "name": "03_termites.js"
-            },
-            {
-                "type": "file",
-                "name": "04_termites.js"
-            },
-            {
-                "type": "file",
-                "name": "05_termite_oloo.js"
-            },
-            {
-                "type": "file",
-                "name": "06_termite_constructor.js"
-            }
-        ]
-    },
-    {
-        "name": "99_tests",
-        "type": "folder",
-        "children": [
-            {
-                "name": "dot",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "01_basic",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "basic.js"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "02_advanced",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "advanced.js"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "hello_image.png"
-            },
-            {
-                "type": "file",
-                "name": "hello_md.md"
-            },
-            {
-                "type": "file",
-                "name": "hello_p5.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_paper.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_text.txt"
-            },
-            {
-                "type": "file",
-                "name": "hello_world.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_yaml.yaml"
-            }
-        ]
-    },
-    {
-        "name": "AfterClass2_OOP",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "week_2.js"
-            },
-            {
-                "type": "file",
-                "name": "week_2_class.js"
-            },
-            {
-                "type": "file",
-                "name": "week_2_oop.js"
-            }
-        ]
-    },
-    {
         "name": "after_class_coding",
         "type": "folder",
         "children": [
+            {
+                "name": "a_long_walk",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "long_walk.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_art.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_art_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_art_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_demo.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_min_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "long_walk_min_02.js"
+                    }
+                ]
+            },
             {
                 "name": "block_invaders",
                 "type": "folder",
@@ -440,75 +76,231 @@
                 ]
             },
             {
+                "name": "discovering_oop",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "01_bounce_1_basics.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "02_bounce_2_cleanup.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "03_bounce_3_data_object.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "04_bounce_4_multiple_balls.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "05_bounce_5_dry.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "06_bounce_6_array.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "07_bounce_7_more_balls.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "08_bounce_8a_oop.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "08_bounce_8b_oop.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "09_bounce_9_oop_class.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "10_bounce_10_oop_oloo.md.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "_bounce_live.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "_object.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "_object_es6.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "_object_live.js"
+                    }
+                ]
+            },
+            {
+                "name": "donkey",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "clean_donkey.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "donkey.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "new_donkey.js"
+                    }
+                ]
+            },
+            {
+                "name": "firenotes",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "demo_complete",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "app.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "demo_firestore",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "app.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "demo_livecode",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "app.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "demo_vue",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "app.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    }
+                ]
+            },
+            {
+                "name": "roguelite",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_manager.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "roguelite_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "roguelite_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "roguelite_03.js"
+                    }
+                ]
+            },
+            {
+                "name": "termites",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "01_termites.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "02_termites.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "03_termites.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "04_termites.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "05_termite_oloo.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "06_termite_constructor.js"
+                    }
+                ]
+            },
+            {
                 "name": "text_effects",
                 "type": "folder",
                 "children": [
                     {
                         "type": "file",
-                        "name": "index.html"
+                        "name": "border.png"
                     },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "airtable",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "build.10.1.airtable.browser.js"
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
-            }
-        ]
-    },
-    {
-        "name": "bookshelf",
-        "type": "folder",
-        "children": [
-            {
-                "name": "bookshelf_01",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "main.js"
-                    }
-                ]
-            },
-            {
-                "name": "bookshelf_02",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "main.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "bookshelf_design",
-                "type": "folder",
-                "children": [
                     {
                         "type": "file",
                         "name": "index.html"
@@ -516,33 +308,42 @@
                     {
                         "type": "file",
                         "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "lib",
-                "type": "folder",
-                "children": [
+                    },
                     {
                         "type": "file",
-                        "name": "airtable.browser.js"
+                        "name": "text_effects.js"
                     }
                 ]
-            },
-            {
-                "type": "file",
-                "name": "notes.md"
             }
         ]
     },
     {
-        "name": "compform",
+        "name": "cf_challenges",
         "type": "folder",
         "children": [
+            {
+                "name": "03_noise",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "group_challenge_circle.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "group_challenge_hatch.js"
+                    }
+                ]
+            },
             {
                 "name": "04_parameters",
                 "type": "folder",
-                "children": []
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "spiral_01.js"
+                    }
+                ]
             },
             {
                 "name": "06_pixels",
@@ -563,467 +364,71 @@
                 ]
             },
             {
-                "type": "file",
-                "name": "spiral_01.js"
-            }
-        ]
-    },
-    {
-        "name": "demos",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "dallas_oop.js"
-            },
-            {
-                "type": "file",
-                "name": "james_map.js"
-            }
-        ]
-    },
-    {
-        "name": "donkey",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "clean_donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "donkey.js"
-            },
-            {
-                "type": "file",
-                "name": "new_donkey.js"
-            }
-        ]
-    },
-    {
-        "name": "jsscad",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "tree_01.js"
-            }
-        ]
-    },
-    {
-        "name": "libraries",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "webm-writer-0.3.0.js"
-            }
-        ]
-    },
-    {
-        "name": "noise",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "group_challenge_circle.js"
-            },
-            {
-                "type": "file",
-                "name": "group_challenge_hatch.js"
-            },
-            {
-                "type": "file",
-                "name": "hash.js"
-            }
-        ]
-    },
-    {
-        "name": "oop",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "oop_log.js"
-            }
-        ]
-    },
-    {
-        "name": "p5party",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "map_01.js"
-            },
-            {
-                "type": "file",
-                "name": "map_02.js"
-            },
-            {
-                "type": "file",
-                "name": "p5.party.js"
-            },
-            {
-                "type": "file",
-                "name": "p5.party.js.map"
-            }
-        ]
-    },
-    {
-        "name": "play",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "ball.js"
-            },
-            {
-                "type": "file",
-                "name": "bricks.js"
-            },
-            {
-                "type": "file",
-                "name": "p5.play.js"
-            },
-            {
-                "type": "file",
-                "name": "paddle.js"
-            }
-        ]
-    },
-    {
-        "name": "random",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "challenge_01.js"
-            },
-            {
-                "type": "file",
-                "name": "challenge_02.js"
-            }
-        ]
-    },
-    {
-        "name": "river",
-        "type": "folder",
-        "children": [
-            {
-                "name": "assets",
+                "name": "07_vector",
                 "type": "folder",
                 "children": [
                     {
                         "type": "file",
-                        "name": "laoth.png"
+                        "name": "bounce_p5_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "makwa.png"
+                        "name": "bounce_p5_01_a.js"
                     },
                     {
                         "type": "file",
-                        "name": "thexius.png"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "index.md"
-            },
-            {
-                "name": "production",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "makwa.blend"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "river_01.js"
-            },
-            {
-                "type": "file",
-                "name": "river_01_alt.js"
-            },
-            {
-                "type": "file",
-                "name": "river_01_clean.js"
-            },
-            {
-                "type": "file",
-                "name": "river_02.js"
-            },
-            {
-                "name": "_figures",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "blender.png"
-                    }
-                ]
-            },
-            {
-                "name": "_outtakes",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "laoth_01.jpg"
+                        "name": "bounce_paperscript_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "laoth_02.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_03.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_04.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_05.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_06.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_07.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "laoth_08.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_01.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_03.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_05.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_07.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_09.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_10.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_11.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_12.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_13.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_14.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_15.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_01.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_02.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_03.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_04.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_05.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_06.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_07.jpg"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_08.jpg"
-                    }
-                ]
-            },
-            {
-                "name": "_renders",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "laoth_01.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "makwa_01.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sketch_01_render_01.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sketch_01_render_02.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "thexius_01.png"
+                        "name": "bounce_paperscript_01_a.js"
                     }
                 ]
             }
         ]
     },
     {
-        "name": "roguelite",
+        "name": "cf_demos",
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "index.html"
+                "name": "03_noise",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "hash.js"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "input_manager.js"
+                "name": "09_animation",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "grass_grow.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "worms.js"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "roguelite_01.js"
-            },
-            {
-                "type": "file",
-                "name": "roguelite_02.js"
-            },
-            {
-                "type": "file",
-                "name": "roguelite_03.js"
+                "name": "text",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "vanilla_cfg.js"
+                    }
+                ]
             }
         ]
     },
     {
-        "name": "shaders",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "city.frag"
-            },
-            {
-                "type": "file",
-                "name": "domain_warp.frag"
-            },
-            {
-                "type": "file",
-                "name": "frogger.frag"
-            },
-            {
-                "type": "file",
-                "name": "frogger_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "hello.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsight_blend.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsight_splash.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsign_blend_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "index.html"
-            },
-            {
-                "type": "file",
-                "name": "island copy.png"
-            },
-            {
-                "type": "file",
-                "name": "island.frag"
-            },
-            {
-                "type": "file",
-                "name": "island.png"
-            },
-            {
-                "type": "file",
-                "name": "march.frag"
-            },
-            {
-                "type": "file",
-                "name": "march_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "noise.png"
-            },
-            {
-                "type": "file",
-                "name": "random.frag"
-            },
-            {
-                "type": "file",
-                "name": "sdf.frag"
-            },
-            {
-                "type": "file",
-                "name": "soft_voronoi.frag"
-            },
-            {
-                "type": "file",
-                "name": "style.css"
-            },
-            {
-                "type": "file",
-                "name": "texture.frag"
-            }
-        ]
-    },
-    {
-        "name": "sketching",
+        "name": "cf_sketching",
         "type": "folder",
         "children": [
             {
@@ -1113,38 +518,6 @@
                     {
                         "type": "file",
                         "name": "f_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_demo.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_min_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_min_02.js"
                     },
                     {
                         "type": "file",
@@ -1272,6 +645,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "landscape_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "lichen.frag"
                     },
                     {
@@ -1293,45 +670,662 @@
                             {
                                 "type": "file",
                                 "name": "automata_04_3.webm"
+                            },
+                            {
+                                "type": "file",
+                                "name": "landscape_01.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "class_demos",
+        "type": "folder",
+        "children": [
+            {
+                "name": "bookshelf",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "bookshelf_01",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "main.js"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "bookshelf_02",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "main.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "bookshelf_design",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "lib",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "airtable.browser.js"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    }
+                ]
+            },
+            {
+                "name": "css_layout",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "base.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "layout_1.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "layout_1.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "layout_2.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "layout_3.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "why_we_code",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "adaptive.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "connected.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "customized.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "generative.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "intelligent.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "interactive.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "hello_world",
+        "type": "folder",
+        "children": []
+    },
+    {
+        "type": "file",
+        "name": "index.md"
+    },
+    {
+        "name": "intermediate",
+        "type": "folder",
+        "children": [
+            {
+                "name": "paper_garden",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "paperjs_util.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_2.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_3.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_4.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_4js.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_circle_study.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper_garden_plotter.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "plotter_test.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "subtract_test.js"
+                    }
+                ]
+            },
+            {
+                "name": "river",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "assets",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "laoth.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius.png"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.md"
+                    },
+                    {
+                        "name": "production",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "makwa.blend"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "river_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "river_01_alt.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "river_01_clean.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "river_02.js"
+                    },
+                    {
+                        "name": "_figures",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "blender.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "_outtakes",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "laoth_01.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_02.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_03.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_04.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_05.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_06.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_07.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "laoth_08.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_01.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_03.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_05.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_07.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_09.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_10.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_11.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_12.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_13.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_14.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_15.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_01.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_02.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_03.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_04.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_05.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_06.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_07.jpg"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_08.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "_renders",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "laoth_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "makwa_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "sketch_01_render_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "sketch_01_render_02.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thexius_01.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "library_demos",
+        "type": "folder",
+        "children": [
+            {
+                "name": "jsscad",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "tree_01.js"
+                    }
+                ]
+            },
+            {
+                "name": "p5party",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "map_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "map_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "p5.party.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "p5.party.js.map"
+                    }
+                ]
+            },
+            {
+                "name": "p5play",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "01_ball.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "02_bricks.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "03_paddle.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "p5.play.js"
+                    }
+                ]
+            },
+            {
+                "name": "tonejs",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "adsr.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "connect.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "hello_tone.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "midi.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    },
+                    {
+                        "type": "file",
+                        "name": "synth_1.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "shaders",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "city.frag"
+            },
+            {
+                "type": "file",
+                "name": "domain_warp.frag"
+            },
+            {
+                "type": "file",
+                "name": "frogger.frag"
+            },
+            {
+                "type": "file",
+                "name": "frogger_2.frag"
+            },
+            {
+                "type": "file",
+                "name": "hello.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsight_blend.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsight_splash.frag"
+            },
+            {
+                "type": "file",
+                "name": "hindsign_blend_2.frag"
+            },
+            {
+                "type": "file",
+                "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "island copy.png"
+            },
+            {
+                "type": "file",
+                "name": "island.frag"
+            },
+            {
+                "type": "file",
+                "name": "island.png"
+            },
+            {
+                "type": "file",
+                "name": "march.frag"
+            },
+            {
+                "type": "file",
+                "name": "march_2.frag"
+            },
+            {
+                "type": "file",
+                "name": "noise.png"
+            },
+            {
+                "type": "file",
+                "name": "random.frag"
+            },
+            {
+                "type": "file",
+                "name": "sdf.frag"
+            },
+            {
+                "type": "file",
+                "name": "soft_voronoi.frag"
+            },
+            {
+                "type": "file",
+                "name": "style.css"
+            },
+            {
+                "type": "file",
+                "name": "texture.frag"
+            }
+        ]
+    },
+    {
+        "name": "_libraries",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "webm-writer-0.3.0.js"
+            }
+        ]
+    },
+    {
+        "name": "_tests",
+        "type": "folder",
+        "children": [
+            {
+                "name": "dot",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "01_basic",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "basic.js"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "02_advanced",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "advanced.js"
                             }
                         ]
                     }
                 ]
             },
             {
-                "name": "phaser",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "phaser_01.js"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "text",
-        "type": "folder",
-        "children": [
+                "type": "file",
+                "name": "hello_image.png"
+            },
             {
                 "type": "file",
-                "name": "cfg.js"
-            }
-        ]
-    },
-    {
-        "name": "tone_js",
-        "type": "folder",
-        "children": [
+                "name": "hello_md.md"
+            },
             {
                 "type": "file",
-                "name": "midi.js"
+                "name": "hello_p5.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_paper.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_text.txt"
+            },
+            {
+                "type": "file",
+                "name": "hello_world.js"
+            },
+            {
+                "type": "file",
+                "name": "hello_yaml.yaml"
             }
         ]
     },
     {
-        "name": "util",
+        "name": "_util",
         "type": "folder",
         "children": [
             {
@@ -1345,30 +1339,6 @@
             {
                 "type": "file",
                 "name": "grabber_demo.js"
-            }
-        ]
-    },
-    {
-        "name": "_07_aframe",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "hello.html"
-            }
-        ]
-    },
-    {
-        "name": "_tiptap",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "index.html"
-            },
-            {
-                "type": "file",
-                "name": "main.js"
             }
         ]
     }

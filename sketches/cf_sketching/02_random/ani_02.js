@@ -23,14 +23,14 @@ window.draw = function () {
   colors[1] = color(hue, random(0.1, 0.2), random(0.6, 0.7)); // gray
   colors[2] = color(hue, random(0.3, 0.7), random(0.5, 1.0));
   const bg = color(hue, 0.1, 0.8);
-  const margin = random(10, height * 0.25);
+  const margin = random(10, h * 0.25);
   const cols = floor(middleRandom(1, 10));
   const rows = floor(middleRandom(1, 15));
 
   background(bg);
 
   const w = width - 2 * margin;
-  const h = height - 2 * margin;
+  const h = h - 2 * margin;
   const col_width = w / cols;
   const row_height = h / rows;
 
@@ -98,7 +98,7 @@ function weaveRect(x, y, w, h, c, solid, messy) {
       if (col % 2 && !solid) continue;
       translate(x + xx, y + yy);
       rotate(random(PI) * 0.01 * messy);
-      rect(
+      r(
         0 + random(messy * 0.2),
         0 + random(messy * 0.2),
         col_width,
@@ -106,7 +106,7 @@ function weaveRect(x, y, w, h, c, solid, messy) {
       );
 
       rotate(random(PI) * 0.01 * messy);
-      rect(
+      r(
         0 + random(messy * 0.2),
         0 + random(messy * 0.2),
         col_width - 1,

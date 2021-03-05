@@ -678,6 +678,16 @@
                         ]
                     }
                 ]
+            },
+            {
+                "name": "07_vectors",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "cactus_01.js"
+                    }
+                ]
             }
         ]
     },

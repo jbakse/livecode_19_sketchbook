@@ -1,0 +1,62 @@
+.fancy {
+}
+
+.letter {
+  display: inline-block;
+}
+.fancy .letter {
+  will-change: transform;
+  display: inline-block;
+  animation: bounce 0.4s ease-in-out infinite alternate;
+}
+
+.fancy .letter:nth-child(4n + 1) {
+  animation-delay: 0s;
+}
+.fancy .letter:nth-child(4n + 2) {
+  animation-delay: 0.2s;
+}
+.fancy .letter:nth-child(4n + 3) {
+  animation-delay: 0.4s;
+}
+.fancy .letter:nth-child(4n + 4) {
+  animation-delay: 0.6s;
+}
+
+.rainbow .letter:nth-child(7n + 1) {
+  color: red;
+}
+
+.rainbow .letter:nth-child(7n + 2) {
+  color: orange;
+}
+
+.rainbow .letter:nth-child(7n + 3) {
+  color: yellow;
+}
+.rainbow .letter:nth-child(7n + 4) {
+  color: green;
+}
+.rainbow .letter:nth-child(7n + 5) {
+  color: blue;
+}
+.rainbow .letter:nth-child(7n + 6) {
+  color: indigo;
+}
+.rainbow .letter:nth-child(7n + 7) {
+  color: violet;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.explosive {
+  color: red;
+  cursor: pointer;
+}

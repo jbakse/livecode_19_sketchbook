@@ -147,21 +147,6 @@
                 "children": [
                     {
                         "type": "file",
-<<<<<<< HEAD
-                        "name": "border.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "text_effects.js"
-=======
                         "name": "clean_donkey.js"
                     },
                     {
@@ -171,7 +156,6 @@
                     {
                         "type": "file",
                         "name": "new_donkey.js"
->>>>>>> 7e65019cc453e06206f5427f98c70dc8a90cb19e
                     }
                 ]
             },
@@ -322,6 +306,24 @@
                         "name": "index.html"
                     },
                     {
+                        "name": "scratch",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "main.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
                         "type": "file",
                         "name": "style.css"
                     },
@@ -338,11 +340,7 @@
         "type": "folder",
         "children": [
             {
-<<<<<<< HEAD
-                "name": "06_pixels",
-=======
                 "name": "03_noise",
->>>>>>> 7e65019cc453e06206f5427f98c70dc8a90cb19e
                 "type": "folder",
                 "children": [
                     {
@@ -661,6 +659,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "automata_05.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "color_wars_01.js"
                     },
                     {
@@ -842,11 +844,6 @@
                 ]
             }
         ]
-    },
-    {
-        "name": "hello_world",
-        "type": "folder",
-        "children": []
     },
     {
         "type": "file",

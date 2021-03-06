@@ -16,11 +16,17 @@ async function buildNav(tree, path) {
     for (let i = 0; i < pathParts.length; i++) {
       const title = pathParts[i];
 
+      folders[i].children.sort((a, b) => {
+        if (a.type === "file" && b.type == "folder") return -1;
+        if (a.type === "folder" && b.type == "file") return 1;
+        return 0;
+      });
       const items = folders[i].children.map((child) => {
         let filePath = pathParts.slice(0, i).concat(child.name).join("/");
+        const source = "";
         return {
           title: child.name,
-          href: `?sketch=${filePath}&source`,
+          href: `?sketch=${filePath}&amp;${source}`,
           type: child.type,
         };
       });

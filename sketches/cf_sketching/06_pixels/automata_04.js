@@ -37,7 +37,7 @@ function setup() {
   g.updatePixels();
   noiseDetail(4);
 
-  grabber.grabFrames(120);
+  //grabber.grabFrames(120);
 }
 
 function draw() {

@@ -677,6 +677,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "automata_05.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "color_wars_01.js"
                     },
                     {
@@ -862,11 +866,6 @@
                 ]
             }
         ]
-    },
-    {
-        "name": "hello_world",
-        "type": "folder",
-        "children": []
     },
     {
         "type": "file",

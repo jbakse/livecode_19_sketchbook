@@ -45,7 +45,7 @@ function step() {
 
     element.x += element.deltaX;
 
-    element.style.transform = `translateX(${element.x}px) translateY(${element.y}px) rotate(${element.r}deg)`;
+    element.style.transform = `translate(${element.x}px, ${element.y}px) rotate(${element.r}deg)`;
   }
   requestAnimationFrame(step);
 }

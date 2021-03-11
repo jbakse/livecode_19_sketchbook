@@ -306,6 +306,24 @@
                         "name": "index.html"
                     },
                     {
+                        "name": "scratch",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "index.html"
+                            },
+                            {
+                                "type": "file",
+                                "name": "main.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "style.css"
+                            }
+                        ]
+                    },
+                    {
                         "type": "file",
                         "name": "style.css"
                     },
@@ -382,6 +400,24 @@
                     {
                         "type": "file",
                         "name": "bounce_paperscript_01_a.js"
+                    }
+                ]
+            },
+            {
+                "name": "08_animation",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "bounce_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "fuzzy_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "fuzzy_bias.js"
                     }
                 ]
             }
@@ -686,6 +722,10 @@
                     {
                         "type": "file",
                         "name": "cactus_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "recursion.js"
                     }
                 ]
             }
@@ -1261,6 +1301,16 @@
             {
                 "type": "file",
                 "name": "texture.frag"
+            }
+        ]
+    },
+    {
+        "name": "templates",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "p5.js"
             }
         ]
     },

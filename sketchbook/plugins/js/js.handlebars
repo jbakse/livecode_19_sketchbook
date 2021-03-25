@@ -6,9 +6,9 @@
 
   <base target="_parent">
 
-  {{#libraries}}
+  {{!-- {{#libraries}}
   <script src="{{.}}"></script>
-  {{/libraries}}
+  {{/libraries}} --}}
 
   <link rel="stylesheet" href="plugins/common/common.css">
   <link rel="stylesheet" href="plugins/js/js.css">
@@ -19,6 +19,9 @@
 
   {{{html}}}
   <script>window.sketch_directory = "{{ fileInfo.directory }}";</script>
+  {{#libraries}}
+  <script src="{{.}}"></script>
+  {{/libraries}}
   <script {{#attributes}}{{{.}}} {{/attributes}}src="{{fileInfo.path}}"></script>
 </body>
 

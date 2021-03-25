@@ -677,7 +677,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "automata_05.js"
+                        "name": "automata_bench.js"
                     },
                     {
                         "type": "file",
@@ -730,6 +730,32 @@
                     {
                         "type": "file",
                         "name": "recursion.js"
+                    }
+                ]
+            },
+            {
+                "name": "09_animation",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "bezier_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "recursion_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wiggle_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wiggle_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wiggle_02a.js"
                     }
                 ]
             }
@@ -866,6 +892,11 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "hello_world",
+        "type": "folder",
+        "children": []
     },
     {
         "type": "file",
@@ -1304,6 +1335,16 @@
         ]
     },
     {
+        "name": "story_teller",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "story_01.js"
+            }
+        ]
+    },
+    {
         "name": "templates",
         "type": "folder",
         "children": [
@@ -1394,6 +1435,10 @@
             {
                 "type": "file",
                 "name": "grabber_01.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber_02.js"
             },
             {
                 "type": "file",

@@ -8,7 +8,6 @@ module.exports = {
   },
   globals: require("./p5Globals.js"),
 
-  // require("./p5Globals.js"),
   rules: {
     "no-prototype-builtins": "off",
     indent: ["error", 2],

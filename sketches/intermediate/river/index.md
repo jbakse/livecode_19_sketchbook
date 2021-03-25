@@ -1,6 +1,6 @@
-# River Portraits
+# River Portraits!
 
-![Makwa](/sketches/river/_renders/makwa_01.png)
+![Makwa](/sketches/intermediate/river/_renders/makwa_01.png)
 
 # Inspiration
 
@@ -16,7 +16,7 @@ One common technique to generate a river uses a height map and a particle. The p
 
 I decided to explore this technique with a sketch in p5.
 
-![01_01](/sketches/river/_renders/sketch_01_render_01.png)
+![01_01](/sketches/intermediate/river/_renders/sketch_01_render_01.png)
 
 This sketch starts by creating a height map using
 [domain warped](https://iquilezles.org/www/articles/warp/warp.htm)
@@ -24,7 +24,7 @@ This sketch starts by creating a height map using
 
 While tweaking the parameters a bit, I stumbled on this rendering, which looked a lot like some kind of celestial knight.
 
-![01_02](/sketches/river/_renders/sketch_01_render_02.png)
+![01_02](/sketches/intermediate/river/_renders/sketch_01_render_02.png)
 
 I really liked this image, and thought it would be fun to run with this sketch a litte further.
 
@@ -36,7 +36,7 @@ I decided I wanted to take the basic premise of the sketch and see how it would 
 
 I used some models I already had: Dungeons and Dragons miniatures from [Hero Forge](https://www.heroforge.com/). I brought that model into [Blender](http://blender.org/) and create a custom node-based material to color the surface based on its distance from the camera.
 
-![01_02](/sketches/river/_figures/blender.png)
+![01_02](/sketches/intermediate/river/_figures/blender.png)
 
 ## Tracing the Rivers
 
@@ -46,8 +46,8 @@ I tweaked the code by hand for each portrait to get different effects, and saved
 
 <div class="two-up">
 
-![Makwa](/sketches/river/_outtakes/makwa_10.jpg)
-![Makwa](/sketches/river/_outtakes/makwa_11.jpg)
+![Makwa](/sketches/intermediate/river/_outtakes/makwa_10.jpg)
+![Makwa](/sketches/intermediate/river/_outtakes/makwa_11.jpg)
 
 </div>
 
@@ -55,9 +55,9 @@ I tweaked the code by hand for each portrait to get different effects, and saved
 
 The final images seen here are post processed a bit in photoshop, usually compositing a few p5 exports together and adjusting contrast.
 
-![Makwa](/sketches/river/_renders/makwa_01.png)
-![Laoth](/sketches/river/_renders/laoth_01.png)
-![Thexius](/sketches/river/_renders/thexius_01.png)
+![Makwa](/sketches/intermediate/river/_renders/makwa_01.png)
+![Laoth](/sketches/intermediate/river/_renders/laoth_01.png)
+![Thexius](/sketches/intermediate/river/_renders/thexius_01.png)
 
 # Closing Thoughts
 

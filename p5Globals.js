@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
+  p5: true,
   remove: true,
   canvas: true,
   width: true,
@@ -151,6 +152,7 @@ module.exports = {
   blendMode: true,
   noLoop: true,
   loop: true,
+  isLooping: true,
   push: true,
   pop: true,
   redraw: true,

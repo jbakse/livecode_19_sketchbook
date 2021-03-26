@@ -1,8 +1,8 @@
-// require /sketches/_libraries/webm-writer-0.3.0.js
 // require https://cdn.jsdelivr.net/npm/tweakpane@1.5.8/dist/tweakpane.min.js
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
-// require /sketches/_util/grabber_02.js
+// require ../sketches/_libraries/webm-writer-0.3.0.js
+// require ../sketches/_util/grabber_02.js
 
 /* exported setup draw*/
 

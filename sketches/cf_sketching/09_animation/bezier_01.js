@@ -1,8 +1,11 @@
 // require https://cdn.jsdelivr.net/npm/tweakpane@1.5.8/dist/tweakpane.min.js
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
-// require ../sketches/_libraries/webm-writer-0.3.0.js
-// require ../sketches/_util/grabber_02.js
+// !require ../sketches/_libraries/webm-writer-0.3.0.js
+// !require ../sketches/_util/grabber_02.js
+
+// require https://jbakse.github.io/livecode_19_sketchbook/sketches/_util/grabber_02.js
+// require https://jbakse.github.io/livecode_19_sketchbook/sketches/_libraries/webm-writer-0.3.0.js
 
 /* exported setup draw*/
 
@@ -26,7 +29,7 @@ function draw() {
 
   const t = frameCount * 0.01;
   const myCurve = new Bezier();
-  const lines = 20;
+  const lines = 1000;
   const points = 50;
   for (let i = 0; i < lines; i++) {
     let n = map(i, 0, lines, 0, 2);
@@ -48,7 +51,7 @@ function draw() {
     };
     let line = myCurve.getLine(points);
 
-    stroke(50);
+    stroke(5);
     strokeWeight(4);
     noFill();
 

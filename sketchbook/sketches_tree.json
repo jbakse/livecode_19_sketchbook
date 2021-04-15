@@ -758,6 +758,26 @@
                         "name": "wiggle_02a.js"
                     }
                 ]
+            },
+            {
+                "name": "10_text",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "dnd_01.js"
+                    }
+                ]
+            },
+            {
+                "name": "11_sound",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "vk_visualizer_01.js"
+                    }
+                ]
             }
         ]
     },

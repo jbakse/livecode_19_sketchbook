@@ -65,6 +65,8 @@ class Character {
     this.maxHP = 5;
     this.hp = this.maxHP;
   }
+
+
   act() {
     const target = array_pick(characters);
     let act_description = "";
@@ -148,4 +150,15 @@ for (round = 0; round < 20; round++) {
     story += c.act();
   }
 }
-console.log(story);
+say(story);
+
+
+
+function say(...strings) {
+  for (let s of strings) {
+    console.log(s);
+    const div = document.createElement("div");
+    div.innerText = s;
+    document.body.append(div);
+  }
+}

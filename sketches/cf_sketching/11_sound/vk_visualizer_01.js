@@ -5,7 +5,7 @@
 
 /* exported setup draw preload */
 /* globals loadSound, sampleRate */
-
+/* globals Tweakpane */
 /* globals sketch_directory */
 
 // todo
@@ -19,20 +19,24 @@
 // draw arrows at low and high piano key
 // add preset reset
 
-let song;
-let fft;
-
-const pane = new Tweakpane();
 const params = {
-  barCount: 512,
+  barCount: 128,
   fftBuckets: 2048,
   smoothing: 0.8,
-  backColor: "#000",
-  lineColor: "#fff",
-  boxColor: "#999",
+  backColor: "#000000ff",
+  lineColor: "#ffffffff",
+  boxColor: "#ffffff99",
   shrink: 5,
   highBoost: 0.0,
 };
+
+const baseParams = Object.assign({}, params);
+
+const pane = new Tweakpane();
+pane.addButton({ title: "Play" }).on("click", () => {
+  song.play();
+});
+pane.addSeparator();
 pane.addInput(params, "barCount", { min: 0, max: params.fftBuckets });
 pane.addInput(params, "smoothing", { min: 0, max: 1 });
 pane.addInput(params, "shrink", { min: 0, max: 10 });
@@ -41,20 +45,34 @@ pane.addInput(params, "backColor");
 pane.addInput(params, "lineColor");
 pane.addInput(params, "boxColor");
 
-// import presets from local storage
-const p = localStorage.getItem("params");
-console.log("import", { p });
-if (p) {
-  console.log("Importaing Presets");
-  pane.importPreset(JSON.parse(p));
-}
+pane.addSeparator();
+pane.addButton({ title: "Save" }).on("click", saveParams);
+pane.addButton({ title: "Reset" }).on("click", resetParams);
+// pane.on("change", saveParams);
 
-// set up handler to save presets to local storage
-pane.on("change", () => {
+// import presets from local storage
+function loadParams() {
+  const p = localStorage.getItem("params");
+  console.log("import", { p });
+  if (p) {
+    console.log("Importaing Presets");
+    pane.importPreset(JSON.parse(p));
+  }
+}
+loadParams();
+
+// save presets to local storage
+function saveParams() {
   const p = pane.exportPreset();
   localStorage.setItem("params", JSON.stringify(p));
-});
+}
 
+function resetParams() {
+  Object.assign(params, baseParams);
+}
+
+let song;
+let fft;
 const buckets = [];
 
 function preload() {

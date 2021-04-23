@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fish {
+        display: inline-block;
+        width: 500px;
+        height: 500px;
+        background: gray;
+        border-radius: 50%;
+      }
+
+      .thermometer {
+        display: inline-block;
+        width: 500px;
+        height: 500px;
+        background: red;
+        border-radius: 50%;
+        position: fixed;
+        top: 100px;
+        /* left moves it over to middle, margin-left shifts it back left */
+
+        left: 50%;
+        margin-left: -250px;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="thermometer">thermometer</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+    <div class="fish">fish</div>
+  </body>
+</html>

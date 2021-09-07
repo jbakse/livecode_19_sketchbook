@@ -336,6 +336,16 @@
         ]
     },
     {
+        "name": "algo_print",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "postcard.js"
+            }
+        ]
+    },
+    {
         "name": "cf_challenges",
         "type": "folder",
         "children": [
@@ -774,8 +784,40 @@
                 "type": "folder",
                 "children": [
                     {
+                        "name": "music",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "mozart_01.mp3"
+                            },
+                            {
+                                "type": "file",
+                                "name": "mozart_01_30.mp3"
+                            },
+                            {
+                                "type": "file",
+                                "name": "readme.md"
+                            },
+                            {
+                                "type": "file",
+                                "name": "white_noise_01.mp3"
+                            }
+                        ]
+                    },
+                    {
                         "type": "file",
                         "name": "vk_visualizer_01.js"
+                    }
+                ]
+            },
+            {
+                "name": "12_music",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "song_01.js"
                     }
                 ]
             }
@@ -1273,8 +1315,58 @@
         "type": "folder",
         "children": [
             {
+                "name": "basics_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "checkers.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "checkers_wave.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "dots.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "dots_gradient.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rings.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "stripes.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "triangles.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "waves.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wave_wave.frag"
+                    }
+                ]
+            },
+            {
                 "type": "file",
                 "name": "city.frag"
+            },
+            {
+                "type": "file",
+                "name": "city_00.frag"
+            },
+            {
+                "type": "file",
+                "name": "city_01.frag"
             },
             {
                 "type": "file",
@@ -1291,6 +1383,10 @@
             {
                 "type": "file",
                 "name": "hello.frag"
+            },
+            {
+                "type": "file",
+                "name": "hello_world.frag"
             },
             {
                 "type": "file",
@@ -1351,6 +1447,24 @@
             {
                 "type": "file",
                 "name": "texture.frag"
+            },
+            {
+                "name": "thinking_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "gradient.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rect_branch.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rect_no_branch.frag"
+                    }
+                ]
             }
         ]
     },
@@ -1365,12 +1479,44 @@
         ]
     },
     {
+        "name": "student_demos",
+        "type": "folder",
+        "children": [
+            {
+                "name": "claire",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "particle.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "templates",
         "type": "folder",
         "children": [
             {
                 "type": "file",
                 "name": "p5.js"
+            }
+        ]
+    },
+    {
+        "name": "web",
+        "type": "folder",
+        "children": [
+            {
+                "name": "demo_1",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
             }
         ]
     },

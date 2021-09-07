@@ -45,21 +45,31 @@ const buckets = []; // array of bucket data
 function loadParams() {
   const p = localStorage.getItem("params");
   if (p) {
-    console.log("Importaing Presets");
+    console.log("Importing Settings");
+    console.log(JSON.parse(p));
     pane.importPreset(JSON.parse(p));
   }
 }
-loadParams();
 
 // save presets to local storage
-function saveParams() {
+function saveParams(e) {
   const p = pane.exportPreset();
   localStorage.setItem("params", JSON.stringify(p));
+
+  // kinda hacky, but i couldn't think of anything simpler + better
+  const msg = pane.addFolder({
+    disabled: true,
+    title: "Saved to Local Storage",
+  });
+  setTimeout(() => msg.dispose(), 1000);
+
+  // alert("Settings saved to localStorage.");
 }
 
 // reset params to hardcoded defaults
 function resetParams() {
   Object.assign(params, defaultParams);
+  pane.importPreset(params);
 }
 
 // connect fft analyzer to test song
@@ -91,7 +101,7 @@ function preload() {
 
 function configurePane() {
   pane.addButton({ title: "Use Test Song" }).on("click", useSong);
-  pane.addButton({ title: "Use Input" }).on("click", useInput);
+  pane.addButton({ title: "Use Audio In" }).on("click", useInput);
 
   pane.addSeparator();
 
@@ -119,9 +129,10 @@ function configurePane() {
 
   pane.addSeparator();
 
-  pane.addButton({ title: "Save" }).on("click", saveParams);
-  pane.addButton({ title: "Reset" }).on("click", resetParams);
+  pane.addButton({ title: "Save Settings" }).on("click", saveParams);
+  pane.addButton({ title: "Reset Settings" }).on("click", resetParams);
 
+  loadParams();
   // pane.hidden = true;
 }
 

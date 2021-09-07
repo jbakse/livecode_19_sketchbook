@@ -1,0 +1,57 @@
+@media screen, print {
+  body {
+  }
+  .card {
+    box-sizing: border-box;
+    height: 4.25in;
+    width: 6in;
+
+    padding: 0.1em;
+
+    background: black;
+    color: white;
+
+    font-family: monospace;
+    white-space: pre;
+    font-size: 60px;
+    line-height: 1;
+
+    /* page-break-after: always; */
+
+    outline: 1px solid red; /* outlines don't change layout :) */
+
+    margin-bottom: 20px;
+  }
+
+  .debug {
+    font-size: 12px;
+    color: gray;
+  }
+}
+
+@media print {
+  @page {
+    size: 6in 4.25in;
+    /* page-orientation: rotate-left; */
+    marks: crop;
+    bleed: 1cm;
+
+    margin: 0cm;
+  }
+
+  body {
+    /* enable background printing */
+    /* -webkit-print-color-adjust: exact !important; */
+    /* color-adjust: exact !important; */
+  }
+
+  body {
+    margin: 0;
+  }
+  .card {
+    outline: initial;
+  }
+  .debug {
+    display: none;
+  }
+}

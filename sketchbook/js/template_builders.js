@@ -6,6 +6,7 @@ export default {
   md: showMD,
   "md.js": showMDJS,
   txt: showTXT,
+  frag: showTXT,
   html: showHTML,
   direct: showDirect,
 };

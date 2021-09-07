@@ -1509,6 +1509,16 @@
                         "name": "rect_no_branch.frag"
                     }
                 ]
+            },
+            {
+                "name": "warm_ups",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "swizzle.frag"
+                    }
+                ]
             }
         ]
     },

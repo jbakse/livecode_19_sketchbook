@@ -3,7 +3,6 @@ console.log(document);
 
 // i removed the actual email address from this before publishing to the repo.
 const friends = [
-  ["test", "string"],
   ["Munus", "Shih", "email"],
   ["Lingyi", "Zhou", "email"],
   ["Carla", "Sunji", "email"],
@@ -28,6 +27,7 @@ const friends = [
   ["Justin", "Bakse", "email"],
 ];
 
+// the main code
 for (const friend of friends) {
   const first = friend[0];
   const last = friend[1];

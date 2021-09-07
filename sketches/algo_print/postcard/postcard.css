@@ -8,6 +8,7 @@
 
     padding: 0.1em;
 
+    /* white type on black */
     /* background: black; */
     /* color: white; */
 
@@ -33,8 +34,8 @@
   @page {
     size: 6in 4.25in;
     /* page-orientation: rotate-left; */
-    marks: crop;
-    bleed: 1cm;
+    /* marks: crop; */
+    /* bleed: 1cm; */
     margin: 0cm;
   }
 

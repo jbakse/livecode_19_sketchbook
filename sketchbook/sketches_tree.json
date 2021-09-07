@@ -340,8 +340,52 @@
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "postcard.js"
+                "name": "postcard",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "postcard.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard.pdf"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard_readme.md"
+                    },
+                    {
+                        "type": "file",
+                        "name": "test.html"
+                    }
+                ]
+            },
+            {
+                "name": "talia_postcard",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "postcard.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "postcard.js"
+                    }
+                ]
             }
         ]
     },

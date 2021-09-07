@@ -1,30 +1,9 @@
-// off the common path
-// https://caniuse.com/?search=page-break
-// https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
-// https://developer.mozilla.org/en-US/docs/Web/CSS/Paged_Media
-// https://css-tricks.com/almanac/properties/p/page-break/
-// https://www.smashingmagazine.com/2011/11/how-to-set-up-a-print-style-sheet/
-// Chrome Dev Tools > Rendering Drawer > Emulate CSS media...
-// https://helpx.adobe.com/acrobat/using/printer-marks-hairlines-acrobat-pro.html
-// https://codepen.io/cotton-t/pen/MWobROz
-// https://drafts.csswg.org/css-page/
-// https://css-tricks.com/almanac/properties/b/bleed/
-// https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-print-color-adjust
-// https://caniuse.com/?search=color-adjust
-// https://www.sitepoint.com/css-printer-friendly-pages/
-// https://www.quackit.com/css/properties/css_marks.cfm
-
-// background: black
-// - webkit chrome hack
-// text fill width?
-// code quality
-// tools for you vs for others
-
 console.log("hello, world!");
 console.log(document);
 
 // i removed the actual email address from this before publishing to the repo.
 const friends = [
+  ["test", "string"],
   ["Munus", "Shih", "email"],
   ["Lingyi", "Zhou", "email"],
   ["Carla", "Sunji", "email"],
@@ -52,16 +31,32 @@ const friends = [
 for (const friend of friends) {
   const first = friend[0];
   const last = friend[1];
+
+  // find the alignments
   let alignments = getAlignments(first, last);
+
+  // output debug info
+  console.log(first, last, alignments);
   spit(first, last, JSON.stringify(alignments)).classList.add("debug");
 
+  // create a card for each alignment found
   for (const alignment of alignments) {
     const first_pad = repeat(" ", alignment[1] - alignment[0]);
     const last_pad = repeat(" ", alignment[0] - alignment[1]);
-    spit(first_pad + first + "\n" + last_pad + last).classList.add("card");
+    let card = spit(first_pad + first + "\n" + last_pad + last);
+    card.classList.add("card");
+
+    // scale to fill
+    // let word_width = Math.max(
+    //   (first_pad + first).length,
+    //   (last_pad + last).length
+    // );
+    // card.style.fontSize = `${900 / word_width}px`;
   }
 }
 
+// create a string that repeats a given input a given number of times
+// returns created string
 function repeat(word, times) {
   let output = "";
   for (let i = 0; i < times; i++) {
@@ -69,6 +64,9 @@ function repeat(word, times) {
   }
   return output;
 }
+
+// create a div, set its text to the given arguments, append to body
+// returns div
 function spit(...a) {
   const div = document.createElement("div");
   div.innerText = a.join(" ");
@@ -76,6 +74,9 @@ function spit(...a) {
   return div;
 }
 
+// takes two strings, and generates a report of where common letters occur in the string
+// "test", "string" -> [[0,1,"t"],[2,0,"s"],[3,1,"t"]]
+// returns report
 function getAlignments(first_word, second_word) {
   const alignments = [];
   for (let i = 0; i < first_word.length; i++) {

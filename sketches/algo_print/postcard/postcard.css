@@ -8,8 +8,8 @@
 
     padding: 0.1em;
 
-    background: black;
-    color: white;
+    /* background: black; */
+    /* color: white; */
 
     font-family: monospace;
     white-space: pre;
@@ -35,7 +35,6 @@
     /* page-orientation: rotate-left; */
     marks: crop;
     bleed: 1cm;
-
     margin: 0cm;
   }
 

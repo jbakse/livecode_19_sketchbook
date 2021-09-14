@@ -1,4 +1,5 @@
 console.log("hello, world!");
+
 console.log(document);
 
 // i removed the actual email address from this before publishing to the repo.
@@ -47,11 +48,11 @@ for (const friend of friends) {
     card.classList.add("card");
 
     // scale to fill
-    // let word_width = Math.max(
-    //   (first_pad + first).length,
-    //   (last_pad + last).length
-    // );
-    // card.style.fontSize = `${900 / word_width}px`;
+    let word_width = Math.max(
+      (first_pad + first).length,
+      (last_pad + last).length
+    );
+    card.style.fontSize = `${900 / word_width}px`;
   }
 }
 

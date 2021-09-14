@@ -1,3 +1,5 @@
+// see: domain warping
+
 precision highp float;
 
 void main() {

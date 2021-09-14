@@ -9,15 +9,15 @@
     padding: 0.1em;
 
     /* white type on black */
-    /* background: black; */
-    /* color: white; */
+    background: black;
+    color: white;
 
     font-family: monospace;
     white-space: pre;
     font-size: 60px;
     line-height: 1;
 
-    /* page-break-after: always; */
+    page-break-after: always;
 
     outline: 1px solid red; /* outlines don't change layout :) */
 
@@ -33,7 +33,7 @@
 @media print {
   @page {
     size: 6in 4.25in;
-    /* page-orientation: rotate-left; */
+    page-orientation: rotate-left;
     /* marks: crop; */
     /* bleed: 1cm; */
     margin: 0cm;
@@ -41,8 +41,8 @@
 
   body {
     /* enable background printing */
-    /* -webkit-print-color-adjust: exact !important; */
-    /* color-adjust: exact !important; */
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   body {

@@ -16,7 +16,10 @@ void main() {
     //  0 0   0
     //  1 0   1
     
-    c.r = step(u_mouse.x, gl_FragCoord.x) * step(gl_FragCoord.x - 5.0, u_mouse.x);
+    float vertical_bar = step(u_mouse.x, gl_FragCoord.x) * step(gl_FragCoord.x - 5.0, u_mouse.x);
+    float horizontal_bar = step(u_mouse.y, gl_FragCoord.y) * step(gl_FragCoord.y - 5.0, u_mouse.y);
+    
+    c.rgb = vec3(max(horizontal_bar, vertical_bar));
     
     gl_FragColor = c;
 }

@@ -1380,6 +1380,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "dots_live.frag"
+                    },
+                    {
+                        "type": "file",
                         "name": "rings.frag"
                     },
                     {
@@ -1393,6 +1397,10 @@
                     {
                         "type": "file",
                         "name": "waves.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wave_live.frag"
                     },
                     {
                         "type": "file",
@@ -1411,6 +1419,14 @@
             {
                 "type": "file",
                 "name": "city_01.frag"
+            },
+            {
+                "type": "file",
+                "name": "composite_example.frag"
+            },
+            {
+                "type": "file",
+                "name": "composite_example_2.frag"
             },
             {
                 "type": "file",
@@ -1481,6 +1497,48 @@
                 "name": "sdf.frag"
             },
             {
+                "name": "shaping_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "checkerboard.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "disc.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "hills.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "moon.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "puzzle.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sticker.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sticker_live.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "super_sticker.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "twins.frag"
+                    }
+                ]
+            },
+            {
                 "type": "file",
                 "name": "soft_voronoi.frag"
             },
@@ -1507,6 +1565,36 @@
                     {
                         "type": "file",
                         "name": "rect_no_branch.frag"
+                    }
+                ]
+            },
+            {
+                "name": "uniforms_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "crosshairs.glsl"
+                    },
+                    {
+                        "type": "file",
+                        "name": "hills.glsl"
+                    },
+                    {
+                        "type": "file",
+                        "name": "hill_bordered.glsl"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spotlight.glsl"
+                    },
+                    {
+                        "type": "file",
+                        "name": "venn.glsl"
+                    },
+                    {
+                        "type": "file",
+                        "name": "venn_borders.glsl"
                     }
                 ]
             },

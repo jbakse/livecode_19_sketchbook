@@ -1493,8 +1493,56 @@
                 "name": "random.frag"
             },
             {
+                "name": "random_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "autopainter.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "autopainter_plus.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "checkerboard3.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "dots.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rand.frag"
+                    }
+                ]
+            },
+            {
                 "type": "file",
                 "name": "sdf.frag"
+            },
+            {
+                "name": "sdf_solutions",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "circle.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "combine.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rect.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "transform.frag"
+                    }
+                ]
             },
             {
                 "name": "shaping_solutions",

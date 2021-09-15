@@ -15,10 +15,11 @@ void main() {
     vec2 mouse_N = u_mouse / u_resolution;
     mouse_N.y /= u_resolution.x / u_resolution.y;
     
-    // vec4 black = vec4(0.0, 0.0, 0.0, .5);
+    // vec4 black = vec4(0.0, 0.0, 0.0, .5); // won't work...
     
-    vec4 tined_pattern = pattern(coord_N) * 0.5;
+    vec4 tinted_pattern = pattern(coord_N);
+    tinted_pattern.rgb *= 0.5;
     
     float d = distance(mouse_N , coord_N);
-    gl_FragColor = mix(pattern(coord_N), tined_pattern, smoothstep(0.2, 0.3, d));
+    gl_FragColor = mix(pattern(coord_N), tinted_pattern, smoothstep(0.2, 0.3, d));
 }

@@ -4,7 +4,7 @@ void main() {
     float d1 = distance(vec2(300.0, 300.0), gl_FragCoord.xy);
     float g1 = smoothstep(150.0, 250.0, d1);
     
-    float d2 = distance(vec2(600.0, 300.0), gl_FragCoord.xy);
+    float d2 = distance(vec2(600.0, 350.0), gl_FragCoord.xy);
     float g2 = smoothstep(150.0, 250.0, d2);
     
     // using min() matches the challenge

@@ -1536,6 +1536,14 @@
                     },
                     {
                         "type": "file",
+                        "name": "garden.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "playskool.frag"
+                    },
+                    {
+                        "type": "file",
                         "name": "rect.frag"
                     },
                     {

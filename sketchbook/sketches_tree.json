@@ -352,6 +352,10 @@
                 "name": "boxes_02.js"
             },
             {
+                "type": "file",
+                "name": "boxes_03.js"
+            },
+            {
                 "name": "postcard",
                 "type": "folder",
                 "children": [

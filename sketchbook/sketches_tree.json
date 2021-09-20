@@ -348,6 +348,10 @@
                 "name": "boxes_01.js"
             },
             {
+                "type": "file",
+                "name": "boxes_02.js"
+            },
+            {
                 "name": "postcard",
                 "type": "folder",
                 "children": [

@@ -340,6 +340,14 @@
         "type": "folder",
         "children": [
             {
+                "type": "file",
+                "name": "boxes_00.js"
+            },
+            {
+                "type": "file",
+                "name": "boxes_01.js"
+            },
+            {
                 "name": "postcard",
                 "type": "folder",
                 "children": [

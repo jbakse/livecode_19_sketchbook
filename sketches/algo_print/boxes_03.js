@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-  const heights = perfectHeights(height, 5);
+  const heights = perfectHeights(height, 5, 0.5);
   //const sum = heights.reduce((a, b) => a + b);
   //console.log(sum);
 

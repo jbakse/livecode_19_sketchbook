@@ -1,5 +1,6 @@
 precision mediump float;
 uniform vec2 u_resolution;
+uniform vec2 u_mouse;
 uniform float u_time;
 
 float circle(vec2 frag_coord, float radius) {
@@ -8,7 +9,7 @@ float circle(vec2 frag_coord, float radius) {
 
 void main()
 {
-    float c1_sdf = circle(gl_FragCoord.xy - vec2(350.0, 350.0), 150.0);
+    float c1_sdf = circle(gl_FragCoord.xy - u_mouse, 150.0);
     float c2_sdf = circle(gl_FragCoord.xy - vec2(650.0, 350.0), 200.0);
     
     float c_sdf = min(c1_sdf, c2_sdf);

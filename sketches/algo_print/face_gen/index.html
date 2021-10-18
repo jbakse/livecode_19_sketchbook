@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Face Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body,
+      input,
+      button {
+        font-family: "Roboto";
+        font-weight: 100;
+      }
+      canvas {
+        border: 1px solid #aaa;
+      }
+      fieldset {
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      fieldset legend {
+        padding: 0;
+      }
+      fieldset ul {
+        padding: 0;
+      }
+      fieldset li {
+        list-style: none;
+        margin-bottom: 0.5em;
+      }
+      fieldset label {
+        display: inline-block;
+        width: 100px;
+      }
+      fieldset input {
+        border-radius: 0;
+        border: 1px solid #aaa;
+      }
+      button {
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        padding: 5px;
+        background: none;
+        margin-bottom: 1em;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #eee;
+      }
+      button:hover:active {
+        background: #cee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Face Generator</h1>
+
+    <div>
+      <fieldset>
+        <legend>Dimensions</legend>
+        <ul>
+          <li>
+            <label for="width">width</label>
+            <input
+              type="text"
+              min="1"
+              max="8"
+              name="width"
+              id="width"
+              value="6"
+            />
+          </li>
+          <li>
+            <label for="height">height</label>
+            <input
+              type="text"
+              min="1"
+              max="8"
+              name="height"
+              id="height"
+              value="4"
+            />
+          </li>
+          <li>
+            <label for="depth">depth</label>
+            <input
+              type="text"
+              min="1"
+              max="8"
+              name="depth"
+              id="depth"
+              value="2"
+            />
+          </li>
+        </ul>
+      </fieldset>
+
+      <button id="download">download svg</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.min.js"></script>
+    <script src="face_gen_02.js"></script>
+  </body>
+</html>

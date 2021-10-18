@@ -82,7 +82,7 @@ function* gen() {
       const y1 =
         50 +
         y +
-        recurve(
+        steppesteppe(
           x1 * map(y, 0, 480, 10, 0.5),
           y * map(y, 0, 480, 10, 0.5),
           noise(x1 * frequency, y * frequency, 1)
@@ -91,7 +91,7 @@ function* gen() {
       const y2 =
         50 +
         y +
-        recurve(
+        steppesteppe(
           x2 * map(y, 0, 480, 10, 0.5),
           y * map(y, 0, 480, 10, 0.5),
           noise(x2 * frequency, y * frequency, 1)
@@ -130,7 +130,7 @@ function* gen() {
   }
 }
 
-function recurve(x, y, n) {
+function steppesteppe(x, y, n) {
   const stepped = steppe(n, 6); // + sin(x * 0.1) * 0.01;
   const stepped2 = steppe(n, 11) * 0.5;
 

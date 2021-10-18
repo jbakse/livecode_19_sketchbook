@@ -340,20 +340,48 @@
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "boxes_00.js"
+                "name": "box_gen",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "box_gen_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "box_gen_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
             },
             {
                 "type": "file",
-                "name": "boxes_01.js"
+                "name": "box_gen.zip"
+            },
+            {
+                "name": "face_gen",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "face_gen_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "face_gen_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    }
+                ]
             },
             {
                 "type": "file",
-                "name": "boxes_02.js"
-            },
-            {
-                "type": "file",
-                "name": "boxes_03.js"
+                "name": "face_gen.zip"
             },
             {
                 "name": "postcard",
@@ -382,6 +410,32 @@
                     {
                         "type": "file",
                         "name": "test.html"
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "rect_test.js"
+            },
+            {
+                "name": "stack",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "stack_00.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "stack_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "stack_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "stack_03.js"
                     }
                 ]
             },
@@ -651,6 +705,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "tree_00.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "unknown_01.js"
                     },
                     {
@@ -684,6 +742,18 @@
                     {
                         "type": "file",
                         "name": "unknown_14.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_15.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_16.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unknown_17.js"
                     }
                 ]
             },
@@ -1502,6 +1572,10 @@
             },
             {
                 "type": "file",
+                "name": "noise.frag"
+            },
+            {
+                "type": "file",
                 "name": "noise.png"
             },
             {
@@ -1527,6 +1601,10 @@
                     {
                         "type": "file",
                         "name": "dots.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "dots2.frag"
                     },
                     {
                         "type": "file",
@@ -1565,6 +1643,10 @@
                     {
                         "type": "file",
                         "name": "transform.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zen.frag"
                     }
                 ]
             },
@@ -1677,6 +1759,36 @@
                     {
                         "type": "file",
                         "name": "swizzle.frag"
+                    }
+                ]
+            },
+            {
+                "name": "zoo",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "zoo_00.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zoo_01.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zoo_02.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zoo_03.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zoo_04.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zoo_05.frag"
                     }
                 ]
             }

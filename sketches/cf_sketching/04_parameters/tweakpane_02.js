@@ -31,6 +31,8 @@ function setup() {
       console.log(pane.exportPreset());
     });
 
+    
+
   // kick off
   Dot.spawnNear(width * 0.5, height * 0.5, 0);
 }

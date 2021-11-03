@@ -358,30 +358,14 @@
                 ]
             },
             {
-                "type": "file",
-                "name": "box_gen.zip"
-            },
-            {
-                "name": "face_gen",
+                "name": "business_card",
                 "type": "folder",
                 "children": [
                     {
                         "type": "file",
-                        "name": "face_gen_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "face_gen_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
+                        "name": "business_card_01.js"
                     }
                 ]
-            },
-            {
-                "type": "file",
-                "name": "face_gen.zip"
             },
             {
                 "name": "postcard",
@@ -416,6 +400,28 @@
             {
                 "type": "file",
                 "name": "rect_test.js"
+            },
+            {
+                "name": "side_gen",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "side_gen_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "side_gen_02.js"
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "side_gen.zip"
             },
             {
                 "name": "stack",

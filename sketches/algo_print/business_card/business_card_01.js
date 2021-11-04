@@ -101,7 +101,7 @@ function placeTextItems(texts, column_grid) {
     push();
     textFont("Zen Antique");
     textSize(params.text_size);
-    const max_x = CARD_WIDTH - textWidth(t);
+    const max_x = CARD_WIDTH - params.gutter_width * PPI - textWidth(t);
     pop();
 
     const filtered_grid = column_grid.filter((g) => g.l < max_x);

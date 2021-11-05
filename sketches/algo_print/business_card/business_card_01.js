@@ -5,11 +5,21 @@
 /* global Tweakpane */
 /* exported setup draw */
 
-const style_sheet = document.createElement("style");
-style_sheet.innerText = `
-  @import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
-`;
-document.head.appendChild(style_sheet);
+{
+  const link = document.createElement("link");
+  link.href =
+    "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap";
+  link.rel = "stylesheet";
+  document.head.appendChild(link);
+}
+
+{
+  const link = document.createElement("link");
+  link.href =
+    "https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');";
+  link.rel = "stylesheet";
+  document.head.appendChild(link);
+}
 
 const PPI = 72;
 const CARD_WIDTH = 3.5 * PPI;
@@ -33,26 +43,36 @@ function setup() {
   let canvas_width = (CARD_WIDTH + CARD_GUTTER) * CARD_COLUMNS + CARD_GUTTER;
   let canvas_height = (CARD_HEIGHT + CARD_GUTTER) * CARD_ROWS + CARD_GUTTER;
 
-  params.gutter_width = 0.1;
-  pane.addInput(params, "gutter_width", { min: 0, max: 1, label: "g. width" });
-
   params.columns = 4;
   pane.addInput(params, "columns", { min: 0, max: 5, step: 1 });
+
+  params.gutter_width = 0.1;
+  pane.addInput(params, "gutter_width", { min: 0, max: 1, label: "gutter" });
 
   params.lineheight = 0.35;
   pane.addInput(params, "lineheight", { min: 0, max: 0.5, label: "l. height" });
 
   params.text_size = 18;
-  pane.addInput(params, "text_size", { min: 6, max: 24, label: "t. size" });
+  pane.addInput(params, "text_size", { min: 6, max: 24, label: "text size" });
 
-  params.show_grid = true;
-  pane.addInput(params, "show_grid", { label: "grid" });
+  params.font_family = "Zen Kaku Gothic Antique";
+  pane.addInput(params, "font_family", {
+    label: "font",
+    options: {
+      zen: "Zen Antique",
+      "zen kaku": "Zen Kaku Gothic Antique",
+      monospace: "Monospace",
+    },
+  });
+
+  params.show_grid = false;
+  pane.addInput(params, "show_grid", { label: "show grid" });
 
   pane.on("change", draw);
 
   createCanvas(canvas_width, canvas_height);
 
-  noLoop();
+  // noLoop();
 }
 
 function draw() {
@@ -99,7 +119,7 @@ function placeTextItems(texts, column_grid) {
     y += params.lineheight;
 
     push();
-    textFont("Zen Antique");
+    textFont(params.font_family);
     textSize(params.text_size);
     const max_x = CARD_WIDTH - params.gutter_width * PPI - textWidth(t);
     pop();
@@ -108,7 +128,7 @@ function placeTextItems(texts, column_grid) {
     if (filtered_grid.length === 0) continue;
     items.push({ text: t, x: pick(filtered_grid).l, y: y });
   }
-  console.log(items);
+
   return items;
 }
 
@@ -143,7 +163,7 @@ function drawColumnGrid(r, g) {
 function drawTextItems(r, items) {
   push();
 
-  textFont("Zen Antique");
+  textFont(params.font_family);
   textSize(params.text_size);
 
   for (let item of items) {

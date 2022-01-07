@@ -2,6 +2,10 @@
 // require https://cdn.jsdelivr.net/npm/tweakpane@3.0.7/dist/tweakpane.min.js
 // require https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js
 
+// https://contentful.github.io/contentful.js/contentful/9.1.5/
+// https://www.contentful.com/developers/docs/references/authentication/
+// https://docs.netlify.com/routing/redirects/#structured-configuration
+// https://www.contentfulcommunity.com/t/should-i-keep-access-tokens-secret/457/4
 /* global Tweakpane contentful*/
 /* exported setup draw */
 
@@ -21,6 +25,7 @@ async function getTeamMembers() {
 
 const sprites = [];
 const member_sprites = [];
+const data_sprites = [];
 
 async function setup() {
   createCanvas(1024, 512);
@@ -30,7 +35,7 @@ async function setup() {
     const s = new Sprite();
 
     s.components.push(
-      new Gravity_Component(s, { x: random(0.01, 0.05), y: 0 })
+      new Gravity_Component(s, { x: random(0.01, 0.02), y: 0 })
     );
     s.components.push(new Wrap_Component(s));
     s.components.push(new Drag_Component(s, 0.97));
@@ -40,6 +45,25 @@ async function setup() {
 
     sprites.push(s);
     member_sprites.push(s);
+  });
+
+  times(30, () => {
+    const s = new Sprite();
+
+    s.components.push(
+      new Gravity_Component(s, { x: random(-0.1, -0.2), y: 0 })
+    );
+    s.components.push(new Wrap_Component(s));
+    s.components.push(new Drag_Component(s, 0.9));
+    s.components.push(new Avoid_Component(s, member_sprites, 200, -0.1));
+    s.components.push(new Avoid_Component(s, member_sprites, 50, 0.3));
+    s.components.push(new Avoid_Component(s, data_sprites, 20, 0.1));
+
+    s.components.push(new Dot_Component(s));
+    s.components.push(new Label_Component(s, floor(random(1, 100))));
+
+    sprites.push(s);
+    data_sprites.push(s);
   });
 }
 
@@ -110,6 +134,7 @@ class Avoid_Component {
   }
 
   move(sprite) {
+    this.targeting = [];
     this.targets.forEach((target) => {
       if (target === sprite) return;
       const offsetX = target.x - sprite.x;
@@ -120,16 +145,28 @@ class Avoid_Component {
       const fY = map(offsetY, -this.radius, this.radius, 1, -1);
       sprite.deltaX += fX * this.strength;
       sprite.deltaY += fY * this.strength;
+
+      this.targeting.push(target);
     });
   }
 
   draw(sprite) {
-    console.log("Draw");
+    // push();
+    // noFill();
+    // stroke(0, 10);
+    // translate(sprite.x, sprite.y);
+    // ellipse(0, 0, this.radius * 2, this.radius * 2);
+    // pop();
+
     push();
-    noFill("red");
-    stroke(0, 10);
-    translate(sprite.x, sprite.y);
-    ellipse(0, 0, this.radius * 2, this.radius * 2);
+    noFill();
+    this.targeting.forEach((target) => {
+      const d = dist(sprite.x, sprite.y, target.x, target.y);
+      stroke(0, map(d, 0, this.radius * 0.5, 255, 0));
+
+      line(sprite.x, sprite.y, target.x, target.y);
+    });
+
     pop();
   }
 }

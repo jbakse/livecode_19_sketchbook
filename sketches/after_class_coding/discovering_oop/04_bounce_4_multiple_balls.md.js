@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 4
 
 // The previous version cleaned up the code; now it is time to start adding features. This version adds a second bouncing ball.
@@ -27,7 +29,7 @@ let ball2 = {
 };
 
 // Adding the second ball requires five more values, but these are organized as fields of a single data object: `ball2`.
-// Using data objects helps make it clear that we have two sets of similar data rather than 10 unrelated values.
+// Using data objects helps make it clear that we have two sets of related data rather than 10 unrelated values.
 
 // > Variables with names like `ball`, `ball2`, and `ball3` are a [code smell](https://en.wikipedia.org/wiki/Code_smell) that suggests an array should be used. This will be done in a later version.
 // But for this version, let's see what happens if we keep them as separate variables.

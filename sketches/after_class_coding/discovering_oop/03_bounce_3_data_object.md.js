@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 3
 
 // In this version the data is organized into a [plain-old-data](https://en.wikipedia.org/wiki/Passive_data_structure) object.

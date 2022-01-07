@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 6
 
 // This version continues to clean up the code by combining the `ball` and `ball2` into an array called `balls`.
@@ -32,18 +34,6 @@ balls[1] = {
 function setup() {
   createCanvas(600, 600);
   frameRate(60);
-
-  /*
-  for (let i = 0; i < 50; i++) {
-    balls[i] = {
-      x: 100,
-      y: 100,
-      deltaX: random(-5, 5),
-      deltaY: random(-5, 5),
-      radius: random(5, 20),
-    };
-  }
-  */
 }
 
 // ## draw()

@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 9
 
 // This version doesn't change the program behavior. Like version 8, this version is written using an object-oriented approach.

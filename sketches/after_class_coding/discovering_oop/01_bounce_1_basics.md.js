@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 1
 
 // This is a very simple implementation of a bouncing ball animation. Each frame it
@@ -14,13 +16,13 @@
 // The data is all stored in unorganized global variables. This is a key target for clean up.
 
 // Horizontal position of the ball:
-let ballX = 100;
+let x = 100;
 // Vertical position of the ball:
-let ballY = 10;
+let y = 10;
 // Horizontal velocity of the ball:
-let ballDeltaX = 5;
+let deltaX = 5;
 // Vertical velocity of the ball:
-let ballDeltaY = 7;
+let deltaY = 7;
 
 // ## setup()
 
@@ -41,19 +43,19 @@ function draw() {
 
   // This part moves the ball based on its velocity.
   // This is a very basic physics simulation using discreet numeric integration.
-  ballX += ballDeltaX;
-  ballY += ballDeltaY;
+  x += deltaX;
+  y += deltaY;
 
   // This part bounces the ball off the edges of the screen.
   // This is a very basic collision detection and collision response.
   // This code does not take into account the width of the ball, a visible mistake.
-  if (ballX > width) ballDeltaX = -abs(ballDeltaX);
-  if (ballY > height) ballDeltaY = -abs(ballDeltaY);
-  if (ballX < 0) ballDeltaX = abs(ballDeltaX);
-  if (ballY < 0) ballDeltaY = abs(ballDeltaY);
+  if (x > width) deltaX = -abs(deltaX);
+  if (y > height) deltaY = -abs(deltaY);
+  if (x < 0) deltaX = abs(deltaX);
+  if (y < 0) deltaY = abs(deltaY);
 
   // draw the ball
   noStroke();
   fill(255, 0, 0);
-  ellipse(ballX, ballY, 20, 20);
+  ellipse(x, y, 20, 20);
 }

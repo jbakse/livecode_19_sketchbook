@@ -1,12 +1,21 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 8a
 
 // This version doesn't change the program behavior. It does change how the behavior is expressed. This example moves from procedural approach to an object oriented approach.
 
 // There are multiple methods to express objects in Javascript. This demo uses the _constructor_ method.
 
-// The big shift here is the introduciton of objects Objects explicity combine—encapsulate—data AND the functions that work with that data.
+// calling `new Constructor()`
+// 1. creates an empty, plain Javascript object
+// 2. sets the constructor
+// 3. the new object's __proto_ is set the the prototype of the constructor function. Note: functions are objects! they have properties and everything
+// 4. the constructor function is called with `this` bound to the new object
+// 5. the new object is returned (or an alternate object if the constructor function explicity returns one)
+
+// The big shift here is the introduciton of objects. Objects are an organizational unit that collects both data and the functions that work with that data.
 
 // In the last version of this program the `stepBall()` and `drawBall()` functions received their data as parameters. In this version, they are moved into the object as `ball.step()` and `ball.draw()`
 

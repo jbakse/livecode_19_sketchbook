@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 2
 
 // This version does the same thing as Version 1, but cleans up the code style a bit.
@@ -23,20 +25,20 @@ let ballRadius = 10;
 
 // ## Setup
 // This is the same as before.
-window.setup = function() {
+function setup() {
   createCanvas(600, 600);
   frameRate(60);
-};
+}
 
 // ## Draw
 
 // I like to separate updating state and drawing. One reason to do this is simply better organization: updating state and drawing are different tasks, seperating code by task allows you to focus on one problem at a time.
 
 // Here the `draw()` function just calls `stepApp()` to update state and `drawApp()` to draw the frame.
-window.draw = function() {
+function draw() {
   stepApp();
   drawApp();
-};
+}
 
 // ## stepApp()
 

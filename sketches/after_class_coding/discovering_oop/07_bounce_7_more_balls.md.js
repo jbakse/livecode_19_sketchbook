@@ -1,11 +1,13 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
+/* exported setup draw */
+
 // # Version 7
 
 // At this point the code is pretty clean. This version doesn't change anything other than adding more balls.
 
 // Take a look at the complete program below. This program is written in a [procedural](https://en.wikipedia.org/wiki/Procedural_programming) style.
-// In the procedural programming paradigm, procedures/functions are the primary way of breaking down and organizing code.
+// In the procedural programming paradigm, procedures are the primary way of organizing code.
 
 let balls = [];
 

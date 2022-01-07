@@ -173,6 +173,7 @@ class Mouse_Component {
   }
 }
 
+/* exported times */
 // runs f function t times, returns array of results
 function times(t, f) {
   const a = [];

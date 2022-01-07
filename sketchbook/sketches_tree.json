@@ -1366,11 +1366,15 @@
         "children": [
             {
                 "type": "file",
-                "name": "flow_01.js"
+                "name": "galaxy_01.js"
             },
             {
                 "type": "file",
-                "name": "flow_02.js"
+                "name": "galaxy_02.js"
+            },
+            {
+                "type": "file",
+                "name": "galaxy_03.js"
             }
         ]
     },

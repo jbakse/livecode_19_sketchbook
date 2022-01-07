@@ -2,36 +2,17 @@
 // require https://cdn.jsdelivr.net/npm/tweakpane@3.0.7/dist/tweakpane.min.js
 // require https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js
 
-// https://contentful.github.io/contentful.js/contentful/9.1.5/
-// https://www.contentful.com/developers/docs/references/authentication/
-// https://docs.netlify.com/routing/redirects/#structured-configuration
-// https://www.contentfulcommunity.com/t/should-i-keep-access-tokens-secret/457/4
-/* global Tweakpane contentful*/
 /* exported setup draw */
-
-async function getTeamMembers() {
-  const client = contentful.createClient({
-    space: "hzxcnf5ad0rg",
-    accessToken: "GkAWu39B5tiR-fctxIDL7KtPdS5FF2rld7a-L_PnJSs",
-  });
-
-  const response = await client.getEntries({ content_type: "teamMember" });
-  const members = response.items.map((i) => i.fields);
-
-  const unique_members = uniqWith(members, (a, b) => a.title === b.title);
-
-  return unique_members;
-}
 
 const sprites = [];
 const member_sprites = [];
-const data_sprites = [];
+const tag_sprites = [];
+const mouse_sprites = [];
 
 async function setup() {
   createCanvas(1024, 512);
 
-  const members = await getTeamMembers();
-  members.forEach((member) => {
+  function createMemberSprite(name) {
     const s = new Sprite();
 
     s.components.push(
@@ -41,30 +22,48 @@ async function setup() {
     s.components.push(new Drag_Component(s, 0.97));
     s.components.push(new Avoid_Component(s, member_sprites, 100, 0.01));
     s.components.push(new Dot_Component(s));
-    s.components.push(new Label_Component(s, member.title));
+    s.components.push(new Label_Component(s, name));
 
     sprites.push(s);
     member_sprites.push(s);
-  });
+    return s;
+  }
 
-  times(30, () => {
+  function createTagSprite(tag) {
     const s = new Sprite();
 
     s.components.push(
       new Gravity_Component(s, { x: random(-0.1, -0.2), y: 0 })
     );
+
     s.components.push(new Wrap_Component(s));
     s.components.push(new Drag_Component(s, 0.9));
     s.components.push(new Avoid_Component(s, member_sprites, 200, -0.1));
     s.components.push(new Avoid_Component(s, member_sprites, 50, 0.3));
-    s.components.push(new Avoid_Component(s, data_sprites, 20, 0.1));
+    s.components.push(new Avoid_Component(s, tag_sprites, 50, 0.1));
+    s.components.push(new Avoid_Component(s, mouse_sprites, 200, -0.2));
 
     s.components.push(new Dot_Component(s));
-    s.components.push(new Label_Component(s, floor(random(1, 100))));
+    s.components.push(new Label_Component(s, tag, 0, 1));
 
     sprites.push(s);
-    data_sprites.push(s);
-  });
+    tag_sprites.push(s);
+    return s;
+  }
+
+  for (const [name, tags] of Object.entries(data)) {
+    createMemberSprite(name);
+    for (const tag of tags) {
+      createTagSprite(tag);
+    }
+  }
+
+  const mouseSprite = new Sprite();
+
+  mouseSprite.components.push(new Mouse_Component());
+
+  mouse_sprites.push(mouseSprite);
+  sprites.push(mouseSprite);
 }
 
 function draw() {
@@ -183,12 +182,18 @@ class Dot_Component {
 }
 
 class Label_Component {
-  constructor(sprite, text) {
+  constructor(sprite, text, minAlpha = 1, maxAlpha = 1, radius = 200) {
     this.text = text;
+    this.minAlpha = minAlpha;
+    this.maxAlpha = maxAlpha;
+    this.radius = radius;
   }
   draw(sprite) {
     push();
-    fill("black");
+    const d = dist(sprite.x, sprite.y, mouseX, mouseY);
+    const alpha = map(d, 0, this.radius, this.maxAlpha, this.minAlpha);
+
+    fill(0, 0, 0, alpha * 255);
     noStroke();
     textAlign(CENTER);
     translate(sprite.x, sprite.y + 20);
@@ -202,14 +207,14 @@ class Mouse_Component {
     sprite.x = mouseX;
     sprite.y = mouseY;
   }
-  draw(sprite) {
-    push();
-    fill("red");
-    noStroke();
-    translate(sprite.x, sprite.y);
-    ellipse(0, 0, 50, 50);
-    pop();
-  }
+  //   draw(sprite) {
+  //     push();
+  //     fill("red");
+  //     noStroke();
+  //     translate(sprite.x, sprite.y);
+  //     ellipse(0, 0, 50, 50);
+  //     pop();
+  //   }
 }
 
 /* exported times */
@@ -222,9 +227,16 @@ function times(t, f) {
   return a;
 }
 
-// returns unique items in array `a` using function `fn` to test uniquness
-// https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore
-const uniqWith = (a, fn) =>
-  a.filter(
-    (element, index) => a.findIndex((step) => fn(element, step)) === index
-  );
+// prettier-ignore
+const data = {
+  "Sarah A.": [ "Adaptability", "Ideation", "Individualization", "Context", "Input"],
+  "Abhi B.": [ "Responsibility", "Achiever", "Restorative", "Context", "Learner"],
+  "Jenn C.": [ "Learner", "Relator", "Strategic", "Achiever", "Arranger"],
+  "Ryan C.": [ "Individualization", "Input", "Strategic", "Ideation", "Responsibility"],
+  "Nina C.": [ "Input", "Achiever", "Intellection", "Strategic" ,"Learner"],
+  "Kristen M.": [ "Input", "Individualization", "Maximizer", "Futuristic"],
+  "Jenna P.": [ "Achiever", "Learner", "Strategic", "Individualization", "Input"],
+  "Tanya Q.": [ "Connectedness", "Individualization", "Strategic", "Input", "Learner" ],
+  "Jada V.": [ "Consistency", "Restorative", "Relator", "Achiever", "Deliberative"],
+  "Frank W.": [ "Discipline", "Intellection", "Deliberative", "Analytical"],
+};

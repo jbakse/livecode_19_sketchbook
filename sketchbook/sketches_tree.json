@@ -1367,6 +1367,10 @@
             {
                 "type": "file",
                 "name": "flow_01.js"
+            },
+            {
+                "type": "file",
+                "name": "flow_02.js"
             }
         ]
     },

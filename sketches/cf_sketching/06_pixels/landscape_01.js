@@ -1,6 +1,6 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
-/*exported setup draw */
+/* exported setup draw */
 
 // inspired by Blue Ridge Falls, Bob Ross, 1994
 // https://static01.nyt.com/images/2019/07/13/arts/bob-ross-oak_blue-ridge-falls/bob-ross-oak_blue-ridge-falls-superJumbo-v2.jpg?quality=90&auto=webp

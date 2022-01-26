@@ -50,7 +50,7 @@ class Deck {
 
   nextUntil(v) {
     while (this.next() !== v) {
-      //noop
+      // noop
     }
   }
 
@@ -66,7 +66,6 @@ class Character {
     this.hp = this.maxHP;
   }
 
-
   act() {
     const target = array_pick(characters);
     let act_description = "";
@@ -75,7 +74,7 @@ class Character {
     } else {
       act_description += `${this.description()} swings at ${target.description()} and `;
       if (Math.random() > 0.5) {
-        //hit
+        // hit
         const damage = randomInt(2, 5);
         if (damage > 3) {
           act_description += "hits very hard. ";
@@ -84,7 +83,7 @@ class Character {
         }
         act_description += target.damage(damage);
       } else {
-        //miss
+        // miss
         act_description += "misses. ";
       }
     }
@@ -152,10 +151,8 @@ for (round = 0; round < 20; round++) {
 }
 say(story);
 
-
-
 function say(...strings) {
-  for (let s of strings) {
+  for (const s of strings) {
     console.log(s);
     const div = document.createElement("div");
     div.innerText = s;

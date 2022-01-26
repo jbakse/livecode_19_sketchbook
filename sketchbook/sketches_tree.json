@@ -608,6 +608,10 @@
                     {
                         "type": "file",
                         "name": "amber_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zhao_yang_01.js"
                     }
                 ]
             },
@@ -840,6 +844,10 @@
                     {
                         "type": "file",
                         "name": "lichen.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "mess_01.js"
                     },
                     {
                         "type": "file",
@@ -1469,6 +1477,16 @@
         ]
     },
     {
+        "name": "puzzles",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "ABCDExA.js"
+            }
+        ]
+    },
+    {
         "name": "shaders",
         "type": "folder",
         "children": [
@@ -1859,6 +1877,10 @@
         ]
     },
     {
+        "type": "file",
+        "name": "todo.md"
+    },
+    {
         "name": "web",
         "type": "folder",
         "children": [
@@ -1963,6 +1985,10 @@
             {
                 "type": "file",
                 "name": "grabber_demo.js"
+            },
+            {
+                "type": "file",
+                "name": "mess.js"
             }
         ]
     }

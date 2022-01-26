@@ -4,11 +4,29 @@ html {
 body {
   position: relative;
   height: calc(100% - 20px);
+  /* padding: 0;
+  margin: 0; */
 }
 canvas {
   border: 1px solid black;
+  /* margin: 10px; */
 }
 
 #paper-canvas {
   background: white;
+}
+
+.mess {
+  /* border: 1px solid red; */
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.mess.hide {
+  opacity: 0;
+  transition: opacity 1s;
 }

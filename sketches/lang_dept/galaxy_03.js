@@ -9,9 +9,9 @@ const member_sprites = [];
 const tag_sprites = [];
 const mouse_sprites = [];
 
-async function setup() {
+function setup() {
   createCanvas(1024, 512);
-
+  z;
   function createMemberSprite(name) {
     const s = new Sprite();
 

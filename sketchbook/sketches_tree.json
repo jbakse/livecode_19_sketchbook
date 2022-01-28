@@ -611,7 +611,15 @@
                     },
                     {
                         "type": "file",
+                        "name": "olivier_brueckner_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "zhao_yang_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "zora_wan_01.js"
                     }
                 ]
             },

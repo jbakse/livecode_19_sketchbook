@@ -3,10 +3,11 @@
 module.exports = {
   env: {
     browser: true,
+    es6: true,
   },
   extends: "eslint:recommended",
   parserOptions: {
-    ecmaVersion: 8,
+    ecmaVersion: 2017,
   },
   globals: require("./p5Globals.js"),
 
@@ -84,7 +85,7 @@ module.exports = {
     "no-extra-bind": "error", //	Disallow unnecessary calls to `.bind()`
     "no-extra-label": "error", //	Disallow unnecessary labels
     "no-floating-decimal": "error", //	Disallow leading or trailing decimal points in numeric literalsglobal variables
-    "no-implicit-coercion": "error", //	Disallow shorthand type conversions
+    // "no-implicit-coercion": "error", //	Disallow shorthand type conversions
     // "no-implicit-globals": "error", //	Disallow declarations in the global scope
     "no-implied-eval": "error", //	Disallow the use of `eval()`-like methods
     "no-inline-comments": "off", //	Disallow inline comments after code
@@ -92,7 +93,7 @@ module.exports = {
     "no-iterator": "error", //	Disallow the use of the `__iterator__` property
     "no-label-var": "error", //	Disallow labels that share a name with a variable
     "no-labels": "error", //	Disallow labeled statements
-    "no-lone-blocks": "error", //	Disallow unnecessary nested blocks
+    // "no-lone-blocks": "error", //	Disallow unnecessary nested blocks
     "no-lonely-if": "error", //	Disallow `if` statements as the only statement in `else` blocks
     "no-loop-func": "error", //	Disallow function declarations that contain unsafe references inside loop statements
     "no-magic-numbers": "off", //	Disallow magic numbers
@@ -106,7 +107,7 @@ module.exports = {
     "no-new-object": "error", //	Disallow `Object` constructors
     "no-new-wrappers": "error", //	Disallow `new` operators with the `String`, `Number`, and `Boolean` objectsstring literals
     "no-octal-escape": "error", //	Disallow octal escape sequences in string literals
-    "no-param-reassign": "error", //	Disallow reassigning `function` parameters
+    // "no-param-reassign": "error", //	Disallow reassigning `function` parameters
     // "no-plusplus": "error", //	Disallow the unary operators `++` and `--`
     "no-proto": "error", //	Disallow the use of the `__proto__` property
     "no-restricted-exports": "error", //	Disallow specified names in exports
@@ -119,7 +120,7 @@ module.exports = {
     "no-script-url": "error", //	Disallow `javascript:` urls
     "no-sequences": "error", //	Disallow comma operators
     "no-shadow": "error", //	Disallow variable declarations from shadowing variables declared in the outer scoperestricted names
-    "no-ternary": "error", //	Disallow ternary operators
+    // "no-ternary": "error", //	Disallow ternary operators
     "no-throw-literal": "error", //	Disallow throwing literals as exceptions
     "no-undef-init": "error", //	Disallow initializing variables to `undefined`
     "no-undefined": "error", //	Disallow the use of `undefined` as an identifier

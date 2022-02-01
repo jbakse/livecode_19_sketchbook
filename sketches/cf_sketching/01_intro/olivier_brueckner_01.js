@@ -14,6 +14,8 @@ window.setup = () => {
 
   angleMode(DEGREES);
   noLoop();
+
+  console.log(color(1, 2, 3));
 };
 
 window.draw = () => {

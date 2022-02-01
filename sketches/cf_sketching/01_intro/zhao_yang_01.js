@@ -11,7 +11,8 @@
 
 // (5). Repeat (4) until you are bored or exhaust all possible paths.
 
-const gridHistory = [];
+const gridHistory = []; // where grids have been drawn already
+
 window.setup = () => {
   createCanvas(600, 600);
   background(250);
@@ -50,14 +51,15 @@ function drawGrid() {
 
   noFill();
   stroke(30, 30, 90);
-  let x = randomInt(5);
-  let y = randomInt(5);
+  let x = randomInt(0, 5);
+  let y = randomInt(0, 5);
   const dotHistory = [{ x, y }];
   for (let i = 0; i < 250; i++) {
     const nextX = constrain(x + randomInt(-1, 2), 0, 4);
     const nextY = constrain(y + randomInt(-1, 2), 0, 4);
 
     // make sure nextX, nextY is not in dotHistory
+
     if (dotHistory.every((p) => p.x !== nextX || p.y !== nextY)) {
       line(x * 20, y * 20, nextX * 20, nextY * 20);
       x = nextX;

@@ -64,7 +64,7 @@ module.exports = {
     "max-classes-per-file": "off", //	Enforce a maximum number of classes per file
     "max-depth": "error", //	Enforce a maximum depth that blocks can be nested
     "max-lines": "error", //	Enforce a maximum number of lines per file
-    "max-lines-per-function": "error", //	Enforce a maximum number of lines of code in a function
+    // "max-lines-per-function": "error", //	Enforce a maximum number of lines of code in a function
     "max-nested-callbacks": "error", //	Enforce a maximum depth that callbacks can be nested
     "max-params": "off", //	Enforce a maximum number of parameters in function definitions
     // "max-statements": "error", //	Enforce a maximum number of statements allowed in function blocks

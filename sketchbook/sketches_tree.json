@@ -1889,6 +1889,16 @@
         ]
     },
     {
+        "name": "tests",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "mouseMoved.js"
+            }
+        ]
+    },
+    {
         "type": "file",
         "name": "todo.md"
     },

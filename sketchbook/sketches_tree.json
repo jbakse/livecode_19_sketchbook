@@ -1158,6 +1158,10 @@
             {
                 "type": "file",
                 "name": "ankong_nuts_04.js"
+            },
+            {
+                "type": "file",
+                "name": "ankong_nuts_live.js"
             }
         ]
     },

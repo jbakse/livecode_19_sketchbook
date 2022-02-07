@@ -665,6 +665,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "castle_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "drops_01.js"
                     },
                     {

@@ -10,7 +10,7 @@
 // objects, numbers, strings should be singular nouns
 
 let shared;
-let nuts; // name should be singular, maybe nuts_image
+let nuts; // name should be singular, maybe nut_image
 
 function preload() {
   partyConnect("wss://deepstream-server-1.herokuapp.com", "ank_nuts", "main");
@@ -84,10 +84,15 @@ function draw() {
       // you are stashing the mouseX/Y in participants.Loc then checking
       // here, thats just extra steps.
       for (const f of host.foodLoc) {
+        // this conditional is _legal_ but not doing what you want
+        // you'll never want if( 1 < x < 4) in javascript.
+
         if (
           f.x < participants.Loc[0] < f.x + host.food_r &&
           f.y < participants.Loc[1] < f.y + host.food_r
         ) {
+          // the first argument to splice should be the
+          // _index of_ f, not f
           host.foodLoc.splice(f, 1);
           console.log(host.foodLoc, participants.Loc);
         }

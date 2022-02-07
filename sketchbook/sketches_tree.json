@@ -645,6 +645,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "bookshelf_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "branch_01.js"
                     },
                     {
@@ -670,6 +674,18 @@
                     {
                         "type": "file",
                         "name": "drops_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flip_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flip_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flip_03.js"
                     }
                 ]
             },
@@ -680,6 +696,10 @@
                     {
                         "type": "file",
                         "name": "ani_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "blueish_01.js"
                     },
                     {
                         "type": "file",
@@ -1112,6 +1132,28 @@
                         "name": "interactive.js"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "code_reviews",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "ankong_nuts_01.js"
+            },
+            {
+                "type": "file",
+                "name": "ankong_nuts_02.js"
+            },
+            {
+                "type": "file",
+                "name": "ankong_nuts_03.js"
+            },
+            {
+                "type": "file",
+                "name": "ankong_nuts_04.js"
             }
         ]
     },

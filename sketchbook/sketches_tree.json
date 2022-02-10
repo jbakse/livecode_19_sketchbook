@@ -731,6 +731,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "hop_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "prison_01.js"
                     },
                     {
@@ -748,6 +752,10 @@
                     {
                         "type": "file",
                         "name": "spiral_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spiral_02.js"
                     },
                     {
                         "type": "file",

@@ -747,6 +747,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "spiral_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "star_map_01.js"
                     },
                     {

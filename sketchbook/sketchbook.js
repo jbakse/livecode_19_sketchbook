@@ -21,10 +21,27 @@ async function main() {
 
   // source view ui
   document.getElementById("toggle-source").onclick = () => {
-    document.getElementById("source-frame").classList.toggle("hidden");
+    const hidden = document
+      .getElementById("source-frame")
+      .classList.toggle("hidden");
+    window.localStorage.setItem("hide_source", hidden.toString());
   };
-  if (urlParams.has("source")) {
+
+  const hide_source = window.localStorage.getItem("hide_source");
+
+  if (hide_source === null) {
     document.getElementById("source-frame").classList.remove("hidden");
+    if (urlParams.has("view")) {
+      document.getElementById("source-frame").classList.add("hidden");
+    }
+    if (urlParams.has("source")) {
+      document.getElementById("source-frame").classList.remove("hidden");
+    }
+  } else if (hide_source === "true") {
+    document.getElementById("source-frame").classList.add("hidden");
+  } else {
+    document.getElementById("source-frame").classList.remove("hidden");
+    console.log(document.getElementById("source-frame").classList);
   }
 
   const sourcePath = settings.sketchBase + sketchPath;
@@ -37,7 +54,7 @@ async function main() {
   if (builders.hasOwnProperty(extensions)) {
     builders[extensions](sourcePath);
   } else {
-    builders["direct"](sourcePath);
+    builders.direct(sourcePath);
   }
 }
 
@@ -65,7 +82,7 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
       markup += `<h${currentDepth + 1}>`;
       markup += `<a class="folder" href="?sketch=${path}/${item.name}&amp;${sourceParam}">${item.name}</a>`;
       markup += "</h1>";
-      markup += window.ls(path + "/" + item.name, maxDepth, currentDepth + 1);
+      markup += window.ls(`${path}/${item.name}`, maxDepth, currentDepth + 1);
       markup += "</li>";
     }
   });

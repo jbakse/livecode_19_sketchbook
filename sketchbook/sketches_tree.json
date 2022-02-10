@@ -804,6 +804,10 @@
                     {
                         "type": "file",
                         "name": "unknown_17.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "waldo_01.js"
                     }
                 ]
             },

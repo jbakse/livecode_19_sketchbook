@@ -1,9 +1,13 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
+// require https://cdn.jsdelivr.net/npm/p5@latest/lib/addons/p5.sound.js
 // require https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js
 
 /* global sketch_directory */
 
 /* global partyConnect partyLoadShared partyIsHost partySetShared partyLoadMyShared partyLoadParticipantShareds */
+
+/* global loadSound */
+
 /* exported preload setup draw keyPressed*/
 
 /**
@@ -16,10 +20,11 @@
 const BLOCK_SIZE = 32;
 const SPRITE_SIZE = 24;
 
-const truck = 4;
-const car = 2;
-const small_gap = 4;
-const large_gap = 8;
+const truck = { sprite: 4, collides: true, length: 4 * SPRITE_SIZE };
+const car = { sprite: 2, collides: true, length: 2 * SPRITE_SIZE };
+const small_gap = { sprite: false, collides: false, length: 4 * SPRITE_SIZE };
+const large_gap = { sprite: false, collides: false, length: 8 * SPRITE_SIZE };
+
 const lanes = [
   {
     pos: 0,
@@ -67,7 +72,7 @@ const frogs = [
     h: BLOCK_SIZE,
     spawnX: 2 * BLOCK_SIZE,
     spawnY: 11 * BLOCK_SIZE,
-    color: "green",
+    color: "#6f6",
   },
   {
     x: -32,
@@ -76,12 +81,13 @@ const frogs = [
     h: BLOCK_SIZE,
     spawnX: 9 * BLOCK_SIZE,
     spawnY: 11 * BLOCK_SIZE,
-    color: "yellow",
+    color: "#ff6",
   },
 ];
 
 const collisionRects = [];
 
+const sounds = {};
 let spriteSheet;
 
 let shared;
@@ -90,6 +96,12 @@ let participants;
 
 function preload() {
   spriteSheet = loadImage(`${sketch_directory}/assets/frogger_sprites.png`);
+  sounds.spawn = loadSound(`${sketch_directory}/assets/frogger_sfx_spawn.wav`);
+  sounds.jump = loadSound(`${sketch_directory}/assets/frogger_sfx_jump.wav`);
+  sounds.hit = loadSound(`${sketch_directory}/assets/frogger_sfx_hit.wav`);
+  sounds.die = loadSound(`${sketch_directory}/assets/frogger_sfx_die.wav`);
+  sounds.intro = loadSound(`${sketch_directory}/assets/frogger_sfx_intro.wav`);
+  sounds.title = loadSound(`${sketch_directory}/assets/frogger_sfx_title.wav`);
 
   partyConnect("wss://deepstream-server-1.herokuapp.com", "frogger", "main");
   shared = partyLoadShared("shared");
@@ -148,18 +160,21 @@ function stepLocal() {
   // place traffic
   const createColliders = (lane) => {
     let x = lane.pos;
+
     while (x < width) {
-      for (let i = 0; i < lane.pattern.length; i += 2) {
-        if (x + lane.pattern[i] * BLOCK_SIZE > 0) {
+      // eslint-disable-next-line no-loop-func
+      lane.pattern.forEach((item) => {
+        if (x + item.length > 0 && item.collides) {
           collisionRects.push({
             x,
             y: lane.y,
-            w: lane.pattern[i] * BLOCK_SIZE,
+            w: item.length,
             h: BLOCK_SIZE,
+            sprite: item.sprite,
           });
         }
-        x += (lane.pattern[i] + lane.pattern[i + 1]) * BLOCK_SIZE;
-      }
+        x += item.length;
+      });
     }
   };
   collisionRects.length = 0;
@@ -168,9 +183,13 @@ function stepLocal() {
   // check collisions
   const checkCollisions = (frog) => {
     if (frog.state === "dead") return;
-    const collision = !!collisionRects.find((r) => intersectRect(r, frog));
+    const collision = !!collisionRects.find((r) =>
+      intersectRect(r, insetRect(frog, 4))
+    );
     if (collision) {
       my.state = "dead";
+      sounds.hit.play();
+      setTimeout(() => sounds.die.play(), 300);
       setTimeout(() => spawn(frog), 3000);
     }
   };
@@ -190,66 +209,82 @@ function draw() {
 function drawGame() {
   noSmooth();
 
+  drawBackground();
+
+  frogs.forEach((frog) => {
+    if (frog.state === "dead") {
+      drawDeadFrog(frog);
+    } else {
+      drawFrog(frog);
+    }
+  });
+
+  drawTraffic();
+}
+
+function drawTraffic() {
+  push();
+  collisionRects.forEach((r) => {
+    image(spriteSheet, r.x, r.y + 4, r.w, r.h - 8, r.sprite * 8, 0, r.w / 3, 8);
+  });
+  pop();
+}
+
+function drawFrog(frog) {
+  push();
+  translate(frog.x + 16, frog.y + 16);
+  if (frog.direction === "left") rotate(-90);
+  if (frog.direction === "right") rotate(90);
+  if (frog.direction === "down") rotate(180);
+  tint(frog.color);
+  image(spriteSheet, -12, -12, 24, 24, 10 * 8, 0, 8, 8);
+  pop();
+}
+
+function drawDeadFrog(frog) {
+  push();
+  translate(frog.x + 16, frog.y + 16);
+  tint(frog.color);
+  image(spriteSheet, -12, -12, 24, 24, 11 * 8, 0, 8, 8);
+  tint("red");
+  image(spriteSheet, -12, -12, 24, 24, 12 * 8, 0, 8, 8);
+  pop();
+}
+
+function drawBackground() {
+  push();
+  // grass
   fill("#030");
   noStroke();
   rect(0, BLOCK_SIZE * 0, width, BLOCK_SIZE * 2);
 
+  // shoulder
   fill("gray");
   noStroke();
   rect(0, BLOCK_SIZE * 2, width, BLOCK_SIZE * 1);
 
+  // road
   fill("black");
   noStroke();
   rect(0, BLOCK_SIZE * 3, width, BLOCK_SIZE * 6);
 
+  // road markings
   noFill();
   stroke("white");
   strokeWeight(3);
   line(0, BLOCK_SIZE * 3 + 1.5, width, BLOCK_SIZE * 3 + 1.5);
   line(0, BLOCK_SIZE * 9 - 1.5, width, BLOCK_SIZE * 9 - 1.5);
 
+  // shoulder
   fill("gray");
   noStroke();
   rect(0, BLOCK_SIZE * 9, width, BLOCK_SIZE * 1);
 
+  // grass
   fill("#030");
   noStroke();
   rect(0, BLOCK_SIZE * 10, width, BLOCK_SIZE * 2);
-
-  // draw frogs
-  frogs.forEach((frog) => {
-    if (frog.state === "dead") {
-      fill(255, 0, 0, 100);
-      rect(frog.x, frog.y, BLOCK_SIZE, BLOCK_SIZE);
-
-      push();
-      translate(frog.x + 16, frog.y + 16);
-      tint(frog.color);
-      image(spriteSheet, -12, -12, 24, 24, 11 * 8, 0, 8, 8);
-      tint("red");
-      image(spriteSheet, -12, -12, 24, 24, 12 * 8, 0, 8, 8);
-      pop();
-    } else {
-      fill(255, 0, 0, 100);
-      rect(frog.x, frog.y, BLOCK_SIZE, BLOCK_SIZE);
-
-      push();
-      translate(frog.x + 16, frog.y + 16);
-      if (frog.direction === "left") rotate(-90);
-      if (frog.direction === "right") rotate(90);
-      if (frog.direction === "down") rotate(180);
-      tint(frog.color);
-      image(spriteSheet, -12, -12, 24, 24, 10 * 8, 0, 8, 8);
-      pop();
-    }
-  });
-
-  // draw traffic
-  noStroke();
-  fill(255, 0, 0, 100);
-  collisionRects.forEach((r) => {
-    rect(r.x, r.y, r.w, r.h);
-  });
+  pop();
 }
 
 function keyPressed() {
@@ -272,6 +307,7 @@ function move(x, y) {
   if (x > 0) my.direction = "right";
   if (y < 0) my.direction = "up";
   if (y > 0) my.direction = "down";
+  sounds.jump.play();
 }
 
 function assignPlayers() {
@@ -296,6 +332,7 @@ function spawn(frog) {
   my.y = frog.spawnY;
   my.direction = "up";
   my.state = "alive";
+  sounds.spawn.play();
 }
 
 function intersectRect(r1, r2) {
@@ -305,6 +342,15 @@ function intersectRect(r1, r2) {
     r2.y > r1.y + r1.h ||
     r2.y + r2.h < r1.y
   );
+}
+
+function insetRect(r, amount) {
+  const o = {};
+  o.x = r.x + amount;
+  o.y = r.y + amount;
+  o.w = r.w - amount * 2;
+  o.h = r.h - amount * 2;
+  return o;
 }
 
 // function mod(a, b) {

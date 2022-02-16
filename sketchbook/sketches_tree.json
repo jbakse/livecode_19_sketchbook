@@ -707,6 +707,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "cave_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "deck_noise_01.js"
                     },
                     {
@@ -735,6 +739,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "media_recorder_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "prison_01.js"
                     },
                     {
@@ -759,11 +767,19 @@
                     },
                     {
                         "type": "file",
+                        "name": "spiral_03.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "star_map_01.js"
                     },
                     {
                         "type": "file",
                         "name": "star_map_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "symmetry_01.js"
                     },
                     {
                         "type": "file",
@@ -841,6 +857,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "hearts_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "p5_dom_style.css"
                     },
                     {
@@ -850,6 +870,10 @@
                     {
                         "type": "file",
                         "name": "salt_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sloppy_01.js"
                     },
                     {
                         "type": "file",
@@ -1194,6 +1218,32 @@
         "name": "intermediate",
         "type": "folder",
         "children": [
+            {
+                "name": "frogger",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "frogger_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "frogger_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "frogger_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "frogger_ab_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "road.psd"
+                    }
+                ]
+            },
             {
                 "name": "paper_garden",
                 "type": "folder",

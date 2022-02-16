@@ -11,7 +11,7 @@ const mouse_sprites = [];
 
 function setup() {
   createCanvas(1024, 512);
-  z;
+
   function createMemberSprite(name) {
     const s = new Sprite();
 

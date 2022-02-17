@@ -15,74 +15,84 @@
  * Local: copies data from shared{} and participants{} to local state, and draws scene.
  *
  * Accepted Issues
- * its possible (very unlikely) for two clients to join as player1 or player2 at
- * the same time due to race condition
+ * Its possible (very unlikely) for two clients to join as player1 or player2 at
+ * the same time if they tie trying to join.
  *
+ * tools used to create images and sounds
+ * https://www.photopea.com/
+ * https://www.lexaloffle.com/pico-8.php
+ *
+ * pixel font inspiration
+ * https://nfggames.com/games/fontmaker/
+ * http://arcade.photonstorm.com/
+ *
+ * game inspiration
+ * https://en.wikipedia.org/wiki/Frogger
  */
 
-// https://nfggames.com/games/fontmaker/
-// http://arcade.photonstorm.com/
-
-const BLOCK_SIZE = 32;
-const SPRITE_SIZE = 24;
+const BLOCK_SIZE = 32; // this is the size of the game grid
+const SPRITE_SIZE = 24; // the cars and frogs don't fill the grid
 
 const truck = { sprite: 4, collides: true, length: 4 * SPRITE_SIZE };
 const car = { sprite: 2, collides: true, length: 2 * SPRITE_SIZE };
 const small_gap = { sprite: false, collides: false, length: 4 * SPRITE_SIZE };
 const large_gap = { sprite: false, collides: false, length: 8 * SPRITE_SIZE };
 
+// lanes defines the traffic pattern
 const lanes = [
   {
-    pos: 0,
-    y: BLOCK_SIZE * 3,
-    speed: 1.5,
-    pattern: [truck, large_gap],
+    y: BLOCK_SIZE * 3, // top of the lane
+    speed: 1.5, // how fast the lane moves, pixels per frame
+    pattern: [truck, large_gap], // repeated pattern of cars and gaps
   },
   {
-    pos: 0,
     y: BLOCK_SIZE * 4,
     speed: 2,
     pattern: [car, small_gap, car, large_gap],
   },
   {
-    pos: 0,
     y: BLOCK_SIZE * 5,
     speed: 0.5,
     pattern: [truck, large_gap, car, large_gap],
   },
   {
-    pos: 0,
     y: BLOCK_SIZE * 6,
     speed: 2.5,
     pattern: [car, small_gap, car, small_gap, car, large_gap],
   },
   {
-    pos: 0,
     y: BLOCK_SIZE * 7,
     speed: 1,
     pattern: [car, large_gap, car, large_gap],
   },
   {
-    pos: 0,
     y: BLOCK_SIZE * 8,
     speed: 1.5,
     pattern: [car, large_gap, car, large_gap],
   },
 ];
 
+// the frogs array holds all the data needed to draw the frogs
+// it contains constant state: w, h, spawnX, spawnY, color
+// it also holds a copy of mutable state from the current p1 and p2 shared object
+// this mutable state is copied in each frame as it is more convienient to have
+// all the frog data in one object for collion detection and drawing
+
 const frogs = [
   {
-    x: -32,
-    y: 0,
+    x: -32, // left of grid block containing frog
+    y: 0, // top of block
+    direction: "up", // up | down | left | right: direction of last movement
     w: BLOCK_SIZE,
     h: BLOCK_SIZE,
-    spawnX: 2 * BLOCK_SIZE,
+    spawnX: 2 * BLOCK_SIZE, // where to spawn
     spawnY: 11 * BLOCK_SIZE,
-    color: "#6f6",
+    color: "#6f6", // color to tint sprite
   },
   {
     x: -32,
     y: 0,
+    direction: "up",
     w: BLOCK_SIZE,
     h: BLOCK_SIZE,
     spawnX: 9 * BLOCK_SIZE,
@@ -92,17 +102,22 @@ const frogs = [
 ];
 
 // assets
-const soundLib = {};
-const imageLib = {};
+const soundLib = {}; // all loaded sounds
+const imageLib = {}; // all loaded images
 
 // p5.party shared objects
 let shared;
+// written by host only
+// lanes[x].pos: current position of the lanes used to sync traffics
+
 let my;
 let participants;
+// role: "player1" | "player2" | "observer"
+// x, y, direction, state: frog state data
 
 // global state
 let gameState = "TITLE"; // TITLE, PLAYING
-
+let legendVisible = false;
 const cars = []; // can this be removed from global scope?
 
 function preload() {
@@ -114,13 +129,16 @@ function preload() {
   imageLib.frogs_g = loadImage(`${sketch_directory}/assets/frogs_g.png`);
   imageLib.frogs_s = loadImage(`${sketch_directory}/assets/frogs_s.png`);
 
+  imageLib.button_start_up = loadImage(`${sketch_directory}/assets/button_start_up.png`);
+  imageLib.button_start_down = loadImage(`${sketch_directory}/assets/button_start_down.png`);
+
   imageLib.badge_join = loadImage(`${sketch_directory}/assets/badge_join.png`);
   imageLib.badge_p1 = loadImage(`${sketch_directory}/assets/badge_p1.png`);
   imageLib.badge_p2 = loadImage(`${sketch_directory}/assets/badge_p2.png`);
   imageLib.badge_watching = loadImage(`${sketch_directory}/assets/badge_watching.png`);
 
-  imageLib.button_start_up = loadImage(`${sketch_directory}/assets/button_start_up.png`);
-  imageLib.button_start_down = loadImage(`${sketch_directory}/assets/button_start_down.png`);
+  imageLib.asdw = loadImage(`${sketch_directory}/assets/asdw.png`);
+  imageLib.ldru = loadImage(`${sketch_directory}/assets/ldru.png`);
 
   soundLib.spawn = loadSound(`${sketch_directory}/assets/frogger_sfx_spawn.wav`);
   soundLib.jump = loadSound(`${sketch_directory}/assets/frogger_sfx_jump.wav`);
@@ -137,6 +155,8 @@ function preload() {
 
 function setup() {
   createCanvas(BLOCK_SIZE * 12, BLOCK_SIZE * 13);
+
+  // init shared data
   if (partyIsHost()) {
     partySetShared(shared, {
       lanes: [{ pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }],
@@ -145,9 +165,28 @@ function setup() {
   partySetShared(my, {
     role: "observer",
   });
+
+  // set up messages
   partySubscribe("playSound", playSound);
+
+  // configure p5
   angleMode(DEGREES);
   outputVolume(0.3);
+  noSmooth();
+  noStroke();
+}
+
+function draw() {
+  if (partyIsHost()) stepHost();
+
+  if (gameState === "TITLE") {
+    drawTitleScreen();
+  }
+
+  if (gameState === "PLAYING") {
+    stepLocal();
+    drawGame();
+  }
 }
 
 function stepHost() {
@@ -165,13 +204,15 @@ function stepLocal() {
     localLane.pos = sharedLane.pos;
   });
 
-  // sync frog positions from shared to local
+  // find the current players, if they exist
   const p1 = participants.find((p) => p.role === "player1");
   const p2 = participants.find((p) => p.role === "player2");
 
-  frogs[0].x = -32; // hide frogs if they are not in the game
-  frogs[1].x = -32;
+  // hide frogs if they are not in the game
+  if (!p1) frogs[0].x = -32;
+  if (!p2) frogs[1].x = -32;
 
+  // sync frog positions from shared to local
   const syncFrog = (frog, player) => {
     frog.x = player.x;
     frog.y = player.y;
@@ -220,20 +261,8 @@ function stepLocal() {
   if (my.role === "player2") checkCollisions(frogs[1]);
 }
 
-function draw() {
-  if (gameState === "TITLE") drawTitleScreen();
-
-  if (partyIsHost()) stepHost();
-  if (gameState === "PLAYING") {
-    stepLocal();
-    drawGame();
-  }
-}
-
 function drawTitleScreen() {
-  noSmooth();
-  noStroke();
-  background("#333");
+  background("#153");
 
   // draw title
   const frogs_letters = [
@@ -281,6 +310,8 @@ function drawGame() {
   drawTraffic();
 
   drawBadge();
+
+  if (legendVisible) drawLegend();
 }
 
 function drawBadge() {
@@ -295,6 +326,20 @@ function drawBadge() {
   if (my.role === "player1") i = imageLib.badge_p1;
   if (my.role === "player2") i = imageLib.badge_p2;
   image(i, (width - i.width) * 0.5, height - i.height * 1.5);
+  pop();
+}
+
+function drawLegend() {
+  push();
+
+  if (my.role === "player1") translate(frogs[0].spawnX + 4, frogs[0].spawnY + 32);
+  if (my.role === "player2") translate(frogs[1].spawnX + 4, frogs[1].spawnY + 32);
+
+  if (frameCount % 120 < 60) {
+    image(imageLib.asdw, 0, 0);
+  } else {
+    image(imageLib.ldru, 0, 0);
+  }
   pop();
 }
 
@@ -377,6 +422,7 @@ function keyPressed() {
   // reject input if dead
   if (my.state === "dead") return;
 
+  // try to move if move keys are pressed
   if (keyCode === LEFT_ARROW || keyCode === 65) move(-BLOCK_SIZE, 0); // left
   if (keyCode === RIGHT_ARROW || keyCode === 68) move(BLOCK_SIZE, 0); // right
   if (keyCode === UP_ARROW || keyCode === 87) move(0, -BLOCK_SIZE); // up
@@ -391,6 +437,9 @@ function mouseReleased() {
 }
 
 function move(x, y) {
+  // hide legend when player moves
+  legendVisible = false;
+
   // constrain frog to play area
   const targetLocation = { x: my.x + x, y: my.y + y };
   const bounds = { x: 0, y: 0, w: width - 32, h: height - 32 };
@@ -438,6 +487,8 @@ function spawn(frog) {
   my.direction = "up";
   my.state = "alive";
   broadcastSound("spawn");
+
+  legendVisible = true;
 }
 
 function intersectRect(r1, r2) {

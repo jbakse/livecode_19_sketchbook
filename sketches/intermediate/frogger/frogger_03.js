@@ -3,10 +3,8 @@
 // require https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js
 
 /* global sketch_directory */
-
 /* global partyConnect partyLoadShared partyIsHost partySetShared partyLoadMyShared partyLoadParticipantShareds partySubscribe partyEmit*/
-
-/* global loadSound */
+/* global loadSound outputVolume */
 
 /* exported preload setup draw keyPressed mouseReleased*/
 
@@ -17,8 +15,8 @@
  * Local: copies data from shared{} and participants{} to local state, and draws scene.
  *
  * Accepted Issues
- * its possible assignPlayers will mark two clients as player1 or player2
- * due to race condition
+ * its possible (very unlikely) for two clients to join as player1 or player2 at
+ * the same time due to race condition
  *
  */
 
@@ -108,9 +106,7 @@ let gameState = "TITLE"; // TITLE, PLAYING
 const cars = []; // can this be removed from global scope?
 
 function preload() {
-  imageLib.sprites = loadImage(
-    `${sketch_directory}/assets/frogger_sprites.png`
-  );
+  imageLib.sprites = loadImage(`${sketch_directory}/assets/frogger_sprites.png`);
 
   imageLib.frogs_f = loadImage(`${sketch_directory}/assets/frogs_f.png`);
   imageLib.frogs_r = loadImage(`${sketch_directory}/assets/frogs_r.png`);
@@ -118,25 +114,20 @@ function preload() {
   imageLib.frogs_g = loadImage(`${sketch_directory}/assets/frogs_g.png`);
   imageLib.frogs_s = loadImage(`${sketch_directory}/assets/frogs_s.png`);
 
-  imageLib.button_start_up = loadImage(
-    `${sketch_directory}/assets/button_start_up.png`
-  );
-  imageLib.button_start_down = loadImage(
-    `${sketch_directory}/assets/button_start_down.png`
-  );
+  imageLib.badge_join = loadImage(`${sketch_directory}/assets/badge_join.png`);
+  imageLib.badge_p1 = loadImage(`${sketch_directory}/assets/badge_p1.png`);
+  imageLib.badge_p2 = loadImage(`${sketch_directory}/assets/badge_p2.png`);
+  imageLib.badge_watching = loadImage(`${sketch_directory}/assets/badge_watching.png`);
 
-  soundLib.spawn = loadSound(
-    `${sketch_directory}/assets/frogger_sfx_spawn.wav`
-  );
+  imageLib.button_start_up = loadImage(`${sketch_directory}/assets/button_start_up.png`);
+  imageLib.button_start_down = loadImage(`${sketch_directory}/assets/button_start_down.png`);
+
+  soundLib.spawn = loadSound(`${sketch_directory}/assets/frogger_sfx_spawn.wav`);
   soundLib.jump = loadSound(`${sketch_directory}/assets/frogger_sfx_jump.wav`);
   soundLib.hit = loadSound(`${sketch_directory}/assets/frogger_sfx_hit.wav`);
   soundLib.die = loadSound(`${sketch_directory}/assets/frogger_sfx_die.wav`);
-  soundLib.intro = loadSound(
-    `${sketch_directory}/assets/frogger_sfx_intro.wav`
-  );
-  soundLib.title = loadSound(
-    `${sketch_directory}/assets/frogger_sfx_title.wav`
-  );
+  soundLib.intro = loadSound(`${sketch_directory}/assets/frogger_sfx_intro.wav`);
+  soundLib.title = loadSound(`${sketch_directory}/assets/frogger_sfx_title.wav`);
 
   partyConnect("wss://deepstream-server-1.herokuapp.com", "frogger", "main");
   shared = partyLoadShared("shared");
@@ -145,17 +136,10 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(BLOCK_SIZE * 12, BLOCK_SIZE * 12);
+  createCanvas(BLOCK_SIZE * 12, BLOCK_SIZE * 13);
   if (partyIsHost()) {
     partySetShared(shared, {
-      lanes: [
-        { pos: 0 },
-        { pos: 0 },
-        { pos: 0 },
-        { pos: 0 },
-        { pos: 0 },
-        { pos: 0 },
-      ],
+      lanes: [{ pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }, { pos: 0 }],
     });
   }
   partySetShared(my, {
@@ -163,6 +147,7 @@ function setup() {
   });
   partySubscribe("playSound", playSound);
   angleMode(DEGREES);
+  outputVolume(0.3);
 }
 
 function stepHost() {
@@ -227,7 +212,7 @@ function stepLocal() {
       my.state = "dead";
       broadcastSound("hit");
       setTimeout(() => broadcastSound("die"), 300);
-      setTimeout(() => spawn(frog), 3000);
+      setTimeout(() => watchGame(), 3000);
     }
   };
 
@@ -240,7 +225,6 @@ function draw() {
 
   if (partyIsHost()) stepHost();
   if (gameState === "PLAYING") {
-    assignPlayers();
     stepLocal();
     drawGame();
   }
@@ -295,22 +279,29 @@ function drawGame() {
   });
 
   drawTraffic();
+
+  drawBadge();
+}
+
+function drawBadge() {
+  push();
+  let i = imageLib.badge_watching;
+  if (
+    !participants.find((p) => p.role === "player1") ||
+    !participants.find((p) => p.role === "player2")
+  ) {
+    i = imageLib.badge_join;
+  }
+  if (my.role === "player1") i = imageLib.badge_p1;
+  if (my.role === "player2") i = imageLib.badge_p2;
+  image(i, (width - i.width) * 0.5, height - i.height * 1.5);
+  pop();
 }
 
 function drawTraffic() {
   push();
   cars.forEach((r) => {
-    image(
-      imageLib.sprites,
-      r.x,
-      r.y + 4,
-      r.w,
-      r.h - 8,
-      r.sprite * 8,
-      0,
-      r.w / 3,
-      8
-    );
+    image(imageLib.sprites, r.x, r.y + 4, r.w, r.h - 8, r.sprite * 8, 0, r.w / 3, 8);
   });
   pop();
 }
@@ -368,13 +359,20 @@ function drawBackground() {
   // grass
   fill("#030");
   noStroke();
-  rect(0, BLOCK_SIZE * 10, width, BLOCK_SIZE * 2);
+  rect(0, BLOCK_SIZE * 10, width, BLOCK_SIZE * 3);
+
+  // fill("black");
+  // rect(0, BLOCK_SIZE * 12, width, BLOCK_SIZE * 1);
+
   pop();
 }
 
 function keyPressed() {
-  // reject input if not a player
-  if (my.role !== "player1" && my.role !== "player2") return;
+  // try to join if not a player
+  if (my.role !== "player1" && my.role !== "player2") {
+    joinGame();
+    return;
+  }
 
   // reject input if dead
   if (my.state === "dead") return;
@@ -387,36 +385,51 @@ function keyPressed() {
 
 function mouseReleased() {
   if (gameState === "TITLE") {
-    // soundLib.intro.play();
+    soundLib.intro.play();
     gameState = "PLAYING";
   }
 }
 
 function move(x, y) {
+  // constrain frog to play area
+  const targetLocation = { x: my.x + x, y: my.y + y };
+  const bounds = { x: 0, y: 0, w: width - 32, h: height - 32 };
+  if (!pointInRect(targetLocation, bounds)) {
+    soundLib.hit.play();
+    return;
+  }
+
+  // move frog
   my.x += x;
   my.y += y;
+
+  // face frog in direction of movement
   if (x < 0) my.direction = "left";
   if (x > 0) my.direction = "right";
   if (y < 0) my.direction = "up";
   if (y > 0) my.direction = "down";
+
   broadcastSound("jump");
 }
 
-function assignPlayers() {
+function joinGame() {
+  // don't let current players double join
+  if (my.role === "player1" || my.role === "player2") return;
+
   if (!participants.find((p) => p.role === "player1")) {
-    const o = participants.find((p) => p.role === "observer");
-    if (o === my) {
-      spawn(frogs[0]);
-      my.role = "player1";
-    }
+    spawn(frogs[0]);
+    my.role = "player1";
+    return;
   }
   if (!participants.find((p) => p.role === "player2")) {
-    const o = participants.find((p) => p.role === "observer");
-    if (o === my) {
-      spawn(frogs[1]);
-      my.role = "player2";
-    }
+    spawn(frogs[1]);
+    my.role = "player2";
+    return;
   }
+}
+
+function watchGame() {
+  my.role = "observer";
 }
 
 function spawn(frog) {
@@ -429,7 +442,7 @@ function spawn(frog) {
 
 function intersectRect(r1, r2) {
   return !(
-    r2.x > r1.x + r1.w ||
+    r2.x > r1.x + r1.w || // format wrapped
     r2.x + r2.w < r1.x ||
     r2.y > r1.y + r1.h ||
     r2.y + r2.h < r1.y
@@ -456,3 +469,12 @@ function playSound(name) {
 // function mod(a, b) {
 //   return ((a % b) + b) % b;
 // }
+
+function pointInRect(p, r) {
+  return (
+    p.x >= r.x && // format wrapped
+    p.x <= r.x + r.w &&
+    p.y >= r.y &&
+    p.y <= r.y + r.h
+  );
+}

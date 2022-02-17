@@ -132,7 +132,7 @@ module.exports = {
     "no-useless-concat": "error", //	Disallow unnecessary concatenation of literals or template literals
     "no-useless-constructor": "error", //	Disallow unnecessary constructors
     "no-useless-rename": "error", //	Disallow renaming import, export, and destructured assignments to the same name
-    "no-useless-return": "error", //	Disallow redundant return statements
+    // "no-useless-return": "error", //	Disallow redundant return statements
     "no-var": "error", //	Require `let` or `const` instead of `var`
     "no-void": "error", //	Disallow `void` operators
     // "no-warning-comments": "error", //	Disallow specified warning terms in comments

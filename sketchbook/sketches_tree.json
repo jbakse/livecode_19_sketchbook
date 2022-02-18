@@ -493,6 +493,14 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "challenge_globals_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "challenge_tweakpane_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "spiral_01.js"
                     }
                 ]
@@ -877,6 +885,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "tokens_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "tweakpane_01.js"
                     },
                     {
@@ -1223,6 +1235,92 @@
                 "type": "folder",
                 "children": [
                     {
+                        "name": "assets",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "asdw.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "badge_join.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "badge_p1.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "badge_p2.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "badge_watching.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "button_start_down.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "button_start_up.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_die.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_hit.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_intro.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_jump.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_spawn.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sfx_title.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogger_sprites.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs_f.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs_g.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs_o.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs_r.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs_s.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "ldru.png"
+                            }
+                        ]
+                    },
+                    {
                         "type": "file",
                         "name": "frogger_01.js"
                     },
@@ -1239,8 +1337,18 @@
                         "name": "frogger_ab_01.js"
                     },
                     {
-                        "type": "file",
-                        "name": "road.psd"
+                        "name": "production",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "frogger_sprites.psd"
+                            },
+                            {
+                                "type": "file",
+                                "name": "frogs.psd"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1493,6 +1601,11 @@
                         ]
                     }
                 ]
+            },
+            {
+                "name": "untitled folder",
+                "type": "folder",
+                "children": []
             }
         ]
     },

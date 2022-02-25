@@ -268,6 +268,20 @@
                 ]
             },
             {
+                "name": "signals",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "signals.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "signals_01.js"
+                    }
+                ]
+            },
+            {
                 "name": "termites",
                 "type": "folder",
                 "children": [
@@ -506,6 +520,11 @@
                 ]
             },
             {
+                "name": "05_strategies",
+                "type": "folder",
+                "children": []
+            },
+            {
                 "name": "06_pixels",
                 "type": "folder",
                 "children": [
@@ -519,7 +538,27 @@
                     },
                     {
                         "type": "file",
+                        "name": "pixels_gradient_solution_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "pixels_worksheet_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "random_access_solution_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "random_pixels_solution_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "scratch_math_solution_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "scratch_sin_solution_01.js"
                     }
                 ]
             },
@@ -1218,11 +1257,6 @@
         ]
     },
     {
-        "name": "hello_world",
-        "type": "folder",
-        "children": []
-    },
-    {
         "type": "file",
         "name": "index.md"
     },
@@ -1601,11 +1635,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "name": "untitled folder",
-                "type": "folder",
-                "children": []
             }
         ]
     },

@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eee;
+  /* height: 100%; */
+}
+#canvas-wrap {
+  position: relative;
+  background: white;
+  margin: 32px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  /* outline: 1px solid red; */
+}
+canvas {
+  display: block;
+
+  /* border: 1px solid red; */
+  /* border-radius: 8px; */
+}
+
+#canvas-shadow {
+  position: absolute;
+  inset: 0;
+  /* border: 10px solid red; */
+  border: 1px solid #999;
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 50, 0.4);
+}
+
+.expression-editor {
+  width: 1024px;
+  font-size: 22px;
+  line-height: 48px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+.expression-editor + .expression-editor {
+  margin-top: 1em;
+}
+
+.expression-editor > * + * {
+  margin-left: 0.5em;
+  /* outline: 1px solid red; */
+}
+
+.expression-editor label {
+}
+
+.validated-field {
+  flex: 1;
+  position: relative;
+}
+.expression-editor [type="text"] {
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+  padding-left: 0.5em;
+  border: 1px solid #999;
+  border-radius: 6px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 50, 0.3);
+}
+
+.expression-editor [type="text"]:focus {
+  /* outline: 1px solid #0ff; */
+  outline: none;
+  border: 2px solid black;
+}
+
+.validated-field .error {
+  position: absolute;
+  font-size: 12px;
+  color: red;
+  line-height: 22px;
+  left: 1em;
+}
+
+.expression-editor [type="checkbox"] {
+  display: none;
+}
+
+.toggle {
+  width: 48px;
+  background: #aaa;
+  color: #ccc;
+  border-radius: 6px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+:checked + .toggle {
+  background: #7a7;
+  color: #fff;
+}

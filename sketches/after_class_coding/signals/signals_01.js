@@ -47,7 +47,7 @@ function setup() {
   const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
 
   if (partyIsHost()) {
-    shared.mode = "unsynced";
+    shared.mode = "synced";
   }
 
   for (editor of editors) {
@@ -168,6 +168,16 @@ function draw() {
   //console.log("draw");
   background("white");
 
+  const inputSelectEl = select("#input-select");
+  const input = inputSelectEl.value();
+  let inputValue;
+  if (input === "frameCount") inputValue = frameCount;
+  if (input === "frameCount60") inputValue = frameCount / 60;
+  if (input === "millis") inputValue = millis();
+  if (input === "millis1000") inputValue = millis() / 1000;
+  if (input === "mouseX") inputValue = mouseX;
+  if (input === "mouseXZoom") inputValue = (mouseX - 512) / zoom;
+
   push();
 
   // configure zoomed drawing
@@ -178,7 +188,7 @@ function draw() {
 
   // draw grid
   strokeWeight(1 / zoom);
-  grid();
+  grid(inputValue);
 
   // plot them
   scale(1, -1);
@@ -198,41 +208,75 @@ function draw() {
   // push();
   // pop();
 
-  drawVis();
+  drawVis(inputValue);
 }
 
-function drawVis() {
+function drawVis(inputValue = 0) {
   const inputSelectEl = select("#input-select");
-  const outputSelectEl = select("#output-select");
   const input = inputSelectEl.value();
+  const outputSelectEl = select("#output-select");
   const output = outputSelectEl.value();
   if (input === "none" || output === "none") return;
 
   console.log(input, output);
   push();
-  const y1 = 
-  if (output === "color") {
-    stroke("black");
-    strokeWeight(10);
-    console.log(editors.find((e) => e.id === "Z"));
-    fill(editors.find((e) => e.id === "Z").color);
-    ellipse(100, 100, 100, 100);
-    fill(editors.find((e) => e.id === "A").color);
-    ellipse(100, 250, 100, 100);
-    fill(editors.find((e) => e.id === "B").color);
-    ellipse(100, 400, 100, 100);
+
+  stroke("black");
+  strokeWeight(10);
+
+  function drawOne(id, x) {
+    const editor = editors.find((e) => e.id === id);
+    if (editor.plotEl.checked()) {
+      const out = yForX(editor.expressionEl.value(), inputValue);
+      if (typeof out !== "number") return;
+      const c1 = color("black");
+      const c2 = color(editor.color);
+      const c = output === "color" ? lerpColor(c1, c2, out) : c2;
+      const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
+      const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
+
+      fill(c);
+      ellipse(x, y, w, 100);
+    }
   }
 
-  if (output === "y") {
-  }
+  drawOne("Z", 100);
+  drawOne("A", 250);
+  drawOne("B", 400);
+  // {
+  //   const editor = editors.find((e) => e.id === "A");
+  //   if (editor.plotEl.checked()) {
+  //     const out = yForX(editor.expressionEl.value(), inputValue);
+  //     const c1 = color("black");
+  //     const c2 = color(editor.color);
+  //     const c = output === "color" ? lerpColor(c1, c2, out) : c2;
+  //     const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
+  //     const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
 
-  if (output === "width") {
-  }
+  //     fill(c);
+  //     ellipse(250, y, w, 100);
+  //   }
+  // }
+
+  // {
+  //   const editor = editors.find((e) => e.id === "B");
+  //   if (editor.plotEl.checked()) {
+  //     const out = yForX(editor.expressionEl.value(), inputValue);
+  //     const c1 = color("black");
+  //     const c2 = color(editor.color);
+  //     const c = output === "color" ? lerpColor(c1, c2, out) : c2;
+  //     const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
+  //     const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
+
+  //     fill(c);
+  //     ellipse(400, y, w, 100);
+  //   }
+  // }
 
   pop();
 }
 
-function grid() {
+function grid(playbackHead = 0) {
   push();
 
   // grid lines
@@ -250,6 +294,7 @@ function grid() {
   stroke("#000");
   line(-1000, 0, 1000, 0);
   line(0, -1000, 0, 1000);
+  line(playbackHead, -1000, playbackHead, 1000);
 
   if (zoom > 16) {
     const scale = 1 / zoom;
@@ -272,6 +317,15 @@ function grid() {
     text("2π", TWO_PI, (labelY + 2) * scale);
   }
   pop();
+}
+
+function yForX(e = "x", x) {
+  try {
+    f = Function(`x`, `return (${e})`);
+    return f(x);
+  } catch (e) {
+    return undefined;
+  }
 }
 
 function plot(e = "x") {

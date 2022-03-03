@@ -1,7 +1,4 @@
 {
-    "liveServer.settings.port": 5501,
-    "cSpell.words": [
-        "deepstream",
-        "herokuapp"
-    ]
+  "liveServer.settings.port": 5502,
+  "cSpell.words": ["deepstream", "herokuapp"]
 }

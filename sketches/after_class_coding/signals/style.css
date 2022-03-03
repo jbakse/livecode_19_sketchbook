@@ -12,12 +12,21 @@ body {
   background-color: #eee;
   /* height: 100%; */
 }
+
+#status {
+  margin-top: 2rem;
+  width: 1024px;
+  font-size: 12px;
+  padding-bottom: 4px;
+  height: 20px;
+}
+
 #canvas-wrap {
   position: relative;
   background: white;
-  margin: 32px auto;
   border-radius: 8px;
   overflow: hidden;
+
   /* outline: 1px solid red; */
 }
 canvas {
@@ -34,6 +43,18 @@ canvas {
   border: 1px solid #999;
   border-radius: 8px;
   box-shadow: inset 0 0 10px rgba(0, 0, 50, 0.4);
+  user-select: none;
+  pointer-events: none;
+}
+
+#controls {
+  /* border: 1px solid red; */
+  width: 1024px;
+  padding-top: 15px;
+}
+
+#controls > * {
+  margin-right: 10px;
 }
 
 .expression-editor {
@@ -41,11 +62,21 @@ canvas {
   font-size: 22px;
   line-height: 48px;
 
+  margin-top: 1em;
+
   display: flex;
   flex-wrap: wrap;
 }
+
+.secret {
+  display: none;
+}
+
+.reveal-all .secret {
+  display: flex;
+}
+
 .expression-editor + .expression-editor {
-  margin-top: 1em;
 }
 
 .expression-editor > * + * {
@@ -76,6 +107,12 @@ canvas {
   border: 2px solid black;
 }
 
+.expression-editor [type="text"]:disabled {
+  /* outline: 1px solid #0ff; */
+  box-shadow: none;
+  color: black;
+}
+
 .validated-field .error {
   position: absolute;
   font-size: 12px;
@@ -101,4 +138,17 @@ canvas {
 :checked + .toggle {
   background: #7a7;
   color: #fff;
+}
+
+#plot-A:checked + .toggle {
+  background-color: #07d;
+}
+#plot-B:checked + .toggle {
+  background-color: #7d7;
+}
+#plot-C:checked + .toggle {
+  background-color: #d0d;
+}
+#plot-D:checked + .toggle {
+  background-color: #d70;
 }

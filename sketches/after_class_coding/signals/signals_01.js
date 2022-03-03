@@ -3,52 +3,230 @@
 /* exported setup draw */
 
 let zoom = 1024 / 16;
+let drawZoom = zoom;
 
-const editors = { A: {}, B: {}, C: {}, D: {} };
+const editors = [
+  {
+    id: "Z",
+    color: "#AAA",
+    storage: "shared",
+  },
+  {
+    id: "A",
+    color: "#07D",
+    storage: "shared",
+  },
+  {
+    id: "B",
+    color: "#7D7",
+    storage: "my",
+  },
+  {
+    id: "C",
+    color: "#D0D",
+  },
+  {
+    id: "D",
+    color: "#D70",
+  },
+];
+
+let shared;
+// shared.mode, "presenting" | "synced" | "unsynced"
+// shared.presenter, id | undefined
+
+id = Math.random();
+
+function preload() {
+  partyConnect("wss://deepstream-server-1.herokuapp.com", "signals", "main");
+  shared = partyLoadShared("shared");
+}
 
 function setup() {
   pixelDensity(2);
-  createCanvas(1024, 512).parent("canvas-wrap");
+  const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
 
-  for (key in editors) {
-    const o = editors[key];
-    o.editorEl = select(`#editor-${key}`);
-    o.expressionEl = select(`#expression-${key}`);
-    o.editorEl.input(draw);
-    o.plotEl = select(`#plot-${key}`);
-    o.errorEl = select(`.error`, o.editorEl);
+  if (partyIsHost()) {
+    shared.mode = "unsynced";
   }
 
-  noLoop();
+  for (editor of editors) {
+    editor.editorEl = select(`#editor-${editor.id}`);
+    editor.expressionEl = select(`#expression-${editor.id}`);
+    editor.expressionEl.input(onExpressionInput.bind(editor));
+    editor.plotEl = select(`#plot-${editor.id}`);
+    editor.plotEl.input(draw);
+    editor.errorEl = select(`.error`, editor.editorEl);
+
+    if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
+    partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
+  }
+
+  partyWatchShared(shared, "mode", onModeChanged);
+  onModeChanged();
+  // partyWatchShared(shared, draw);
+
+  canvas.addEventListener("wheel", onMouseWheel, {
+    passive: false,
+  });
+
+  //noLoop();
 }
 
-function mouseWheel(event) {
-  //zoom *= Math.pow(2, event.delta / 200);
+function onModeChanged() {
+  const inputsDisabled =
+    shared.mode === "presenting" && shared.presenter !== id;
 
-  zoom *= event.delta > 0 ? 2 : 0.5;
+  for (editor of editors) {
+    editor.expressionEl.elt.disabled = inputsDisabled;
+    // editor.plotEl.elt.disabled = inputsDisabled;
+  }
 
+  if (shared.mode === "presenting" && shared.presenter === id) {
+    select("#status").html("presenting");
+  }
+  if (shared.mode === "presenting" && shared.presenter !== id) {
+    select("#status").html("watching");
+  }
+  if (shared.mode === "synced") {
+    select("#status").html("synced");
+  }
+  if (shared.mode === "unsynced") {
+    select("#status").html("");
+  }
+
+  draw();
+}
+function onExpressionChanged(newValue) {
+  console.log("expression changed", newValue);
+  this.expressionEl.value(newValue);
+  draw();
+}
+
+function onExpressionInput() {
+  console.log("onExpressionInput");
+  if (shared.mode === "presenting" || shared.mode === "synced") {
+    shared[this.id] = this.expressionEl.value();
+  }
+  draw();
+}
+
+function onMouseWheel(event) {
+  changeZoom(event.deltaY);
+  event.preventDefault();
+}
+
+function keyPressed(e) {
+  const modifier = e.ctrlKey || e.metaKey;
+  if (!modifier) return;
+
+  // presenter hotkey "p"
+  if (key === "p") {
+    if (shared.mode === "presenting") {
+      shared.presenter = undefined;
+      shared.mode = "synced";
+    } else if (shared.mode === "synced") {
+      shared.presenter = undefined;
+      shared.mode = "unsynced";
+    } else if (shared.mode === "unsynced") {
+      shared.presenter = id;
+      shared.mode = "presenting";
+    }
+    e.preventDefault();
+    return false;
+  }
+
+  // show secrets "s"
+  if (key === "s") {
+    select("#editors").toggleClass("reveal-all");
+    e.preventDefault();
+    return false;
+  }
+
+  // zoom in "+"
+  if (modifier && key === "=") {
+    changeZoom(1);
+    e.preventDefault();
+    return false;
+  }
+
+  // zoom out "-"
+  if (modifier && key === "-") {
+    changeZoom(-1);
+    e.preventDefault();
+    return false;
+  }
+}
+
+function changeZoom(v) {
+  zoom *= v > 0 ? 2 : 0.5;
   zoom = constrain(zoom, 1, 256);
-  //   zoom += event.delta * 0.01;
   draw();
 }
 
 function draw() {
+  //console.log("draw");
   background("white");
 
   push();
-  translate(width * 0.5, height * 0.5);
 
-  // this .01 shouldn't be needed, but the text wasn't
+  // configure zoomed drawing
+  // the + 0.01 shouldn't be needed, but the text wasn't
   // showing up when the zoom was exactly 64
+  translate(width * 0.5, height * 0.5);
   scale(zoom + 0.01);
+
+  // draw grid
   strokeWeight(1 / zoom);
   grid();
+
+  // plot them
   scale(1, -1);
 
-  for (key in editors) {
-    const editor = editors[key];
-    const error = plot(editor.expressionEl.value());
-    editor.errorEl.html(error ? error.message : "");
+  for (editor of editors) {
+    if (editor.plotEl.checked()) {
+      stroke(editor.color);
+      strokeWeight(3 / zoom);
+      const error = plot(editor.expressionEl.value());
+      editor.errorEl.html(error ? error.message : "");
+    }
+  }
+
+  pop();
+
+  // draw non-zoomed ui
+  // push();
+  // pop();
+
+  drawVis();
+}
+
+function drawVis() {
+  const inputSelectEl = select("#input-select");
+  const outputSelectEl = select("#output-select");
+  const input = inputSelectEl.value();
+  const output = outputSelectEl.value();
+  if (input === "none" || output === "none") return;
+
+  console.log(input, output);
+  push();
+  const y1 = 
+  if (output === "color") {
+    stroke("black");
+    strokeWeight(10);
+    console.log(editors.find((e) => e.id === "Z"));
+    fill(editors.find((e) => e.id === "Z").color);
+    ellipse(100, 100, 100, 100);
+    fill(editors.find((e) => e.id === "A").color);
+    ellipse(100, 250, 100, 100);
+    fill(editors.find((e) => e.id === "B").color);
+    ellipse(100, 400, 100, 100);
+  }
+
+  if (output === "y") {
+  }
+
+  if (output === "width") {
   }
 
   pop();
@@ -110,7 +288,7 @@ function plot(e = "x") {
 
   push();
   noFill();
-  strokeWeight(2 / zoom);
+
   beginShape();
 
   try {

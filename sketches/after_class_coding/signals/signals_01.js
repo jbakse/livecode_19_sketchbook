@@ -44,10 +44,11 @@ function preload() {
 
 function setup() {
   pixelDensity(2);
+  partyToggleInfo(false);
   const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
 
   if (partyIsHost()) {
-    shared.mode = "synced";
+    shared.mode = "unsynced";
   }
 
   for (editor of editors) {
@@ -166,7 +167,6 @@ function changeZoom(v) {
 
 function draw() {
   //console.log("draw");
-  background("white");
 
   const inputSelectEl = select("#input-select");
   const input = inputSelectEl.value();
@@ -178,17 +178,30 @@ function draw() {
   if (input === "mouseX") inputValue = mouseX;
   if (input === "mouseXZoom") inputValue = (mouseX - 512) / zoom;
 
+  // smooth zoom changes
+  // drawZoom = lerp(drawZoom, zoom, 0.25);
+  // if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
+
+  drawZoom = zoom;
+
+  background("white");
+
+  drawGraph(inputValue);
+  drawAllVis(inputValue);
+}
+
+function drawGraph(inputValue = 0) {
   push();
 
   // configure zoomed drawing
   // the + 0.01 shouldn't be needed, but the text wasn't
   // showing up when the zoom was exactly 64
   translate(width * 0.5, height * 0.5);
-  scale(zoom + 0.01);
+  scale(drawZoom + 0.01);
 
   // draw grid
-  strokeWeight(1 / zoom);
-  grid(inputValue);
+  strokeWeight(1 / drawZoom);
+  drawGrid(inputValue);
 
   // plot them
   scale(1, -1);
@@ -196,22 +209,16 @@ function draw() {
   for (editor of editors) {
     if (editor.plotEl.checked()) {
       stroke(editor.color);
-      strokeWeight(3 / zoom);
+      strokeWeight(3 / drawZoom);
       const error = plot(editor.expressionEl.value());
       editor.errorEl.html(error ? error.message : "");
     }
   }
 
   pop();
-
-  // draw non-zoomed ui
-  // push();
-  // pop();
-
-  drawVis(inputValue);
 }
 
-function drawVis(inputValue = 0) {
+function drawAllVis(inputValue = 0) {
   const inputSelectEl = select("#input-select");
   const input = inputSelectEl.value();
   const outputSelectEl = select("#output-select");
@@ -224,7 +231,7 @@ function drawVis(inputValue = 0) {
   stroke("black");
   strokeWeight(10);
 
-  function drawOne(id, x) {
+  function drawOneVis(id, x) {
     const editor = editors.find((e) => e.id === id);
     if (editor.plotEl.checked()) {
       const out = yForX(editor.expressionEl.value(), inputValue);
@@ -240,47 +247,18 @@ function drawVis(inputValue = 0) {
     }
   }
 
-  drawOne("Z", 100);
-  drawOne("A", 250);
-  drawOne("B", 400);
-  // {
-  //   const editor = editors.find((e) => e.id === "A");
-  //   if (editor.plotEl.checked()) {
-  //     const out = yForX(editor.expressionEl.value(), inputValue);
-  //     const c1 = color("black");
-  //     const c2 = color(editor.color);
-  //     const c = output === "color" ? lerpColor(c1, c2, out) : c2;
-  //     const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
-  //     const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
-
-  //     fill(c);
-  //     ellipse(250, y, w, 100);
-  //   }
-  // }
-
-  // {
-  //   const editor = editors.find((e) => e.id === "B");
-  //   if (editor.plotEl.checked()) {
-  //     const out = yForX(editor.expressionEl.value(), inputValue);
-  //     const c1 = color("black");
-  //     const c2 = color(editor.color);
-  //     const c = output === "color" ? lerpColor(c1, c2, out) : c2;
-  //     const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
-  //     const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
-
-  //     fill(c);
-  //     ellipse(400, y, w, 100);
-  //   }
-  // }
+  drawOneVis("Z", 100);
+  drawOneVis("A", 250);
+  drawOneVis("B", 400);
 
   pop();
 }
 
-function grid(playbackHead = 0) {
+function drawGrid(playbackHead = 0) {
   push();
 
   // grid lines
-  if (zoom > 4) {
+  if (drawZoom > 4) {
     noFill();
     stroke("#ccc");
     range(-100, 101).forEach((n) => {
@@ -296,8 +274,8 @@ function grid(playbackHead = 0) {
   line(0, -1000, 0, 1000);
   line(playbackHead, -1000, playbackHead, 1000);
 
-  if (zoom > 16) {
-    const scale = 1 / zoom;
+  if (drawZoom > 16) {
+    const scale = 1 / drawZoom;
     // milestones
     noFill();
     stroke("black");
@@ -329,6 +307,7 @@ function yForX(e = "x", x) {
 }
 
 function plot(e = "x") {
+  // "compile" the expression
   let f;
   try {
     f = Function(`x`, `return (${e})`);
@@ -340,13 +319,13 @@ function plot(e = "x") {
 
   let error = false;
 
+  // plot the expression
   push();
   noFill();
-
   beginShape();
 
   try {
-    range(-512 / zoom, 512.1 / zoom, 1 / zoom).forEach((x) => {
+    range(-512 / drawZoom, 512.1 / drawZoom, 1 / drawZoom).forEach((x) => {
       vertex(x, f(x));
     });
   } catch (e) {

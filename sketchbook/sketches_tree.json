@@ -273,11 +273,31 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "example_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "example_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    },
+                    {
+                        "type": "file",
                         "name": "signals.html"
                     },
                     {
                         "type": "file",
                         "name": "signals_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "todo.md"
                     }
                 ]
             },
@@ -2153,6 +2173,10 @@
             {
                 "type": "file",
                 "name": "mouseMoved.js"
+            },
+            {
+                "type": "file",
+                "name": "randomSpeed.js"
             }
         ]
     },

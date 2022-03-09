@@ -11,40 +11,45 @@ Make an endless landscape. Make a procedural animation.
 # Some perodic (and pseudo-periodic) functions.
 
 Sine Waves
-: `sin(x)`
-: `cos(x)`
+
+- `sin(x)`
+- `cos(x)`
 
 Sawtooth Waves
-: `fract(x)`
-: `x % 4` for positive numbers
+
+- `fract(x)`
+- `x % 4` for positive numbers
 
 Noise
-: `noise(x)`
+
+- `noise(x)`
 
 Triangle
-: `abs(fract(x - 0.5) - 0.5) * 2`
+
+- `abs(fract(x - 0.5) - 0.5) * 2`
 
 Square / Pulse
-: `fract(x) < .5`
+
+- `fract(x) < .5`
 
 ![waveshapes](https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Waveforms.svg/800px-Waveforms.svg.png)
 
 # Period, Frequency, Amplitude, Phase Shift, Vertical Shift
 
-Period
-: The width of the repeating wave. `1 / freqency`
+**Period**
+The width of the repeating wave. `1 / freqency`
 
-Frequency
-: The number of times the wave repeats per unit. `1 / period`
+**Frequency**
+The number of times the wave repeats per unit. `1 / period`
 
-Amplitude
-: The height of the wave (from center)
+**Amplitude**
+The height of the wave (from center)
 
-Phase Shift
-: The distance the wave is offset horizontally.
+**Phase Shift**
+The distance the wave is offset horizontally.
 
-Vertical Shift
-: The distance the wave is offset vertically.
+**Vertical Shift**
+The distance the wave is offset vertically.
 
 ![wave terms](https://www.mathsisfun.com/algebra/images/a-sin-bxcd.svg)
 [Math is Fun](https://www.mathsisfun.com/algebra/amplitude-period-frequency-phase-shift.html)
@@ -114,9 +119,7 @@ smoothStep = (e0, e1, x) -> {
   const t = clamp((x - e0) / (e1 - e0), 0, 1);
   return t * t * (3 - 2 * t);
 };
-```
 
-```javascript
 (c = sin(x)), sqrt(c * c + 0.01); // smooth hills
 ```
 

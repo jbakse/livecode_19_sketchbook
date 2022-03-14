@@ -1038,6 +1038,22 @@
                     },
                     {
                         "type": "file",
+                        "name": "cord_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cord_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "noised_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "noodles_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "recursion.js"
                     }
                 ]
@@ -1219,6 +1235,16 @@
                     {
                         "type": "file",
                         "name": "style.css"
+                    }
+                ]
+            },
+            {
+                "name": "this",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "this_01.js"
                     }
                 ]
             },
@@ -2177,6 +2203,10 @@
             {
                 "type": "file",
                 "name": "mouseMoved.js"
+            },
+            {
+                "type": "file",
+                "name": "p5objects.js"
             },
             {
                 "type": "file",

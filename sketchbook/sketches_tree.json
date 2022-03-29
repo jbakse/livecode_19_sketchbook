@@ -614,11 +614,19 @@
                     },
                     {
                         "type": "file",
+                        "name": "bounce_solution.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "fuzzy_01.js"
                     },
                     {
                         "type": "file",
                         "name": "fuzzy_bias.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "fuzzy_solution.js"
                     }
                 ]
             }
@@ -1303,6 +1311,10 @@
             {
                 "type": "file",
                 "name": "ankong_nuts_live.js"
+            },
+            {
+                "type": "file",
+                "name": "malin_space_01.js"
             }
         ]
     },

@@ -760,6 +760,14 @@
                     {
                         "type": "file",
                         "name": "flip_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "suspects_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "suspects_02.js"
                     }
                 ]
             },

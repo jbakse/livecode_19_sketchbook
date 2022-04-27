@@ -540,11 +540,6 @@
                 ]
             },
             {
-                "name": "05_strategies",
-                "type": "folder",
-                "children": []
-            },
-            {
                 "name": "06_pixels",
                 "type": "folder",
                 "children": [
@@ -1076,6 +1071,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "donkey_particle_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "recursion_01.js"
                     },
                     {
@@ -1099,6 +1098,10 @@
                     {
                         "type": "file",
                         "name": "dnd_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "rita_01.js"
                     }
                 ]
             },

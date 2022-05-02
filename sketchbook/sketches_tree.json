@@ -624,6 +624,28 @@
                         "name": "fuzzy_solution.js"
                     }
                 ]
+            },
+            {
+                "name": "14_microgames",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "animation_solution.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "guy.png"
+                    },
+                    {
+                        "type": "file",
+                        "name": "interaction_solution.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "king.png"
+                    }
+                ]
             }
         ]
     },

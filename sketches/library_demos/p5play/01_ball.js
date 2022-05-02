@@ -1,5 +1,5 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
-// require ../sketches/play/p5.play.js
+// require ../sketches/library_demos/p5play/p5.play.js
 
 let ball;
 let walls;

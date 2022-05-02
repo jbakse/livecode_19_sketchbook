@@ -91,6 +91,29 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
   return markup;
 };
 
+window.initSearch = (input, ls) => {
+  console.log(input, ls);
+  input.focus();
+  input.onkeyup = () => updateSearch(input, ls);
+};
+
+function updateSearch(input, ls) {
+  console.log("update search", input.value);
+  const start = performance.now();
+  const lis = ls.querySelectorAll("li.file");
+  console.log(`searching ${lis.length} files`);
+  for (const li of lis) {
+    li.classList.remove("hidden");
+  }
+  for (const li of lis) {
+    if (!li.innerText.toLowerCase().includes(input.value.toLowerCase())) {
+      li.classList.add("hidden");
+    }
+  }
+  const end = performance.now();
+  console.log(`search took ${end - start} ms`);
+}
+
 main();
 
 // ls += `<ul>`;

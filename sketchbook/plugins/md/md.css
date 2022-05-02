@@ -58,7 +58,7 @@ table,
 pre {
   margin: 15px 0;
   font-size: 30px;
-  max-width: 30em;
+
 }
 
 img {
@@ -119,8 +119,40 @@ blockquote {
 .ls {
   font-size: 14px;
   line-height: 1.5;
+   width: 100%;
+
+  
+}
+
+/* classic */
+/* .ls {
   columns: 250px;
 }
+
+.ls li li {
+  break-inside: avoid;
+} */
+
+/* just a column */
+/* nothing! */
+
+/* column of flex */
+/* .ls > ul > li.folder > ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ls>ul>li.folder>ul .folder {
+  width: 250px;
+  margin: 0;
+  padding: 0;
+}  */
+
+/* column of columns */
+.ls>ul>li.folder>ul {
+  columns: 250px;
+}
+
 
 .ls ul,
 .ls li {
@@ -143,25 +175,58 @@ blockquote {
 
 .ls h3 {
   background: #888;
-  color: white;
+  color: black;
 }
+
+.ls .folder .folder:nth-child(7n-1) h3 {
+  background: #faa;
+}
+.ls .folder .folder:nth-child(7n+0) h3 {
+  background: #fca;
+}
+.ls .folder .folder:nth-child(7n+1) h3 {
+  background: #ffa;
+}
+.ls .folder .folder:nth-child(7n+2) h3 {
+  background: #afa;
+}
+.ls .folder .folder:nth-child(7n+3) h3 {
+  background: #aaf;
+}
+.ls .folder .folder:nth-child(7n+4) h3 {
+  background: #caf;
+}
+.ls .folder .folder:nth-child(7n+5) h3 {
+  background: #faf;
+}
+
 
 .ls h4 {
   color: #555;
 }
+
+
+
 
 .ls a.folder {
   color: inherit;
   text-decoration: none;
   transition: box-shadow 0.2s;
 }
+
+.ls li.file.hidden {
+  display: none;
+}
+
+
 .ls a.file {
   margin-left: 4px;
   text-decoration: none;
   color: black;
   line-height: 3;
   background-size: 1px 1em;
-  box-shadow: inset 0 -5px #abf;
+  --box-shadow-color: #abf;
+  box-shadow: inset 0 -5px var(--box-shadow-color);
   transition: box-shadow 0.2s;
 
   /* text-shadow: -2px 0px #ddd, 0px 1px #ddd, 3px 0px #ddd; */
@@ -169,7 +234,36 @@ blockquote {
 
 .ls a.file:hover,
 .ls a.folder:hover {
-  box-shadow: inset 0 -15px #abf;
+  box-shadow: inset 0 -15px var(--box-shadow-color);
+}
+
+
+.ls .folder .folder:nth-child(7n-1) a.file {
+  --box-shadow-color: #faa;
+}
+
+.ls .folder .folder:nth-child(7n+0) a.file {
+  --box-shadow-color: #fca;
+}
+
+.ls .folder .folder:nth-child(7n+1) a.file {
+  --box-shadow-color: #ffa;
+}
+
+.ls .folder .folder:nth-child(7n+2) a.file {
+  --box-shadow-color: #afa;
+}
+
+.ls .folder .folder:nth-child(7n+3) a.file {
+  --box-shadow-color: #aaf;
+}
+
+.ls .folder .folder:nth-child(7n+4) a.file {
+  --box-shadow-color: #caf;
+}
+
+.ls .folder .folder:nth-child(7n+5) a.file {
+  --box-shadow-color: #faf;
 }
 
 .ls ul {
@@ -183,9 +277,7 @@ blockquote {
 
   margin: 0;
 }
-.ls li li {
-  break-inside: avoid;
-}
+
 
 .ls > ul > .index {
   display: none;
@@ -204,7 +296,7 @@ blockquote {
   flex: 1 1 50%;
 }
 
-/* 
+/*
 
 .send {
   color: #77bb77;
@@ -223,7 +315,7 @@ blockquote {
   width: 100%;
   height: 60px;
   margin: 6px 0px;
-} 
+}
 button,
 #ws {
   font-size: 10pt;
@@ -246,3 +338,17 @@ pre,
   background-color: #f8f8f8;
 }
 */
+
+
+#search {
+  font-size: 3rem;
+  border: none;
+  background: #fefefe;
+  margin-bottom: 1rem;
+}
+
+#search:focus
+{
+  border: none;
+  outline: none;
+}

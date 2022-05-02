@@ -768,6 +768,10 @@
                     {
                         "type": "file",
                         "name": "suspects_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "suspects_03.js"
                     }
                 ]
             },
@@ -2225,6 +2229,18 @@
         "children": [
             {
                 "type": "file",
+                "name": "alias_01.js"
+            },
+            {
+                "type": "file",
+                "name": "alias_02.js"
+            },
+            {
+                "type": "file",
+                "name": "alias_03.js"
+            },
+            {
+                "type": "file",
                 "name": "mouseMoved.js"
             },
             {
@@ -2236,10 +2252,6 @@
                 "name": "randomSpeed.js"
             }
         ]
-    },
-    {
-        "type": "file",
-        "name": "todo.md"
     },
     {
         "name": "web",

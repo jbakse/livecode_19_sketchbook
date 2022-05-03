@@ -247,11 +247,11 @@
                 "children": [
                     {
                         "type": "file",
-                        "name": "jumper.js"
+                        "name": "jumper_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "just_jump.js"
+                        "name": "jumper_poc.js"
                     }
                 ]
             },
@@ -321,31 +321,31 @@
                 "children": [
                     {
                         "type": "file",
-                        "name": "01_termites.js"
+                        "name": "snowmen_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "02_termites.js"
+                        "name": "termites_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "03_termites.js"
+                        "name": "termites_02.js"
                     },
                     {
                         "type": "file",
-                        "name": "04_termites.js"
+                        "name": "termites_03.js"
                     },
                     {
                         "type": "file",
-                        "name": "05_termite_oloo.js"
+                        "name": "termites_04.js"
                     },
                     {
                         "type": "file",
-                        "name": "06_termite_constructor.js"
+                        "name": "termites_05_oloo.js"
                     },
                     {
                         "type": "file",
-                        "name": "snowmen_demo.js"
+                        "name": "termites_06_constructor.js"
                     }
                 ]
             },
@@ -755,6 +755,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "bookshelf_00.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "bookshelf_01.js"
                     },
                     {
@@ -803,10 +807,6 @@
                     },
                     {
                         "type": "file",
-                        "name": "shelf.js"
-                    },
-                    {
-                        "type": "file",
                         "name": "suspects_01.js"
                     },
                     {
@@ -830,6 +830,10 @@
                     {
                         "type": "file",
                         "name": "blueish_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bsp_painting_01.js"
                     },
                     {
                         "type": "file",
@@ -865,7 +869,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "landscape.js"
+                        "name": "landscape_01.js"
                     },
                     {
                         "type": "file",
@@ -873,15 +877,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "noise_bsp.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "parameter_sketch.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "pixel_dust.js"
+                        "name": "pixel_dust_01.js"
                     },
                     {
                         "type": "file",
@@ -981,7 +977,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "warp_grid.js"
+                        "name": "warp_grid_01.js"
                     }
                 ]
             },
@@ -1020,6 +1016,10 @@
                     {
                         "type": "file",
                         "name": "sloppy_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spirograph_01.js"
                     },
                     {
                         "type": "file",
@@ -1107,7 +1107,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "star.js"
+                        "name": "star_01.js"
                     }
                 ]
             },
@@ -1151,15 +1151,11 @@
                 "children": [
                     {
                         "type": "file",
-                        "name": "garden.js"
+                        "name": "field_01.js"
                     },
                     {
                         "type": "file",
-                        "name": "garden2.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "turtle_6.js"
+                        "name": "grass_01.js"
                     }
                 ]
             },
@@ -2294,10 +2290,6 @@
             {
                 "type": "file",
                 "name": "aakanksha_01.js"
-            },
-            {
-                "type": "file",
-                "name": "claire_01.js"
             }
         ]
     },

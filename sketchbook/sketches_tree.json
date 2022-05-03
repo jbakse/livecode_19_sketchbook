@@ -242,6 +242,20 @@
                 ]
             },
             {
+                "name": "jumper",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "jumper.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "just_jump.js"
+                    }
+                ]
+            },
+            {
                 "name": "roguelite",
                 "type": "folder",
                 "children": [
@@ -328,6 +342,10 @@
                     {
                         "type": "file",
                         "name": "06_termite_constructor.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "snowmen_demo.js"
                     }
                 ]
             },
@@ -785,6 +803,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "shelf.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "suspects_01.js"
                     },
                     {
@@ -843,7 +865,23 @@
                     },
                     {
                         "type": "file",
+                        "name": "landscape.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "media_recorder_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "noise_bsp.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "parameter_sketch.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "pixel_dust.js"
                     },
                     {
                         "type": "file",
@@ -940,6 +978,10 @@
                     {
                         "type": "file",
                         "name": "waldo_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "warp_grid.js"
                     }
                 ]
             },
@@ -1019,6 +1061,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "celeste_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "color_wars_01.js"
                     },
                     {
@@ -1058,6 +1104,10 @@
                                 "name": "landscape_01.png"
                             }
                         ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "star.js"
                     }
                 ]
             },
@@ -1092,6 +1142,24 @@
                     {
                         "type": "file",
                         "name": "recursion.js"
+                    }
+                ]
+            },
+            {
+                "name": "08_turtle_graphics",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "garden.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "garden2.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "turtle_6.js"
                     }
                 ]
             },
@@ -2224,14 +2292,12 @@
         "type": "folder",
         "children": [
             {
-                "name": "claire",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "particle.js"
-                    }
-                ]
+                "type": "file",
+                "name": "aakanksha_01.js"
+            },
+            {
+                "type": "file",
+                "name": "claire_01.js"
             }
         ]
     },

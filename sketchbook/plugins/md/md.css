@@ -217,6 +217,9 @@ blockquote {
 .ls li.file.hidden {
   display: none;
 }
+.ls li.folder.hidden {
+  display: none;
+}
 
 
 .ls a.file {

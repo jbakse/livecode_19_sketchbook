@@ -15,5 +15,6 @@ module.exports = {
     "no-unused-vars": ["error", { vars: "local" }],
     "no-console": "off",
     "no-prototype-builtins": "off",
+    "sort-inputs": "off",
   },
 };

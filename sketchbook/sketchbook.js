@@ -65,8 +65,8 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
   const branch = Tree.getItem(tree, path);
 
   branch.children.sort((a, b) => {
-    if (a.type === "file" && b.type == "folder") return -1;
-    if (a.type === "folder" && b.type == "file") return 1;
+    if (a.type === "file" && b.type === "folder") return -1;
+    if (a.type === "folder" && b.type === "file") return 1;
     return 0;
   });
 
@@ -100,7 +100,7 @@ window.initSearch = (input, ls) => {
 function updateSearch(input, ls) {
   console.log("update search", input.value);
   const start = performance.now();
-  const lis = ls.querySelectorAll("li.file");
+  const lis = ls.querySelectorAll("li.folder, li.file");
   console.log(`searching ${lis.length} files`);
   for (const li of lis) {
     li.classList.remove("hidden");

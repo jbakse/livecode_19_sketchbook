@@ -78,13 +78,13 @@ function drawDocument(w, h) {
   if (random() < 0.75) {
     drawText(w, h);
   } else {
-    drawSuspect(w - 4, h - 4);
+    drawFace(w - 4, h - 4);
   }
 
   pop();
 }
 
-function drawSuspect(w, h) {
+function drawFace(w, h) {
   const g = createGraphics(w, h);
   g.background(random(100, 200));
   g.noStroke();

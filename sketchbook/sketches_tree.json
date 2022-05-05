@@ -783,6 +783,26 @@
                     },
                     {
                         "type": "file",
+                        "name": "conspiracy_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_05.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "drops_01.js"
                     },
                     {
@@ -804,18 +824,28 @@
                     {
                         "type": "file",
                         "name": "flip_03.js"
+                    }
+                ]
+            },
+            {
+                "name": "03_3d",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "hair.scad"
                     },
                     {
                         "type": "file",
-                        "name": "suspects_01.js"
+                        "name": "polygon.scad"
                     },
                     {
                         "type": "file",
-                        "name": "suspects_02.js"
+                        "name": "polygon2.scad"
                     },
                     {
                         "type": "file",
-                        "name": "suspects_03.js"
+                        "name": "tower.scad"
                     }
                 ]
             },

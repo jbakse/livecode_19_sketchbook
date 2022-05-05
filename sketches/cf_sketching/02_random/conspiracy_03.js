@@ -1,6 +1,6 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
-// a small p5.Graphics render for drawing the faces into
+// a small p5.Graphics for drawing the faces into
 let face;
 
 function setup() {
@@ -16,7 +16,7 @@ function setup() {
   const canvas = document.getElementById("defaultCanvas0");
   canvas.style = "width: 950px; height: 540px; image-rendering: pixelated";
 
-  // configure PT
+  // configure P5
   noLoop();
   angleMode(DEGREES);
 
@@ -37,7 +37,6 @@ function draw() {
   // we want everything we draw to be on top of everything else
   // just like drawing in P2D
   drawingContext.disable(drawingContext.DEPTH_TEST);
-
   background(50);
 
   // in WEBGL mode 0,0 is in the center of the canvas
@@ -118,7 +117,7 @@ function drawDocument(w, h) {
   if (random() < 0.65) {
     drawText(w - 4, h - 4);
   } else {
-    drawSuspect();
+    drawFace();
   }
 
   times(3, () => {
@@ -191,7 +190,7 @@ function drawText(w, h) {
 // the size is not configurable
 // to position the suspect, translate() before you call
 
-function drawSuspect() {
+function drawFace() {
   const w = 16;
   const h = 20;
 

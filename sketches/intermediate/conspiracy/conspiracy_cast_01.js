@@ -1,12 +1,5 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
-/**
- * draws a "consipiracy board"
- * a pin board with numerous documents, photos, Post-Its, and strings
- */
-
-// a small p5.Graphics for drawing the faces into
-
 function setup() {
   console.log("P5.VERSION:", p5.VERSION);
 

@@ -783,26 +783,6 @@
                     },
                     {
                         "type": "file",
-                        "name": "conspiracy_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_04.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_05.js"
-                    },
-                    {
-                        "type": "file",
                         "name": "drops_01.js"
                     },
                     {
@@ -1457,6 +1437,40 @@
         "name": "intermediate",
         "type": "folder",
         "children": [
+            {
+                "name": "conspiracy",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "aliased_template.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_05.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_cast_01.js"
+                    }
+                ]
+            },
             {
                 "name": "frogger",
                 "type": "folder",

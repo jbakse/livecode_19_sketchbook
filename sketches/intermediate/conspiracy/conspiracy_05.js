@@ -6,7 +6,9 @@
  */
 
 // a small p5.Graphics for drawing the faces into
-let mainCanvas;
+
+const SCALE = 1;
+const DIRTY = 10;
 let face;
 
 function setup() {
@@ -16,7 +18,7 @@ function setup() {
   // use WEBGL + noSmooth() to get non antialiased shapes and lines
   pixelDensity(1);
   noSmooth();
-  const mainCanvas = createCanvas(192, 108, WEBGL);
+  const mainCanvas = createCanvas(192 * SCALE, 108 * SCALE, WEBGL);
 
   // scale the canvas up, without antialiasing
   mainCanvas.elt.style =
@@ -25,7 +27,7 @@ function setup() {
   // configure P5
   noLoop();
 
-  randomSeed(1098);
+  // randomSeed(1098);
   angleMode(DEGREES);
 
   // set up the p5.Graphics we'll use for drawing the faces
@@ -76,13 +78,13 @@ function planPhotoLocations() {
   // start by arranging the photos in a grid
   const photoLocations = populateGrid(
     { x: 0, y: 0, w: width, h: height },
-    8,
-    4
+    8 * SCALE,
+    4 * SCALE
   );
 
   // offset each photo by a random amount
-  photoLocations.forEach((loc) => (loc.x += random(-10, 10)));
-  photoLocations.forEach((loc) => (loc.y += random(-10, 10)));
+  photoLocations.forEach((loc) => (loc.x += random(-1 * DIRTY, 1 * DIRTY)));
+  photoLocations.forEach((loc) => (loc.y += random(-1 * DIRTY, 1 * DIRTY)));
 
   // reorder the locations so the photos "stack" randomly
   shuffle(photoLocations);
@@ -110,14 +112,17 @@ function drawPinhole() {
  */
 
 function drawDocument(w, h) {
+  const face = random() < 0.65;
+
   push();
+  // if (face) scale(random([0.5, 0.8, 1.2]));
 
   // configure p5
   rectMode(CENTER);
   noStroke();
 
   // rotate the document a bit
-  rotate(middleRandom(-20, 20));
+  rotate(middleRandom(-2 * DIRTY, 2 * DIRTY));
 
   // shadow
   fill(0, 0, 0, 100);
@@ -128,10 +133,10 @@ function drawDocument(w, h) {
   rect(0, 0, w, h);
 
   // content
-  if (random() < 0.65) {
-    drawText(w - 4, h - 4);
-  } else {
+  if (face) {
     drawFace();
+  } else {
+    drawText(w - 4, h - 4);
   }
 
   times(3, () => {
@@ -244,7 +249,7 @@ function drawString(start, end) {
  * use translate() to position face
  */
 
-function drawFace() {
+function drawFace(s = 1) {
   const w = 16;
   const h = 20;
 

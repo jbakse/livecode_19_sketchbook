@@ -1,4 +1,5 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
+/* exported setup draw */
 
 function setup() {
   console.log("P5.VERSION:", p5.VERSION);
@@ -24,6 +25,9 @@ function setup() {
 function draw() {
   background("black");
 
+  // disable depth testing
+  // drawingContext.disable(drawingContext.DEPTH_TEST);
+
   translate(width * -0.5, height * -0.5);
 
   translate(10, 10);
@@ -38,8 +42,10 @@ function drawDocument(w, h) {
   push();
 
   rectMode(CENTER);
-  fill("white");
+  // fill(0, 50);
+  // rect(1, 1, w + 1, h + 1);
 
+  fill("white");
   rect(0, 0, w, h);
 
   drawText(w, h);
@@ -53,7 +59,7 @@ function drawText(w, h) {
   stroke("black");
 
   translate(w * -0.5, h * -0.5);
-  for (y = 3; y <= h - 3; y += 3) {
+  for (let y = 3; y <= h - 3; y += 3) {
     line(3, y, w - random(0, w * 0.5), y);
   }
 

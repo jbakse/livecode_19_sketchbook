@@ -7,7 +7,9 @@
 
 // a small p5.Graphics for drawing the faces into
 
-const SCALE = 1;
+const RES_SCALE = 1;
+const PIXELY_FACES = false;
+const PIXELY_SHAPES = false;
 const DIRTY = 10;
 let face;
 
@@ -17,8 +19,8 @@ function setup() {
   // make a small canvas
   // use WEBGL + noSmooth() to get non antialiased shapes and lines
   pixelDensity(1);
-  noSmooth();
-  const mainCanvas = createCanvas(192 * SCALE, 108 * SCALE, WEBGL);
+  if (PIXELY_SHAPES) noSmooth();
+  const mainCanvas = createCanvas(192 * RES_SCALE, 108 * RES_SCALE, WEBGL);
 
   // scale the canvas up, without antialiasing
   mainCanvas.elt.style =
@@ -27,11 +29,11 @@ function setup() {
   // configure P5
   noLoop();
 
-  // randomSeed(1098);
+  randomSeed(1098);
   angleMode(DEGREES);
 
   // set up the p5.Graphics we'll use for drawing the faces
-  face = createGraphics(16, 20, WEBGL);
+  face = createGraphics(16 * RES_SCALE, 20 * RES_SCALE, WEBGL);
   face.pixelDensity(1);
   face.noSmooth();
   face.noFill();
@@ -41,7 +43,7 @@ function setup() {
 
 function draw() {
   // figure out our composition
-  const photoLocations = planLocations();
+  const photoLocations = planPhotoLocations();
 
   // we don't need or want depth testing
   // we want everything we draw to be on top of everything else
@@ -53,7 +55,8 @@ function draw() {
 
   // in WEBGL mode 0,0 is in the center of the canvas
   // move it to the upper left corner, like P2D mode
-  translate(width * -0.5, height * -0.5);
+  scale(RES_SCALE, RES_SCALE);
+  translate(192 * -0.5, 108 * -0.5);
 
   // draw pinholes
   times(500, drawPinhole);
@@ -74,13 +77,9 @@ function draw() {
  * creates an array of points marking where we should draw the documents
  */
 
-function planLocations() {
+function planPhotoLocations() {
   // start by arranging the photos in a grid
-  const photoLocations = populateGrid(
-    { x: 0, y: 0, w: width, h: height },
-    8 * SCALE,
-    4 * SCALE
-  );
+  const photoLocations = populateGrid({ x: 0, y: 0, w: 192, h: 108 }, 8, 4);
 
   // offset each photo by a random amount
   photoLocations.forEach((loc) => (loc.x += random(-1 * DIRTY, 1 * DIRTY)));
@@ -101,7 +100,7 @@ function drawPinhole() {
 
   fill(random([20, 40, 60]));
   noStroke();
-  rect(random(width), random(height), 1, 1);
+  rect(random(192), random(108), 1, 1);
 
   pop();
 }
@@ -262,6 +261,7 @@ function drawFace(s = 1) {
 
   face.drawingContext.disable(face.drawingContext.DEPTH_TEST);
   face.push();
+  face.scale(RES_SCALE);
 
   // draw background
   face.background(random([darkGray, lightGray]));
@@ -323,12 +323,13 @@ function drawFace(s = 1) {
 
   // set things up so that drawing face into the main canvas won't
   // use bilinear filtering (make it jaggy!)
-  p5.instance._curElement.getTexture(face).setInterpolation(NEAREST, NEAREST);
-
+  if (PIXELY_FACES) {
+    p5.instance._curElement.getTexture(face).setInterpolation(NEAREST, NEAREST);
+  }
   // draw the `face` onto the main canvas
   push();
   imageMode(CENTER);
-  image(face, 0, 0);
+  image(face, 0, 0, 16, 20);
   pop();
 }
 

@@ -1467,7 +1467,23 @@
                     },
                     {
                         "type": "file",
+                        "name": "conspiracy_05_aliased.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_06.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "conspiracy_cast_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "conspiracy_cast_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cube_01.js"
                     }
                 ]
             },

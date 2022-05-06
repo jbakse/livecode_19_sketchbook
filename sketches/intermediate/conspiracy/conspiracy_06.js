@@ -1,4 +1,5 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
+/* exported setup draw keyPressed*/
 
 /**
  * draws a "consipiracy board"
@@ -7,8 +8,11 @@
 
 // a small p5.Graphics for drawing the faces into
 
-const SCALE = 1;
-const DIRTY = 10;
+const RESOLUTION = 1;
+const PIXELY_SHAPES = true;
+const PIXELY_FACES = true;
+const MESSY = 10;
+
 let face;
 
 function setup() {
@@ -17,8 +21,8 @@ function setup() {
   // make a small canvas
   // use WEBGL + noSmooth() to get non antialiased shapes and lines
   pixelDensity(1);
-  noSmooth();
-  const mainCanvas = createCanvas(192 * SCALE, 108 * SCALE, WEBGL);
+  if (PIXELY_SHAPES) noSmooth();
+  const mainCanvas = createCanvas(192 * RESOLUTION, 108 * RESOLUTION, WEBGL);
 
   // scale the canvas up, without antialiasing
   mainCanvas.elt.style =
@@ -37,11 +41,16 @@ function setup() {
   face.noFill();
   face.noStroke();
   face.angleMode(DEGREES);
+
+  // disable bilinear filtering on the face p5.Graphics (make it jaggy!)
+  if (PIXELY_FACES) {
+    p5.instance._curElement.getTexture(face).setInterpolation(NEAREST, NEAREST);
+  }
 }
 
 function draw() {
   // figure out our composition
-  const photoLocations = planLocations();
+  const locations = planLocations();
 
   // we don't need or want depth testing
   // we want everything we draw to be on top of everything else
@@ -58,16 +67,11 @@ function draw() {
   // draw pinholes
   times(500, drawPinhole);
 
-  // draw a document at each location
-  for (loc of photoLocations) {
-    push();
-    translate(loc.x, loc.y);
-    drawDocument(20, 24);
-    pop();
-  }
+  // draw a document/photo at each location
+  drawDocuments(locations);
 
   // draw strings
-  drawStrings(photoLocations);
+  drawStrings(locations);
 }
 
 /**
@@ -78,13 +82,13 @@ function planLocations() {
   // start by arranging the photos in a grid
   const photoLocations = populateGrid(
     { x: 0, y: 0, w: width, h: height },
-    8 * SCALE,
-    4 * SCALE
+    8,
+    4
   );
 
   // offset each photo by a random amount
-  photoLocations.forEach((loc) => (loc.x += random(-1 * DIRTY, 1 * DIRTY)));
-  photoLocations.forEach((loc) => (loc.y += random(-1 * DIRTY, 1 * DIRTY)));
+  photoLocations.forEach((loc) => (loc.x += random(-1 * MESSY, 1 * MESSY)));
+  photoLocations.forEach((loc) => (loc.y += random(-1 * MESSY, 1 * MESSY)));
 
   // reorder the locations so the photos "stack" randomly
   shuffle(photoLocations);
@@ -107,22 +111,32 @@ function drawPinhole() {
 }
 
 /**
+ * draws document at provided location
+ */
+
+function drawDocuments(locations) {
+  for (const loc of locations) {
+    push();
+    translate(loc.x, loc.y);
+    drawDocument(20, 24);
+    pop();
+  }
+}
+
+/**
  * draws a document of the given size at 0,0
  * use translate() to position the document
  */
 
 function drawDocument(w, h) {
-  const face = random() < 0.65;
-
   push();
-  // if (face) scale(random([0.5, 0.8, 1.2]));
 
   // configure p5
   rectMode(CENTER);
   noStroke();
 
   // rotate the document a bit
-  rotate(middleRandom(-2 * DIRTY, 2 * DIRTY));
+  rotate(middleRandom(-2 * MESSY, 2 * MESSY));
 
   // shadow
   fill(0, 0, 0, 100);
@@ -133,23 +147,31 @@ function drawDocument(w, h) {
   rect(0, 0, w, h);
 
   // content
-  if (face) {
+  if (random() < 0.65) {
     drawFace();
   } else {
     drawText(w - 4, h - 4);
   }
 
-  times(3, () => {
-    if (random() < 0.5) {
-      push();
-      translate(random(-10, 10), random(-10, 10));
-      rotate(middleRandom(-20, 20));
-      drawPostIt(6, 6);
-      pop();
-    }
-  });
+  // notes
+  drawPostIts(randomInt(0, 4));
 
   pop();
+}
+
+/**
+ * draws `count` PostIts randomly positioned near 0,0
+ * use translated() to position the notes
+ */
+
+function drawPostIts(count = 1) {
+  times(count, () => {
+    push();
+    translate(random(-10, 10), random(-10, 10));
+    rotate(middleRandom(-20, 20));
+    drawPostIt(6, 6);
+    pop();
+  });
 }
 
 /**
@@ -208,37 +230,6 @@ function drawText(w, h) {
 }
 
 /**
- * draws clusters of strings connecting documents
- */
-
-function drawStrings(photoLocations) {
-  times(2, () => {
-    const start = random(photoLocations);
-    times(random(3, 6), () => {
-      const end = random(photoLocations);
-      drawString(start, end);
-    });
-  });
-}
-
-/**
- * draws a single string from the starting point the the ending point
- */
-
-function drawString(start, end) {
-  push();
-
-  // shadow
-  stroke(0, 150);
-  line(start.x, start.y + 1, end.x, end.y + 1);
-  // string
-  stroke("red");
-  line(start.x, start.y, end.x, end.y);
-
-  pop();
-}
-
-/**
  * draws a face
  * 1. draw into `face` p5.Graphics
  * 2. draw that onto the main canvas
@@ -249,10 +240,7 @@ function drawString(start, end) {
  * use translate() to position face
  */
 
-function drawFace(s = 1) {
-  const w = 16;
-  const h = 20;
-
+function drawFace() {
   // define our limited palette
   const white = 255;
   const lightGray = 200;
@@ -321,14 +309,41 @@ function drawFace(s = 1) {
 
   face.pop();
 
-  // set things up so that drawing face into the main canvas won't
-  // use bilinear filtering (make it jaggy!)
-  p5.instance._curElement.getTexture(face).setInterpolation(NEAREST, NEAREST);
-
   // draw the `face` onto the main canvas
   push();
   imageMode(CENTER);
   image(face, 0, 0);
+  pop();
+}
+
+/**
+ * draws clusters of strings connecting documents
+ */
+
+function drawStrings(photoLocations) {
+  times(2, () => {
+    const start = random(photoLocations);
+    times(random(3, 6), () => {
+      const end = random(photoLocations);
+      drawString(start, end);
+    });
+  });
+}
+
+/**
+ * draws a single string from the starting point the the ending point
+ */
+
+function drawString(start, end) {
+  push();
+
+  // shadow
+  stroke(0, 150);
+  line(start.x, start.y + 1, end.x, end.y + 1);
+  // string
+  stroke("red");
+  line(start.x, start.y, end.x, end.y);
+
   pop();
 }
 
@@ -364,18 +379,30 @@ function middleRandom(min, max, rolls = 2) {
 }
 
 /**
+ * returns a random integer between `min` and `max`
+ */
+
+function randomInt(min, max) {
+  return floor(random(min, max));
+}
+
+/**
  * calls function `f`, `t` times
  * provided function receives the index of the iteration as an argument
  * returns array of the results
  */
 
 function times(t, f) {
-  let a = [];
+  const a = [];
   for (let i = 0; i < t; i++) {
     a.push(f(i));
   }
   return a;
 }
+
+/**
+ * downloads the drawing as a .png file
+ */
 
 function keyPressed() {
   if (key === "s") {

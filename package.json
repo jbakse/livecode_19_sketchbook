@@ -4,7 +4,7 @@
   "description": "Example sketchbook project for coding small \"sketches\".",
   "main": "index.html",
   "dependencies": {
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "docco": "^0.8.0",

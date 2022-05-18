@@ -804,6 +804,10 @@
                     {
                         "type": "file",
                         "name": "flip_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "frames_01.js"
                     }
                 ]
             },
@@ -896,6 +900,10 @@
                     {
                         "type": "file",
                         "name": "prison_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "prison_03.js"
                     },
                     {
                         "type": "file",
@@ -1483,6 +1491,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "conspiracy_cast_03.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "cube_01.js"
                     }
                 ]
@@ -1856,6 +1868,16 @@
                                 "name": "thexius_01.png"
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "name": "springs",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "springs.js"
                     }
                 ]
             }
@@ -2390,6 +2412,16 @@
             {
                 "type": "file",
                 "name": "randomSpeed.js"
+            }
+        ]
+    },
+    {
+        "name": "videos",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "loops_01.js"
             }
         ]
     },

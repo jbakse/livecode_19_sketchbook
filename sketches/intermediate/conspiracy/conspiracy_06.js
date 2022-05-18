@@ -41,6 +41,7 @@ function setup() {
   face.noFill();
   face.noStroke();
   face.angleMode(DEGREES);
+  face.drawingContext.disable(face.drawingContext.DEPTH_TEST);
 
   // disable bilinear filtering on the face p5.Graphics (make it jaggy!)
   if (PIXELY_FACES) {
@@ -248,7 +249,6 @@ function drawFace() {
   const darkGray = 100;
   const darkerGray = 50;
 
-  face.drawingContext.disable(face.drawingContext.DEPTH_TEST);
   face.push();
 
   // draw background

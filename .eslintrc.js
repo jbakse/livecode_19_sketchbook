@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: "eslint:recommended",
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2020,
   },
   globals: require("./p5Globals.js"),
 
@@ -164,5 +164,7 @@ module.exports = {
     "symbol-description": "error", //	Require symbol descriptions
     "vars-on-top": "error", //	Require `var` declarations be placed at the top of their containing scope
     yoda: "error", //	Require or disallow "Yoda" conditions
+
+    "no-unused-vars": ["error", { varsIgnorePattern: "^_$" }],
   },
 };

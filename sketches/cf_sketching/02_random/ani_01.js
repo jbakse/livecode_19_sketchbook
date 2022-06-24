@@ -16,7 +16,7 @@ window.setup = function () {
 window.draw = function () {
   // pick params
   const colors = [];
-  let hue = random();
+  const hue = random();
   colors[0] = color(hue, random(0.1, 0.2), random(0.1, 0.2)); // black
   colors[1] = color(hue, random(0.1, 0.2), random(0.6, 0.7)); // gray
   colors[2] = color(hue, random(0.3, 0.7), random(0.5, 1.0));
@@ -63,7 +63,7 @@ function mousePressed() {
 // post process some zigzag?
 
 function wrap(v, min = 0, max = 1) {
-  let w = max - min;
+  const w = max - min;
   while (v < min) v += w;
   while (v > max) v -= w;
   return v;

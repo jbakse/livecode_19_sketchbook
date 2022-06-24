@@ -2,11 +2,9 @@
 
 /* globals RiTa */
 
-
 const nns = RiTa.randomWord({
   numSyllables: 2,
 });
-
 
 const limerick = {
   start: "$first \n $second \n $third \n $fourth \n $fifth",
@@ -24,7 +22,7 @@ const limerick = {
 const context = {};
 
 // https://observablehq.com/@dhowe/scripting-rita/2#customTransforms
-RiTa.addTransform("rhymes", (a)=>{
+RiTa.addTransform("rhymes", (a) => {
   const r = RiTa.rhymes(a, {
     limit: 100,
     // numSyllables: 2,
@@ -32,19 +30,15 @@ RiTa.addTransform("rhymes", (a)=>{
   return pick(r) || "!oops!";
 });
 
-
 const g = RiTa.grammar(limerick, context);
 say(g.expand());
-
-
 
 function pick(a) {
   return a[Math.floor(Math.random() * a.length)];
 }
 
-
-function say(...strings){
-  for (let s of strings) {
+function say(...strings) {
+  for (const s of strings) {
     console.log(s);
     const div = document.createElement("div");
     div.innerText = s;

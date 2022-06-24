@@ -2422,6 +2422,14 @@
             {
                 "type": "file",
                 "name": "loops_01.js"
+            },
+            {
+                "type": "file",
+                "name": "loops_start.js"
+            },
+            {
+                "type": "file",
+                "name": "script.md"
             }
         ]
     },

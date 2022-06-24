@@ -1,5 +1,7 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
+/* exported preload setup draw mouseMoved mousePressed */
+
 // move the mouse around alot and reload the page
 // can mouseMoved be called before preload? - no / expected
 // can mouseMoved be called before preload is done? - yes / undesired
@@ -21,8 +23,8 @@ function draw() {
   noLoop();
 }
 
-function mouseMoved() {
-  console.log("mouseMoved", img.width);
+function mouseMoved(e) {
+  console.log("mouseMoved", img.width, mouseX, mouseY, e.clientX, e.clientY);
 }
 
 function mousePressed() {

@@ -1434,6 +1434,10 @@
             {
                 "type": "file",
                 "name": "malin_space_01.js"
+            },
+            {
+                "type": "file",
+                "name": "shayla_face_01.js"
             }
         ]
     },
@@ -2437,6 +2441,28 @@
         "name": "web",
         "type": "folder",
         "children": [
+            {
+                "name": "audio",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "test.mp3"
+                    },
+                    {
+                        "type": "file",
+                        "name": "test.ogg"
+                    }
+                ]
+            },
             {
                 "name": "demo_1",
                 "type": "folder",

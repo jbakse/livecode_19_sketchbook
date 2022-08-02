@@ -1996,6 +1996,16 @@
         ]
     },
     {
+        "name": "party",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "vtm_dice.js"
+            }
+        ]
+    },
+    {
         "name": "puzzles",
         "type": "folder",
         "children": [

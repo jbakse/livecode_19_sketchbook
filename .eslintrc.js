@@ -75,7 +75,7 @@ module.exports = {
     "no-bitwise": "error", //	Disallow bitwise operators
     "no-caller": "error", //	Disallow the use of `arguments.caller` or `arguments.callee`
     "no-confusing-arrow": "error", //	Disallow arrow functions where they could be confused with comparisons
-    "no-continue": "error", //	Disallow `continue` statements
+    // "no-continue": "error", //	Disallow `continue` statements
     "no-div-regex": "error", //	Disallow division operators explicitly at the beginning of regular expressions
     "no-else-return": "error", //	Disallow `else` blocks after `return` statements in `if` statements
     "no-empty-function": "error", //	Disallow empty functions

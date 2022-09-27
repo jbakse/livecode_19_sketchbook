@@ -779,6 +779,14 @@
                     },
                     {
                         "type": "file",
+                        "name": "butterfly_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "butterfly_02.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "castle_01.js"
                     },
                     {
@@ -808,6 +816,14 @@
                     {
                         "type": "file",
                         "name": "frames_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "microbuild_00.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "moon_01.js"
                     }
                 ]
             },
@@ -852,6 +868,10 @@
                     {
                         "type": "file",
                         "name": "cave_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "crowd_01.js"
                     },
                     {
                         "type": "file",
@@ -1999,6 +2019,14 @@
         "name": "party",
         "type": "folder",
         "children": [
+            {
+                "type": "file",
+                "name": "party_demo.js"
+            },
+            {
+                "type": "file",
+                "name": "party_demo_1.js"
+            },
             {
                 "type": "file",
                 "name": "vtm_dice.js"

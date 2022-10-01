@@ -1,2612 +1,2622 @@
 [
-    {
-        "name": "after_class_coding",
+  {
+    "name": "3D_print",
+    "type": "folder",
+    "children": [
+      {
+           "type": "file",
+        "name": "dim_test.js"
+      }
+    ]
+  },
+  {
+    "name": "after_class_coding",
+    "type": "folder",
+    "children": [
+      {
+        "name": "a_long_walk",
         "type": "folder",
         "children": [
-            {
-                "name": "a_long_walk",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "long_walk.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_art_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_demo.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_min_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "long_walk_min_02.js"
-                    }
-                ]
-            },
-            {
-                "name": "block_invaders",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "animate.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "animate_p5.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "animate_t.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "canvas.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "input.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "invaders_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "nodes.md"
-                    }
-                ]
-            },
-            {
-                "name": "discovering_oop",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "01_bounce_1_basics.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "02_bounce_2_cleanup.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "03_bounce_3_data_object.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "04_bounce_4_multiple_balls.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "05_bounce_5_dry.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "06_bounce_6_array.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "07_bounce_7_more_balls.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "08_bounce_8a_oop.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "08_bounce_8b_oop.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "09_bounce_9_oop_class.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "10_bounce_10_oop_oloo.md.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cc_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "_bounce_live.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "_object.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "_object_es6.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "_object_live.js"
-                    }
-                ]
-            },
-            {
-                "name": "donkey",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "clean_donkey.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "donkey.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "new_donkey.js"
-                    }
-                ]
-            },
-            {
-                "name": "firenotes",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "demo_complete",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "app.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "demo_firestore",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "app.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "demo_livecode",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "app.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "demo_vue",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "app.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "notes.md"
-                    }
-                ]
-            },
-            {
-                "name": "jumper",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "jumper_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "jumper_poc.js"
-                    }
-                ]
-            },
-            {
-                "name": "roguelite",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "input_manager.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "roguelite_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "roguelite_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "roguelite_03.js"
-                    }
-                ]
-            },
-            {
-                "name": "signals",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "example_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "example_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "notes.md"
-                    },
-                    {
-                        "type": "file",
-                        "name": "signals.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "signals_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "todo.md"
-                    }
-                ]
-            },
-            {
-                "name": "termites",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "snowmen_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_04.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_05_oloo.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "termites_06_constructor.js"
-                    }
-                ]
-            },
-            {
-                "name": "text_effects",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "border.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "name": "scratch",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "main.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "text_effects.js"
-                    }
-                ]
-            }
+          {
+            "type": "file",
+            "name": "long_walk.png"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_01.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_art.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_art_02.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_art_03.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_demo.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_min_01.js"
+          },
+          {
+            "type": "file",
+            "name": "long_walk_min_02.js"
+          }
         ]
-    },
-    {
-        "name": "algo_print",
+      },
+      {
+        "name": "block_invaders",
         "type": "folder",
         "children": [
-            {
-                "name": "box_gen",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "box_gen_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "box_gen_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
-            },
-            {
-                "name": "business_card",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "business_card_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "postcard",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "postcard.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard.pdf"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard_readme.md"
-                    },
-                    {
-                        "type": "file",
-                        "name": "test.html"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "rect_test.js"
-            },
-            {
-                "name": "side_gen",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "side_gen_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "side_gen_02.js"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "side_gen.zip"
-            },
-            {
-                "name": "stack",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "stack_00.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "stack_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "stack_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "stack_03.js"
-                    }
-                ]
-            },
-            {
-                "name": "talia_postcard",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "postcard.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "postcard.js"
-                    }
-                ]
-            }
+          {
+            "type": "file",
+            "name": "animate.js"
+          },
+          {
+            "type": "file",
+            "name": "animate_p5.js"
+          },
+          {
+            "type": "file",
+            "name": "animate_t.js"
+          },
+          {
+            "type": "file",
+            "name": "canvas.js"
+          },
+          {
+            "type": "file",
+            "name": "input.js"
+          },
+          {
+            "type": "file",
+            "name": "invaders_01.js"
+          },
+          {
+            "type": "file",
+            "name": "nodes.md"
+          }
         ]
-    },
-    {
-        "name": "cf_challenges",
+      },
+      {
+        "name": "discovering_oop",
         "type": "folder",
         "children": [
-            {
-                "name": "03_noise",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "group_challenge_circle.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "group_challenge_hatch.js"
-                    }
-                ]
-            },
-            {
-                "name": "04_parameters",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "challenge_globals_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "challenge_tweakpane_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spiral_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "06_pixels",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "pixels_coding_challenge_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "pixels_coding_challenge_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "pixels_gradient_solution_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "pixels_worksheet_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "random_access_solution_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "random_pixels_solution_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "scratch_math_solution_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "scratch_sin_solution_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "07_vector",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "bounce_p5_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bounce_p5_01_a.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bounce_paperscript_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bounce_paperscript_01_a.js"
-                    }
-                ]
-            },
-            {
-                "name": "08_animation",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "bounce_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bounce_solution.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "fuzzy_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "fuzzy_bias.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "fuzzy_solution.js"
-                    }
-                ]
-            },
-            {
-                "name": "14_microgames",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "animation_solution.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "guy.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "interaction_solution.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "king.png"
-                    }
-                ]
-            }
+          {
+            "type": "file",
+            "name": "01_bounce_1_basics.md.js"
+          },
+          {
+            "type": "file",
+            "name": "02_bounce_2_cleanup.md.js"
+          },
+          {
+            "type": "file",
+            "name": "03_bounce_3_data_object.md.js"
+          },
+          {
+            "type": "file",
+            "name": "04_bounce_4_multiple_balls.md.js"
+          },
+          {
+            "type": "file",
+            "name": "05_bounce_5_dry.md.js"
+          },
+          {
+            "type": "file",
+            "name": "06_bounce_6_array.md.js"
+          },
+          {
+            "type": "file",
+            "name": "07_bounce_7_more_balls.md.js"
+          },
+          {
+            "type": "file",
+            "name": "08_bounce_8a_oop.md.js"
+          },
+          {
+            "type": "file",
+            "name": "08_bounce_8b_oop.md.js"
+          },
+          {
+            "type": "file",
+            "name": "09_bounce_9_oop_class.md.js"
+          },
+          {
+            "type": "file",
+            "name": "10_bounce_10_oop_oloo.md.js"
+          },
+          {
+            "type": "file",
+            "name": "cc_01.js"
+          },
+          {
+            "type": "file",
+            "name": "_bounce_live.js"
+          },
+          {
+            "type": "file",
+            "name": "_object.js"
+          },
+          {
+            "type": "file",
+            "name": "_object_es6.js"
+          },
+          {
+            "type": "file",
+            "name": "_object_live.js"
+          }
         ]
-    },
-    {
-        "name": "cf_demos",
+      },
+      {
+        "name": "donkey",
         "type": "folder",
         "children": [
-            {
-                "name": "03_noise",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "hash.js"
-                    }
-                ]
-            },
-            {
-                "name": "09_animation",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "grass_grow.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "worms.js"
-                    }
-                ]
-            },
-            {
-                "name": "text",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "vanilla_cfg.js"
-                    }
-                ]
-            }
+          {
+            "type": "file",
+            "name": "clean_donkey.js"
+          },
+          {
+            "type": "file",
+            "name": "donkey.js"
+          },
+          {
+            "type": "file",
+            "name": "new_donkey.js"
+          }
         ]
-    },
-    {
-        "name": "cf_sketching",
+      },
+      {
+        "name": "firenotes",
         "type": "folder",
         "children": [
-            {
-                "name": "01_intro",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "amber_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "olivier_brueckner_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "olivier_brueckner_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zhao_yang_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zora_wan_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "02_random",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "ani_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "ani_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "ani_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bookshelf_00.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bookshelf_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "branch_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "branch_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "branch_02b.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "branch_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "butterfly_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "butterfly_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "castle_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "drops_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "drops_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "drops_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flip_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flip_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flip_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "frames_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "microbuild_00.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "moon_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "03_3d",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "hair.scad"
-                    },
-                    {
-                        "type": "file",
-                        "name": "polygon.scad"
-                    },
-                    {
-                        "type": "file",
-                        "name": "polygon2.scad"
-                    },
-                    {
-                        "type": "file",
-                        "name": "tower.scad"
-                    }
-                ]
-            },
-            {
-                "name": "03_noise",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "ani_04.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "blueish_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bsp_painting_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cave_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "crowd_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "deck_noise_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flow_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flow_01a.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "flow_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "f_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "f_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hop_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "landscape_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "media_recorder_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "pixel_dust_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "prison_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "prison_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "prison_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sin_rand_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "snowday.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spiral_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spiral_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spiral_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "star_map_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "star_map_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "symmetry_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "tree_00.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_09.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_10.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_11.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_12a.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_12b.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_13.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_14.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_15.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_16.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "unknown_17.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "waldo_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "warp_grid_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "04_parameters",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "bonsai_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bonsai_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "bonsai_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hearts_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "p5_dom_style.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "p5_dom_style.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "salt_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sloppy_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spirograph_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "tokens_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "tweakpane_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "tweakpane_02.js"
-                    }
-                ]
-            },
-            {
-                "name": "06_pixels",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "automata_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "automata_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "automata_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "automata_04.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "automata_bench.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "celeste_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "color_wars_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "landscape_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "lichen.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "mess_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "meta_01.js"
-                    },
-                    {
-                        "name": "renders",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "automata_04_01.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "automata_04_2.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "automata_04_3.webm"
-                            },
-                            {
-                                "type": "file",
-                                "name": "landscape_01.png"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "star_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "07_vectors",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "cactus_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cord_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cord_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cord_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "noised_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "noodles_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "recursion.js"
-                    }
-                ]
-            },
-            {
-                "name": "08_turtle_graphics",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "field_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "grass_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "09_animation",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "bezier_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "donkey_particle_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "recursion_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "wiggle_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "wiggle_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "wiggle_02a.js"
-                    }
-                ]
-            },
-            {
-                "name": "10_text",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "dnd_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rita_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "11_sound",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "music",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "mozart_01.mp3"
-                            },
-                            {
-                                "type": "file",
-                                "name": "mozart_01_30.mp3"
-                            },
-                            {
-                                "type": "file",
-                                "name": "readme.md"
-                            },
-                            {
-                                "type": "file",
-                                "name": "white_noise_01.mp3"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "vk_visualizer_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "12_music",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "song_01.js"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "class_demos",
-        "type": "folder",
-        "children": [
-            {
-                "name": "bookshelf",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "bookshelf_01",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "main.js"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "bookshelf_02",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "main.js"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "bookshelf_design",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "index.html"
-                            },
-                            {
-                                "type": "file",
-                                "name": "style.css"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "lib",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "airtable.browser.js"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "notes.md"
-                    }
-                ]
-            },
-            {
-                "name": "css_layout",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "base.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "layout_1.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "layout_1.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "layout_2.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "layout_3.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    }
-                ]
-            },
-            {
-                "name": "this",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "this_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "why_we_code",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "adaptive.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "connected.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "customized.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "generative.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "intelligent.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "interactive.js"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "code_reviews",
-        "type": "folder",
-        "children": [
-            {
+          {
+            "name": "demo_complete",
+            "type": "folder",
+            "children": [
+              {
                 "type": "file",
-                "name": "ankong_nuts_01.js"
-            },
-            {
-                "type": "file",
-                "name": "ankong_nuts_02.js"
-            },
-            {
-                "type": "file",
-                "name": "ankong_nuts_03.js"
-            },
-            {
-                "type": "file",
-                "name": "ankong_nuts_04.js"
-            },
-            {
-                "type": "file",
-                "name": "ankong_nuts_live.js"
-            },
-            {
-                "type": "file",
-                "name": "malin_space_01.js"
-            },
-            {
-                "type": "file",
-                "name": "shayla_face_01.js"
-            }
-        ]
-    },
-    {
-        "type": "file",
-        "name": "index.md"
-    },
-    {
-        "name": "intermediate",
-        "type": "folder",
-        "children": [
-            {
-                "name": "conspiracy",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "aliased_template.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_04.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_05.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_05_aliased.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_06.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_cast_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_cast_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "conspiracy_cast_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "cube_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "frogger",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "assets",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "asdw.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "badge_join.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "badge_p1.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "badge_p2.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "badge_watching.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "button_start_down.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "button_start_up.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_die.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_hit.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_intro.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_jump.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_spawn.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sfx_title.wav"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogger_sprites.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs_f.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs_g.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs_o.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs_r.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs_s.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "ldru.png"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "frogger_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "frogger_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "frogger_03.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "frogger_ab_01.js"
-                    },
-                    {
-                        "name": "production",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "frogger_sprites.psd"
-                            },
-                            {
-                                "type": "file",
-                                "name": "frogs.psd"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "paper_garden",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "paperjs_util.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_2.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_3.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_4.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_4js.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_circle_study.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "paper_garden_plotter.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "plotter_test.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "subtract_test.js"
-                    }
-                ]
-            },
-            {
-                "name": "river",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "assets",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "laoth.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius.png"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "index.md"
-                    },
-                    {
-                        "name": "production",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "makwa.blend"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "file",
-                        "name": "river_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "river_01_alt.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "river_01_clean.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "river_02.js"
-                    },
-                    {
-                        "name": "_figures",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "blender.png"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "_outtakes",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "laoth_01.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_02.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_03.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_04.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_05.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_06.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_07.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "laoth_08.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_01.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_03.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_05.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_07.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_09.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_10.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_11.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_12.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_13.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_14.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_15.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_01.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_02.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_03.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_04.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_05.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_06.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_07.jpg"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_08.jpg"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "_renders",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "laoth_01.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "makwa_01.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "sketch_01_render_01.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "sketch_01_render_02.png"
-                            },
-                            {
-                                "type": "file",
-                                "name": "thexius_01.png"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "springs",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "springs.js"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "lang_dept",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "galaxy_01.js"
-            },
-            {
-                "type": "file",
-                "name": "galaxy_02.js"
-            },
-            {
-                "type": "file",
-                "name": "galaxy_03.js"
-            }
-        ]
-    },
-    {
-        "name": "library_demos",
-        "type": "folder",
-        "children": [
-            {
-                "name": "jsscad",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "tree_01.js"
-                    }
-                ]
-            },
-            {
-                "name": "p5party",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "map_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "map_02.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "p5.party.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "p5.party.js.map"
-                    }
-                ]
-            },
-            {
-                "name": "p5play",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "01_ball.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "02_bricks.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "03_paddle.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "p5.play.js"
-                    }
-                ]
-            },
-            {
-                "name": "tonejs",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "adsr.png"
-                    },
-                    {
-                        "type": "file",
-                        "name": "connect.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hello_tone.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "midi.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "notes.md"
-                    },
-                    {
-                        "type": "file",
-                        "name": "synth_1.js"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "party",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "party_demo.js"
-            },
-            {
-                "type": "file",
-                "name": "party_demo_1.js"
-            },
-            {
-                "type": "file",
-                "name": "vtm_dice.js"
-            }
-        ]
-    },
-    {
-        "name": "puzzles",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "ABCDExA.js"
-            }
-        ]
-    },
-    {
-        "name": "shaders",
-        "type": "folder",
-        "children": [
-            {
-                "name": "basics_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "checkers.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "checkers_wave.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "dots.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "dots_gradient.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "dots_live.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rings.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "stripes.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "triangles.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "waves.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "wave_live.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "wave_wave.frag"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "city.frag"
-            },
-            {
-                "type": "file",
-                "name": "city_00.frag"
-            },
-            {
-                "type": "file",
-                "name": "city_01.frag"
-            },
-            {
-                "type": "file",
-                "name": "composite_example.frag"
-            },
-            {
-                "type": "file",
-                "name": "composite_example_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "domain_warp.frag"
-            },
-            {
-                "type": "file",
-                "name": "frogger.frag"
-            },
-            {
-                "type": "file",
-                "name": "frogger_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "hello.frag"
-            },
-            {
-                "type": "file",
-                "name": "hello_world.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsight_blend.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsight_splash.frag"
-            },
-            {
-                "type": "file",
-                "name": "hindsign_blend_2.frag"
-            },
-            {
+                "name": "app.js"
+              },
+              {
                 "type": "file",
                 "name": "index.html"
-            },
-            {
-                "type": "file",
-                "name": "island copy.png"
-            },
-            {
-                "type": "file",
-                "name": "island.frag"
-            },
-            {
-                "type": "file",
-                "name": "island.png"
-            },
-            {
-                "type": "file",
-                "name": "march.frag"
-            },
-            {
-                "type": "file",
-                "name": "march_2.frag"
-            },
-            {
-                "type": "file",
-                "name": "noise.frag"
-            },
-            {
-                "type": "file",
-                "name": "noise.png"
-            },
-            {
-                "type": "file",
-                "name": "random.frag"
-            },
-            {
-                "name": "random_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "autopainter.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "autopainter_plus.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "checkerboard3.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "dots.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "dots2.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rand.frag"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "sdf.frag"
-            },
-            {
-                "name": "sdf_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "circle.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "combine.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "garden.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "playskool.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rect.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "transform.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zen.frag"
-                    }
-                ]
-            },
-            {
-                "name": "shaping_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "checkerboard.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "disc.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hills.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "moon.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "puzzle.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sticker.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "sticker_live.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "super_sticker.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "twins.frag"
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "soft_voronoi.frag"
-            },
-            {
+              },
+              {
                 "type": "file",
                 "name": "style.css"
-            },
-            {
+              }
+            ]
+          },
+          {
+            "name": "demo_firestore",
+            "type": "folder",
+            "children": [
+              {
                 "type": "file",
-                "name": "texture.frag"
-            },
-            {
-                "name": "thinking_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "gradient.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rect_branch.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "rect_no_branch.frag"
-                    }
-                ]
-            },
-            {
-                "name": "uniforms_solutions",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "crosshairs.glsl"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hills.glsl"
-                    },
-                    {
-                        "type": "file",
-                        "name": "hill_bordered.glsl"
-                    },
-                    {
-                        "type": "file",
-                        "name": "spotlight.glsl"
-                    },
-                    {
-                        "type": "file",
-                        "name": "venn.glsl"
-                    },
-                    {
-                        "type": "file",
-                        "name": "venn_borders.glsl"
-                    }
-                ]
-            },
-            {
-                "name": "warm_ups",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "swizzle.frag"
-                    }
-                ]
-            },
-            {
-                "name": "zoo",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "zoo_00.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zoo_01.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zoo_02.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zoo_03.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zoo_04.frag"
-                    },
-                    {
-                        "type": "file",
-                        "name": "zoo_05.frag"
-                    }
-                ]
-            }
+                "name": "app.js"
+              },
+              {
+                "type": "file",
+                "name": "index.html"
+              }
+            ]
+          },
+          {
+            "name": "demo_livecode",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "app.js"
+              },
+              {
+                "type": "file",
+                "name": "index.html"
+              },
+              {
+                "type": "file",
+                "name": "style.css"
+              }
+            ]
+          },
+          {
+            "name": "demo_vue",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "app.js"
+              },
+              {
+                "type": "file",
+                "name": "index.html"
+              },
+              {
+                "type": "file",
+                "name": "style.css"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "notes.md"
+          }
         ]
-    },
-    {
-        "name": "story_teller",
+      },
+      {
+        "name": "jumper",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "story_01.js"
-            }
+          {
+            "type": "file",
+            "name": "jumper_01.js"
+          },
+          {
+            "type": "file",
+            "name": "jumper_poc.js"
+          }
         ]
-    },
-    {
-        "name": "student_demos",
+      },
+      {
+        "name": "roguelite",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "aakanksha_01.js"
-            }
+          {
+            "type": "file",
+            "name": "index.html"
+          },
+          {
+            "type": "file",
+            "name": "input_manager.js"
+          },
+          {
+            "type": "file",
+            "name": "roguelite_01.js"
+          },
+          {
+            "type": "file",
+            "name": "roguelite_02.js"
+          },
+          {
+            "type": "file",
+            "name": "roguelite_03.js"
+          }
         ]
-    },
-    {
-        "name": "templates",
+      },
+      {
+        "name": "signals",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "p5.js"
-            }
+          {
+            "type": "file",
+            "name": "example_01.js"
+          },
+          {
+            "type": "file",
+            "name": "example_02.js"
+          },
+          {
+            "type": "file",
+            "name": "notes.md"
+          },
+          {
+            "type": "file",
+            "name": "signals.html"
+          },
+          {
+            "type": "file",
+            "name": "signals_01.js"
+          },
+          {
+            "type": "file",
+            "name": "style.css"
+          },
+          {
+            "type": "file",
+            "name": "todo.md"
+          }
         ]
-    },
-    {
-        "name": "tests",
+      },
+      {
+        "name": "termites",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "alias_01.js"
-            },
-            {
-                "type": "file",
-                "name": "alias_02.js"
-            },
-            {
-                "type": "file",
-                "name": "alias_03.js"
-            },
-            {
-                "type": "file",
-                "name": "mouseMoved.js"
-            },
-            {
-                "type": "file",
-                "name": "p5objects.js"
-            },
-            {
-                "type": "file",
-                "name": "randomSpeed.js"
-            }
+          {
+            "type": "file",
+            "name": "snowmen_01.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_01.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_02.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_03.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_04.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_05_oloo.js"
+          },
+          {
+            "type": "file",
+            "name": "termites_06_constructor.js"
+          }
         ]
-    },
-    {
-        "name": "videos",
+      },
+      {
+        "name": "text_effects",
         "type": "folder",
         "children": [
-            {
+          {
+            "type": "file",
+            "name": "border.png"
+          },
+          {
+            "type": "file",
+            "name": "index.html"
+          },
+          {
+            "name": "scratch",
+            "type": "folder",
+            "children": [
+              {
                 "type": "file",
-                "name": "loops_01.js"
-            },
-            {
+                "name": "index.html"
+              },
+              {
                 "type": "file",
-                "name": "loops_start.js"
-            },
-            {
+                "name": "main.js"
+              },
+              {
                 "type": "file",
-                "name": "script.md"
-            }
+                "name": "style.css"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "style.css"
+          },
+          {
+            "type": "file",
+            "name": "text_effects.js"
+          }
         ]
-    },
-    {
-        "name": "web",
+      }
+    ]
+  },
+  {
+    "name": "algo_print",
+    "type": "folder",
+    "children": [
+      {
+        "name": "box_gen",
         "type": "folder",
         "children": [
-            {
-                "name": "audio",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    },
-                    {
-                        "type": "file",
-                        "name": "style.css"
-                    },
-                    {
-                        "type": "file",
-                        "name": "test.mp3"
-                    },
-                    {
-                        "type": "file",
-                        "name": "test.ogg"
-                    }
-                ]
-            },
-            {
-                "name": "demo_1",
-                "type": "folder",
-                "children": [
-                    {
-                        "type": "file",
-                        "name": "index.html"
-                    }
-                ]
-            }
+          {
+            "type": "file",
+            "name": "box_gen_01.js"
+          },
+          {
+            "type": "file",
+            "name": "box_gen_02.js"
+          },
+          {
+            "type": "file",
+            "name": "index.html"
+          }
         ]
-    },
-    {
-        "name": "_libraries",
+      },
+      {
+        "name": "business_card",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "webm-writer-0.3.0.js"
-            }
+          {
+            "type": "file",
+            "name": "business_card_01.js"
+          }
         ]
-    },
-    {
-        "name": "_tests",
+      },
+      {
+        "name": "postcard",
         "type": "folder",
         "children": [
-            {
-                "name": "dot",
-                "type": "folder",
-                "children": [
-                    {
-                        "name": "01_basic",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "basic.js"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "02_advanced",
-                        "type": "folder",
-                        "children": [
-                            {
-                                "type": "file",
-                                "name": "advanced.js"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "file",
-                "name": "hello_image.png"
-            },
-            {
-                "type": "file",
-                "name": "hello_md.md"
-            },
-            {
-                "type": "file",
-                "name": "hello_p5.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_paper.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_text.txt"
-            },
-            {
-                "type": "file",
-                "name": "hello_world.js"
-            },
-            {
-                "type": "file",
-                "name": "hello_yaml.yaml"
-            }
+          {
+            "type": "file",
+            "name": "postcard.css"
+          },
+          {
+            "type": "file",
+            "name": "postcard.html"
+          },
+          {
+            "type": "file",
+            "name": "postcard.js"
+          },
+          {
+            "type": "file",
+            "name": "postcard.pdf"
+          },
+          {
+            "type": "file",
+            "name": "postcard_readme.md"
+          },
+          {
+            "type": "file",
+            "name": "test.html"
+          }
         ]
-    },
-    {
-        "name": "_util",
+      },
+      {
+        "type": "file",
+        "name": "rect_test.js"
+      },
+      {
+        "name": "side_gen",
         "type": "folder",
         "children": [
-            {
-                "type": "file",
-                "name": "emitter.js"
-            },
-            {
-                "type": "file",
-                "name": "grabber_01.js"
-            },
-            {
-                "type": "file",
-                "name": "grabber_02.js"
-            },
-            {
-                "type": "file",
-                "name": "grabber_demo.js"
-            },
-            {
-                "type": "file",
-                "name": "mess.js"
-            }
+          {
+            "type": "file",
+            "name": "index.html"
+          },
+          {
+            "type": "file",
+            "name": "side_gen_01.js"
+          },
+          {
+            "type": "file",
+            "name": "side_gen_02.js"
+          }
         ]
-    }
+      },
+      {
+        "type": "file",
+        "name": "side_gen.zip"
+      },
+      {
+        "name": "stack",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "stack_00.js"
+          },
+          {
+            "type": "file",
+            "name": "stack_01.js"
+          },
+          {
+            "type": "file",
+            "name": "stack_02.js"
+          },
+          {
+            "type": "file",
+            "name": "stack_03.js"
+          }
+        ]
+      },
+      {
+        "name": "talia_postcard",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "postcard.css"
+          },
+          {
+            "type": "file",
+            "name": "postcard.html"
+          },
+          {
+            "type": "file",
+            "name": "postcard.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cf_challenges",
+    "type": "folder",
+    "children": [
+      {
+        "name": "03_noise",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "group_challenge_circle.js"
+          },
+          {
+            "type": "file",
+            "name": "group_challenge_hatch.js"
+          }
+        ]
+      },
+      {
+        "name": "04_parameters",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "challenge_globals_01.js"
+          },
+          {
+            "type": "file",
+            "name": "challenge_tweakpane_01.js"
+          },
+          {
+            "type": "file",
+            "name": "spiral_01.js"
+          }
+        ]
+      },
+      {
+        "name": "06_pixels",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "pixels_coding_challenge_01.js"
+          },
+          {
+            "type": "file",
+            "name": "pixels_coding_challenge_02.js"
+          },
+          {
+            "type": "file",
+            "name": "pixels_gradient_solution_01.js"
+          },
+          {
+            "type": "file",
+            "name": "pixels_worksheet_01.js"
+          },
+          {
+            "type": "file",
+            "name": "random_access_solution_01.js"
+          },
+          {
+            "type": "file",
+            "name": "random_pixels_solution_01.js"
+          },
+          {
+            "type": "file",
+            "name": "scratch_math_solution_01.js"
+          },
+          {
+            "type": "file",
+            "name": "scratch_sin_solution_01.js"
+          }
+        ]
+      },
+      {
+        "name": "07_vector",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "bounce_p5_01.js"
+          },
+          {
+            "type": "file",
+            "name": "bounce_p5_01_a.js"
+          },
+          {
+            "type": "file",
+            "name": "bounce_paperscript_01.js"
+          },
+          {
+            "type": "file",
+            "name": "bounce_paperscript_01_a.js"
+          }
+        ]
+      },
+      {
+        "name": "08_animation",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "bounce_01.js"
+          },
+          {
+            "type": "file",
+            "name": "bounce_solution.js"
+          },
+          {
+            "type": "file",
+            "name": "fuzzy_01.js"
+          },
+          {
+            "type": "file",
+            "name": "fuzzy_bias.js"
+          },
+          {
+            "type": "file",
+            "name": "fuzzy_solution.js"
+          }
+        ]
+      },
+      {
+        "name": "14_microgames",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "animation_solution.js"
+          },
+          {
+            "type": "file",
+            "name": "guy.png"
+          },
+          {
+            "type": "file",
+            "name": "interaction_solution.js"
+          },
+          {
+            "type": "file",
+            "name": "king.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cf_demos",
+    "type": "folder",
+    "children": [
+      {
+        "name": "03_noise",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "hash.js"
+          }
+        ]
+      },
+      {
+        "name": "09_animation",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "grass_grow.js"
+          },
+          {
+            "type": "file",
+            "name": "worms.js"
+          }
+        ]
+      },
+      {
+        "name": "text",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "vanilla_cfg.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cf_sketching",
+    "type": "folder",
+    "children": [
+      {
+        "name": "01_intro",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "amber_01.js"
+          },
+          {
+            "type": "file",
+            "name": "olivier_brueckner_01.js"
+          },
+          {
+            "type": "file",
+            "name": "olivier_brueckner_02.js"
+          },
+          {
+            "type": "file",
+            "name": "zhao_yang_01.js"
+          },
+          {
+            "type": "file",
+            "name": "zora_wan_01.js"
+          }
+        ]
+      },
+      {
+        "name": "02_random",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "ani_01.js"
+          },
+          {
+            "type": "file",
+            "name": "ani_02.js"
+          },
+          {
+            "type": "file",
+            "name": "ani_03.js"
+          },
+          {
+            "type": "file",
+            "name": "bookshelf_00.js"
+          },
+          {
+            "type": "file",
+            "name": "bookshelf_01.js"
+          },
+          {
+            "type": "file",
+            "name": "branch_01.js"
+          },
+          {
+            "type": "file",
+            "name": "branch_02.js"
+          },
+          {
+            "type": "file",
+            "name": "branch_02b.js"
+          },
+          {
+            "type": "file",
+            "name": "branch_03.js"
+          },
+          {
+            "type": "file",
+            "name": "butterfly_01.js"
+          },
+          {
+            "type": "file",
+            "name": "butterfly_02.js"
+          },
+          {
+            "type": "file",
+            "name": "castle_01.js"
+          },
+          {
+            "type": "file",
+            "name": "drops_01.js"
+          },
+          {
+            "type": "file",
+            "name": "drops_02.js"
+          },
+          {
+            "type": "file",
+            "name": "drops_03.js"
+          },
+          {
+            "type": "file",
+            "name": "flip_01.js"
+          },
+          {
+            "type": "file",
+            "name": "flip_02.js"
+          },
+          {
+            "type": "file",
+            "name": "flip_03.js"
+          },
+          {
+            "type": "file",
+            "name": "frames_01.js"
+          },
+          {
+            "type": "file",
+            "name": "microbuild_00.js"
+          },
+          {
+            "type": "file",
+            "name": "moon_01.js"
+          }
+        ]
+      },
+      {
+        "name": "03_3d",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "hair.scad"
+          },
+          {
+            "type": "file",
+            "name": "polygon.scad"
+          },
+          {
+            "type": "file",
+            "name": "polygon2.scad"
+          },
+          {
+            "type": "file",
+            "name": "tower.scad"
+          }
+        ]
+      },
+      {
+        "name": "03_noise",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "ani_04.js"
+          },
+          {
+            "type": "file",
+            "name": "blueish_01.js"
+          },
+          {
+            "type": "file",
+            "name": "bsp_painting_01.js"
+          },
+          {
+            "type": "file",
+            "name": "cave_01.js"
+          },
+          {
+            "type": "file",
+            "name": "crowd_01.js"
+          },
+          {
+            "type": "file",
+            "name": "deck_noise_01.js"
+          },
+          {
+            "type": "file",
+            "name": "flow_01.js"
+          },
+          {
+            "type": "file",
+            "name": "flow_01a.js"
+          },
+          {
+            "type": "file",
+            "name": "flow_02.js"
+          },
+          {
+            "type": "file",
+            "name": "f_01.js"
+          },
+          {
+            "type": "file",
+            "name": "f_02.js"
+          },
+          {
+            "type": "file",
+            "name": "hop_01.js"
+          },
+          {
+            "type": "file",
+            "name": "landscape_01.js"
+          },
+          {
+            "type": "file",
+            "name": "media_recorder_01.js"
+          },
+          {
+            "type": "file",
+            "name": "pixel_dust_01.js"
+          },
+          {
+            "type": "file",
+            "name": "prison_01.js"
+          },
+          {
+            "type": "file",
+            "name": "prison_02.js"
+          },
+          {
+            "type": "file",
+            "name": "prison_03.js"
+          },
+          {
+            "type": "file",
+            "name": "sin_rand_01.js"
+          },
+          {
+            "type": "file",
+            "name": "snowday.js"
+          },
+          {
+            "type": "file",
+            "name": "spiral_01.js"
+          },
+          {
+            "type": "file",
+            "name": "spiral_02.js"
+          },
+          {
+            "type": "file",
+            "name": "spiral_03.js"
+          },
+          {
+            "type": "file",
+            "name": "star_map_01.js"
+          },
+          {
+            "type": "file",
+            "name": "star_map_02.js"
+          },
+          {
+            "type": "file",
+            "name": "symmetry_01.js"
+          },
+          {
+            "type": "file",
+            "name": "tree_00.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_01.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_02.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_09.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_10.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_11.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_12a.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_12b.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_13.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_14.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_15.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_16.js"
+          },
+          {
+            "type": "file",
+            "name": "unknown_17.js"
+          },
+          {
+            "type": "file",
+            "name": "waldo_01.js"
+          },
+          {
+            "type": "file",
+            "name": "warp_grid_01.js"
+          }
+        ]
+      },
+      {
+        "name": "04_parameters",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "bonsai_01.js"
+          },
+          {
+            "type": "file",
+            "name": "bonsai_02.js"
+          },
+          {
+            "type": "file",
+            "name": "bonsai_03.js"
+          },
+          {
+            "type": "file",
+            "name": "hearts_01.js"
+          },
+          {
+            "type": "file",
+            "name": "p5_dom_style.css"
+          },
+          {
+            "type": "file",
+            "name": "p5_dom_style.js"
+          },
+          {
+            "type": "file",
+            "name": "salt_01.js"
+          },
+          {
+            "type": "file",
+            "name": "sloppy_01.js"
+          },
+          {
+            "type": "file",
+            "name": "spirograph_01.js"
+          },
+          {
+            "type": "file",
+            "name": "tokens_01.js"
+          },
+          {
+            "type": "file",
+            "name": "tweakpane_01.js"
+          },
+          {
+            "type": "file",
+            "name": "tweakpane_02.js"
+          }
+        ]
+      },
+      {
+        "name": "06_pixels",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "automata_01.js"
+          },
+          {
+            "type": "file",
+            "name": "automata_02.js"
+          },
+          {
+            "type": "file",
+            "name": "automata_03.js"
+          },
+          {
+            "type": "file",
+            "name": "automata_04.js"
+          },
+          {
+            "type": "file",
+            "name": "automata_bench.js"
+          },
+          {
+            "type": "file",
+            "name": "celeste_01.js"
+          },
+          {
+            "type": "file",
+            "name": "color_wars_01.js"
+          },
+          {
+            "type": "file",
+            "name": "landscape_01.js"
+          },
+          {
+            "type": "file",
+            "name": "lichen.frag"
+          },
+          {
+            "type": "file",
+            "name": "mess_01.js"
+          },
+          {
+            "type": "file",
+            "name": "meta_01.js"
+          },
+          {
+            "name": "renders",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "automata_04_01.png"
+              },
+              {
+                "type": "file",
+                "name": "automata_04_2.png"
+              },
+              {
+                "type": "file",
+                "name": "automata_04_3.webm"
+              },
+              {
+                "type": "file",
+                "name": "landscape_01.png"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "star_01.js"
+          }
+        ]
+      },
+      {
+        "name": "07_vectors",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "cactus_01.js"
+          },
+          {
+            "type": "file",
+            "name": "cord_01.js"
+          },
+          {
+            "type": "file",
+            "name": "cord_02.js"
+          },
+          {
+            "type": "file",
+            "name": "cord_03.js"
+          },
+          {
+            "type": "file",
+            "name": "noised_01.js"
+          },
+          {
+            "type": "file",
+            "name": "noodles_01.js"
+          },
+          {
+            "type": "file",
+            "name": "recursion.js"
+          }
+        ]
+      },
+      {
+        "name": "08_turtle_graphics",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "field_01.js"
+          },
+          {
+            "type": "file",
+            "name": "grass_01.js"
+          }
+        ]
+      },
+      {
+        "name": "09_animation",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "bezier_01.js"
+          },
+          {
+            "type": "file",
+            "name": "donkey_particle_01.js"
+          },
+          {
+            "type": "file",
+            "name": "recursion_01.js"
+          },
+          {
+            "type": "file",
+            "name": "wiggle_01.js"
+          },
+          {
+            "type": "file",
+            "name": "wiggle_02.js"
+          },
+          {
+            "type": "file",
+            "name": "wiggle_02a.js"
+          }
+        ]
+      },
+      {
+        "name": "10_text",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "dnd_01.js"
+          },
+          {
+            "type": "file",
+            "name": "rita_01.js"
+          }
+        ]
+      },
+      {
+        "name": "11_sound",
+        "type": "folder",
+        "children": [
+          {
+            "name": "music",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "mozart_01.mp3"
+              },
+              {
+                "type": "file",
+                "name": "mozart_01_30.mp3"
+              },
+              {
+                "type": "file",
+                "name": "readme.md"
+              },
+              {
+                "type": "file",
+                "name": "white_noise_01.mp3"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "vk_visualizer_01.js"
+          }
+        ]
+      },
+      {
+        "name": "12_music",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "song_01.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "class_demos",
+    "type": "folder",
+    "children": [
+      {
+        "name": "bookshelf",
+        "type": "folder",
+        "children": [
+          {
+            "name": "bookshelf_01",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "index.html"
+              },
+              {
+                "type": "file",
+                "name": "main.js"
+              }
+            ]
+          },
+          {
+            "name": "bookshelf_02",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "index.html"
+              },
+              {
+                "type": "file",
+                "name": "main.js"
+              },
+              {
+                "type": "file",
+                "name": "style.css"
+              }
+            ]
+          },
+          {
+            "name": "bookshelf_design",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "index.html"
+              },
+              {
+                "type": "file",
+                "name": "style.css"
+              }
+            ]
+          },
+          {
+            "name": "lib",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "airtable.browser.js"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "notes.md"
+          }
+        ]
+      },
+      {
+        "name": "css_layout",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "base.html"
+          },
+          {
+            "type": "file",
+            "name": "layout_1.css"
+          },
+          {
+            "type": "file",
+            "name": "layout_1.html"
+          },
+          {
+            "type": "file",
+            "name": "layout_2.html"
+          },
+          {
+            "type": "file",
+            "name": "layout_3.html"
+          },
+          {
+            "type": "file",
+            "name": "style.css"
+          }
+        ]
+      },
+      {
+        "name": "this",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "this_01.js"
+          }
+        ]
+      },
+      {
+        "name": "why_we_code",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "adaptive.js"
+          },
+          {
+            "type": "file",
+            "name": "connected.js"
+          },
+          {
+            "type": "file",
+            "name": "customized.js"
+          },
+          {
+            "type": "file",
+            "name": "generative.js"
+          },
+          {
+            "type": "file",
+            "name": "intelligent.js"
+          },
+          {
+            "type": "file",
+            "name": "interactive.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "code_reviews",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "ankong_nuts_01.js"
+      },
+      {
+        "type": "file",
+        "name": "ankong_nuts_02.js"
+      },
+      {
+        "type": "file",
+        "name": "ankong_nuts_03.js"
+      },
+      {
+        "type": "file",
+        "name": "ankong_nuts_04.js"
+      },
+      {
+        "type": "file",
+        "name": "ankong_nuts_live.js"
+      },
+      {
+        "type": "file",
+        "name": "malin_space_01.js"
+      },
+      {
+        "type": "file",
+        "name": "shayla_face_01.js"
+      }
+    ]
+  },
+  {
+    "type": "file",
+    "name": "index.md"
+  },
+  {
+    "name": "intermediate",
+    "type": "folder",
+    "children": [
+      {
+        "name": "conspiracy",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "aliased_template.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_01.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_02.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_03.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_04.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_05.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_05_aliased.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_06.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_cast_01.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_cast_02.js"
+          },
+          {
+            "type": "file",
+            "name": "conspiracy_cast_03.js"
+          },
+          {
+            "type": "file",
+            "name": "cube_01.js"
+          }
+        ]
+      },
+      {
+        "name": "frogger",
+        "type": "folder",
+        "children": [
+          {
+            "name": "assets",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "asdw.png"
+              },
+              {
+                "type": "file",
+                "name": "badge_join.png"
+              },
+              {
+                "type": "file",
+                "name": "badge_p1.png"
+              },
+              {
+                "type": "file",
+                "name": "badge_p2.png"
+              },
+              {
+                "type": "file",
+                "name": "badge_watching.png"
+              },
+              {
+                "type": "file",
+                "name": "button_start_down.png"
+              },
+              {
+                "type": "file",
+                "name": "button_start_up.png"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_die.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_hit.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_intro.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_jump.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_spawn.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sfx_title.wav"
+              },
+              {
+                "type": "file",
+                "name": "frogger_sprites.png"
+              },
+              {
+                "type": "file",
+                "name": "frogs_f.png"
+              },
+              {
+                "type": "file",
+                "name": "frogs_g.png"
+              },
+              {
+                "type": "file",
+                "name": "frogs_o.png"
+              },
+              {
+                "type": "file",
+                "name": "frogs_r.png"
+              },
+              {
+                "type": "file",
+                "name": "frogs_s.png"
+              },
+              {
+                "type": "file",
+                "name": "ldru.png"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "frogger_01.js"
+          },
+          {
+            "type": "file",
+            "name": "frogger_02.js"
+          },
+          {
+            "type": "file",
+            "name": "frogger_03.js"
+          },
+          {
+            "type": "file",
+            "name": "frogger_ab_01.js"
+          },
+          {
+            "name": "production",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "frogger_sprites.psd"
+              },
+              {
+                "type": "file",
+                "name": "frogs.psd"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "paper_garden",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "paperjs_util.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_2.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_3.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_4.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_4js.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_circle_study.js"
+          },
+          {
+            "type": "file",
+            "name": "paper_garden_plotter.js"
+          },
+          {
+            "type": "file",
+            "name": "plotter_test.js"
+          },
+          {
+            "type": "file",
+            "name": "subtract_test.js"
+          }
+        ]
+      },
+      {
+        "name": "river",
+        "type": "folder",
+        "children": [
+          {
+            "name": "assets",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "laoth.png"
+              },
+              {
+                "type": "file",
+                "name": "makwa.png"
+              },
+              {
+                "type": "file",
+                "name": "thexius.png"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "index.md"
+          },
+          {
+            "name": "production",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "makwa.blend"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "river_01.js"
+          },
+          {
+            "type": "file",
+            "name": "river_01_alt.js"
+          },
+          {
+            "type": "file",
+            "name": "river_01_clean.js"
+          },
+          {
+            "type": "file",
+            "name": "river_02.js"
+          },
+          {
+            "name": "_figures",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "blender.png"
+              }
+            ]
+          },
+          {
+            "name": "_outtakes",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "laoth_01.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_02.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_03.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_04.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_05.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_06.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_07.jpg"
+              },
+              {
+                "type": "file",
+                "name": "laoth_08.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_01.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_03.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_05.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_07.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_09.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_10.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_11.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_12.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_13.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_14.jpg"
+              },
+              {
+                "type": "file",
+                "name": "makwa_15.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_01.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_02.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_03.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_04.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_05.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_06.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_07.jpg"
+              },
+              {
+                "type": "file",
+                "name": "thexius_08.jpg"
+              }
+            ]
+          },
+          {
+            "name": "_renders",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "laoth_01.png"
+              },
+              {
+                "type": "file",
+                "name": "makwa_01.png"
+              },
+              {
+                "type": "file",
+                "name": "sketch_01_render_01.png"
+              },
+              {
+                "type": "file",
+                "name": "sketch_01_render_02.png"
+              },
+              {
+                "type": "file",
+                "name": "thexius_01.png"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "springs",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "springs.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "lang_dept",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "galaxy_01.js"
+      },
+      {
+        "type": "file",
+        "name": "galaxy_02.js"
+      },
+      {
+        "type": "file",
+        "name": "galaxy_03.js"
+      }
+    ]
+  },
+  {
+    "name": "library_demos",
+    "type": "folder",
+    "children": [
+      {
+        "name": "jsscad",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "tree_01.js"
+          }
+        ]
+      },
+      {
+        "name": "p5party",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "map_01.js"
+          },
+          {
+            "type": "file",
+            "name": "map_02.js"
+          },
+          {
+            "type": "file",
+            "name": "p5.party.js"
+          },
+          {
+            "type": "file",
+            "name": "p5.party.js.map"
+          }
+        ]
+      },
+      {
+        "name": "p5play",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "01_ball.js"
+          },
+          {
+            "type": "file",
+            "name": "02_bricks.js"
+          },
+          {
+            "type": "file",
+            "name": "03_paddle.js"
+          },
+          {
+            "type": "file",
+            "name": "p5.play.js"
+          }
+        ]
+      },
+      {
+        "name": "tonejs",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "adsr.png"
+          },
+          {
+            "type": "file",
+            "name": "connect.js"
+          },
+          {
+            "type": "file",
+            "name": "hello_tone.js"
+          },
+          {
+            "type": "file",
+            "name": "midi.js"
+          },
+          {
+            "type": "file",
+            "name": "notes.md"
+          },
+          {
+            "type": "file",
+            "name": "synth_1.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "party",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "party_demo.js"
+      },
+      {
+        "type": "file",
+        "name": "party_demo_1.js"
+      },
+      {
+        "type": "file",
+        "name": "vtm_dice.js"
+      }
+    ]
+  },
+  {
+    "name": "puzzles",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "ABCDExA.js"
+      }
+    ]
+  },
+  {
+    "name": "shaders",
+    "type": "folder",
+    "children": [
+      {
+        "name": "basics_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "checkers.frag"
+          },
+          {
+            "type": "file",
+            "name": "checkers_wave.frag"
+          },
+          {
+            "type": "file",
+            "name": "dots.frag"
+          },
+          {
+            "type": "file",
+            "name": "dots_gradient.frag"
+          },
+          {
+            "type": "file",
+            "name": "dots_live.frag"
+          },
+          {
+            "type": "file",
+            "name": "rings.frag"
+          },
+          {
+            "type": "file",
+            "name": "stripes.frag"
+          },
+          {
+            "type": "file",
+            "name": "triangles.frag"
+          },
+          {
+            "type": "file",
+            "name": "waves.frag"
+          },
+          {
+            "type": "file",
+            "name": "wave_live.frag"
+          },
+          {
+            "type": "file",
+            "name": "wave_wave.frag"
+          }
+        ]
+      },
+      {
+        "type": "file",
+        "name": "city.frag"
+      },
+      {
+        "type": "file",
+        "name": "city_00.frag"
+      },
+      {
+        "type": "file",
+        "name": "city_01.frag"
+      },
+      {
+        "type": "file",
+        "name": "composite_example.frag"
+      },
+      {
+        "type": "file",
+        "name": "composite_example_2.frag"
+      },
+      {
+        "type": "file",
+        "name": "domain_warp.frag"
+      },
+      {
+        "type": "file",
+        "name": "frogger.frag"
+      },
+      {
+        "type": "file",
+        "name": "frogger_2.frag"
+      },
+      {
+        "type": "file",
+        "name": "hello.frag"
+      },
+      {
+        "type": "file",
+        "name": "hello_world.frag"
+      },
+      {
+        "type": "file",
+        "name": "hindsight_blend.frag"
+      },
+      {
+        "type": "file",
+        "name": "hindsight_splash.frag"
+      },
+      {
+        "type": "file",
+        "name": "hindsign_blend_2.frag"
+      },
+      {
+        "type": "file",
+        "name": "index.html"
+      },
+      {
+        "type": "file",
+        "name": "island copy.png"
+      },
+      {
+        "type": "file",
+        "name": "island.frag"
+      },
+      {
+        "type": "file",
+        "name": "island.png"
+      },
+      {
+        "type": "file",
+        "name": "march.frag"
+      },
+      {
+        "type": "file",
+        "name": "march_2.frag"
+      },
+      {
+        "type": "file",
+        "name": "noise.frag"
+      },
+      {
+        "type": "file",
+        "name": "noise.png"
+      },
+      {
+        "type": "file",
+        "name": "random.frag"
+      },
+      {
+        "name": "random_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "autopainter.frag"
+          },
+          {
+            "type": "file",
+            "name": "autopainter_plus.frag"
+          },
+          {
+            "type": "file",
+            "name": "checkerboard3.frag"
+          },
+          {
+            "type": "file",
+            "name": "dots.frag"
+          },
+          {
+            "type": "file",
+            "name": "dots2.frag"
+          },
+          {
+            "type": "file",
+            "name": "rand.frag"
+          }
+        ]
+      },
+      {
+        "type": "file",
+        "name": "sdf.frag"
+      },
+      {
+        "name": "sdf_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "circle.frag"
+          },
+          {
+            "type": "file",
+            "name": "combine.frag"
+          },
+          {
+            "type": "file",
+            "name": "garden.frag"
+          },
+          {
+            "type": "file",
+            "name": "playskool.frag"
+          },
+          {
+            "type": "file",
+            "name": "rect.frag"
+          },
+          {
+            "type": "file",
+            "name": "transform.frag"
+          },
+          {
+            "type": "file",
+            "name": "zen.frag"
+          }
+        ]
+      },
+      {
+        "name": "shaping_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "checkerboard.frag"
+          },
+          {
+            "type": "file",
+            "name": "disc.frag"
+          },
+          {
+            "type": "file",
+            "name": "hills.frag"
+          },
+          {
+            "type": "file",
+            "name": "moon.frag"
+          },
+          {
+            "type": "file",
+            "name": "puzzle.frag"
+          },
+          {
+            "type": "file",
+            "name": "sticker.frag"
+          },
+          {
+            "type": "file",
+            "name": "sticker_live.frag"
+          },
+          {
+            "type": "file",
+            "name": "super_sticker.frag"
+          },
+          {
+            "type": "file",
+            "name": "twins.frag"
+          }
+        ]
+      },
+      {
+        "type": "file",
+        "name": "soft_voronoi.frag"
+      },
+      {
+        "type": "file",
+        "name": "style.css"
+      },
+      {
+        "type": "file",
+        "name": "texture.frag"
+      },
+      {
+        "name": "thinking_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "gradient.frag"
+          },
+          {
+            "type": "file",
+            "name": "rect_branch.frag"
+          },
+          {
+            "type": "file",
+            "name": "rect_no_branch.frag"
+          }
+        ]
+      },
+      {
+        "name": "uniforms_solutions",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "crosshairs.glsl"
+          },
+          {
+            "type": "file",
+            "name": "hills.glsl"
+          },
+          {
+            "type": "file",
+            "name": "hill_bordered.glsl"
+          },
+          {
+            "type": "file",
+            "name": "spotlight.glsl"
+          },
+          {
+            "type": "file",
+            "name": "venn.glsl"
+          },
+          {
+            "type": "file",
+            "name": "venn_borders.glsl"
+          }
+        ]
+      },
+      {
+        "name": "warm_ups",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "swizzle.frag"
+          }
+        ]
+      },
+      {
+        "name": "zoo",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "zoo_00.frag"
+          },
+          {
+            "type": "file",
+            "name": "zoo_01.frag"
+          },
+          {
+            "type": "file",
+            "name": "zoo_02.frag"
+          },
+          {
+            "type": "file",
+            "name": "zoo_03.frag"
+          },
+          {
+            "type": "file",
+            "name": "zoo_04.frag"
+          },
+          {
+            "type": "file",
+            "name": "zoo_05.frag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "story_teller",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "story_01.js"
+      }
+    ]
+  },
+  {
+    "name": "student_demos",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "aakanksha_01.js"
+      }
+    ]
+  },
+  {
+    "name": "templates",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "p5.js"
+      }
+    ]
+  },
+  {
+    "name": "tests",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "alias_01.js"
+      },
+      {
+        "type": "file",
+        "name": "alias_02.js"
+      },
+      {
+        "type": "file",
+        "name": "alias_03.js"
+      },
+      {
+        "type": "file",
+        "name": "mouseMoved.js"
+      },
+      {
+        "type": "file",
+        "name": "p5objects.js"
+      },
+      {
+        "type": "file",
+        "name": "randomSpeed.js"
+      }
+    ]
+  },
+  {
+    "name": "videos",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "loops_01.js"
+      },
+      {
+        "type": "file",
+        "name": "loops_start.js"
+      },
+      {
+        "type": "file",
+        "name": "script.md"
+      }
+    ]
+  },
+  {
+    "name": "web",
+    "type": "folder",
+    "children": [
+      {
+        "name": "audio",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "index.html"
+          },
+          {
+            "type": "file",
+            "name": "style.css"
+          },
+          {
+            "type": "file",
+            "name": "test.mp3"
+          },
+          {
+            "type": "file",
+            "name": "test.ogg"
+          }
+        ]
+      },
+      {
+        "name": "demo_1",
+        "type": "folder",
+        "children": [
+          {
+            "type": "file",
+            "name": "index.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "_libraries",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "webm-writer-0.3.0.js"
+      }
+    ]
+  },
+  {
+    "name": "_tests",
+    "type": "folder",
+    "children": [
+      {
+        "name": "dot",
+        "type": "folder",
+        "children": [
+          {
+            "name": "01_basic",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "basic.js"
+              }
+            ]
+          },
+          {
+            "name": "02_advanced",
+            "type": "folder",
+            "children": [
+              {
+                "type": "file",
+                "name": "advanced.js"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "file",
+        "name": "hello_image.png"
+      },
+      {
+        "type": "file",
+        "name": "hello_md.md"
+      },
+      {
+        "type": "file",
+        "name": "hello_p5.js"
+      },
+      {
+        "type": "file",
+        "name": "hello_paper.js"
+      },
+      {
+        "type": "file",
+        "name": "hello_text.txt"
+      },
+      {
+        "type": "file",
+        "name": "hello_world.js"
+      },
+      {
+        "type": "file",
+        "name": "hello_yaml.yaml"
+      }
+    ]
+  },
+  {
+    "name": "_util",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "emitter.js"
+      },
+      {
+        "type": "file",
+        "name": "grabber_01.js"
+      },
+      {
+        "type": "file",
+        "name": "grabber_02.js"
+      },
+      {
+        "type": "file",
+        "name": "grabber_demo.js"
+      },
+      {
+        "type": "file",
+        "name": "mess.js"
+      }
+    ]
+  }
 ]

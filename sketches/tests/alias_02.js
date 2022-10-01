@@ -64,7 +64,7 @@ function draw() {
 
   background("gray");
 
-  ///drawingContext.disable(drawingContext.DEPTH_TEST);
+  // /drawingContext.disable(drawingContext.DEPTH_TEST);
 
   // we can't switch between smooth() and noSmooth() in a WEBGL sketch
   // so we just draw the tests once.

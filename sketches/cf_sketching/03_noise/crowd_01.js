@@ -9,14 +9,14 @@ function setup() {
   noiseDetail(4, 0.5);
 
   repeat(5000, () =>
-    people.push({
+    myPoints.push({
       x: middleRandom(-width * 0.5, width * 0.5, 2),
       y: highRandom(30, height + -30, 2),
     })
   );
 
-  people.sort((a, b) => (a.y > b.y ? 1 : -1));
-  relax(people);
+  myPoints.sort((a, b) => (a.y > b.y ? 1 : -1));
+  relax(myPoints);
 }
 
 function draw() {
@@ -26,7 +26,7 @@ function draw() {
   fill("black");
 
   translate(width * 0.5, 0);
-  people.forEach((person, i) => {
+  myPoints.forEach((person, i) => {
     push();
     const perspective = map(person.y, 0, height, 0.5, 1);
 

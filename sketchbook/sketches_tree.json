@@ -1135,6 +1135,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "gradient_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "landscape_01.js"
                     },
                     {
@@ -1420,6 +1424,21 @@
                     {
                         "type": "file",
                         "name": "this_01.js"
+                    }
+                ]
+            },
+            {
+                "name": "tile_collide",
+                "type": "folder",
+                "children": [
+                    {
+                        "name": "assets",
+                        "type": "folder",
+                        "children": []
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.js"
                     }
                 ]
             },

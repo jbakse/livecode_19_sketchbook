@@ -22,6 +22,8 @@ LID_HEIGHT = .5 / L;
 CHEAT_HEIGHT = .2 / L;
 CHEAT_CEILING = -.5 / L; // 
 CHEAT_STUD_OD = .2 / L;
+CHEAT_STUD_OD_TOP = .3 / L;
+
 CHEAT_ROUND_OD = .1 / L;
 
 
@@ -35,7 +37,7 @@ module stud() {
     color("blue")
     translate([2.5, 2.5, 0]) // align center to grid
     translate([0,0, STUD_HEIGHT * .5 ]) // align bottom t0 0
-    cylinder(h = STUD_HEIGHT, d = 3 + CHEAT_STUD_OD , center  = true);
+    cylinder(h = STUD_HEIGHT, d1 = 3 + CHEAT_STUD_OD, d2 = 3 + CHEAT_STUD_OD_TOP , center  = true);
 }
 
 module tstud() {
@@ -438,74 +440,207 @@ module fin2() {
 
 }
 
-scale(L) {
-    translate([0, 0, 0]) {
-        tile();
-        mosEisleyDome();
-    }
-
-    translate([0, 8, 0]) {
-        wall();
-        mosEisleyVat();
-    }
-
-    translate([0, 16, 0]) {
-        tile();
-        mosEisleyTower();
-    }
-
-    translate([0, 24, 0]) {
-        tile();
-        fin();
-    }
-
-    translate([0, 32, 0]) {
-        tile();
-        fin2();
-       
-    }
-
-    translate([0, 40, 0]) {
-        tile();
+module bump() {
+    translate([0, 0, 1]) {
         
-        translate([0,5,0]) mirror([0, 1, 0]) fin2();
+        minkowski() {
+            difference() {
+                cylinder(d=6, h=3, $fn = 20);
+                cube([5,6,10]);
+            }
+            sphere(.5, $fn = 10);
+        }
+
+            minkowski() {
+            difference() {
+                cylinder(d=4, h=4, $fn = 20);
+                rotate([90,0,0]) cube([5,6,10]);
+            }
+            sphere(.5, $fn = 10);
+        }
+        
+    }
+}
+module podOval() {
+    difference() {
+        translate([2.5, 1, 0])
+        rotate([90, 0, 0]) scale([1, 1, 1.25]) sphere(5, $fn = 50);
+        translate([-5, -.1, 0]) cube([15, 10, 5]);
+        translate([-5, 4.9, -5]) cube([15, 10, 10]);
     }
    
+}
+
+module pod() {
+    difference() {
+        translate([2.5, 0, 0])
+        rotate([90, 0, 0]) sphere(4.9, $fn = 50);
+        translate([-5, -.2, 0]) cube([15, 10, 5]);
+        translate([2.5, -2.50, 0]) rotate([90,0,0]) cylinder(d=3.1, h=10, $fn = 20);
+        translate([2.5, 0, -2.5]) rotate([180,0,0]) cylinder(d=3.1, h=10, $fn = 20);
+        // #translate([-5, 5, -5]) cube([15, 10, 10]);
+    }
+   
+}
+
+module bottomFin() {
+    radius = .5;
+    translate([0,0,-.5]) 
+    hull() linear_extrude(.5) {
+        translate([2.5, 2.5, 0]) circle(d=4, $fn = 20);
+        translate([7.5, 2.5, 0]) circle(d=4, $fn = 20);
+    }
+    difference() {
+        translate([5,2.5,0]) 
+        minkowski() {
+            hull() {
+                translate([0, 0, 0])
+                linear_extrude(.1)
+                square([6,.5], true);
+                
+                translate([-5, 0, -5])
+                linear_extrude(.1)
+                square([.1, .1], true);
+            }
+            sphere(radius, $fn = 20);
+        }
+        cube([10, 5, 5]);
+    }
+
+}
+
+module sideFin() {
+    difference() {
+        minkowski() {
+            translate([0, -6, -1.5])
+                cube([4, 10, .1]);
+            sphere(.5, $fn = 20);
+        }
+
+        translate([1, 1, -2.5])
+        cube([3 , 3 , 2]);
+    }
+}
+
+module negativeHead() {
+    // units in this module are in mm
+    scale(1 / L) 
+    minkowski() {
+        radius = 2;
+        translate([0, 0, -8.3 + radius]) 
+        cylinder(r=5.2 - radius, h=8.3 - 2 * radius, $fn = 20);
+        sphere(r = radius, $fn = 20);
+    }
+}
+module hat() {
+    
+    difference() {
+        union() {
+            // cap
+            translate([0,0,-1.25]) 
+            rotate([-10,0,0])
+            difference() {
+                sphere(r = 4.5, $fn = 30);
+                translate([-10, -10, -10]) cube([20, 20, 10]);
+            }
+
+            // ears
+            translate([3.5,0, -1.5]) rotate([0,90,0]) sphere(r = 2.0, $fn = 20);
+            translate([-3.5,0, -1.5]) rotate([0,90,0]) sphere(r = 2.0, $fn = 20);
+        }
+    translate([0,0,-.1]) cylinder(r = 2.5, h = 2, $fn = 20);
+    negativeHead();
+
+    }
+    translate([-2.5, -2.5, 2]) santistud(h = 2);
+
+    
     
 }
+scale(L) {
+    *hat();
+    
+
+    // translate([-2.5, -2.5, 0]) sstud();
+    
+    // todo: make a "low barn"
+    // high barn
+    *union() {
+        tile();
+        difference() {
+            translate([0,2.5, 0])
+            rotate([0, 90, 0]) 
+            cylinder(r = 2.5, h = 5, $fn = 40);
+            
+            translate([0, 0, -5]) cube([5, 5, 5]);
+        }
+    }
+    // moebius keel base
+    *union() {
+        grid(2, 1) sstud();
+        translate([0,0,-1])cube([10, 5, 1]);
+    }
+
+    // moebius wing
+    union(){
+        tile(3, 1);
+        sstud();
+        color("red") 
+        translate([5, 2.5, 0-(PLATE_HEIGHT+CHEAT_HEIGHT)])
+        grid(2, 1)
+        cylinder(r=1, h=PLATE_HEIGHT+CHEAT_HEIGHT, $fn = 20);
+    }
+    *union() {
+        tile(2, 2, h = 2);
+        color("blue")
+        translate([2.5, 2.5, -.01])
+        santistud(h = 1.99);
+    }
+
+    // translate([0,0,-2]) grid(2, 2) sstud();
+    *union([20, 0, -2]) {
+        // tile(1, 1);
+        sstud();
+        pod();
+    }
+    
+   
+
+}
+
+// scale(L) {
+//     translate([0, 0, 0]) {
+//         tile();
+//         mosEisleyDome();
+//     }
+
+//     translate([0, 8, 0]) {
+//         wall();
+//         mosEisleyVat();
+//     }
+
+//     translate([0, 16, 0]) {
+//         tile();
+//         mosEisleyTower();
+//     }
+
+//     translate([0, 24, 0]) {
+//         tile();
+//         fin();
+//     }
+
+//     translate([0, 32, 0]) {
+//         tile();
+//         fin2();
+       
+//     }
+
+//     translate([0, 40, 0]) {
+//         tile();
+        
+//         translate([0,5,0]) mirror([0, 1, 0]) fin2();
+//     }
+// }
 
 
  
-// scale(L) {
-   
-//     translate([0, 0, 0]) {
-//         roundTile();
-//         dish();
-//     }
-//     translate([8, 0, 0]) {
-//         roundTile();
-//         //antistud();
-//         //greebleBase();
-//     }
-//     translate([16, 0, 0]) {
-//         plate(1, 1);
-//     }
-//     translate([24, 0, 0]) {
-//         plate(1, 1);
-//         tstud();
-//     }
-    
-//     translate([32, 0, 0]) {
-//         plate(1, 2);
-//     }
-//     translate([40, 0, 0]) {
-//         plate(1, 2);
-//         grid(1, 2) tstud();
-//     }
-//     translate([48, 0, 0]) {
-//         roundTile();
-//         dome();
-//     }
-    
-// }
-

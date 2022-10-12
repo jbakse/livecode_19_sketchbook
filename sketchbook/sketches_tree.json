@@ -1434,7 +1434,20 @@
                     {
                         "name": "assets",
                         "type": "folder",
-                        "children": []
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "avatar.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "map_collision.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "map_display.png"
+                            }
+                        ]
                     },
                     {
                         "type": "file",

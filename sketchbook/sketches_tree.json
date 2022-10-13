@@ -1071,6 +1071,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "spiral_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "spirograph_01.js"
                     },
                     {
@@ -1452,6 +1456,10 @@
                     {
                         "type": "file",
                         "name": "index.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index_02.js"
                     }
                 ]
             },
@@ -2089,6 +2097,10 @@
         "name": "party",
         "type": "folder",
         "children": [
+            {
+                "type": "file",
+                "name": "asteroids_01.js"
+            },
             {
                 "type": "file",
                 "name": "party_demo.js"

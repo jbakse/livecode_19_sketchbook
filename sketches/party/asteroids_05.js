@@ -21,7 +21,7 @@ function preload() {
   // connect to the party server
   partyConnect(
     "wss://deepstream-server-1.herokuapp.com",
-    "jb_asteroids_04",
+    "jb_asteroids_05",
     "main"
   );
 

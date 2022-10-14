@@ -119,7 +119,7 @@ module.exports = {
     "no-return-await": "error", //	Disallow unnecessary `return await`
     "no-script-url": "error", //	Disallow `javascript:` urls
     "no-sequences": "error", //	Disallow comma operators
-    "no-shadow": "error", //	Disallow variable declarations from shadowing variables declared in the outer scoperestricted names
+    // "no-shadow": "error", //	Disallow variable declarations from shadowing variables declared in the outer scoperestricted names
     // "no-ternary": "error", //	Disallow ternary operators
     "no-throw-literal": "error", //	Disallow throwing literals as exceptions
     "no-undef-init": "error", //	Disallow initializing variables to `undefined`

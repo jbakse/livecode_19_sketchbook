@@ -2103,6 +2103,22 @@
             },
             {
                 "type": "file",
+                "name": "asteroids_02.js"
+            },
+            {
+                "type": "file",
+                "name": "asteroids_03.js"
+            },
+            {
+                "type": "file",
+                "name": "asteroids_04 copy.js"
+            },
+            {
+                "type": "file",
+                "name": "asteroids_04.js"
+            },
+            {
+                "type": "file",
                 "name": "party_demo.js"
             },
             {

@@ -2,10 +2,10 @@
 // require https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js
 
 /* exported setup draw preload mousePressed keyPressed keyReleased keyTyped */
-/* global partyConnect partyIsHost partyLoadShared partyLoadMyShared partyLoadGuestShareds partySetShared partyEmit partySubscribe partyToggleInfo*/
+/* global partyConnect partyIsHost partyLoadShared partyLoadMyShared partyLoadGuestShareds partyEmit partySubscribe partyToggleInfo*/
 
-const WIDTH = 800;
-const HEIGHT = 800;
+const WIDTH = 100;
+const HEIGHT = 100;
 
 let me, guests;
 let hostData;
@@ -34,7 +34,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(WIDTH, HEIGHT);
+  noSmooth();
+  pixelDensity(1);
+  const c = createCanvas(WIDTH, HEIGHT).canvas;
+  c.style.width = "600px";
+  c.style.height = "600px";
+  c.style.imageRendering = "pixelated";
   noFill();
   noStroke();
 
@@ -42,14 +47,14 @@ function setup() {
 }
 
 function draw() {
-  background("black");
-
   handleInput(me);
   updateShip(me);
 
   if (partyIsHost()) {
     updateRocks();
   }
+
+  background("black");
   for (const guest of guests) {
     drawShip(guest);
   }
@@ -57,6 +62,8 @@ function draw() {
   for (const rock of hostData.rocks) {
     drawRock(rock);
   }
+  // filter(BLUR, 1);
+  filter(THRESHOLD, 0.5);
 }
 
 function keyPressed() {
@@ -76,21 +83,20 @@ function keyReleased() {
 }
 
 function handleInput(ship) {
-  if (input.left) turnShip(ship, -0.05);
-  if (input.right) turnShip(ship, 0.05);
-  if (input.thrust) thrustShip(ship, 0.1);
-  if (input.reverse) thrustShip(ship, -0.1);
+  if (input.left) turnShip(ship, -1);
+  if (input.right) turnShip(ship, 1);
+  if (input.thrust) thrustShip(ship, 1);
+  if (input.reverse) thrustShip(ship, -1);
 }
 
 function fire() {
-  if (!me.alive) return;
   me.bullets.push({
     x: me.x,
     y: me.y,
     //   dX: ship.dX + 5 * cos(ship.angle),
     //   dY: ship.dY + 5 * sin(ship.angle),
-    dX: 5 * cos(me.angle),
-    dY: 5 * sin(me.angle),
+    dX: 1 * cos(me.angle),
+    dY: 1 * sin(me.angle),
     age: 0,
   });
 }
@@ -100,7 +106,6 @@ function fire() {
 
 function initShip() {
   const ship = {};
-  ship.alive = true;
   ship.x = WIDTH * 0.5;
   ship.y = HEIGHT * 0.5;
   ship.dX = 0;
@@ -111,49 +116,37 @@ function initShip() {
 }
 
 function updateShip(ship) {
-  if (!ship.alive) return;
   ship.x += ship.dX;
   ship.y += ship.dY;
   ship.dX *= 0.99;
   ship.dY *= 0.99;
-  if (ship.x > width) ship.x = 0;
-  if (ship.x < 0) ship.x = width;
-  if (ship.y > height) ship.y = 0;
-  if (ship.y < 0) ship.y = height;
-
-  for (const rock of hostData.rocks) {
-    if (dist(me.x, me.y, rock.x, rock.y) < rock.size * 0.5) {
-      partyEmit("rockHit", rock.id);
-      me.alive = false;
-      // eslint-disable-next-line
-      setTimeout(() => {
-        partySetShared(me, initShip());
-      }, 3000);
-    }
-  }
+  if (ship.x > WIDTH) ship.x = 0;
+  if (ship.x < 0) ship.x = WIDTH;
+  if (ship.y > HEIGHT) ship.y = 0;
+  if (ship.y < 0) ship.y = HEIGHT;
 
   for (const bullet of me.bullets) {
     updateBullet(bullet);
   }
+
   me.bullets = me.bullets.filter((bullet) => bullet.age < 100);
 }
 
 function turnShip(ship, angle) {
-  ship.angle += angle;
+  ship.angle += angle * 0.1;
 }
 
 function thrustShip(ship, thrust) {
-  ship.dX += thrust * cos(ship.angle);
-  ship.dY += thrust * sin(ship.angle);
+  ship.dX += thrust * cos(ship.angle) * 0.02;
+  ship.dY += thrust * sin(ship.angle) * 0.02;
 }
 
 function drawShip(ship) {
-  if (!ship.alive) return;
   push();
   translate(ship.x, ship.y);
   rotate(ship.angle);
   fill("white");
-  triangle(-10, -10, 15, 0, -10, 10);
+  triangle(-2, -2, 3, 0, -2, 2);
   pop();
 
   for (const bullet of ship.bullets) {
@@ -169,10 +162,10 @@ function updateBullet(bullet) {
 
   bullet.x += bullet.dX;
   bullet.y += bullet.dY;
-  if (bullet.x > width) bullet.x = 0;
-  if (bullet.x < 0) bullet.x = width;
-  if (bullet.y > height) bullet.y = 0;
-  if (bullet.y < 0) bullet.y = height;
+  if (bullet.x > WIDTH) bullet.x = 0;
+  if (bullet.x < 0) bullet.x = WIDTH;
+  if (bullet.y > HEIGHT) bullet.y = 0;
+  if (bullet.y < 0) bullet.y = HEIGHT;
 
   for (const rock of hostData.rocks) {
     if (dist(bullet.x, bullet.y, rock.x, rock.y) < rock.size * 0.5) {
@@ -187,7 +180,7 @@ function drawBullet(bullet) {
   translate(bullet.x, bullet.y);
   fill("white");
   noStroke();
-  ellipse(0, 0, 5);
+  ellipse(0, 0, 1.25);
   pop();
 }
 
@@ -200,9 +193,9 @@ function initRocks() {
     rocks.push({
       x: random(0, WIDTH),
       y: random(0, HEIGHT),
-      dX: random(-1, 1),
-      dY: random(-1, 1),
-      size: random([16, 32, 64]),
+      dX: random(-0.2, 0.2),
+      dY: random(-0.2, 0.2),
+      size: random([4, 8, 16]),
       id: i,
     });
   }
@@ -218,30 +211,30 @@ function updateRocks() {
 function updateRock(rock) {
   rock.x += rock.dX;
   rock.y += rock.dY;
-  if (rock.x > width) rock.x = 0;
-  if (rock.x < 0) rock.x = width;
-  if (rock.y > height) rock.y = 0;
-  if (rock.y < 0) rock.y = height;
+  if (rock.x > WIDTH) rock.x = 0;
+  if (rock.x < 0) rock.x = WIDTH;
+  if (rock.y > HEIGHT) rock.y = 0;
+  if (rock.y < 0) rock.y = HEIGHT;
 }
 
 function onRockHit(rockId) {
   if (!partyIsHost()) return;
   const rock = hostData.rocks.find((rock) => rock.id === rockId);
-  if (rock.size > 16) {
+  if (rock.size > 4) {
     const newSize = rock.size / 2;
     hostData.rocks.push({
-      x: rock.x,
-      y: rock.y,
-      dX: rock.dX + random(-1, 1),
-      dY: rock.dY + random(-1, 1),
+      x: rock.x + random(-4, 4),
+      y: rock.y + random(-4, 4),
+      dX: rock.dX + random(-0.1, 0.1),
+      dY: rock.dY + random(-0.1, 0.1),
       size: newSize,
       id: rock.id + 100,
     });
     hostData.rocks.push({
-      x: rock.x,
-      y: rock.y,
-      dX: rock.dX + random(-1, 1),
-      dY: rock.dY + random(-1, 1),
+      x: rock.x + random(-4, 4),
+      y: rock.y + random(-4, 4),
+      dX: rock.dX + random(-0.1, 0.1),
+      dY: rock.dY + random(-0.1, 0.1),
       size: newSize,
       id: rock.id + 200,
     });
@@ -254,6 +247,7 @@ function drawRock(rock) {
   translate(rock.x, rock.y);
   noFill();
   stroke("white");
+  strokeWeight(1);
   ellipse(0, 0, rock.size);
   pop();
 }

@@ -2111,11 +2111,15 @@
             },
             {
                 "type": "file",
-                "name": "asteroids_04 copy.js"
+                "name": "asteroids_04.js"
             },
             {
                 "type": "file",
-                "name": "asteroids_04.js"
+                "name": "asteroids_05.js"
+            },
+            {
+                "type": "file",
+                "name": "asteroids_05_pixel.js"
             },
             {
                 "type": "file",

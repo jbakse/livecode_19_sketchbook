@@ -26,7 +26,7 @@ module.exports = {
     "array-callback-return": "error",
     "no-await-in-loop": "error",
     "no-constructor-return": "error",
-    "no-duplicate-imports": "error",
+    // "no-duplicate-imports": "error",
     "no-promise-executor-return": "error",
     "no-self-compare": "error",
     "no-template-curly-in-string": "error",
@@ -156,7 +156,7 @@ module.exports = {
     radix: "error", //	Enforce the consistent use of the radix argument when using `parseInt()`
     "require-await": "error", //	Disallow async functions which have no `await` expression
     "require-unicode-regexp": "error", //	Enforce the use of `u` flag on RegExp
-    "sort-imports": "error", //	Enforce sorted import declarations within modules
+    // "sort-imports": "error", //	Enforce sorted import declarations within modules
     "sort-keys": "off", //	Require object keys to be sorted
     "sort-vars": "off", //	Require variables within the same declaration block to be sorted
     "spaced-comment": "error", //	Enforce consistent spacing after the `//` or `/*` in a comment
@@ -166,5 +166,8 @@ module.exports = {
     yoda: "error", //	Require or disallow "Yoda" conditions
 
     "no-unused-vars": ["error", { varsIgnorePattern: "^_$" }],
+    "no-multiple-empty-lines": "off",
+    "padding-line-between-statements": "off",
+    "lines-around-comment": "off",
   },
 };

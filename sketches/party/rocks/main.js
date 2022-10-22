@@ -29,7 +29,6 @@ function setup() {
 }
 
 function draw() {
-  host.update();
   gameState.update();
   gameState.draw();
 }

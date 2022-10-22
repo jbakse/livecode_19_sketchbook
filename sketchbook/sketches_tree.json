@@ -1158,6 +1158,10 @@
                         "name": "meta_01.js"
                     },
                     {
+                        "type": "file",
+                        "name": "rect_01.js"
+                    },
+                    {
                         "name": "renders",
                         "type": "folder",
                         "children": [
@@ -1216,6 +1220,10 @@
                     {
                         "type": "file",
                         "name": "recursion.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "unite_01.js"
                     }
                 ]
             },
@@ -1316,6 +1324,26 @@
                     {
                         "type": "file",
                         "name": "song_01.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "chartjs",
+        "type": "folder",
+        "children": [
+            {
+                "name": "bar",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
                     }
                 ]
             }
@@ -1743,6 +1771,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "paper_garden_5.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "paper_garden_circle_study.js"
                     },
                     {
@@ -1766,6 +1798,10 @@
                     {
                         "type": "file",
                         "name": "project_moon.scad"
+                    },
+                    {
+                        "type": "file",
+                        "name": "project_moon_center.scad"
                     }
                 ]
             },
@@ -1986,6 +2022,32 @@
         ]
     },
     {
+        "name": "juice",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "juice_cam_shake.js"
+            },
+            {
+                "type": "file",
+                "name": "juice_demo.js"
+            },
+            {
+                "type": "file",
+                "name": "juice_leaf.js"
+            },
+            {
+                "type": "file",
+                "name": "juice_none.js"
+            },
+            {
+                "type": "file",
+                "name": "juice_pixel_01.js"
+            }
+        ]
+    },
+    {
         "name": "lang_dept",
         "type": "folder",
         "children": [
@@ -2123,11 +2185,71 @@
             },
             {
                 "type": "file",
+                "name": "asteroids_06.js"
+            },
+            {
+                "type": "file",
+                "name": "gamestate_01.js"
+            },
+            {
+                "type": "file",
                 "name": "party_demo.js"
             },
             {
                 "type": "file",
                 "name": "party_demo_1.js"
+            },
+            {
+                "name": "rocks",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    },
+                    {
+                        "name": "sounds",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "music.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "noise.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "rock1.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "rock2.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "rock3.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "shoot.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "spawn.wav"
+                            },
+                            {
+                                "type": "file",
+                                "name": "thrust.wav"
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "type": "file",

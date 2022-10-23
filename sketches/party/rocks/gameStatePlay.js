@@ -1,6 +1,10 @@
 import { gameStates, setGameState } from "./main.js";
 import { config } from "./main.js";
 import * as camera from "./camera.js";
+import { guests, me, hostData } from "./party.js";
+
+/* global partySetShared */
+/* global partyEmit partySubscribe partyUnsubscribe */
 
 import {
   explodeParticles,
@@ -9,13 +13,7 @@ import {
 } from "./particles.js";
 /* globals loadSound */
 
-/* global partyConnect partyLoadShared partyLoadMyShared partyLoadGuestShareds*/
-/* global partySetShared */
-/* global partyIsHost partyToggleInfo */
-/* global partyEmit partySubscribe partyUnsubscribe */
-
 const sounds = {};
-let hostData, me, guests;
 
 export function preload() {
   //   sounds.rock1 = loadSound("./sounds/rock1.wav");
@@ -26,27 +24,14 @@ export function preload() {
   sounds.spawn = loadSound("./sounds/spawn.wav");
   sounds.die = loadSound("./sounds/die.wav");
   sounds.music = loadSound("./sounds/music.wav");
-
-  partyConnect("wss://deepstream-server-1.herokuapp.com", "rocks", "main");
-
-  hostData = partyLoadShared("host", { rocks: initRocks() });
-  me = partyLoadMyShared(initShip());
-  guests = partyLoadGuestShareds({});
 }
 export function enter() {
   partySubscribe("rockHit", onRockHit);
-  partyToggleInfo(true);
-
   spawn();
   // sounds.music.loop(0, 1, 0.5);
 }
 
 export function update() {
-  // todo: factor out all the host stuff
-  if (partyIsHost()) {
-    updateRocks();
-  }
-
   handleInput(me);
   updateShip(me);
 
@@ -90,7 +75,6 @@ export function keyReleased() {
 
 export function leave() {
   partyUnsubscribe("rockHit", onRockHit);
-  partyToggleInfo(false);
 
   sounds.music.stop();
 }
@@ -138,7 +122,7 @@ function fire() {
   });
 }
 
-function initShip() {
+export function initShip() {
   const ship = {};
   ship.alive = true;
   ship.x = config.width * 0.5;
@@ -260,16 +244,16 @@ function drawBullet(bullet) {
 // //////////////////////////////////////////////////////
 // ROCKS
 
-function initRocks() {
+export function initRocks() {
   const rocks = [];
   for (let i = 0; i < 10; i++) {
     rocks.push(initRock());
   }
-  console.log(rocks);
+
   return rocks;
 }
 
-function initRock(overrides = {}) {
+export function initRock(overrides = {}) {
   let x = random(0, config.width);
   const y = random(0, config.height);
   if (dist(x, y, config.width * 0.5, config.height * 0.5) < 100) {
@@ -288,7 +272,7 @@ function initRock(overrides = {}) {
   };
 }
 
-function updateRocks() {
+export function updateRocks() {
   for (const rock of hostData.rocks) {
     updateRock(rock);
   }
@@ -305,6 +289,7 @@ function updateRock(rock) {
 }
 
 function onRockHit(rockId) {
+  console.log("plauy rockhit");
   // find the rock
   const rock = hostData.rocks.find((rock) => rock.id === rockId);
   if (!rock) return;
@@ -314,35 +299,6 @@ function onRockHit(rockId) {
   camera.addShake(rock.size * 0.1);
 
   explodeParticles(rock.size * 0.25, rock.x, rock.y, rock.dX, rock.dY);
-
-  // stuff just host does
-  if (!partyIsHost()) return;
-
-  // spawn new rocks
-  if (rock.size > 16) {
-    const newSize = rock.size / 2;
-    hostData.rocks.push(
-      initRock({
-        size: newSize,
-        x: rock.x,
-        y: rock.y,
-        dX: rock.dX + random(-1, 1),
-        dY: rock.dY + random(-1, 1),
-      })
-    );
-    hostData.rocks.push(
-      initRock({
-        size: newSize,
-        x: rock.x,
-        y: rock.y,
-        dX: rock.dX + random(-1, 1),
-        dY: rock.dY + random(-1, 1),
-      })
-    );
-  }
-
-  // remove the rock
-  hostData.rocks = hostData.rocks.filter((rock) => rock.id !== rockId);
 }
 
 function drawRock(rock) {

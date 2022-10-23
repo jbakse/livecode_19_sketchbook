@@ -1,6 +1,8 @@
 import * as title from "./gameStateTitle.js";
 import * as play from "./gameStatePlay.js";
 import * as camera from "./camera.js";
+import * as party from "./party.js";
+
 export const config = {
   width: 600,
   height: 600,
@@ -22,6 +24,7 @@ Object.assign(window, {
 function preload() {
   Object.values(gameStates).forEach((state) => state.preload?.());
   camera.preload();
+  party.preload();
   fontDune = loadFont("./dune_rise/Dune_Rise.otf");
 }
 
@@ -33,10 +36,12 @@ function setup() {
   textFont(fontDune);
   preventDefaultKeys();
 
+  party.setup();
   setGameState(gameStates.title);
 }
 
 function draw() {
+  party.update();
   gameState.update();
 
   // move origin to top left

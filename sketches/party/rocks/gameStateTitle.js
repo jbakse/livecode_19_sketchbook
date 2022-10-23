@@ -12,10 +12,17 @@ export function draw() {
   push();
   background(0);
   fill(255);
-  textSize(32);
   textAlign(CENTER, CENTER);
+
+  textSize(100);
   translate(width / 2, height / 2);
-  text("Title Screen", 0, 0);
+  text("Rocks", 0, 0);
+
+  textSize(10);
+  translate(0, 100);
+  fill(255, abs(sin(frameCount * 0.02)) * 255);
+  text("click to begin", 0, 0);
+
   pop();
 }
 

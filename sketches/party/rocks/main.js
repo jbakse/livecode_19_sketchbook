@@ -1,10 +1,14 @@
 import * as title from "./gameStateTitle.js";
 import * as play from "./gameStatePlay.js";
-
+import * as camera from "./camera.js";
 export const config = {
   width: 600,
   height: 600,
 };
+
+let fontDune;
+let canvas;
+
 // export module functions to window, so p5.js can find them
 Object.assign(window, {
   preload,
@@ -17,12 +21,16 @@ Object.assign(window, {
 
 function preload() {
   Object.values(gameStates).forEach((state) => state.preload?.());
+  camera.preload();
+  fontDune = loadFont("./dune_rise/Dune_Rise.otf");
 }
 
 function setup() {
-  createCanvas(config.width, config.height);
+  // pixelDensity(1);
+  canvas = createCanvas(config.width, config.height, WEBGL);
   noFill();
   noStroke();
+  textFont(fontDune);
   preventDefaultKeys();
 
   setGameState(gameStates.title);
@@ -30,7 +38,12 @@ function setup() {
 
 function draw() {
   gameState.update();
+
+  // move origin to top left
+  translate(-width / 2, -height / 2);
+  camera.applyShake();
   gameState.draw();
+  camera.postprocess(canvas);
 }
 
 function mousePressed() {

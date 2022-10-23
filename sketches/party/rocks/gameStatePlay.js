@@ -1,5 +1,7 @@
 import { gameStates, setGameState } from "./main.js";
 import { config } from "./main.js";
+import * as camera from "./camera.js";
+
 import {
   explodeParticles,
   updateParticles,
@@ -119,6 +121,7 @@ function die() {
 
   sounds.thrust.stop();
   sounds.die.play();
+  camera.addShake(10);
 }
 
 function fire() {
@@ -308,6 +311,7 @@ function onRockHit(rockId) {
 
   // stuff everyone does
   sounds.rock4.play();
+  camera.addShake(rock.size * 0.1);
 
   explodeParticles(rock.size * 0.25, rock.x, rock.y, rock.dX, rock.dY);
 

@@ -1,3 +1,10 @@
+// some code adapted from:
+// https://github.com/aferriss/p5jsShaderExamples
+
+// useful reference
+// https://itp-xstory.github.io/p5js-shaders/#/
+
+
 #ifdef GL_ES
 precision mediump float;
 #endif

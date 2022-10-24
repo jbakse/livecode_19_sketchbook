@@ -1,23 +1,79 @@
+/**
+ * gameStatePlay.js
+ *
+ * This module holds most of the main gameplay code. It contains the code for:
+ * - moving and drawing ships
+ * - moving and drawing rocks
+ * - moving and drawing bullets
+ * - handling user input
+ *
+ * The code for the rocks, ships, and bullets are structured in a similar way.
+ * These types of entites would be good candidates for object oriented
+ * programming but p5.party can't share OOP objects. So instead of using OOP
+ * objects only the _data_ for each entity is kept on the shared objects. This
+ * data is then passed to the functions that control the entities.
+ *
+ * Here is an overview of the shared data:
+ *
+ * hostData: {  // general shared object, written to by host, read by everyone
+ *   rocks: [   // array of rock data
+ *     {
+ *        x,    // x position
+ *        y,    // y position
+ *        r,    // rotation
+ *        dX,   // speed in x direction
+ *        dY,   // speed in y direction
+ *        dR,   // rotation speed
+ *        size, // diameter of the rock
+ *        id,   // unique id for the rock (used to identify it)
+ *     },
+ *   ]
+ *
+ * me: {        // "my" shared object, written to own client, read by everyone
+ *   alive,     // boolean, is the ship active
+ *   x,         // x position
+ *   y,         // y position
+ *   dX,        // speed in x direction
+ *   dY,        // speed in y direction
+ *   angle,     // current heading
+ *   thrusting, // boolean, is the ship accelerating
+ *   reversing, // boolean, is the ship de-accelerating
+ *
+ *   bullets: [ // array of bullet data
+ *     {
+ *       x,    // x position
+ *       y,    // y position
+ *       dX,   // speed in x direction
+ *       dY,   // speed in y direction
+ *       age,  // how many frames the bullet has been alive
+ *     },
+ *   ]
+ * }
+ *
+ *
+ *
+ * This file is complex enough that it might be better if the rock, ship,
+ * and bullet code were in separate files.
+ */
+
+/* globals loadSound */
+/* global partySetShared */
+/* global partyEmit partySubscribe partyUnsubscribe */
+
 import { gameStates, setGameState } from "./main.js";
 import { config } from "./main.js";
 import * as camera from "./camera.js";
 import { guests, me, hostData } from "./party.js";
-
-/* global partySetShared */
-/* global partyEmit partySubscribe partyUnsubscribe */
 
 import {
   explodeParticles,
   updateParticles,
   drawParticles,
 } from "./particles.js";
-/* globals loadSound */
 
 const sounds = {};
 
 export function preload() {
-  //   sounds.rock1 = loadSound("./sounds/rock1.wav");
-  //   sounds.rock2 = loadSound("./sounds/rock2.wav");
   sounds.rock4 = loadSound("./sounds/rock4.wav");
   sounds.thrust = loadSound("./sounds/thrust.wav");
   sounds.shoot = loadSound("./sounds/shoot.wav");
@@ -64,7 +120,6 @@ export function mousePressed() {
 export function keyPressed() {
   if (keyCode === 32 /* Space */) fire();
 
-  // todo: this could probably be better cleaned up
   if (me.alive && (keyCode === UP_ARROW || keyCode === 87) /* W */)
     sounds.thrust.loop(0, 1, 0.5);
 }
@@ -92,7 +147,7 @@ function handleInput(ship) {
 }
 
 // //////////////////////////////////////////////////////
-// SHIPs
+// SHIPS
 
 function spawn() {
   partySetShared(me, initShip());
@@ -131,6 +186,8 @@ export function initShip() {
   ship.dY = 0;
   ship.angle = 0;
   ship.bullets = [];
+  ship.thrusting = false;
+  ship.reversing = false;
   return ship;
 }
 
@@ -147,7 +204,7 @@ function updateShip(ship) {
 
   for (const rock of hostData.rocks) {
     if (dist(ship.x, ship.y, rock.x, rock.y) < rock.size * 0.5) {
-      partyEmit("rockHit", rock.id);
+      partyEmit("rockHit", rock);
       die();
       setTimeout(() => {
         spawn();
@@ -227,7 +284,7 @@ function updateBullet(bullet) {
   for (const rock of hostData.rocks) {
     if (dist(bullet.x, bullet.y, rock.x, rock.y) < rock.size * 0.5) {
       bullet.age += 1000000;
-      partyEmit("rockHit", rock.id);
+      partyEmit("rockHit", rock);
     }
   }
 }
@@ -288,16 +345,9 @@ function updateRock(rock) {
   if (rock.y < 0) rock.y = config.height;
 }
 
-function onRockHit(rockId) {
-  console.log("plauy rockhit");
-  // find the rock
-  const rock = hostData.rocks.find((rock) => rock.id === rockId);
-  if (!rock) return;
-
-  // stuff everyone does
+function onRockHit(rock) {
   sounds.rock4.play();
   camera.addShake(rock.size * 0.1);
-
   explodeParticles(rock.size * 0.25, rock.x, rock.y, rock.dX, rock.dY);
 }
 

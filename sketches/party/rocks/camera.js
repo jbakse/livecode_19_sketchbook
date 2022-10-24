@@ -1,8 +1,23 @@
+/**
+ * camera.js
+ *
+ * This module handles camera shake and the "chromatic abberation"
+ * postprocessing effect.
+ *
+ * This module is loaded and managed by the main.js module.
+ * And the gameStatePlay.js module uses the addShake() function.
+ *
+ */
+
 let postprocessShader;
 let shakeAmount = 0;
 
 export function preload() {
   postprocessShader = loadShader("./shader.vert", "./shader.frag");
+}
+
+export function update() {
+  shakeAmount *= 0.9;
 }
 
 export function addShake(amount) {
@@ -18,8 +33,6 @@ export function applyShake() {
   );
   rotate(radians(range_noise(-0.2, 0.2, frameCount * 0.8, 3) * shakeAmount));
   translate(-width * 0.5, -height * 0.5);
-
-  shakeAmount *= 0.9;
 }
 
 export function postprocess(canvas) {

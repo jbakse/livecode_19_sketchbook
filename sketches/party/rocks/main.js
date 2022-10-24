@@ -1,3 +1,32 @@
+/**
+ * main.js
+ *
+ * This is the entry point for the game. It doesn't do much itself, but rather
+ * loads the other modules, sets things up, and coordinates the main game states.
+ *
+ * A major organizing prinicple of this code is that it is organized into
+ * "gameStates". There is one gameState for the title screen and one for the
+ * "play" state.
+ *
+ * Each gameState has a few methods and main is responsible for calling
+ * these methods on the current gameState at the appropriate times.
+ *
+ * The methods are:
+ *  enter - called when the game state is entered (optional)
+ *  update - called every frame, game logic, no drawing
+ *  draw - called every frame, should draw the scene, no game logic
+ *  leave - called when the game state is left (optional)
+ *  mousePressed - called when the mouse is pressed (optional)
+ *  keyPressed - called when a key is pressed (optional)
+ *  keyReleased - called when a key is released (optional)
+ *
+ * main.js provides a function called setGameState that gameStates can use to
+ * change the current gameState.
+ *
+ * In additon main.js loads and manages the camera and the party modules.
+ *
+ */
+
 import * as title from "./gameStateTitle.js";
 import * as play from "./gameStatePlay.js";
 import * as camera from "./camera.js";
@@ -41,9 +70,12 @@ function setup() {
 }
 
 function draw() {
+  // update
   party.update();
   gameState.update();
+  camera.update();
 
+  // draw
   // move origin to top left
   translate(-width / 2, -height / 2);
   camera.applyShake();

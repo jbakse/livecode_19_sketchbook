@@ -1,3 +1,10 @@
+/**
+ * party.js
+ *
+ * This module loads the p5.party shared objects, and handles the host-specific
+ * logic, including calling updateRocks and spawning and removing rocks.
+ */
+
 /* global partyConnect partyLoadShared partyLoadMyShared partyLoadGuestShareds*/
 /* global partyIsHost */
 /* global partySubscribe */
@@ -24,13 +31,12 @@ export function update() {
   updateRocks();
 }
 
-function onRockHit(rockId) {
+function onRockHit(rock) {
   // bail if we are not the host
   if (!partyIsHost()) return;
 
-  // find the rock
-  const rock = hostData.rocks.find((rock) => rock.id === rockId);
-  if (!rock) return;
+  // verify rock exists
+  if (!hostData.rocks.find((r) => r.id === rock.id)) return;
 
   // spawn new rocks
   if (rock.size > 16) {
@@ -55,10 +61,5 @@ function onRockHit(rockId) {
     );
   }
 
-  // remove the rock
-  // use a slight delay so that other onRockHit handlers have a chance
-  // to run before the rock is removed
-  setTimeout(() => {
-    hostData.rocks = hostData.rocks.filter((rock) => rock.id !== rockId);
-  }, 0);
+  hostData.rocks = hostData.rocks.filter((r) => r.id !== rock.id);
 }

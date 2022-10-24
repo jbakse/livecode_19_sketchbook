@@ -1,3 +1,13 @@
+/**
+ * gameStateTitle.js
+ *
+ * Displays the title screen.
+ *
+ * When the user clicks, the game enters the "play" state.
+ * This makes sure the game has keyboard focus and that a "gesture" occurs
+ * before the game tries to play sounds (required by some browsers).
+ */
+
 import { gameStates, setGameState } from "./main.js";
 
 export function enter() {

@@ -27,20 +27,24 @@
  *
  */
 
-import * as title from "./gameStateTitle.js";
-import * as play from "./gameStatePlay.js";
+import * as gameStateTitle from "./gameStateTitle.js";
+import * as gameStatePlay from "./gameStatePlay.js";
 import * as camera from "./camera.js";
 import * as party from "./party.js";
 
+// we need to store the width + height of the canvas so that we can refer
+// to them before the canvas is created (e.g. in preload)
 export const config = {
-  width: 600,
-  height: 600,
+  width: 600, // width of the canvas
+  height: 600, // height of the canvas
 };
 
-let fontDune;
-let canvas;
+let fontDune; // the UI font
+let canvas; // a reference to the canvas needed for the postprocessing
 
-// export module functions to window, so p5.js can find them
+// p5.js auto detects setup() and draw() but since this code is a module
+// the functions aren't global.
+// This creates aliases of the p5 functions on window, so p5.js can find them
 Object.assign(window, {
   preload,
   draw,
@@ -58,7 +62,6 @@ function preload() {
 }
 
 function setup() {
-  // pixelDensity(1);
   canvas = createCanvas(config.width, config.height, WEBGL);
   noFill();
   noStroke();
@@ -76,7 +79,7 @@ function draw() {
   camera.update();
 
   // draw
-  // move origin to top left
+  // WEBGL mode has origin at center, move origin to top left
   translate(-width / 2, -height / 2);
   camera.applyShake();
   gameState.draw();
@@ -98,11 +101,18 @@ function keyReleased() {
 // ///////////////////////////////////////////////////
 // Game State Manager
 
+// gameState - keeps track of which game state is current
 let gameState;
+
+// gameStates - a map of the possible game states
 export const gameStates = {
-  title,
-  play,
+  title: gameStateTitle,
+  play: gameStatePlay,
 };
+
+// setGameState
+// called when the gamestate should change, calls leave on the old state,
+// updates gameState, then calls enter on the new state
 export function setGameState(newState) {
   // new state must be provided, and must have an update and draw function
   if (!newState || !newState.update || !newState.draw) {
@@ -117,9 +127,12 @@ export function setGameState(newState) {
 // ///////////////////////////////////////////////////
 // Utilities
 
+// prevent browser from handling single key presses
+// e.g. scrolling the page when the arrow keys are pressed
+// allow "meta" key combos through
+// e.g. cmd + r to reload the page
+
 function preventDefaultKeys() {
-  // prevent browser from handling simple key presses
-  // allow "meta" keys through
   window.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.ctrlKey || e.metaKey) {
       return true;

@@ -13,44 +13,7 @@
  * objects only the _data_ for each entity is kept on the shared objects. This
  * data is then passed to the functions that control the entities.
  *
- * Here is an overview of the shared data:
- *
- * hostData: {  // general shared object, written to by host, read by everyone
- *   rocks: [   // array of rock data
- *     {
- *        x,    // x position
- *        y,    // y position
- *        r,    // rotation
- *        dX,   // speed in x direction
- *        dY,   // speed in y direction
- *        dR,   // rotation speed
- *        size, // diameter of the rock
- *        id,   // unique id for the rock (used to identify it)
- *     },
- *   ]
- *
- * me: {        // "my" shared object, written to own client, read by everyone
- *   alive,     // boolean, is the ship active
- *   x,         // x position
- *   y,         // y position
- *   dX,        // speed in x direction
- *   dY,        // speed in y direction
- *   angle,     // current heading
- *   thrusting, // boolean, is the ship accelerating
- *   reversing, // boolean, is the ship de-accelerating
- *
- *   bullets: [ // array of bullet data
- *     {
- *       x,    // x position
- *       y,    // y position
- *       dX,   // speed in x direction
- *       dY,   // speed in y direction
- *       age,  // how many frames the bullet has been alive
- *     },
- *   ]
- * }
- *
- *
+ * Think "functions processing data" instead of "objects with methods".
  *
  * This file is complex enough that it might be better if the rock, ship,
  * and bullet code were in separate files.
@@ -130,7 +93,7 @@ export function keyReleased() {
 
 export function leave() {
   partyUnsubscribe("rockHit", onRockHit);
-
+  die();
   sounds.music.stop();
 }
 
@@ -169,6 +132,8 @@ function fire() {
   me.bullets.push({
     x: me.x,
     y: me.y,
+    //   these commented out lines spawn the bullet taking into account the
+    //   ship's velocity.
     //   dX: ship.dX + 5 * cos(ship.angle),
     //   dY: ship.dY + 5 * sin(ship.angle),
     dX: 5 * cos(me.angle),
@@ -178,6 +143,7 @@ function fire() {
 }
 
 export function initShip() {
+  // create an object with a new ships starting properties
   const ship = {};
   ship.alive = true;
   ship.x = config.width * 0.5;
@@ -193,6 +159,8 @@ export function initShip() {
 
 function updateShip(ship) {
   if (!ship.alive) return;
+
+  // apply basic physics and world wrap
   ship.x += ship.dX;
   ship.y += ship.dY;
   ship.dX *= 0.99;
@@ -202,19 +170,26 @@ function updateShip(ship) {
   if (ship.y > config.height) ship.y = 0;
   if (ship.y < 0) ship.y = config.height;
 
+  // check for ship to rock collisions
   for (const rock of hostData.rocks) {
     if (dist(ship.x, ship.y, rock.x, rock.y) < rock.size * 0.5) {
+      // let host know the rock was hit
       partyEmit("rockHit", rock);
       die();
+
+      // wait 3 seconds and respawn
       setTimeout(() => {
         spawn();
       }, 3000);
     }
   }
 
+  // update all of our own bullets
   for (const bullet of ship.bullets) {
     updateBullet(bullet);
   }
+
+  // remove bullets that age out
   ship.bullets = ship.bullets.filter((bullet) => bullet.age < 100);
 }
 
@@ -357,7 +332,7 @@ function drawRock(rock) {
   stroke("white");
   strokeWeight(2);
   translate(rock.x, rock.y);
-  //   modDraw(() => {
+
   rotate(rock.r);
   const steps = 10;
   beginShape();
@@ -369,10 +344,18 @@ function drawRock(rock) {
     vertex(x1, y1);
   }
   endShape(CLOSE);
-  //   });
 
   pop();
 }
+
+// modDraw
+// objects in this game wrap when they go off the edge of the screen
+// when an object overlaps the edge of the screen we need to draw it twice
+// once for the part on the screen, and once on the other side for the part
+// that wraps around
+// rather than do that for each object we draw, this function repeats all the
+// drawing done by the provided function `f` 9 times (upper left,
+// upper center, upper right, etc)
 
 function modDraw(f) {
   for (let x = -1; x <= 1; x++) {

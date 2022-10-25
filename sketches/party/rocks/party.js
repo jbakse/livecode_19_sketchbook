@@ -3,6 +3,45 @@
  *
  * This module loads the p5.party shared objects, and handles the host-specific
  * logic, including calling updateRocks and spawning and removing rocks.
+ *
+ * Here is an overview of the shared data:
+ *
+ * hostData: {  // general shared object, written to by host, read by everyone
+ *   rocks: [   // array of rock data
+ *     {
+ *        x,    // x position
+ *        y,    // y position
+ *        r,    // rotation
+ *        dX,   // speed in x direction
+ *        dY,   // speed in y direction
+ *        dR,   // rotation speed
+ *        size, // diameter of the rock
+ *        id,   // unique id for the rock (used to identify it)
+ *     },
+ *   ]
+ *
+ * me: {        // "my" shared object, written to own client, read by everyone
+ *   alive,     // boolean, is the ship active
+ *   x,         // x position
+ *   y,         // y position
+ *   dX,        // speed in x direction
+ *   dY,        // speed in y direction
+ *   angle,     // current heading
+ *   thrusting, // boolean, (determines if thrust is drawn)
+ *   reversing, // boolean, (determins if breaklights are drawn)
+ *
+ *   bullets: [ // array of bullet data
+ *     {
+ *       x,    // x position
+ *       y,    // y position
+ *       dX,   // speed in x direction
+ *       dY,   // speed in y direction
+ *       age,  // how many frames the bullet has been alive
+ *     },
+ *   ]
+ * }
+ *
+ *
  */
 
 /* global partyConnect partyLoadShared partyLoadMyShared partyLoadGuestShareds*/

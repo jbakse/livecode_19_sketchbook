@@ -10,6 +10,13 @@
  */
 
 let postprocessShader;
+
+// shakeAmount keeps track of how shakey the camera is
+// this value decreases quickly over time
+// 0 = no shake
+// 10 = pretty shakey
+// 20 = very shakey
+// etc. there is no max shake
 let shakeAmount = 0;
 
 export function preload() {
@@ -24,6 +31,11 @@ export function addShake(amount) {
   shakeAmount += amount;
 }
 
+// applyShake
+// this function is called before drawing to the screen
+// it translates and rotates the coordinate system to create a shake effect
+// if you want to shake just part of what you draw (maybe shake the game
+// world but not the ui) you can wrap tthis and the draw code in a push/pop
 export function applyShake() {
   translate(width * 0.5, height * 0.5);
 
@@ -35,13 +47,21 @@ export function applyShake() {
   translate(-width * 0.5, -height * 0.5);
 }
 
+// postprocess
+// this function applies the fullscreen shader effect
 export function postprocess(canvas) {
   push();
+  // enable the shader
   shader(postprocessShader);
+  // configure the shader
   postprocessShader.setUniform("tex0", canvas);
   postprocessShader.setUniform("resolution", [canvas.width, canvas.height]);
   postprocessShader.setUniform("time", millis() / 1000);
   postprocessShader.setUniform("shake", shakeAmount);
+
+  // draw a rectangle filling the screen, the shader will be used
+  // so instead of white we'll get the shader output
+  // but you need some kind of fill for anythign to be drawn at all
   fill("white");
   rect(0, 0, width, height);
   pop();

@@ -9,6 +9,11 @@ const player = {
   col: 1,
 };
 
+const DARKNESS = false;
+
+let playerX = player.row * 8;
+let playerY = player.col * 8;
+
 function preload() {
   // sketch_directory is needed for my "sketchbook" system
   // _you_ can probably just use "./asets"
@@ -22,7 +27,12 @@ function preload() {
   images.mapCollision = loadImage(`${assets}/map_collision.png`);
 
   // avatar is a 8x8 image to represent the player
-  images.avatar = loadImage(`${assets}/avatar.png`);
+
+  images.avatar = [];
+  images.avatar[0] = loadImage(`${assets}/avatar_01.png`);
+  images.avatar[1] = loadImage(`${assets}/avatar_02.png`);
+  images.avatar[2] = loadImage(`${assets}/avatar_03.png`);
+  images.avatar[3] = loadImage(`${assets}/avatar_02.png`);
 }
 
 function setup() {
@@ -33,44 +43,38 @@ function setup() {
   noSmooth();
 }
 
-function generateRandomPosition1() {
-  let row = floor(random(0 + 5, rowNum - 5));
-  let col = floor(random(0 + 5, colNum - 5));
-  while (isWall(row, col)) {
-    row = floor(random(0 + 5, rowNum - 5));
-    col = floor(random(0 + 5, colNum - 5));
-  }
-
-  return {
-    xPos: col * GRID_SIZE,
-    yPos: row * GRID_SIZE,
-  };
-}
-
-function generateRandomPosition2() {
-  let row, col;
-  do {
-    row = floor(random(0 + 5, rowNum - 5));
-    col = floor(random(0 + 5, colNum - 5));
-  } while (isWall(row, col));
-  return {
-    xPos: col * GRID_SIZE,
-    yPos: row * GRID_SIZE,
-  };
-}
-
 function draw() {
-  blendMode(NORMAL);
-  drawLighting();
-  filter(BLUR, 4);
-  // filter(POSTERIZE, 2);
-  blendMode(MULTIPLY);
+  update();
+
+  if (DARKNESS) {
+    blendMode(NORMAL);
+    drawLighting();
+    filter(BLUR, 4);
+    // filter(POSTERIZE, 2);
+    blendMode(MULTIPLY);
+  }
 
   drawWorld();
   blendMode(NORMAL);
   drawUnlit();
 }
 
+function update() {
+  if (frameCount % 4 === 0) {
+    if (playerX < player.col * 8) {
+      playerX += 1;
+    }
+    if (playerX > player.col * 8) {
+      playerX -= 1;
+    }
+    if (playerY < player.row * 8) {
+      playerY += 1;
+    }
+    if (playerY > player.row * 8) {
+      playerY -= 1;
+    }
+  }
+}
 function drawLighting() {
   push();
 
@@ -93,8 +97,9 @@ function drawWorld() {
 }
 
 function drawUnlit() {
-  image(images.avatar, player.col * 8, player.row * 8);
-  image(images.avatar, 80, 40);
+  const frame = floor(playerX / 2 + playerY / 2) % 4;
+  image(images.avatar[frame], playerX, playerY);
+  image(images.avatar[0], 80, 40);
 }
 
 function keyPressed() {

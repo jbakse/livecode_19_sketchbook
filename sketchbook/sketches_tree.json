@@ -1233,11 +1233,23 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "bubbles_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "field_01.js"
                     },
                     {
                         "type": "file",
                         "name": "grass_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "peacock_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "snow_01.js"
                     }
                 ]
             },
@@ -1277,11 +1289,23 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "demo_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "dnd_01.js"
                     },
                     {
                         "type": "file",
                         "name": "rita_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sketch_gen_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "story_01.js"
                     }
                 ]
             },
@@ -1335,6 +1359,20 @@
         "children": [
             {
                 "name": "bar",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    }
+                ]
+            },
+            {
+                "name": "pie",
                 "type": "folder",
                 "children": [
                     {
@@ -1473,6 +1511,18 @@
                             },
                             {
                                 "type": "file",
+                                "name": "avatar_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "avatar_02.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "avatar_03.png"
+                            },
+                            {
+                                "type": "file",
                                 "name": "map_collision.png"
                             },
                             {
@@ -1488,6 +1538,10 @@
                     {
                         "type": "file",
                         "name": "index_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index_04.js"
                     }
                 ]
             },
@@ -2200,9 +2254,39 @@
                 "name": "party_demo_1.js"
             },
             {
+                "type": "file",
+                "name": "README.md"
+            },
+            {
                 "name": "rocks",
                 "type": "folder",
                 "children": [
+                    {
+                        "type": "file",
+                        "name": "camera.js"
+                    },
+                    {
+                        "name": "dune_rise",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "Dune_Rise.otf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "License.txt"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "gameStatePlay.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "gameStateTitle.js"
+                    },
                     {
                         "type": "file",
                         "name": "index.html"
@@ -2212,9 +2296,33 @@
                         "name": "main.js"
                     },
                     {
+                        "type": "file",
+                        "name": "particles.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "party.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "README.md"
+                    },
+                    {
+                        "type": "file",
+                        "name": "shader.frag"
+                    },
+                    {
+                        "type": "file",
+                        "name": "shader.vert"
+                    },
+                    {
                         "name": "sounds",
                         "type": "folder",
                         "children": [
+                            {
+                                "type": "file",
+                                "name": "die.wav"
+                            },
                             {
                                 "type": "file",
                                 "name": "music.wav"
@@ -2237,6 +2345,10 @@
                             },
                             {
                                 "type": "file",
+                                "name": "rock4.wav"
+                            },
+                            {
+                                "type": "file",
                                 "name": "shoot.wav"
                             },
                             {
@@ -2248,6 +2360,10 @@
                                 "name": "thrust.wav"
                             }
                         ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
                     }
                 ]
             },

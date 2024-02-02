@@ -173,6 +173,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "donkey_s23.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "new_donkey.js"
                     }
                 ]
@@ -400,6 +404,26 @@
                     {
                         "type": "file",
                         "name": "text_effects.js"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "ai",
+        "type": "folder",
+        "children": [
+            {
+                "name": "poison",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.js"
                     }
                 ]
             }
@@ -838,6 +862,10 @@
                     {
                         "type": "file",
                         "name": "moon_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "oil_painting_01.js"
                     }
                 ]
             },
@@ -973,6 +1001,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "town_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "tree_00.js"
                     },
                     {
@@ -1022,6 +1054,10 @@
                     {
                         "type": "file",
                         "name": "unknown_17.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "vday_01.js"
                     },
                     {
                         "type": "file",
@@ -1159,6 +1195,18 @@
                     },
                     {
                         "type": "file",
+                        "name": "mountain_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "mountain_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paint_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "rect_01.js"
                     },
                     {
@@ -1186,6 +1234,10 @@
                     {
                         "type": "file",
                         "name": "star_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "test_color_range.js"
                     }
                 ]
             },
@@ -2206,6 +2258,28 @@
                         "name": "synth_1.js"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "mfadt",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "admission_01.js"
+            },
+            {
+                "type": "file",
+                "name": "admission_02.js"
+            },
+            {
+                "type": "file",
+                "name": "admission_03.js"
+            },
+            {
+                "type": "file",
+                "name": "admission_gpt_01.js"
             }
         ]
     },

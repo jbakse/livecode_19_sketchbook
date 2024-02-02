@@ -1,6 +1,6 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
-// require /sketches/libraries/webm-writer-0.3.0.js
-// require /sketches/util/grabber_01.js
+// require /sketches/_libraries/webm-writer-0.3.0.js
+// require /sketches/_util/grabber_01.js
 
 /* global Grabber */
 /* exported setup draw */
@@ -16,6 +16,7 @@ function setup() {
 }
 
 function draw() {
+  clear();
   fill(random(255));
   ellipse(random(512), random(512), 100, 100);
 }

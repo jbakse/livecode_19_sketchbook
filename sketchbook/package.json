@@ -15,6 +15,7 @@
   "devDependencies": {
     "directory-structure-json": "^1.0.0",
     "eslint": "^7.19.0",
+    "eslint-plugin-react": "^7.32.2",
     "watch": "^1.0.2"
   }
 }

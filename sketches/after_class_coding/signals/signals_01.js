@@ -57,7 +57,7 @@ function setup() {
     editor.expressionEl.input(onExpressionInput.bind(editor));
     editor.plotEl = select(`#plot-${editor.id}`);
     editor.plotEl.input(draw);
-    editor.errorEl = select(`.error`, editor.editorEl);
+    editor.errorEl = select(".error", editor.editorEl);
 
     if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
     partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
@@ -71,7 +71,7 @@ function setup() {
     passive: false,
   });
 
-  //noLoop();
+  // noLoop();
 }
 
 function onModeChanged() {
@@ -166,7 +166,7 @@ function changeZoom(v) {
 }
 
 function draw() {
-  //console.log("draw");
+  // console.log("draw");
 
   const inputSelectEl = select("#input-select");
   const input = inputSelectEl.value();
@@ -299,7 +299,7 @@ function drawGrid(playbackHead = 0) {
 
 function yForX(e = "x", x) {
   try {
-    f = Function(`x`, `return (${e})`);
+    f = Function("x", `return (${e})`);
     return f(x);
   } catch (e) {
     return undefined;
@@ -310,7 +310,7 @@ function plot(e = "x") {
   // "compile" the expression
   let f;
   try {
-    f = Function(`x`, `return (${e})`);
+    f = Function("x", `return (${e})`);
   } catch (e) {
     e.severity = "warn";
     e.message = "invalid expression";

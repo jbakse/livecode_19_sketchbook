@@ -5,9 +5,10 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: "eslint:recommended",
+  extends: ["eslint:recommended", "plugin:react/recommended"],
   parserOptions: {
     ecmaVersion: 2020,
+    sourceType: "module",
   },
   globals: require("./p5Globals.js"),
 
@@ -165,7 +166,8 @@ module.exports = {
     "vars-on-top": "error", //	Require `var` declarations be placed at the top of their containing scope
     yoda: "error", //	Require or disallow "Yoda" conditions
 
-    "no-unused-vars": ["error", { varsIgnorePattern: "^_$" }],
+    // "no-unused-vars": ["error", { varsIgnorePattern: "^_$" }],
+    "no-unused-vars": "off",
     "no-multiple-empty-lines": "off",
     "padding-line-between-statements": "off",
     "lines-around-comment": "off",

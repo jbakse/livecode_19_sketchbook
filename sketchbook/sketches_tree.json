@@ -1402,6 +1402,16 @@
                         "name": "song_01.js"
                     }
                 ]
+            },
+            {
+                "name": "13_simulation",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "snow_01.js"
+                    }
+                ]
             }
         ]
     },
@@ -2280,6 +2290,10 @@
             {
                 "type": "file",
                 "name": "admission_gpt_01.js"
+            },
+            {
+                "type": "file",
+                "name": "index.html"
             }
         ]
     },

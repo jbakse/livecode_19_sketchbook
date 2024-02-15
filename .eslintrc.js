@@ -124,7 +124,7 @@ module.exports = {
     // "no-ternary": "error", //	Disallow ternary operators
     "no-throw-literal": "error", //	Disallow throwing literals as exceptions
     "no-undef-init": "error", //	Disallow initializing variables to `undefined`
-    "no-undefined": "error", //	Disallow the use of `undefined` as an identifier
+    // "no-undefined": "error", //	Disallow the use of `undefined` as an identifier
     // "no-underscore-dangle": "error", //	Disallow dangling underscores in identifiers
     "no-unneeded-ternary": "error", //	Disallow ternary operators when simpler alternatives exist
     "no-unused-expressions": "error", //	Disallow unused expressions

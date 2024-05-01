@@ -160,6 +160,16 @@
                 ]
             },
             {
+                "name": "discovering_oop_2",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "bounce_01.js"
+                    }
+                ]
+            },
+            {
                 "name": "donkey",
                 "type": "folder",
                 "children": [
@@ -2290,10 +2300,20 @@
             {
                 "type": "file",
                 "name": "admission_gpt_01.js"
-            },
+            }
+        ]
+    },
+    {
+        "name": "paper",
+        "type": "folder",
+        "children": [
             {
                 "type": "file",
                 "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "sketch.js"
             }
         ]
     },

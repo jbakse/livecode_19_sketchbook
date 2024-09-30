@@ -1,0 +1,25 @@
+h1 {
+  color: red;
+  pointer-events: none;
+  user-select: none;
+}
+
+body {
+  background-color: lightblue;
+  border: 1px solid red;
+  margin: 0;
+}
+
+#sketch {
+  border: 1px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+a {
+  color: blue;
+  display: block;
+  margin-bottom: 200px;
+}

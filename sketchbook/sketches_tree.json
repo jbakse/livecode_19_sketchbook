@@ -165,7 +165,19 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "ants.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "bounce_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bounce_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bounce_03.js"
                     }
                 ]
             },
@@ -876,6 +888,10 @@
                     {
                         "type": "file",
                         "name": "oil_painting_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "toolboard_00.js"
                     }
                 ]
             },
@@ -1148,6 +1164,10 @@
                     {
                         "type": "file",
                         "name": "gravity_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "hex_01.js"
                     }
                 ]
             },
@@ -1419,6 +1439,22 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "sim_plant_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sim_plant_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sim_plant_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sim_plant_04.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "snow_01.js"
                     }
                 ]
@@ -1655,6 +1691,10 @@
         "children": [
             {
                 "type": "file",
+                "name": "ana_konzen_brush.js"
+            },
+            {
+                "type": "file",
                 "name": "ankong_nuts_01.js"
             },
             {
@@ -1672,6 +1712,22 @@
             {
                 "type": "file",
                 "name": "ankong_nuts_live.js"
+            },
+            {
+                "type": "file",
+                "name": "katherine_chui_wiggle_shape_00.js"
+            },
+            {
+                "type": "file",
+                "name": "katherine_chui_wiggle_shape_01.js"
+            },
+            {
+                "type": "file",
+                "name": "katherine_chui_wiggle_shape_02.js"
+            },
+            {
+                "type": "file",
+                "name": "katherine_chui_wiggle_shape_live.js"
             },
             {
                 "type": "file",
@@ -2862,6 +2918,24 @@
             {
                 "type": "file",
                 "name": "aakanksha_01.js"
+            },
+            {
+                "name": "p5webpage",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "sketch.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "style.css"
+                    }
+                ]
             }
         ]
     },

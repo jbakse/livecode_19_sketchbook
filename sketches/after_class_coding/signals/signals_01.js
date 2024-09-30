@@ -9,17 +9,17 @@ const editors = [
   {
     id: "Z",
     color: "#AAA",
-    storage: "shared",
+    // storage: "shared",
   },
   {
     id: "A",
     color: "#07D",
-    storage: "shared",
+    // storage: "shared",
   },
   {
     id: "B",
     color: "#7D7",
-    storage: "my",
+    // storage: "my",
   },
   {
     id: "C",
@@ -43,8 +43,8 @@ function preload() {
 }
 
 function setup() {
-  pixelDensity(2);
-  partyToggleInfo(false);
+  // pixelDensity(2);
+  partyToggleInfo(true);
   const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
 
   if (partyIsHost()) {
@@ -75,8 +75,8 @@ function setup() {
 }
 
 function onModeChanged() {
-  const inputsDisabled =
-    shared.mode === "presenting" && shared.presenter !== id;
+  const inputsDisabled = shared.mode === "presenting" &&
+    shared.presenter !== id;
 
   for (editor of editors) {
     editor.expressionEl.elt.disabled = inputsDisabled;

@@ -14,7 +14,8 @@ its time to stop making this and make the lesson plan
 then come back to this and support what is needed for plan.
 
 [] secret editor is always syncd?
-[] rooms
-[] sync zoom and plot
+[] secret editor hides content, not whole editor
+
+[] sync zoom and plot?
 [] option to sync/nosync an expression
-[] maybe use a different shared object for each expression
+[] maybe use a different shared object for each expression editor (so people can edit them at same time)

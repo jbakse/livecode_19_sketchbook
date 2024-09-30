@@ -5,15 +5,17 @@
 // require https://cdn.jsdelivr.net/npm/p5@0.7.3/lib/p5.min.js
 
 // declare and initialize our program state variables.
+
 let x = 100;
 let y = 10;
 let deltaX = 5;
-let deltaY = 7;
+let deltaY = 3;
 let x2 = 200;
 let y2 = 10;
 let deltaX2 = 4;
 let deltaY2 = 9;
 
+// set up p5 canvas and drawing properties.
 function setup() {
   createCanvas(600, 600);
   noStroke();

@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     sourceType: "module",
   },
   globals: require("./p5Globals.js"),
@@ -43,7 +43,7 @@ module.exports = {
     "block-scoped-var": "error", //	Enforce the use of variables within the scope they are defined
     camelcase: "off", //	Enforce camelcase naming convention
     "capitalized-comments": "off", //	Enforce or disallow capitalization of the first letter of a comment
-    "class-methods-use-this": "error", //	Enforce that class methods utilize `this`
+    // "class-methods-use-this": "error", //	Enforce that class methods utilize `this`
     complexity: "error", //	Enforce a maximum cyclomatic complexity allowed in a program
     "consistent-return": "error", //	Require `return` statements to either always or never specify values
     "consistent-this": "error", //	Enforce consistent naming when capturing the current execution context
@@ -101,7 +101,7 @@ module.exports = {
     // "no-mixed-operators": "error", //	Disallow mixed binary operators
     "no-multi-assign": "error", //	Disallow use of chained assignment expressions
     "no-multi-str": "error", //	Disallow multiline strings
-    "no-negated-condition": "error", //	Disallow negated conditions
+    // "no-negated-condition": "error", //	Disallow negated conditions
     "no-nested-ternary": "error", //	Disallow nested ternary expressions
     "no-new": "error", //	Disallow `new` operators outside of assignments or comparisons
     "no-new-func": "error", //	Disallow `new` operators with the `Function` object

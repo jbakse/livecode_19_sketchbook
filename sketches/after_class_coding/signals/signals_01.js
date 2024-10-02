@@ -6,26 +6,11 @@ let zoom = 1024 / 16;
 let drawZoom = zoom;
 
 const editors = [
-  {
-    id: "Z",
-    color: "#AAA",
-  },
-  {
-    id: "A",
-    color: "#07D",
-  },
-  {
-    id: "B",
-    color: "#7D7",
-  },
-  {
-    id: "C",
-    color: "#D0D",
-  },
-  {
-    id: "D",
-    color: "#D70",
-  },
+  { id: "Z", color: "#AAA", defaultValue: "noise(x)", defaultChecked: true },
+  { id: "A", color: "#07D", defaultValue: "x", defaultChecked: true },
+  { id: "B", color: "#7D7", defaultValue: "cos(x)", defaultChecked: false },
+  { id: "C", color: "#D0D", defaultValue: "fract(x)", defaultChecked: false },
+  { id: "D", color: "#D70", defaultValue: "-fract(x)", defaultChecked: false },
 ];
 
 let shared;
@@ -38,25 +23,13 @@ function preload() {
 }
 
 function setup() {
-  // pixelDensity(2);
-  // partyToggleInfo(true);
-  const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
+  createCanvas(1024, 512).parent("canvas-wrap");
 
   if (partyIsHost()) {
     shared.mode = "unsynced";
   }
 
-  for (editor of editors) {
-    editor.editorEl = select(`#editor-${editor.id}`);
-    editor.expressionEl = select(`#expression-${editor.id}`);
-    editor.expressionEl.input(onExpressionInput.bind(editor));
-    editor.plotEl = select(`#plot-${editor.id}`);
-    editor.plotEl.input(redraw);
-    editor.errorEl = select(".error", editor.editorEl);
-
-    if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
-    partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
-  }
+  editors.forEach(createEditor);
 
   const codeEl = select("#code");
   codeEl.input(redraw);
@@ -65,13 +38,55 @@ function setup() {
 
   partyWatchShared(shared, "mode", onModeChanged);
   onModeChanged();
-  // partyWatchShared(shared, draw);
 
   canvas.addEventListener("wheel", onMouseWheel, {
     passive: false,
   });
 
   noLoop();
+}
+
+function createEditor(editor) {
+  const editorHTML = `
+    <div class="expression-editor" id="editor-${editor.id}">
+      <label for="expression-${editor.id}">${editor.id} =</label>
+      <div class="validated-field">
+        <input 
+          type="text"
+          id="expression-${editor.id}"
+          spellcheck="false"
+          value="${editor.defaultValue}"
+        >
+        <div class="error"></div>
+      </div>
+      <input 
+        type="checkbox" 
+        id="plot-${editor.id}" 
+        class="toggle-input" 
+        ${editor.defaultChecked ? "checked" : ""}
+      >
+      <label for="plot-${editor.id}" class="toggle">P</label>
+    </div>
+  `;
+
+  select("#editors").elt.insertAdjacentHTML("beforeend", editorHTML);
+
+  const editorEl = select(`#editor-${editor.id}`);
+  editor.expressionEl = select(`#expression-${editor.id}`, editorEl);
+  editor.plotEl = select(`#plot-${editor.id}`, editorEl);
+  editor.errorEl = select(".error", editorEl);
+
+  // listen for changes to expression
+  editor.expressionEl.input(onExpressionInput.bind(editor));
+
+  // listen for changes to plot checkbox
+  editor.plotEl.input(redraw);
+
+  // load intial value from shared
+  if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
+
+  // watch for changes to shared value
+  partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
 }
 
 function onModeChanged() {

@@ -158,15 +158,20 @@ canvas {
   background-color: #d70;
 }
 
-#code {
+/* #code {
   margin-top: 1em;
   width: 1024px;
   border-radius: 8px;
   overflow: hidden;
+  width: 1024px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .CodeMirror {
+  margin-top: 2em;
+  border: 1px solid #999;
+  border-radius: 8px;
+  width: 1024px;
   font-size: 16px;
   line-height: 1.5;
   height: 300px;

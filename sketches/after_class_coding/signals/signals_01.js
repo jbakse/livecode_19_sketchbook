@@ -13,6 +13,7 @@ const editors = [
   { id: "D", color: "#D70", defaultValue: "-fract(x)", defaultChecked: false },
 ];
 
+let codeEditor;
 let shared;
 
 id = Math.random();
@@ -43,6 +44,8 @@ function setup() {
     passive: false,
   });
 
+  window.addEventListener("keydown", onKeyPressed);
+  window.focus();
   noLoop();
 }
 
@@ -132,45 +135,62 @@ function onMouseWheel(event) {
   event.preventDefault();
 }
 
-function keyPressed(e) {
-  const modifier = e.ctrlKey || e.metaKey;
-  if (!modifier) return;
+function onKeyPressed(e) {
+  const isModifierPressed = e.ctrlKey || e.metaKey;
+  const key = e.key || e.code;
+  console.log("key pressed", key, isModifierPressed);
 
-  // presenter hotkey "p"
-  if (key === "p") {
-    if (shared.mode === "presenting") {
-      shared.presenter = undefined;
-      shared.mode = "synced";
-    } else if (shared.mode === "synced") {
-      shared.presenter = undefined;
-      shared.mode = "unsynced";
-    } else if (shared.mode === "unsynced") {
-      shared.presenter = id;
-      shared.mode = "presenting";
-    }
+  /// format code with Prettier
+  if (isModifierPressed && key.toLowerCase() === "s") {
+    formatCode();
     e.preventDefault();
     return false;
   }
 
-  // show secrets "s"
-  if (key === "s") {
-    select("#editor-Z").toggleClass("secret");
-    e.preventDefault();
-    return false;
-  }
-
-  // zoom in "+"
-  if (modifier && key === "=") {
+  /// zoom in
+  if (isModifierPressed && key === "=") {
     changeZoom(1);
     e.preventDefault();
     return false;
   }
 
-  // zoom out "-"
-  if (modifier && key === "-") {
+  /// zoom out
+  if (isModifierPressed && key === "-") {
     changeZoom(-1);
     e.preventDefault();
     return false;
+  }
+
+  // if (!modifier) return;
+
+  // // presenter hotkey "p"
+  // if (key === "p") {
+  //   if (shared.mode === "presenting") {
+  //     shared.presenter = undefined;
+  //     shared.mode = "synced";
+  //   } else if (shared.mode === "synced") {
+  //     shared.presenter = undefined;
+  //     shared.mode = "unsynced";
+  //   } else if (shared.mode === "unsynced") {
+  //     shared.presenter = id;
+  //     shared.mode = "presenting";
+  //   }
+  //   e.preventDefault();
+  //   return false;
+  // }
+}
+
+function formatCode() {
+  const currentCode = codeEditor.getValue();
+  try {
+    const formattedCode = prettier.format(currentCode, {
+      parser: "babel",
+      plugins: prettierPlugins,
+    });
+    codeEditor.setValue(formattedCode);
+    console.log("Code formatted successfully");
+  } catch (error) {
+    console.error("Error formatting code:", error);
   }
 }
 
@@ -210,32 +230,45 @@ function draw() {
 }
 
 function storeInputs() {
-  window.localStorage.setItem("expressionZ", editors[0].expressionEl.value());
-  window.localStorage.setItem("expressionA", editors[1].expressionEl.value());
-  window.localStorage.setItem("expressionB", editors[2].expressionEl.value());
-  window.localStorage.setItem("expressionC", editors[3].expressionEl.value());
-  window.localStorage.setItem("expressionD", editors[4].expressionEl.value());
-  window.localStorage.setItem("code", codeEditor.getValue());
+  localStorage.setItem("expressionZ", editors[0].expressionEl.value());
+  localStorage.setItem("expressionA", editors[1].expressionEl.value());
+  localStorage.setItem("expressionB", editors[2].expressionEl.value());
+  localStorage.setItem("expressionC", editors[3].expressionEl.value());
+  localStorage.setItem("expressionD", editors[4].expressionEl.value());
+  localStorage.setItem("code", codeEditor.getValue());
+  // console.log("store code", codeEditor.getValue());
 }
 
 function loadInputs() {
-  editors[0].expressionEl.value(window.localStorage.getItem("expressionZ"));
-  editors[1].expressionEl.value(window.localStorage.getItem("expressionA"));
-  editors[2].expressionEl.value(window.localStorage.getItem("expressionB"));
-  editors[3].expressionEl.value(window.localStorage.getItem("expressionC"));
-  editors[4].expressionEl.value(window.localStorage.getItem("expressionD"));
-  
-  const savedCode = window.localStorage.getItem("code") || "// hi";
-  window.codeEditor = CodeMirror(document.getElementById("code"), {
+  editors[0].expressionEl.value(localStorage.getItem("expressionZ"));
+  editors[1].expressionEl.value(localStorage.getItem("expressionA"));
+  editors[2].expressionEl.value(localStorage.getItem("expressionB"));
+  editors[3].expressionEl.value(localStorage.getItem("expressionC"));
+  editors[4].expressionEl.value(localStorage.getItem("expressionD"));
+
+  const savedCode = localStorage.getItem("code") ?? "";
+  // console.log("load code", savedCode);
+  codeEditor = CodeMirror(document.getElementById("code"), {
     value: savedCode,
     mode: "javascript",
     lineNumbers: true,
     theme: "default",
-    autofocus: true
+    tabSize: 2,
+    lint: {
+      esversion: 11,
+      browser: true,
+      devel: true,
+
+      unused: true,
+    },
+    gutters: ["CodeMirror-lint-markers"],
   });
-  
+
+  // console.log("initial value", codeEditor.getValue());
+
   codeEditor.on("change", () => {
-    window.localStorage.setItem("code", codeEditor.getValue());
+    localStorage.setItem("code", codeEditor.getValue());
+    console.log("code changed", codeEditor.getValue());
     redraw();
   });
 }
@@ -443,3 +476,4 @@ function runCode() {
     pop();
   }
 }
+// ellipse(1,1,1,1)

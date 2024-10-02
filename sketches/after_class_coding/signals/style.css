@@ -68,10 +68,6 @@ canvas {
   flex-wrap: wrap;
 }
 
-.secret {
-  display: none;
-}
-
 .reveal-all .secret {
   display: flex;
 }
@@ -91,7 +87,7 @@ canvas {
   flex: 1;
   position: relative;
 }
-.expression-editor [type="text"] {
+.expression-editor input[type="text"] {
   width: 100%;
   height: 100%;
   font-size: inherit;
@@ -99,18 +95,24 @@ canvas {
   border: 1px solid #999;
   border-radius: 6px;
   box-shadow: inset 0 0 4px rgba(0, 0, 50, 0.3);
+  overflow: visible;
 }
 
-.expression-editor [type="text"]:focus {
+.expression-editor input[type="text"]:focus {
   /* outline: 1px solid #0ff; */
   outline: none;
   border: 2px solid black;
 }
 
-.expression-editor [type="text"]:disabled {
+.expression-editor input[type="text"]:disabled {
   /* outline: 1px solid #0ff; */
   box-shadow: none;
   color: black;
+}
+
+.secret input {
+  text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0, 0);
 }
 
 .validated-field .error {
@@ -121,14 +123,14 @@ canvas {
   left: 1em;
 }
 
-.expression-editor [type="checkbox"] {
+.expression-editor input[type="checkbox"] {
   display: none;
 }
 
 .toggle {
   width: 48px;
-  background: #aaa;
-  color: #ccc;
+  background: #bbb;
+  color: #fff;
   border-radius: 6px;
   text-align: center;
   user-select: none;
@@ -140,6 +142,9 @@ canvas {
   color: #fff;
 }
 
+#plot-Z:checked + .toggle {
+  background-color: #777;
+}
 #plot-A:checked + .toggle {
   background-color: #07d;
 }
@@ -151,4 +156,16 @@ canvas {
 }
 #plot-D:checked + .toggle {
   background-color: #d70;
+}
+
+.code {
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 1em;
+  width: 1024px;
+  padding: 1em;
+  background: #f8f8f8;
+  border-radius: 8px;
+  min-height: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

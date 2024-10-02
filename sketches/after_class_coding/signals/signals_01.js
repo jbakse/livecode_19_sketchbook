@@ -9,17 +9,14 @@ const editors = [
   {
     id: "Z",
     color: "#AAA",
-    // storage: "shared",
   },
   {
     id: "A",
     color: "#07D",
-    // storage: "shared",
   },
   {
     id: "B",
     color: "#7D7",
-    // storage: "my",
   },
   {
     id: "C",
@@ -32,8 +29,6 @@ const editors = [
 ];
 
 let shared;
-// shared.mode, "presenting" | "synced" | "unsynced"
-// shared.presenter, id | undefined
 
 id = Math.random();
 
@@ -44,7 +39,7 @@ function preload() {
 
 function setup() {
   // pixelDensity(2);
-  partyToggleInfo(true);
+  // partyToggleInfo(true);
   const cavnas = createCanvas(1024, 512).parent("canvas-wrap");
 
   if (partyIsHost()) {
@@ -56,12 +51,15 @@ function setup() {
     editor.expressionEl = select(`#expression-${editor.id}`);
     editor.expressionEl.input(onExpressionInput.bind(editor));
     editor.plotEl = select(`#plot-${editor.id}`);
-    editor.plotEl.input(draw);
+    editor.plotEl.input(redraw);
     editor.errorEl = select(".error", editor.editorEl);
 
     if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
     partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
   }
+
+  const codeEl = select("#code");
+  codeEl.input(redraw);
 
   partyWatchShared(shared, "mode", onModeChanged);
   onModeChanged();
@@ -71,7 +69,7 @@ function setup() {
     passive: false,
   });
 
-  // noLoop();
+  noLoop();
 }
 
 function onModeChanged() {
@@ -96,12 +94,12 @@ function onModeChanged() {
     select("#status").html("");
   }
 
-  draw();
+  redraw();
 }
 function onExpressionChanged(newValue) {
   console.log("expression changed", newValue);
   this.expressionEl.value(newValue);
-  draw();
+  redraw();
 }
 
 function onExpressionInput() {
@@ -109,7 +107,7 @@ function onExpressionInput() {
   if (shared.mode === "presenting" || shared.mode === "synced") {
     shared[this.id] = this.expressionEl.value();
   }
-  draw();
+  redraw();
 }
 
 function onMouseWheel(event) {
@@ -139,7 +137,7 @@ function keyPressed(e) {
 
   // show secrets "s"
   if (key === "s") {
-    select("#editors").toggleClass("reveal-all");
+    select("#editor-Z").toggleClass("secret");
     e.preventDefault();
     return false;
   }
@@ -162,7 +160,7 @@ function keyPressed(e) {
 function changeZoom(v) {
   zoom *= v > 0 ? 2 : 0.5;
   zoom = constrain(zoom, 1, 256);
-  draw();
+  redraw();
 }
 
 function draw() {
@@ -188,6 +186,8 @@ function draw() {
 
   drawGraph(inputValue);
   drawAllVis(inputValue);
+
+  runCode();
 }
 
 function drawGraph(inputValue = 0) {
@@ -250,6 +250,8 @@ function drawAllVis(inputValue = 0) {
   drawOneVis("Z", 100);
   drawOneVis("A", 250);
   drawOneVis("B", 400);
+  drawOneVis("C", 550);
+  drawOneVis("D", 700);
 
   pop();
 }
@@ -306,11 +308,32 @@ function yForX(e = "x", x) {
   }
 }
 
-function plot(e = "x") {
+function plot(expression = "x") {
+  // this commented code allows for B, C, D to reference A
+  // it works, but finishing this so everything can reference everything
+  // at least to a point, is out of scope for now.
+  // function run(f, ...args) {
+  //   try {
+  //     return f(...args);
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
+  // function buildExpression(expression = "x") {
+  //   try {
+  //     return new Function("x", `return (${expression})`);
+  //   } catch (e) {
+  //     return undefined;
+  //   }
+  // }
+  // const fA = buildExpression(
+  //   editors.find((e) => e.id === "A").expressionEl.value(),
+  // );
+
   // "compile" the expression
   let f;
   try {
-    f = Function("x", `return (${e})`);
+    f = new Function("x", `return (${expression})`);
   } catch (e) {
     e.severity = "warn";
     e.message = "invalid expression";
@@ -320,23 +343,21 @@ function plot(e = "x") {
   let error = false;
 
   // plot the expression
-  push();
-  noFill();
-  beginShape();
-
   try {
+    push();
+    noFill();
+    beginShape();
     range(-512 / drawZoom, 512.1 / drawZoom, 1 / drawZoom).forEach((x) => {
       vertex(x, f(x));
     });
   } catch (e) {
     e.severity = "error";
     error = e;
+  } finally {
+    endShape();
+    pop();
+    return error;
   }
-
-  endShape();
-  pop();
-
-  return error;
 }
 
 // crate an array of numbers from [min to max) by step
@@ -351,4 +372,24 @@ function range(min, max, step = 1) {
 // round value to nearest x
 function roundTo(value, x) {
   return Math.round(value / x) * x;
+}
+
+function runCode() {
+  const code = select("#code").value();
+
+  push();
+  translate(width * 0.5, height * 0.5);
+  scale(drawZoom + 0.01);
+  fill("red");
+  strokeWeight(1 / drawZoom);
+  noStroke();
+  try {
+    // eval
+    const A = 1;
+    eval(code);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    pop();
+  }
 }

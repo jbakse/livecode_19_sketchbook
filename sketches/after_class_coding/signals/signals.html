@@ -36,8 +36,8 @@
       </span>
     </div>
     <div id="editors">
-      <div id="editor-Z" class="expression-editor secret">
-        <label for="expression-A">Z =</label>
+      <div id="editor-Z" class="expression-editor">
+        <label for="expression-Z">Z =</label>
         <div class="validated-field">
           <input
             id="expression-Z"
@@ -53,12 +53,7 @@
       <div id="editor-A" class="expression-editor">
         <label for="expression-A">A =</label>
         <div class="validated-field">
-          <input
-            id="expression-A"
-            type="text"
-            value="noise(x)"
-            spellcheck="false"
-          />
+          <input id="expression-A" type="text" value="x" spellcheck="false" />
           <div class="error"></div>
         </div>
         <input id="plot-A" type="checkbox" checked />
@@ -75,7 +70,7 @@
           />
           <div class="error"></div>
         </div>
-        <input id="plot-B" type="checkbox" checked />
+        <input id="plot-B" type="checkbox" />
         <label class="toggle" for="plot-B">P</label>
       </div>
       <div id="editor-C" class="expression-editor">
@@ -89,7 +84,7 @@
           />
           <div class="error"></div>
         </div>
-        <input id="plot-C" type="checkbox" checked />
+        <input id="plot-C" type="checkbox" />
         <label class="toggle" for="plot-C">P</label>
       </div>
       <div id="editor-D" class="expression-editor">
@@ -107,6 +102,7 @@
         <label class="toggle" for="plot-D">P</label>
       </div>
     </div>
+    <textarea class="code" id="code">// hi</textarea>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js"></script>

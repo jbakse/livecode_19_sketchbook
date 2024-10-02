@@ -1092,6 +1092,14 @@
                     {
                         "type": "file",
                         "name": "warp_grid_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wave_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "wave_02.js"
                     }
                 ]
             },

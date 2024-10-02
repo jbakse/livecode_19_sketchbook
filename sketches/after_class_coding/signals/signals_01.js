@@ -61,6 +61,8 @@ function setup() {
   const codeEl = select("#code");
   codeEl.input(redraw);
 
+  loadInputs();
+
   partyWatchShared(shared, "mode", onModeChanged);
   onModeChanged();
   // partyWatchShared(shared, draw);
@@ -188,6 +190,26 @@ function draw() {
   drawAllVis(inputValue);
 
   runCode();
+
+  storeInputs();
+}
+
+function storeInputs() {
+  window.localStorage.setItem("expressionZ", editors[0].expressionEl.value());
+  window.localStorage.setItem("expressionA", editors[1].expressionEl.value());
+  window.localStorage.setItem("expressionB", editors[2].expressionEl.value());
+  window.localStorage.setItem("expressionC", editors[3].expressionEl.value());
+  window.localStorage.setItem("expressionD", editors[4].expressionEl.value());
+  window.localStorage.setItem("code", select("#code").value());
+}
+
+function loadInputs() {
+  editors[0].expressionEl.value(window.localStorage.getItem("expressionZ"));
+  editors[1].expressionEl.value(window.localStorage.getItem("expressionA"));
+  editors[2].expressionEl.value(window.localStorage.getItem("expressionB"));
+  editors[3].expressionEl.value(window.localStorage.getItem("expressionC"));
+  editors[4].expressionEl.value(window.localStorage.getItem("expressionD"));
+  select("#code").value(window.localStorage.getItem("code"));
 }
 
 function drawGraph(inputValue = 0) {

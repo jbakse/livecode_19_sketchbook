@@ -158,14 +158,16 @@ canvas {
   background-color: #d70;
 }
 
-.code {
-  font-size: 16px;
-  line-height: 24px;
+#code {
   margin-top: 1em;
   width: 1024px;
-  padding: 1em;
-  background: #f8f8f8;
   border-radius: 8px;
-  min-height: 300px;
+  overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.CodeMirror {
+  font-size: 16px;
+  line-height: 1.5;
+  height: 300px;
 }

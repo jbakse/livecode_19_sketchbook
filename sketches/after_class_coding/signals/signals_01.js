@@ -215,7 +215,7 @@ function storeInputs() {
   window.localStorage.setItem("expressionB", editors[2].expressionEl.value());
   window.localStorage.setItem("expressionC", editors[3].expressionEl.value());
   window.localStorage.setItem("expressionD", editors[4].expressionEl.value());
-  window.localStorage.setItem("code", select("#code").value());
+  window.localStorage.setItem("code", codeEditor.getValue());
 }
 
 function loadInputs() {
@@ -224,7 +224,20 @@ function loadInputs() {
   editors[2].expressionEl.value(window.localStorage.getItem("expressionB"));
   editors[3].expressionEl.value(window.localStorage.getItem("expressionC"));
   editors[4].expressionEl.value(window.localStorage.getItem("expressionD"));
-  select("#code").value(window.localStorage.getItem("code"));
+  
+  const savedCode = window.localStorage.getItem("code") || "// hi";
+  window.codeEditor = CodeMirror(document.getElementById("code"), {
+    value: savedCode,
+    mode: "javascript",
+    lineNumbers: true,
+    theme: "default",
+    autofocus: true
+  });
+  
+  codeEditor.on("change", () => {
+    window.localStorage.setItem("code", codeEditor.getValue());
+    redraw();
+  });
 }
 
 function drawGraph(inputValue = 0) {
@@ -412,7 +425,7 @@ function roundTo(value, x) {
 }
 
 function runCode() {
-  const code = select("#code").value();
+  const code = codeEditor.getValue();
 
   push();
   translate(width * 0.5, height * 0.5);

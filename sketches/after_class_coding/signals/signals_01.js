@@ -16,7 +16,7 @@ let partyId = Math.random();
 let codeEditor;
 
 // code-controls toggle state
-let runCodeEnabled = true;
+let runCodeEnabled = false;
 
 // drag state
 let isDragging = false;
@@ -111,9 +111,8 @@ function draw() {
   push();
   translate(scrollOffset, 0);
   drawGraph(visInput);
-  if (runCodeEnabled) {
-    runCode();
-  }
+  runCodeEnabled && runCode();
+
   pop();
   drawAllVis(visInput);
 
@@ -140,7 +139,7 @@ function createEditor(editor) {
         <input 
           type="checkbox" 
           id="plot-${editor.id}" 
-          class="toggle-input" 
+          
           ${editor.defaultChecked ? "checked" : ""}
         >
         <label for="plot-${editor.id}">P</label>
@@ -198,9 +197,8 @@ function createCodeEditor() {
   });
 
   // Add event listener for code-controls toggle
-  const codeControlsToggle = select("#plot-${editor.id}", select(".code-controls"));
-  codeControlsToggle.changed(() => {
-    runCodeEnabled = codeControlsToggle.checked();
+  select("#show-code").changed(() => {
+    runCodeEnabled = select("#show-code").checked();
     redraw();
   });
 }
@@ -411,7 +409,7 @@ function drawGrid(playbackHead = 0) {
 
   /// draw legend
   const scale = 1 / drawZoom;
-  const here = -scrollOffset / drawZoom;
+  const here = (512 - 32 - scrollOffset) / drawZoom;
 
   /// ticks
   noFill();
@@ -437,14 +435,16 @@ function drawGrid(playbackHead = 0) {
   strokeWeight(6 * scale);
 
   if (drawZoom > 8) {
-    text("1", 1, (labelY + 2) * scale);
-    text("2π", TWO_PI, (labelY + 2) * scale);
-    text("10", 10, (labelY + 2) * scale);
-    text("100", 100, (labelY + 2) * scale);
+    text("1", 1, labelY * scale);
+    text("2π", TWO_PI, labelY * scale);
+    text("10", 10, labelY * scale);
+    text("100", 100, labelY * scale);
   }
   if (here < 0 || here > 10) {
-    text(floor(here * 10) / 10, here, (labelY + 2) * scale);
+    text(floor(here * 10) / 10, here, labelY * scale);
   }
+
+  // text(playbackHead.toFixed(1), playbackHead + 32 * scale, 64 * 3 * scale);
 
   pop();
 }
@@ -539,12 +539,18 @@ function runCode() {
   push();
   translate(width * 0.5, height * 0.5);
   scale(drawZoom + 0.01);
+  scale(1, -1);
   fill("red");
   strokeWeight(1 / drawZoom);
   noStroke();
   try {
     // eval
-    const A = 1;
+    const zero = () => 0;
+    const A = editors.find((e) => e.id === "A").f ?? zero;
+    const B = editors.find((e) => e.id === "B").f ?? zero;
+    const C = editors.find((e) => e.id === "C").f ?? zero;
+    const D = editors.find((e) => e.id === "D").f ?? zero;
+    const Z = editors.find((e) => e.id === "Z").f ?? zero;
     eval(code);
   } catch (e) {
     console.error(e);

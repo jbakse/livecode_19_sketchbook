@@ -2,9 +2,26 @@
 
 /* exported setup draw */
 
+// user selected zoom level, 1 to 256 power of 2
 let zoom = 1024 / 16;
+// currently shown zoom level, lerps between zoom levels
 let drawZoom = zoom;
 
+// p5.party "shared object"
+let shared;
+// id for this client
+let partyId = Math.random();
+
+// element of the CodeMirror editor
+let codeEditor;
+
+// drag state
+let isDragging = false;
+let dragStartX;
+let scrollOffset = 0;
+
+// settings for the experession editors
+// these objects will also store refrences to the DOM elements
 const editors = [
   { id: "Z", color: "#AAA", defaultValue: "noise(x)", defaultChecked: true },
   { id: "A", color: "#07D", defaultValue: "x", defaultChecked: true },
@@ -13,31 +30,18 @@ const editors = [
   { id: "D", color: "#D70", defaultValue: "-fract(x)", defaultChecked: false },
 ];
 
-let codeEditor;
-let shared;
-
-id = Math.random();
-
 function preload() {
   partyConnect("wss://deepstream-server-1.herokuapp.com", "signals", "main");
-  shared = partyLoadShared("shared");
+  shared = partyLoadShared("shared", { mode: "unsynced", presenter: partyId });
 }
-
-let isDragging = false;
-let dragStartX;
-let scrollOffset = 0;
 
 function setup() {
   createCanvas(1024, 512).parent("canvas-wrap");
 
-  if (partyIsHost()) {
-    shared.mode = "unsynced";
-  }
-
   editors.forEach(createEditor);
 
-  const codeEl = select("#code");
-  codeEl.input(redraw);
+  // const codeEl = select("#code");
+  // codeEl.input(redraw);
 
   loadInputs();
 
@@ -50,8 +54,8 @@ function setup() {
 
   canvas.addEventListener("mousedown", startDragging);
   canvas.addEventListener("mousemove", drag);
-  canvas.addEventListener("mouseup", stopDragging);
-  canvas.addEventListener("mouseleave", stopDragging);
+  window.addEventListener("mouseup", stopDragging);
+  // canvas.addEventListener("mouseleave", stopDragging);
 
   window.addEventListener("keydown", onKeyPressed);
   window.focus();
@@ -124,17 +128,17 @@ function createEditor(editor) {
 
 function onModeChanged() {
   const inputsDisabled = shared.mode === "presenting" &&
-    shared.presenter !== id;
+    shared.presenter !== partyId;
 
   for (editor of editors) {
     editor.expressionEl.elt.disabled = inputsDisabled;
     // editor.plotEl.elt.disabled = inputsDisabled;
   }
 
-  if (shared.mode === "presenting" && shared.presenter === id) {
+  if (shared.mode === "presenting" && shared.presenter === partyId) {
     select("#status").html("presenting");
   }
-  if (shared.mode === "presenting" && shared.presenter !== id) {
+  if (shared.mode === "presenting" && shared.presenter !== partyId) {
     select("#status").html("watching");
   }
   if (shared.mode === "synced") {
@@ -244,10 +248,10 @@ function draw() {
   if (input === "mouseXZoom") inputValue = (mouseX - 512) / zoom;
 
   // smooth zoom changes
-  // drawZoom = lerp(drawZoom, zoom, 0.25);
-  // if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
+  drawZoom = lerp(drawZoom, zoom, 0.25);
+  if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
 
-  drawZoom = zoom;
+  // drawZoom = zoom;
 
   background("white");
 
@@ -255,9 +259,8 @@ function draw() {
   translate(scrollOffset, 0);
   drawGraph(inputValue);
   drawAllVis(inputValue);
-  pop();
-
   runCode();
+  pop();
 
   storeInputs();
 }
@@ -373,45 +376,74 @@ function drawAllVis(inputValue = 0) {
 }
 
 function drawGrid(playbackHead = 0) {
-  push();
+  /// find visbible bounds
+  const left = (-512 - scrollOffset) / drawZoom;
+  const right = (512 - scrollOffset) / drawZoom;
+  const top = (-256) / drawZoom;
+  const bottom = (256) / drawZoom;
 
-  // grid lines
-  if (drawZoom > 4) {
-    noFill();
-    stroke("#ccc");
-    range(-100, 101).forEach((n) => {
-      line(n, -100, n, 100);
-      line(-100, n, 100, n);
-    });
+  push();
+  /// draw grid
+  let c = color(210, lerp(0, 100, drawZoom / 8));
+
+  stroke(c);
+  noFill();
+
+  range(floor(left), floor(right + 1), 1).forEach((n) => {
+    line(n, top, n, bottom);
+  });
+  range(floor(top), floor(bottom + 1), 1).forEach((n) => {
+    line(left, n, right, n);
+  });
+
+  /// draw axis
+  stroke(0);
+  noFill();
+  line(left, 0, right, 0);
+  line(0, top, 0, bottom);
+
+  /// draw playback head
+  stroke(0);
+  noFill();
+  line(playbackHead, top, playbackHead, bottom);
+
+  /// draw legend
+  const scale = 1 / drawZoom;
+  const here = -scrollOffset / drawZoom;
+
+  /// ticks
+  noFill();
+  stroke("black");
+
+  if (drawZoom > 8) {
+    line(1, -0.5, 1, 0.9);
+    line(TWO_PI, -0.5, TWO_PI, 0.9);
+    line(10, -0.5, 10, 0.9);
+    line(100, -0.5, 100, 0.9);
+  }
+  if (here < 0 || here > 10) {
+    line(here, -0.5, here, 0.9);
   }
 
-  // axis
-  noFill();
-  stroke("#000");
-  line(-1000, 0, 1000, 0);
-  line(0, -1000, 0, 1000);
-  line(playbackHead, -1000, playbackHead, 1000);
+  /// labels
+  const labelY = 96;
+  textSize(20 * scale);
+  textAlign(CENTER, CENTER);
+  textFont("Arial");
+  fill("black");
+  stroke("white");
+  strokeWeight(6 * scale);
 
-  if (drawZoom > 16) {
-    const scale = 1 / drawZoom;
-    // milestones
-    noFill();
-    stroke("black");
-    line(1, -0.5, 1, 0.5);
-    line(TWO_PI, -0.5, TWO_PI, 0.5);
-
-    // label
-    const labelY = 96;
-    textSize(20 * scale);
-    textAlign(CENTER, CENTER);
-    textFont("Arial");
-    fill("black");
-    stroke("white");
-
-    strokeWeight(6 * scale);
+  if (drawZoom > 8) {
     text("1", 1, (labelY + 2) * scale);
     text("2π", TWO_PI, (labelY + 2) * scale);
+    text("10", 10, (labelY + 2) * scale);
+    text("100", 100, (labelY + 2) * scale);
   }
+  if (here < 0 || here > 10) {
+    text(floor(here * 10) / 10, here, (labelY + 2) * scale);
+  }
+
   pop();
 }
 
@@ -463,7 +495,9 @@ function plot(expression = "x") {
     push();
     noFill();
     beginShape();
-    range(-512 / drawZoom, 512.1 / drawZoom, 1 / drawZoom).forEach((x) => {
+    const left = (-512 - scrollOffset) / drawZoom;
+    const right = (512.1 - scrollOffset) / drawZoom;
+    range(left, right, 1 / drawZoom).forEach((x) => {
       vertex(x, f(x));
     });
   } catch (e) {

@@ -23,6 +23,10 @@ function preload() {
   shared = partyLoadShared("shared");
 }
 
+let isDragging = false;
+let dragStartX;
+let scrollOffset = 0;
+
 function setup() {
   createCanvas(1024, 512).parent("canvas-wrap");
 
@@ -44,10 +48,31 @@ function setup() {
     passive: false,
   });
 
+  canvas.addEventListener("mousedown", startDragging);
+  canvas.addEventListener("mousemove", drag);
+  canvas.addEventListener("mouseup", stopDragging);
+  canvas.addEventListener("mouseleave", stopDragging);
+
   window.addEventListener("keydown", onKeyPressed);
   window.focus();
 
   select("#animate-checkbox").changed(toggleAnimation);
+}
+
+function startDragging(event) {
+  isDragging = true;
+  dragStartX = event.clientX - scrollOffset;
+}
+
+function drag(event) {
+  if (!isDragging) return;
+  const x = event.clientX - dragStartX;
+  scrollOffset = x;
+  redraw();
+}
+
+function stopDragging() {
+  isDragging = false;
 }
 
 function toggleAnimation() {
@@ -226,8 +251,11 @@ function draw() {
 
   background("white");
 
+  push();
+  translate(scrollOffset, 0);
   drawGraph(inputValue);
   drawAllVis(inputValue);
+  pop();
 
   runCode();
 

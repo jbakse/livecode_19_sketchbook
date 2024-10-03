@@ -26,6 +26,7 @@ body {
   background: white;
   border-radius: 8px;
   overflow: hidden;
+  cursor: grab;
 
   /* outline: 1px solid red; */
 }
@@ -34,6 +35,9 @@ canvas {
 
   /* border: 1px solid red; */
   /* border-radius: 8px; */
+}
+#canvas-wrap:active {
+  cursor: grabbing;
 }
 
 #canvas-shadow {

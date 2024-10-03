@@ -78,6 +78,9 @@ Compare
 : <, <=, >, >=, ===
 : step(), smoothStep() // in glsl
 
+Combine
+: min(A, B), max(A, B), lerp(A, B, t)
+
 [Book of Shaders: Shaping Functions](https://thebookofshaders.com/05/)
 [IQ: Useful Little Functions](https://www.iquilezles.org/www/articles/functions/functions.htm)
 
@@ -120,7 +123,7 @@ smoothStep = (e0, e1, x) -> {
   return t * t * (3 - 2 * t);
 };
 
-(c = sin(x)), sqrt(c * c + 0.01); // smooth hills
+c = sin(x), sqrt(c * c + 0.01) // smooth hills
 ```
 
 # Javascript % Operator

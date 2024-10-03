@@ -69,6 +69,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
     <script src="signals_01.js"></script>
+    <script>
+      // Load and convert notes.md
+      fetch('notes.md')
+        .then(response => response.text())
+        .then(markdown => {
+          const md = window.markdownit();
+          const html = md.render(markdown);
+          const notesDiv = document.createElement('div');
+          notesDiv.innerHTML = html;
+          notesDiv.id = 'notes';
+          document.body.appendChild(notesDiv);
+        })
+        .catch(error => console.error('Error loading notes.md:', error));
+    </script>
   </body>
 </html>

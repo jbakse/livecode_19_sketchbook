@@ -47,6 +47,19 @@ function setup() {
   window.addEventListener("keydown", onKeyPressed);
   window.focus();
   noLoop();
+
+  // Add event listener for the animate checkbox
+  const animateCheckbox = select("#animate-checkbox");
+  animateCheckbox.changed(toggleAnimation);
+}
+
+function toggleAnimation() {
+  const animateCheckbox = select("#animate-checkbox");
+  if (animateCheckbox.checked()) {
+    loop();
+  } else {
+    noLoop();
+  }
 }
 
 function createEditor(editor) {

@@ -22,12 +22,43 @@ let scrollOffset = 0;
 
 // settings for the experession editors
 // these objects will also store refrences to the DOM elements
+
 const editors = [
-  { id: "Z", color: "#AAA", defaultValue: "noise(x)", defaultChecked: true },
-  { id: "A", color: "#07D", defaultValue: "x", defaultChecked: true },
-  { id: "B", color: "#7D7", defaultValue: "cos(x)", defaultChecked: false },
-  { id: "C", color: "#D0D", defaultValue: "fract(x)", defaultChecked: false },
-  { id: "D", color: "#D70", defaultValue: "-fract(x)", defaultChecked: false },
+  {
+    id: "Z",
+    color: "#AAA",
+    f: null,
+    defaultValue: "noise(x)",
+    defaultChecked: true,
+  },
+  {
+    id: "A",
+    color: "#07D",
+    f: null,
+    defaultValue: "x",
+    defaultChecked: true,
+  },
+  {
+    id: "B",
+    color: "#7D7",
+    f: null,
+    defaultValue: "cos(x)",
+    defaultChecked: false,
+  },
+  {
+    id: "C",
+    color: "#D0D",
+    f: null,
+    defaultValue: "fract(x)",
+    defaultChecked: false,
+  },
+  {
+    id: "D",
+    color: "#D70",
+    f: null,
+    defaultValue: "-fract(x)",
+    defaultChecked: false,
+  },
 ];
 
 function preload() {
@@ -38,51 +69,55 @@ function preload() {
 function setup() {
   createCanvas(1024, 512).parent("canvas-wrap");
 
+  /// setup dom
   editors.forEach(createEditor);
-
-  // const codeEl = select("#code");
-  // codeEl.input(redraw);
-
-  loadInputs();
-
-  partyWatchShared(shared, "mode", onModeChanged);
-  onModeChanged();
-
-  canvas.addEventListener("wheel", onMouseWheel, {
-    passive: false,
-  });
-
-  canvas.addEventListener("mousedown", startDragging);
-  canvas.addEventListener("mousemove", drag);
+  createCodeEditor();
+  canvas.addEventListener("wheel", onMouseWheel, { passive: false });
+  canvas.addEventListener("mousedown", onStartDragging);
+  canvas.addEventListener("mousemove", onDrag);
   window.addEventListener("mouseup", stopDragging);
-  // canvas.addEventListener("mouseleave", stopDragging);
-
   window.addEventListener("keydown", onKeyPressed);
+  select("#animate-checkbox").changed(onToggleAnimation);
   window.focus();
 
-  select("#animate-checkbox").changed(toggleAnimation);
+  /// local storage
+  loadInputs();
+
+  /// p5.party
+  partyWatchShared(shared, "mode", onModeChanged);
+  onModeChanged();
 }
 
-function startDragging(event) {
-  isDragging = true;
-  dragStartX = event.clientX - scrollOffset;
+function draw() {
+  /// determine input type/value
+  let visInput;
+  const visType = select("#input-select").value();
+  if (visType === "frameCount") visInput = frameCount;
+  if (visType === "frameCount60") visInput = frameCount / 60;
+  if (visType === "millis") visInput = millis();
+  if (visType === "millis1000") visInput = millis() / 1000;
+  if (visType === "mouseX") visInput = mouseX;
+  if (visType === "mouseXZoom") visInput = (mouseX - 512) / zoom;
+
+  /// smooth zoom changes
+  drawZoom = lerp(drawZoom, zoom, 0.25);
+  if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
+
+  /// draw
+  push();
+  background("white");
+  translate(scrollOffset, 0);
+  drawGraph(visInput);
+  drawAllVis(visInput);
+  runCode();
+  pop();
+
+  //todo: refactor this, storeInputs should be called on input change, not draw
+  //todo: maybe break input storage up so each change is stored individually
+  storeInputs();
 }
 
-function drag(event) {
-  if (!isDragging) return;
-  const x = event.clientX - dragStartX;
-  scrollOffset = x;
-  redraw();
-}
-
-function stopDragging() {
-  isDragging = false;
-}
-
-function toggleAnimation() {
-  select("#animate-checkbox").checked() ? loop() : noLoop();
-}
-
+/// DOM setup
 function createEditor(editor) {
   const editorHTML = `
     <div class="expression-editor" id="editor-${editor.id}">
@@ -113,17 +148,68 @@ function createEditor(editor) {
   editor.plotEl = select(`#plot-${editor.id}`, editorEl);
   editor.errorEl = select(".error", editorEl);
 
+  // load intial value from local storage
+  editor.expressionEl.value(
+    localStorage.getItem(`expression${editor.id}`) ?? editor.defaultValue,
+  );
+
+  // load intial value from shared
+  // if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
+
+  // update function
+  updateEditorFunction(editor);
+
   // listen for changes to expression
   editor.expressionEl.input(onExpressionInput.bind(editor));
 
   // listen for changes to plot checkbox
   editor.plotEl.input(redraw);
 
-  // load intial value from shared
-  if (shared[editor.id]) editor.expressionEl.value(shared[editor.id]);
-
   // watch for changes to shared value
   partyWatchShared(shared, editor.id, onExpressionChanged.bind(editor));
+}
+
+function createCodeEditor() {
+  codeEditor = CodeMirror(document.getElementById("code"), {
+    mode: "javascript",
+    lineNumbers: true,
+    theme: "default",
+    tabSize: 2,
+    lint: {
+      esversion: 11,
+      browser: true,
+      devel: true,
+
+      unused: true,
+    },
+    gutters: ["CodeMirror-lint-markers"],
+  });
+
+  codeEditor.on("change", () => {
+    localStorage.setItem("code", codeEditor.getValue());
+    redraw();
+  });
+}
+
+/// Event Handlers
+function onStartDragging(event) {
+  isDragging = true;
+  dragStartX = event.clientX - scrollOffset;
+}
+
+function onDrag(event) {
+  if (!isDragging) return;
+  const x = event.clientX - dragStartX;
+  scrollOffset = x;
+  redraw();
+}
+
+function stopDragging() {
+  isDragging = false;
+}
+
+function onToggleAnimation() {
+  select("#animate-checkbox").checked() ? loop() : noLoop();
 }
 
 function onModeChanged() {
@@ -132,7 +218,6 @@ function onModeChanged() {
 
   for (editor of editors) {
     editor.expressionEl.elt.disabled = inputsDisabled;
-    // editor.plotEl.elt.disabled = inputsDisabled;
   }
 
   if (shared.mode === "presenting" && shared.presenter === partyId) {
@@ -150,18 +235,39 @@ function onModeChanged() {
 
   redraw();
 }
+
+// change from p5pary
 function onExpressionChanged(newValue) {
-  console.log("expression changed", newValue);
+  console.log("expression sync", newValue);
   this.expressionEl.value(newValue);
+  updateEditorFunction(this);
   redraw();
 }
 
-function onExpressionInput() {
-  console.log("onExpressionInput");
+// change from local ui
+function onExpressionInput(e) {
   if (shared.mode === "presenting" || shared.mode === "synced") {
     shared[this.id] = this.expressionEl.value();
   }
+  localStorage.setItem(`expression${this.id}`, this.expressionEl.value());
+  updateEditorFunction(this);
   redraw();
+}
+
+function updateEditorFunction(editor) {
+  console.log("update expression", editor.id, editor.expressionEl.value());
+
+  let error = null;
+  try {
+    editor.f = new Function("x", `return (${editor.expressionEl.value()})`);
+    editor.errorEl.html("");
+  } catch (e) {
+    console.log("error", e);
+    editor.f = null;
+    e.message = "invalid expression";
+    error = e;
+    editor.errorEl.html(error?.message ?? "");
+  }
 }
 
 function onMouseWheel(event) {
@@ -197,23 +303,24 @@ function onKeyPressed(e) {
 
   // if (!modifier) return;
 
-  // // presenter hotkey "p"
-  // if (key === "p") {
-  //   if (shared.mode === "presenting") {
-  //     shared.presenter = undefined;
-  //     shared.mode = "synced";
-  //   } else if (shared.mode === "synced") {
-  //     shared.presenter = undefined;
-  //     shared.mode = "unsynced";
-  //   } else if (shared.mode === "unsynced") {
-  //     shared.presenter = id;
-  //     shared.mode = "presenting";
-  //   }
-  //   e.preventDefault();
-  //   return false;
-  // }
+  /// presenter hotkey "p"
+  if (isModifierPressed && key.toLowerCase() === "p") {
+    if (shared.mode === "presenting") {
+      shared.presenter = undefined;
+      shared.mode = "synced";
+    } else if (shared.mode === "synced") {
+      shared.presenter = undefined;
+      shared.mode = "unsynced";
+    } else if (shared.mode === "unsynced") {
+      shared.presenter = partyId;
+      shared.mode = "presenting";
+    }
+    e.preventDefault();
+    return false;
+  }
 }
 
+/// State management
 function formatCode() {
   const currentCode = codeEditor.getValue();
   try {
@@ -234,81 +341,16 @@ function changeZoom(v) {
   redraw();
 }
 
-function draw() {
-  // console.log("draw");
-
-  const inputSelectEl = select("#input-select");
-  const input = inputSelectEl.value();
-  let inputValue;
-  if (input === "frameCount") inputValue = frameCount;
-  if (input === "frameCount60") inputValue = frameCount / 60;
-  if (input === "millis") inputValue = millis();
-  if (input === "millis1000") inputValue = millis() / 1000;
-  if (input === "mouseX") inputValue = mouseX;
-  if (input === "mouseXZoom") inputValue = (mouseX - 512) / zoom;
-
-  // smooth zoom changes
-  drawZoom = lerp(drawZoom, zoom, 0.25);
-  if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
-
-  // drawZoom = zoom;
-
-  background("white");
-
-  push();
-  translate(scrollOffset, 0);
-  drawGraph(inputValue);
-  drawAllVis(inputValue);
-  runCode();
-  pop();
-
-  storeInputs();
-}
-
+/// Local Storage Sync
 function storeInputs() {
-  localStorage.setItem("expressionZ", editors[0].expressionEl.value());
-  localStorage.setItem("expressionA", editors[1].expressionEl.value());
-  localStorage.setItem("expressionB", editors[2].expressionEl.value());
-  localStorage.setItem("expressionC", editors[3].expressionEl.value());
-  localStorage.setItem("expressionD", editors[4].expressionEl.value());
   localStorage.setItem("code", codeEditor.getValue());
-  // console.log("store code", codeEditor.getValue());
 }
 
 function loadInputs() {
-  editors[0].expressionEl.value(localStorage.getItem("expressionZ"));
-  editors[1].expressionEl.value(localStorage.getItem("expressionA"));
-  editors[2].expressionEl.value(localStorage.getItem("expressionB"));
-  editors[3].expressionEl.value(localStorage.getItem("expressionC"));
-  editors[4].expressionEl.value(localStorage.getItem("expressionD"));
-
-  const savedCode = localStorage.getItem("code") ?? "";
-  // console.log("load code", savedCode);
-  codeEditor = CodeMirror(document.getElementById("code"), {
-    value: savedCode,
-    mode: "javascript",
-    lineNumbers: true,
-    theme: "default",
-    tabSize: 2,
-    lint: {
-      esversion: 11,
-      browser: true,
-      devel: true,
-
-      unused: true,
-    },
-    gutters: ["CodeMirror-lint-markers"],
-  });
-
-  // console.log("initial value", codeEditor.getValue());
-
-  codeEditor.on("change", () => {
-    localStorage.setItem("code", codeEditor.getValue());
-    console.log("code changed", codeEditor.getValue());
-    redraw();
-  });
+  codeEditor.setValue(localStorage.getItem("code") ?? "");
 }
 
+/// Graph Layer
 function drawGraph(inputValue = 0) {
   push();
 
@@ -326,51 +368,14 @@ function drawGraph(inputValue = 0) {
   scale(1, -1);
 
   for (editor of editors) {
-    if (editor.plotEl.checked()) {
+    if (editor.plotEl.checked() && editor.f) {
       stroke(editor.color);
       strokeWeight(3 / drawZoom);
-      const error = plot(editor.expressionEl.value());
-      editor.errorEl.html(error ? error.message : "");
+
+      const error = plot(editor.f);
+      editor.errorEl.html(error?.message ?? "");
     }
   }
-
-  pop();
-}
-
-function drawAllVis(inputValue = 0) {
-  const inputSelectEl = select("#input-select");
-  const input = inputSelectEl.value();
-  const outputSelectEl = select("#output-select");
-  const output = outputSelectEl.value();
-  if (input === "none" || output === "none") return;
-
-  console.log(input, output);
-  push();
-
-  stroke("black");
-  strokeWeight(10);
-
-  function drawOneVis(id, x) {
-    const editor = editors.find((e) => e.id === id);
-    if (editor.plotEl.checked()) {
-      const out = yForX(editor.expressionEl.value(), inputValue);
-      if (typeof out !== "number") return;
-      const c1 = color("black");
-      const c2 = color(editor.color);
-      const c = output === "color" ? lerpColor(c1, c2, out) : c2;
-      const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
-      const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
-
-      fill(c);
-      ellipse(x, y, w, 100);
-    }
-  }
-
-  drawOneVis("Z", 100);
-  drawOneVis("A", 250);
-  drawOneVis("B", 400);
-  drawOneVis("C", 550);
-  drawOneVis("D", 700);
 
   pop();
 }
@@ -447,6 +452,66 @@ function drawGrid(playbackHead = 0) {
   pop();
 }
 
+function plot(f) {
+  if (!f) { message: "f is not a function"; }
+  try {
+    push();
+    noFill();
+    beginShape();
+    const left = (-512 - scrollOffset) / drawZoom;
+    const right = (512 + 1 - scrollOffset) / drawZoom;
+    range(left, right, 1 / drawZoom).forEach((x) => {
+      vertex(x, f(x));
+    });
+  } catch (e) {
+    return e;
+  } finally {
+    endShape();
+    pop();
+  }
+}
+
+/// Visualization Layer
+function drawAllVis(inputValue = 0) {
+  const inputSelectEl = select("#input-select");
+  const input = inputSelectEl.value();
+  const outputSelectEl = select("#output-select");
+  const output = outputSelectEl.value();
+  if (input === "none" || output === "none") return;
+
+  console.log(input, output);
+  push();
+
+  stroke("black");
+  strokeWeight(10);
+
+  function drawOneVis(id, x) {
+    const editor = editors.find((e) => e.id === id);
+    if (editor.plotEl.checked()) {
+      const out = yForX(editor.expressionEl.value(), inputValue);
+      if (typeof out !== "number") return;
+      const c1 = color("black");
+      const c2 = color(editor.color);
+      const c = output === "color" ? lerpColor(c1, c2, out) : c2;
+      const y = output === "y" ? map(out, 0, 1, 256, 0) : 100;
+      const w = output === "width" ? map(out, 0, 1, 0, 100) : 100;
+
+      fill(c);
+      ellipse(x, y, w, 100);
+    }
+  }
+
+  drawOneVis("Z", 100);
+  drawOneVis("A", 250);
+  drawOneVis("B", 400);
+  drawOneVis("C", 550);
+  drawOneVis("D", 700);
+
+  pop();
+}
+
+/// Dynamic evaluation stuff
+
 function yForX(e = "x", x) {
   try {
     f = Function("x", `return (${e})`);
@@ -454,74 +519,6 @@ function yForX(e = "x", x) {
   } catch (e) {
     return undefined;
   }
-}
-
-function plot(expression = "x") {
-  // this commented code allows for B, C, D to reference A
-  // it works, but finishing this so everything can reference everything
-  // at least to a point, is out of scope for now.
-  // function run(f, ...args) {
-  //   try {
-  //     return f(...args);
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
-  // function buildExpression(expression = "x") {
-  //   try {
-  //     return new Function("x", `return (${expression})`);
-  //   } catch (e) {
-  //     return undefined;
-  //   }
-  // }
-  // const fA = buildExpression(
-  //   editors.find((e) => e.id === "A").expressionEl.value(),
-  // );
-
-  // "compile" the expression
-  let f;
-  try {
-    f = new Function("x", `return (${expression})`);
-  } catch (e) {
-    e.severity = "warn";
-    e.message = "invalid expression";
-    return e;
-  }
-
-  let error = false;
-
-  // plot the expression
-  try {
-    push();
-    noFill();
-    beginShape();
-    const left = (-512 - scrollOffset) / drawZoom;
-    const right = (512.1 - scrollOffset) / drawZoom;
-    range(left, right, 1 / drawZoom).forEach((x) => {
-      vertex(x, f(x));
-    });
-  } catch (e) {
-    e.severity = "error";
-    error = e;
-  } finally {
-    endShape();
-    pop();
-    return error;
-  }
-}
-
-// crate an array of numbers from [min to max) by step
-function range(min, max, step = 1) {
-  const arr = [];
-  for (let i = min; i < max; i += step) {
-    arr.push(i);
-  }
-  return arr;
-}
-
-// round value to nearest x
-function roundTo(value, x) {
-  return Math.round(value / x) * x;
 }
 
 function runCode() {
@@ -543,4 +540,19 @@ function runCode() {
     pop();
   }
 }
-// ellipse(1,1,1,1)
+
+/// utility
+
+// crate an array of numbers from [min to max) by step
+function range(min, max, step = 1) {
+  const arr = [];
+  for (let i = min; i < max; i += step) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+// round value to nearest x
+function roundTo(value, x) {
+  return Math.round(value / x) * x;
+}

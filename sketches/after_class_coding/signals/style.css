@@ -127,56 +127,71 @@ canvas {
   left: 1em;
 }
 
-.expression-editor input[type="checkbox"] {
+.toggle input[type="checkbox"] {
   display: none;
 }
 
-.toggle {
+.toggle label {
   width: 48px;
+  height: 48px;
   background: #bbb;
   color: #fff;
   border-radius: 6px;
   text-align: center;
   user-select: none;
   cursor: pointer;
+  font-size: 22px;
+  line-height: 48px;
+  display: block;
+  /* margin-left: 1em; */
 }
 
-:checked + .toggle {
+.toggle :checked + label {
   background: #7a7;
   color: #fff;
 }
 
-#plot-Z:checked + .toggle {
+.toggle #plot-Z:checked + label {
   background-color: #777;
 }
-#plot-A:checked + .toggle {
+.toggle #plot-A:checked + label {
   background-color: #07d;
 }
-#plot-B:checked + .toggle {
+.toggle #plot-B:checked + label {
   background-color: #7d7;
 }
-#plot-C:checked + .toggle {
+.toggle #plot-C:checked + label {
   background-color: #d0d;
 }
-#plot-D:checked + .toggle {
+.toggle #plot-D:checked + label {
   background-color: #d70;
 }
 
-/* #code {
-  margin-top: 1em;
+.code-wrap {
+  margin-top: 2em;
   width: 1024px;
-  border-radius: 8px;
-  overflow: hidden;
-  width: 1024px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-} */
+  display: flex;
+  height: 400px;
+}
+
+.code-wrap > * + * {
+  margin-left: 0.5em;
+}
+
+.code {
+  flex: 1;
+}
+
+.code-controls {
+  display: flex;
+  flex-direction: column;
+  flex: 0;
+}
 
 .CodeMirror {
-  margin-top: 2em;
-  border: 1px solid #999;
   border-radius: 8px;
-  width: 1024px;
   font-size: 16px;
   line-height: 1.5;
-  height: 300px;
+  height: 100% !important;
+  border: 1px solid #999;
 }

@@ -57,7 +57,16 @@
       </span>
     </div>
     <div id="editors"></div>
-    <div class="code" id="code"></div>
+    <div class="code-wrap">
+      <div class="code" id="code"></div>
+      <div class="code-controls">
+        <div class="toggle">
+          <input type="checkbox" id="plot-${editor.id}" class="toggle-input"
+          ${editor.defaultChecked ? "checked" : ""} >
+          <label for="plot-${editor.id}">P</label>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5.party@latest/dist/p5.party.js"></script>

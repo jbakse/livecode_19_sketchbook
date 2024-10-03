@@ -131,13 +131,15 @@ function createEditor(editor) {
         >
         <div class="error"></div>
       </div>
-      <input 
-        type="checkbox" 
-        id="plot-${editor.id}" 
-        class="toggle-input" 
-        ${editor.defaultChecked ? "checked" : ""}
-      >
-      <label for="plot-${editor.id}" class="toggle">P</label>
+      <div class="toggle">
+        <input 
+          type="checkbox" 
+          id="plot-${editor.id}" 
+          class="toggle-input" 
+          ${editor.defaultChecked ? "checked" : ""}
+        >
+        <label for="plot-${editor.id}">P</label>
+      </div>
     </div>
   `;
 
@@ -252,22 +254,6 @@ function onExpressionInput(e) {
   localStorage.setItem(`expression${this.id}`, this.expressionEl.value());
   updateEditorFunction(this);
   redraw();
-}
-
-function updateEditorFunction(editor) {
-  // console.log("update expression", editor.id, editor.expressionEl.value());
-
-  let error = null;
-  try {
-    editor.f = new Function("x", `return (${editor.expressionEl.value()})`);
-    editor.errorEl.html("");
-  } catch (e) {
-    console.log("error", e);
-    editor.f = null;
-    e.message = "invalid expression";
-    error = e;
-    editor.errorEl.html(error?.message ?? "");
-  }
 }
 
 function onMouseWheel(event) {
@@ -509,6 +495,22 @@ function drawAllVis(inputValue = 0) {
 }
 
 /// Dynamic evaluation stuff
+
+function updateEditorFunction(editor) {
+  // console.log("update expression", editor.id, editor.expressionEl.value());
+
+  let error = null;
+  try {
+    editor.f = new Function("x", `return (${editor.expressionEl.value()})`);
+    editor.errorEl.html("");
+  } catch (e) {
+    console.log("error", e);
+    editor.f = null;
+    e.message = "invalid expression";
+    error = e;
+    editor.errorEl.html(error?.message ?? "");
+  }
+}
 
 function yForX(e = "x", x) {
   try {

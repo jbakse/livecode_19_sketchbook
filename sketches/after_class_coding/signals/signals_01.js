@@ -15,6 +15,9 @@ let partyId = Math.random();
 // element of the CodeMirror editor
 let codeEditor;
 
+// code-controls toggle state
+let runCodeEnabled = true;
+
 // drag state
 let isDragging = false;
 let dragStartX;
@@ -108,7 +111,9 @@ function draw() {
   push();
   translate(scrollOffset, 0);
   drawGraph(visInput);
-  runCode();
+  if (runCodeEnabled) {
+    runCode();
+  }
   pop();
   drawAllVis(visInput);
 
@@ -189,6 +194,13 @@ function createCodeEditor() {
 
   codeEditor.on("change", () => {
     localStorage.setItem("code", codeEditor.getValue());
+    redraw();
+  });
+
+  // Add event listener for code-controls toggle
+  const codeControlsToggle = select("#plot-${editor.id}", select(".code-controls"));
+  codeControlsToggle.changed(() => {
+    runCodeEnabled = codeControlsToggle.checked();
     redraw();
   });
 }

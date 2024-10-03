@@ -95,22 +95,22 @@ function draw() {
   if (visType === "frameCount") visInput = frameCount;
   if (visType === "frameCount60") visInput = frameCount / 60;
   if (visType === "millis") visInput = millis();
-  if (visType === "millis1000") visInput = millis() / 1000;
+  if (visType === "millis1000") visInput = (millis() / 1000) % 10;
   if (visType === "mouseX") visInput = mouseX;
-  if (visType === "mouseXZoom") visInput = (mouseX - 512) / zoom;
+  if (visType === "mouseXZoom") visInput = (mouseX - 512 - scrollOffset) / zoom;
 
   /// smooth zoom changes
   drawZoom = lerp(drawZoom, zoom, 0.25);
   if (abs(zoom - drawZoom) < 1) drawZoom = zoom;
 
   /// draw
-  push();
   background("white");
+  push();
   translate(scrollOffset, 0);
   drawGraph(visInput);
-  drawAllVis(visInput);
   runCode();
   pop();
+  drawAllVis(visInput);
 
   //todo: refactor this, storeInputs should be called on input change, not draw
   //todo: maybe break input storage up so each change is stored individually
@@ -255,7 +255,7 @@ function onExpressionInput(e) {
 }
 
 function updateEditorFunction(editor) {
-  console.log("update expression", editor.id, editor.expressionEl.value());
+  // console.log("update expression", editor.id, editor.expressionEl.value());
 
   let error = null;
   try {
@@ -278,7 +278,6 @@ function onMouseWheel(event) {
 function onKeyPressed(e) {
   const isModifierPressed = e.ctrlKey || e.metaKey;
   const key = e.key || e.code;
-  console.log("key pressed", key, isModifierPressed);
 
   /// format code with Prettier
   if (isModifierPressed && key.toLowerCase() === "s") {
@@ -479,7 +478,6 @@ function drawAllVis(inputValue = 0) {
   const output = outputSelectEl.value();
   if (input === "none" || output === "none") return;
 
-  console.log(input, output);
   push();
 
   stroke("black");

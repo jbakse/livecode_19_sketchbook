@@ -574,3 +574,20 @@ function range(min, max, step = 1) {
 function roundTo(value, x) {
   return Math.round(value / x) * x;
 }
+
+
+/*
+x % 10 < 5
+abs(sin(x * 1.7)) + abs(sin(x)) + 1
+
+//background("black");
+for (let x = 0; x < 100; x++) {
+  fill("gray");
+  rect(x - 0.25, D(x), 0.5, -D(x));
+  if (C(x)) {
+  	fill("red");
+  	rect(x - 0.25, D(x), 0.5, 0.1);
+  }
+}
+
+*

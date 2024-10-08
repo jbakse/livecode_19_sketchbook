@@ -108,6 +108,10 @@ function draw() {
   drawUI();
 }
 
+function randomInt(a, b) {
+  return floor(random(a, b));
+}
+
 function times(t, f) {
   let a = [];
   for (let i = 0; i < t; i++) {

@@ -1241,6 +1241,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "painter_01.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "paint_01.js"
                     },
                     {
@@ -1268,6 +1272,10 @@
                                 "name": "landscape_01.png"
                             }
                         ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "shade_01.js"
                     },
                     {
                         "type": "file",

@@ -24,13 +24,11 @@ async function preload() {
   );
 }
 
-function setup() {
-  console.log(graphics.width); // This will log 256
-}
+function setup() {}
 
 function step() {}
 
 function draw() {
   graphics.background(100);
-  graphics.image(images.ghost, [10, 10, 64, 64], { smooth: false });  // Doubled the size, pixelated
+  graphics.image(images.ghost, [10, 10], { tint: "red" });
 }

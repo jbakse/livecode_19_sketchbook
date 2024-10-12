@@ -1,22 +1,20 @@
 function parseColorArgs(...args) {
   if (args.length === 1) {
     const firstArgument = args[0];
+    if (typeof firstArgument === "string") {
+      return firstArgument;
+    }
     if (typeof firstArgument === "number") {
-      // Single number: treat as grayscale (0-255)
       return arrayToRgba([firstArgument]);
     }
     if (Array.isArray(firstArgument)) {
       return arrayToRgba(firstArgument);
     }
-    if (typeof firstArgument === "string") {
-      return firstArgument;
-    }
+
     throw new Error("Invalid single argument color format");
   }
 
   if (args.length === 2 || args.length === 3 || args.length === 4) {
-    // Two numbers: treat as grayscale and alpha
-    // Three or four numbers: treat as r, g, b, (a)
     if (args.every((arg) => typeof arg === "number")) {
       return arrayToRgba(args);
     }
@@ -37,9 +35,13 @@ function arrayToRgba(arr) {
     case 2:
       return `rgba(${arr[0]}, ${arr[0]}, ${arr[0]}, ${arr[1] / 255})`;
     case 3:
-      return `rgb(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(arr[2])})`;
+      return `rgb(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
+        arr[2]
+      )})`;
     case 4:
-      return `rgba(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(arr[2])}, ${arr[3] / 255})`;
+      return `rgba(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
+        arr[2]
+      )}, ${arr[3] / 255})`;
     default:
       throw new Error("Invalid input: array length must be 1, 2, 3, or 4");
   }

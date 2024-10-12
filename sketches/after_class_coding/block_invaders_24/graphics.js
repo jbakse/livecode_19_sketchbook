@@ -47,8 +47,7 @@ export class Graphics {
   #canvas;
   #ctx;
   #tintCache;
-  #glCanvas;
-  #gl;
+  #effectManager;
 
   constructor(width, height) {
     this.#canvas = document.createElement("canvas");
@@ -80,14 +79,8 @@ export class Graphics {
 
     this.#tintCache = new Map();
 
-    // Create WebGL2 canvas
-    this.#glCanvas = document.createElement("canvas");
-    this.#glCanvas.width = width;
-    this.#glCanvas.height = height;
-    this.#gl = this.#glCanvas.getContext("webgl2");
-    if (!this.#gl) {
-      throw new Error("WebGL2 not supported");
-    }
+    // Create EffectManager
+    this.#effectManager = new EffectManager(width, height);
   }
 
   get width() {
@@ -172,7 +165,7 @@ export class Graphics {
     return canvas;
   }
 
-  effect(frag, time) {
-    applyEffect(this.#gl, this.#canvas, this.#glCanvas, this.#ctx, frag, time);
+  effect(effectName, time) {
+    this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectName, time);
   }
 }

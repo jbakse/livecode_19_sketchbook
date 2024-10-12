@@ -46,6 +46,7 @@ function arrayToRgba(arr) {
 export class Graphics {
   #canvas;
   #ctx;
+  #tintCache;
 
   constructor(width, height) {
     this.#canvas = document.createElement("canvas");
@@ -74,6 +75,8 @@ export class Graphics {
      }
     `;
     document.head.appendChild(styles);
+
+    this.#tintCache = new Map();
   }
 
   get width() {
@@ -119,5 +122,33 @@ export class Graphics {
 
     // Restore the context state
     this.#ctx.restore();
+  }
+
+  tint(image, color) {
+    const cacheKey = `${image.src}-${color}`;
+    
+    if (this.#tintCache.has(cacheKey)) {
+      return this.#tintCache.get(cacheKey);
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(image, 0, 0);
+    ctx.globalCompositeOperation = 'multiply';
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(image, 0, 0);
+
+    const tintedImage = new Image();
+    tintedImage.src = canvas.toDataURL();
+
+    this.#tintCache.set(cacheKey, tintedImage);
+
+    return tintedImage;
   }
 }

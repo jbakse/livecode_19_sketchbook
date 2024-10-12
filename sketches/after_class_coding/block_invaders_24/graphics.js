@@ -1,3 +1,27 @@
+function parseColorArgs(...args) {
+  if (args.length === 1) {
+    // Single argument: HTML color name, hex color string, or rgba/rgb array
+    const color = args[0];
+    if (Array.isArray(color)) {
+      return arrayToRgba(color);
+    }
+    return color;
+  } else if (args.length === 3 || args.length === 4) {
+    // Separate r, g, b, (a) arguments
+    return arrayToRgba(args);
+  } else {
+    throw new Error("Invalid color format");
+  }
+}
+
+function arrayToRgba(arr) {
+  const r = Math.round(arr[0]);
+  const g = Math.round(arr[1]);
+  const b = Math.round(arr[2]);
+  const a = arr[3] !== undefined ? arr[3] : 1;
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
 export class Graphics {
   #canvas;
   #ctx;
@@ -40,29 +64,8 @@ export class Graphics {
   }
 
   background(...args) {
-    let color;
-    if (args.length === 1) {
-      // Single argument: HTML color name, hex color string, or rgba/rgb array
-      color = args[0];
-      if (Array.isArray(color)) {
-        color = this.#arrayToRgba(color);
-      }
-    } else if (args.length === 3 || args.length === 4) {
-      // Separate r, g, b, (a) arguments
-      color = this.#arrayToRgba(args);
-    } else {
-      throw new Error("Invalid color format");
-    }
-
+    const color = parseColorArgs(...args);
     this.#ctx.fillStyle = color;
     this.#ctx.fillRect(0, 0, this.width, this.height);
-  }
-
-  #arrayToRgba(arr) {
-    const r = Math.round(arr[0]);
-    const g = Math.round(arr[1]);
-    const b = Math.round(arr[2]);
-    const a = arr[3] !== undefined ? arr[3] : 1;
-    return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 }

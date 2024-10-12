@@ -37,7 +37,7 @@ const retroEffect = glsl`
   `;
 
 const boxBlurEffect = glsl`
-    const float BLUR_RADIUS = 3.0;
+    const float BLUR_RADIUS = 1.0;
 
     vec4 effect(vec4 color, float t) {
       vec2 texelSize = 1.0 / vec2(textureSize(u_image, 0));
@@ -86,7 +86,7 @@ function draw() {
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
   // Apply the box blur effect
-  graphics.effect(boxBlurEffect, t);
+  // graphics.effect(boxBlurEffect, t);
   // Optionally, you can apply both effects in sequence:
   // graphics.effect(boxBlurEffect, t);
   // graphics.effect(retroEffect, t);

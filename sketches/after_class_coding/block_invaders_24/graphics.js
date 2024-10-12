@@ -126,29 +126,26 @@ export class Graphics {
 
   tint(image, color) {
     const cacheKey = `${image.src}-${color}`;
-    
+
     if (this.#tintCache.has(cacheKey)) {
       return this.#tintCache.get(cacheKey);
     }
 
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.width = image.width;
     canvas.height = image.height;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     ctx.drawImage(image, 0, 0);
-    ctx.globalCompositeOperation = 'multiply';
+    ctx.globalCompositeOperation = "multiply";
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.globalCompositeOperation = 'destination-in';
+    ctx.globalCompositeOperation = "destination-in";
     ctx.drawImage(image, 0, 0);
 
-    const tintedImage = new Image();
-    tintedImage.src = canvas.toDataURL();
+    this.#tintCache.set(cacheKey, canvas);
 
-    this.#tintCache.set(cacheKey, tintedImage);
-
-    return tintedImage;
+    return canvas;
   }
 }

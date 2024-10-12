@@ -16,10 +16,10 @@ const grayscaleEffect = `
 
 const retroEffect = `
     // Configuration variables
-    const float CURVATURE = 0.1;
+    const float CURVATURE = 0.00;
     const float SCANLINE_INTENSITY = 0.04;
-    const float COLOR_DISTORTION = 0.001;
-    const float VIGNETTE_INTENSITY = 0.25;
+    const float COLOR_DISTORTION = 0.005;
+    const float VIGNETTE_INTENSITY = .01;
 
     vec4 effect(vec4 color) {
       vec2 uv = v_texCoord;
@@ -84,6 +84,7 @@ function draw() {
   graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
   graphics.image(images.test_pattern, [150, 10]); // No tint
 
+  graphics.image(images.test_pattern, [100, 100, 128, 128]);
   // Apply a simple grayscale effect
   graphics.effect(retroEffect);
 }

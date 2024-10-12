@@ -29,5 +29,5 @@ function step() {}
 
 function draw() {
   graphics.background(255, 255, 255);
-  graphics.image("ghost", 10, 10, 8, 8, "red");
+  graphics.image("ghost", 10, 10, 32, 32, "red");
 }

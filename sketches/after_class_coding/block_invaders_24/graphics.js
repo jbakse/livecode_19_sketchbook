@@ -46,6 +46,7 @@ function arrayToRgba(arr) {
 export class Graphics {
   #canvas;
   #ctx;
+  #images = {};
 
   constructor(width, height) {
     this.#canvas = document.createElement("canvas");
@@ -92,5 +93,37 @@ export class Graphics {
 
   clear() {
     this.#ctx.clearRect(0, 0, this.width, this.height);
+  }
+
+  async loadImage(name, url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        this.#images[name] = img;
+        resolve();
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
+  image(name, left, top, width, height, tint) {
+    const img = this.#images[name];
+    if (!img) {
+      console.error(`Image '${name}' not found`);
+      return;
+    }
+
+    if (tint) {
+      this.#ctx.save();
+      this.#ctx.fillStyle = tint;
+      this.#ctx.globalCompositeOperation = 'multiply';
+      this.#ctx.fillRect(left, top, width, height);
+      this.#ctx.globalCompositeOperation = 'destination-atop';
+      this.#ctx.drawImage(img, left, top, width, height);
+      this.#ctx.restore();
+    } else {
+      this.#ctx.drawImage(img, left, top, width, height);
+    }
   }
 }

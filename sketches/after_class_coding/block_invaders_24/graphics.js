@@ -35,8 +35,8 @@ function parseColorArgs(...args) {
 }
 
 function arrayToRgba(arr) {
-  if (!Array.isArray(arr) || !arr.every(n => typeof n === 'number')) {
-    throw new Error('Invalid input: expected an array of numbers');
+  if (!Array.isArray(arr) || !arr.every((n) => typeof n === "number")) {
+    throw new Error("Invalid input: expected an array of numbers");
   }
 
   switch (arr.length) {
@@ -45,11 +45,15 @@ function arrayToRgba(arr) {
     case 2:
       return `rgba(${arr[0]}, ${arr[0]}, ${arr[0]}, ${arr[1]})`;
     case 3:
-      return `rgb(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(arr[2])})`;
+      return `rgb(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
+        arr[2]
+      )})`;
     case 4:
-      return `rgba(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(arr[2])}, ${arr[3]})`;
+      return `rgba(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
+        arr[2]
+      )}, ${arr[3]})`;
     default:
-      throw new Error('Invalid input: array length must be 1, 2, 3, or 4');
+      throw new Error("Invalid input: array length must be 1, 2, 3, or 4");
   }
 }
 

@@ -1,11 +1,17 @@
 function parseColorArgs(...args) {
   if (args.length === 1) {
-    // Single argument: HTML color name, hex color string, or rgba/rgb array
     const color = args[0];
-    if (Array.isArray(color)) {
+    if (typeof color === 'number') {
+      // Single number: treat as grayscale (0-255)
+      return `rgb(${color}, ${color}, ${color})`;
+    } else if (Array.isArray(color)) {
       return arrayToRgba(color);
     }
     return color;
+  } else if (args.length === 2) {
+    // Two numbers: treat as grayscale and alpha
+    const [gray, alpha] = args;
+    return `rgba(${gray}, ${gray}, ${gray}, ${alpha})`;
   } else if (args.length === 3 || args.length === 4) {
     // Separate r, g, b, (a) arguments
     return arrayToRgba(args);

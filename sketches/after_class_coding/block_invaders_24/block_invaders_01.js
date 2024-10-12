@@ -13,8 +13,8 @@ const grayscaleEffect = `
       return vec4(vec3(gray), color.a);
     }
   `;
-
-const retroEffect = `
+const glsl = (x) => x;
+const retroEffect = glsl`
     // Configuration variables
     const float CURVATURE = 0.00;
     const float SCANLINE_INTENSITY = 0.04;
@@ -38,7 +38,7 @@ const retroEffect = `
       vec4 texColor = texture(u_image, curved_uv);
       
       // Apply scanlines with time-based movement
-      float scanline = sin(curved_uv.y * 800.0 + t * 10.0) * SCANLINE_INTENSITY;
+      float scanline = sin(curved_uv.y * 800.0 + t ) * SCANLINE_INTENSITY;
       texColor -= scanline;
       
       // Apply color distortion

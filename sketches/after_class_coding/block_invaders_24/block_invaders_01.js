@@ -2,7 +2,6 @@
 
 import { Controls } from "./controls.js";
 import { Graphics } from "./graphics.js";
-import { EffectManager } from "./effects.js";
 
 const controls = new Controls();
 const graphics = new Graphics(256, 256);

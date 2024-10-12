@@ -32,5 +32,5 @@ function step() {}
 
 function draw() {
   graphics.background(100);
-  graphics.image(images.ghost, 10, 10, 64, 64);  // Doubled the size
+  graphics.image(images.ghost, [10, 10, 64, 64], { smooth: false });  // Doubled the size, pixelated
 }

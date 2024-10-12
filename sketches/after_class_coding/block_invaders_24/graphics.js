@@ -35,13 +35,9 @@ function arrayToRgba(arr) {
     case 2:
       return `rgba(${arr[0]}, ${arr[0]}, ${arr[0]}, ${arr[1] / 255})`;
     case 3:
-      return `rgb(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
-        arr[2]
-      )})`;
+      return `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
     case 4:
-      return `rgba(${Math.round(arr[0])}, ${Math.round(arr[1])}, ${Math.round(
-        arr[2]
-      )}, ${arr[3] / 255})`;
+      return `rgba(${arr[0]}, ${arr[1]}, ${arr[2]}, ${arr[3] / 255})`;
     default:
       throw new Error("Invalid input: array length must be 1, 2, 3, or 4");
   }

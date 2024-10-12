@@ -4,20 +4,34 @@ function parseColorArgs(...args) {
     if (typeof color === 'number') {
       // Single number: treat as grayscale (0-255)
       return `rgb(${color}, ${color}, ${color})`;
-    } else if (Array.isArray(color)) {
+    }
+    if (Array.isArray(color)) {
       return arrayToRgba(color);
     }
-    return color;
-  } else if (args.length === 2) {
+    if (typeof color === 'string') {
+      return color;
+    }
+    throw new Error("Invalid single argument color format");
+  }
+
+  if (args.length === 2) {
     // Two numbers: treat as grayscale and alpha
     const [gray, alpha] = args;
-    return `rgba(${gray}, ${gray}, ${gray}, ${alpha})`;
-  } else if (args.length === 3 || args.length === 4) {
-    // Separate r, g, b, (a) arguments
-    return arrayToRgba(args);
-  } else {
-    throw new Error("Invalid color format");
+    if (typeof gray === 'number' && typeof alpha === 'number') {
+      return `rgba(${gray}, ${gray}, ${gray}, ${alpha})`;
+    }
+    throw new Error("Invalid two-argument color format");
   }
+
+  if (args.length === 3 || args.length === 4) {
+    // Separate r, g, b, (a) arguments
+    if (args.every(arg => typeof arg === 'number')) {
+      return arrayToRgba(args);
+    }
+    throw new Error("Invalid three or four-argument color format");
+  }
+
+  throw new Error("Invalid number of arguments for color");
 }
 
 function arrayToRgba(arr) {

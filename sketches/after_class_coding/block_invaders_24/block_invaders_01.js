@@ -5,6 +5,7 @@ import { Graphics } from "./graphics.js";
 
 const controls = new Controls();
 const graphics = new Graphics(256, 256);
+const images = {};
 
 function onFrame(t) {
   step();
@@ -18,7 +19,7 @@ setup();
 onFrame();
 
 async function preload() {
-  await graphics.loadImage("ghost", sketch_directory + "images/ghost.png");
+  images.ghost = await graphics.loadImage(sketch_directory + "images/ghost.png");
 }
 
 function setup() {
@@ -29,5 +30,5 @@ function step() {}
 
 function draw() {
   graphics.background(255, 255, 255);
-  graphics.image("ghost", 10, 10, 32, 32, "red");
+  graphics.image(images.ghost, 10, 10, 32, 32, "red");
 }

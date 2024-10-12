@@ -36,4 +36,12 @@ function draw() {
   });
   graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
   graphics.image(images.test_pattern, [150, 10]); // No tint
+
+  // Apply a simple grayscale effect
+  graphics.effect(`
+    vec4 effect(vec4 color) {
+      float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+      return vec4(vec3(gray), color.a);
+    }
+  `);
 }

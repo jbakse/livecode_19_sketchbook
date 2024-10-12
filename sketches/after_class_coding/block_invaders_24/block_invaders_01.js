@@ -29,8 +29,11 @@ function setup() {}
 function step() {}
 
 function draw() {
+  const t = performance.now() / 1000;
   graphics.background(100);
-  graphics.image(images.test_pattern, [10, 10], { tint: "red" });
+  graphics.image(images.test_pattern, [10 + Math.sin(t) * 20, 10], {
+    tint: "red",
+  });
   graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
   graphics.image(images.test_pattern, [150, 10]); // No tint
 }

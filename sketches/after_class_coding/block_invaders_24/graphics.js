@@ -112,6 +112,12 @@ export class Graphics {
 
     // Set image smoothing based on the smooth parameter
     this.#ctx.imageSmoothingEnabled = smooth;
+    if (!smooth) {
+      left = Math.floor(left);
+      top = Math.floor(top);
+      width && (width = Math.floor(width));
+      height && (height = Math.floor(height));
+    }
 
     // Apply tint if specified
     if (tint) {

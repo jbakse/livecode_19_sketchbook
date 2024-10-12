@@ -106,17 +106,17 @@ export class Graphics {
   image(img, [left, top, width, height], { smooth = false } = {}) {
     // Save the current context state
     this.#ctx.save();
-    
+
     // Set image smoothing based on the smooth parameter
     this.#ctx.imageSmoothingEnabled = smooth;
-    
+
     // Draw the image
     if (width !== undefined && height !== undefined) {
       this.#ctx.drawImage(img, left, top, width, height);
     } else {
       this.#ctx.drawImage(img, left, top);
     }
-    
+
     // Restore the context state
     this.#ctx.restore();
   }

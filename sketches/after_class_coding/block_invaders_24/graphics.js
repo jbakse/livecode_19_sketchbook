@@ -104,6 +104,16 @@ export class Graphics {
   }
 
   image(img, left, top, width, height) {
+    // Save the current context state
+    this.#ctx.save();
+    
+    // Disable image smoothing for pixelated rendering
+    this.#ctx.imageSmoothingEnabled = false;
+    
+    // Draw the image
     this.#ctx.drawImage(img, left, top, width, height);
+    
+    // Restore the context state
+    this.#ctx.restore();
   }
 }

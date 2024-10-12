@@ -19,7 +19,9 @@ setup();
 onFrame();
 
 async function preload() {
-  images.ghost = await graphics.loadImage(sketch_directory + "images/ghost.png");
+  images.ghost = await graphics.loadImage(
+    sketch_directory + "images/ghost.png"
+  );
 }
 
 function setup() {
@@ -29,6 +31,6 @@ function setup() {
 function step() {}
 
 function draw() {
-  graphics.background(255, 255, 255);
-  graphics.image(images.ghost, 10, 10, 32, 32, "red");
+  graphics.background(100);
+  graphics.image(images.ghost, 10, 10, 32, 32);
 }

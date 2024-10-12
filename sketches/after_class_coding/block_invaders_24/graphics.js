@@ -98,22 +98,12 @@ export class Graphics {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => resolve(img);
-      img.onerror = reject;
+      img.onerror = () => reject(new Error(`Failed to load image from ${url}`));
       img.src = url;
     });
   }
 
-  image(img, left, top, width, height, tint) {
-    if (tint) {
-      this.#ctx.save();
-      this.#ctx.fillStyle = tint;
-      this.#ctx.globalCompositeOperation = 'multiply';
-      this.#ctx.fillRect(left, top, width, height);
-      this.#ctx.globalCompositeOperation = 'destination-atop';
-      this.#ctx.drawImage(img, left, top, width, height);
-      this.#ctx.restore();
-    } else {
-      this.#ctx.drawImage(img, left, top, width, height);
-    }
+  image(img, left, top, width, height) {
+    this.#ctx.drawImage(img, left, top, width, height);
   }
 }

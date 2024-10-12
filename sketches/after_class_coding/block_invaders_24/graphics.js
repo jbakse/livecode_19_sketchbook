@@ -165,7 +165,11 @@ export class Graphics {
     return canvas;
   }
 
-  effect(effectName, time) {
-    this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectName, time);
+  addEffect(name, shaderFunction) {
+    this.#effectManager.addEffect(name, shaderFunction);
+  }
+
+  effect(effectName) {
+    this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectName);
   }
 }

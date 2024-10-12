@@ -13,11 +13,12 @@ export class EffectManager {
       throw new Error("WebGL2 not supported");
     }
 
-    this.effects = {
-      grayscale: this.createEffect(grayscaleEffect),
-      retro: this.createEffect(retroEffect),
-      boxBlur: this.createEffect(boxBlurEffect),
-    };
+    this.effects = {};
+    this.startTime = performance.now();
+  }
+
+  addEffect(name, shaderFunction) {
+    this.effects[name] = this.createEffect(shaderFunction);
   }
 
   createEffect(fragmentShaderSource) {
@@ -85,7 +86,7 @@ export class EffectManager {
     return program;
   }
 
-  applyEffect(sourceCanvas, ctx, effectName, time) {
+  applyEffect(sourceCanvas, ctx, effectName) {
     const gl = this.gl;
     const effect = this.effects[effectName];
 
@@ -133,7 +134,8 @@ export class EffectManager {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, sourceCanvas);
 
     // Set the time uniform
-    gl.uniform1f(effect.uniforms.time, time);
+    const currentTime = (performance.now() - this.startTime) / 1000;
+    gl.uniform1f(effect.uniforms.time, currentTime);
 
     // Render
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -144,14 +146,14 @@ export class EffectManager {
   }
 }
 
-const grayscaleEffect = glsl`
+export const grayscaleEffect = glsl`
   vec4 effect(vec4 color, float t) {
     float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
     return vec4(vec3(gray), color.a);
   }
 `;
 
-const retroEffect = glsl`
+export const retroEffect = glsl`
   // Configuration variables
   const float COLOR_DISTORTION = 0.005;
   const float SCANLINE_INTENSITY = 0.01;
@@ -173,7 +175,7 @@ const retroEffect = glsl`
   }
 `;
 
-const boxBlurEffect = glsl`
+export const boxBlurEffect = glsl`
   const float BLUR_RADIUS = 1.0;
 
   vec4 effect(vec4 color, float t) {

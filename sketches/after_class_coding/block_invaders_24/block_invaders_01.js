@@ -17,8 +17,8 @@ const glsl = (x) => x;
 const retroEffect = glsl`
     // Configuration variables
     const float COLOR_DISTORTION = 0.005;
-    const float SCANLINE_INTENSITY = 0.1;
-    const float SCANLINE_COUNT = 100.0;
+    const float SCANLINE_INTENSITY = 0.01;
+    const float SCANLINE_COUNT = 256.0;
 
     vec4 effect(vec4 color, float t) {
       vec2 uv = v_texCoord;

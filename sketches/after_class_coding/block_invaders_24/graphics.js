@@ -124,7 +124,8 @@ export class Graphics {
     this.#ctx.restore();
   }
 
-  tint(image, color) {
+  tint(image, ...colorArgs) {
+    const color = parseColorArgs(...colorArgs);
     const cacheKey = `${image.src}-${color}`;
 
     if (this.#tintCache.has(cacheKey)) {

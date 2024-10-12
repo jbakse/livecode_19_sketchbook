@@ -36,6 +36,24 @@ const retroEffect = glsl`
     }
   `;
 
+const boxBlurEffect = glsl`
+    const float BLUR_RADIUS = 3.0;
+
+    vec4 effect(vec4 color, float t) {
+      vec2 texelSize = 1.0 / vec2(textureSize(u_image, 0));
+      vec4 result = vec4(0.0);
+      
+      for (float x = -BLUR_RADIUS; x <= BLUR_RADIUS; x++) {
+        for (float y = -BLUR_RADIUS; y <= BLUR_RADIUS; y++) {
+          vec2 offset = vec2(x, y) * texelSize;
+          result += texture(u_image, v_texCoord + offset);
+        }
+      }
+      
+      return result / ((2.0 * BLUR_RADIUS + 1.0) * (2.0 * BLUR_RADIUS + 1.0));
+    }
+  `;
+
 function onFrame(t) {
   step();
   draw();
@@ -67,6 +85,9 @@ function draw() {
   graphics.image(images.test_pattern, [150, 10]); // No tint
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
-  // Apply a simple grayscale effect
-  graphics.effect(retroEffect, t);
+  // Apply the box blur effect
+  graphics.effect(boxBlurEffect, t);
+  // Optionally, you can apply both effects in sequence:
+  // graphics.effect(boxBlurEffect, t);
+  // graphics.effect(retroEffect, t);
 }

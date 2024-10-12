@@ -1,23 +1,23 @@
 function parseColorArgs(...args) {
   if (args.length === 1) {
-    const color = args[0];
-    if (typeof color === 'number') {
+    const firstArgument = args[0];
+    if (typeof firstArgument === "number") {
       // Single number: treat as grayscale (0-255)
-      return `rgb(${color}, ${color}, ${color})`;
+      return `rgb(${firstArgument}, ${firstArgument}, ${firstArgument})`;
     }
-    if (Array.isArray(color)) {
-      return arrayToRgba(color);
+    if (Array.isArray(firstArgument)) {
+      return arrayToRgba(firstArgument);
     }
-    if (typeof color === 'string') {
-      return color;
+    if (typeof firstArgument === "string") {
+      return firstArgument;
     }
     throw new Error("Invalid single argument color format");
   }
 
   if (args.length === 2) {
     // Two numbers: treat as grayscale and alpha
-    const [gray, alpha] = args;
-    if (typeof gray === 'number' && typeof alpha === 'number') {
+    if (args.every((arg) => typeof arg === "number")) {
+      const [gray, alpha] = args;
       return `rgba(${gray}, ${gray}, ${gray}, ${alpha})`;
     }
     throw new Error("Invalid two-argument color format");
@@ -25,7 +25,7 @@ function parseColorArgs(...args) {
 
   if (args.length === 3 || args.length === 4) {
     // Separate r, g, b, (a) arguments
-    if (args.every(arg => typeof arg === 'number')) {
+    if (args.every((arg) => typeof arg === "number")) {
       return arrayToRgba(args);
     }
     throw new Error("Invalid three or four-argument color format");

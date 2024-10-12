@@ -9,6 +9,10 @@ canvas.width = 480;
 canvas.height = 640;
 document.body.appendChild(canvas);
 
+// setup debug info
+const debug = document.createElement("div");
+document.body.appendChild(debug);
+
 // set up keyboard
 
 const controls = {
@@ -18,19 +22,26 @@ const controls = {
 };
 
 document.addEventListener("keydown", (e) => {
+  if (e.repeat) return;
   if (e.key === "ArrowLeft") controls.left = true;
   if (e.key === "ArrowRight") controls.right = true;
   if (e.key === "a") controls.left = true;
   if (e.key === "d") controls.right = true;
   if (e.key === " ") controls.fire = true;
+
+  console.log("keydown", e.key);
 });
 
 document.addEventListener("keyup", (e) => {
+  if (e.repeat) return;
+
   if (e.key === "ArrowLeft") controls.left = false;
   if (e.key === "ArrowRight") controls.right = false;
   if (e.key === "a") controls.left = false;
   if (e.key === "d") controls.right = false;
   if (e.key === " ") controls.fire = false;
+
+  console.log("keyup", e.key);
 });
 
 // game state
@@ -80,6 +91,10 @@ function spawnLevel() {
 }
 
 function draw() {
+  debug.innerHTML = `bullets: ${bullets.length} enemies: ${
+    enemies.length
+  } controls: ${JSON.stringify(controls)}`;
+
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 

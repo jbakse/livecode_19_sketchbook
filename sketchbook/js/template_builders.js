@@ -45,6 +45,13 @@ async function showJS(sourcePath) {
     attributes.push('canvas="paper-canvas"');
   }
 
+  // look for // module comment
+  const moduleRegex = /^\/\/ ?module/gm;
+  const isModule = moduleRegex.test(rawSource);
+  if (isModule) {
+    attributes.push('type="module"');
+  }
+
   // directives
   const directives = readDirectives(rawSource);
 
@@ -69,7 +76,7 @@ async function showJS(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context
+    context,
   );
 
   const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
@@ -159,7 +166,7 @@ async function showMD(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context
+    context,
   );
   const sketchSrcDoc = await buildTemplate("plugins/md/md.handlebars", context);
 
@@ -188,11 +195,11 @@ async function showTXT(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context
+    context,
   );
   const sketchSrcDoc = await buildTemplate(
     "plugins/txt/txt.handlebars",
-    context
+    context,
   );
 
   // inject pages
@@ -219,7 +226,7 @@ async function showHTML(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context
+    context,
   );
 
   // inject pages
@@ -247,7 +254,7 @@ async function showDirect(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context
+    context,
   );
 
   // inject pages

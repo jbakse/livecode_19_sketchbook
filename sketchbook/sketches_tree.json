@@ -85,7 +85,25 @@
                     },
                     {
                         "type": "file",
-                        "name": "nodes.md"
+                        "name": "notes.md"
+                    }
+                ]
+            },
+            {
+                "name": "block_invaders_24",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "block_invaders_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "controls.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "controls_demo.js"
                     }
                 ]
             },
@@ -325,14 +343,6 @@
                 "name": "signals",
                 "type": "folder",
                 "children": [
-                    {
-                        "type": "file",
-                        "name": "example_01.js"
-                    },
-                    {
-                        "type": "file",
-                        "name": "example_02.js"
-                    },
                     {
                         "type": "file",
                         "name": "notes.md"
@@ -2246,6 +2256,32 @@
         ]
     },
     {
+        "name": "kmeans",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "integers_01.js"
+            },
+            {
+                "type": "file",
+                "name": "posterize_01.js"
+            },
+            {
+                "type": "file",
+                "name": "tents_1024.webp"
+            },
+            {
+                "type": "file",
+                "name": "tents_256.webp"
+            },
+            {
+                "type": "file",
+                "name": "tents_512.webp"
+            }
+        ]
+    },
+    {
         "name": "lang_dept",
         "type": "folder",
         "children": [
@@ -2980,6 +3016,10 @@
             {
                 "type": "file",
                 "name": "alias_03.js"
+            },
+            {
+                "type": "file",
+                "name": "break_01.js"
             },
             {
                 "type": "file",

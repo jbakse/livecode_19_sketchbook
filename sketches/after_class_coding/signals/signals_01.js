@@ -71,9 +71,10 @@ function preload() {
 
 function setup() {
   createCanvas(1024, 512).parent("canvas-wrap");
+  noiseSeed(1);
 
   /// setup dom
-  editors.forEach(createEditor);
+  editors.forEach(createExpressionEditor);
   createCodeEditor();
   canvas.addEventListener("wheel", onMouseWheel, { passive: false });
   canvas.addEventListener("mousedown", onStartDragging);
@@ -82,9 +83,6 @@ function setup() {
   window.addEventListener("keydown", onKeyPressed);
   select("#animate-checkbox").changed(onToggleAnimation);
   window.focus();
-
-  /// local storage
-  loadInputs();
 
   /// p5.party
   partyWatchShared(shared, "mode", onModeChanged);
@@ -95,12 +93,8 @@ function draw() {
   /// determine input type/value
   let visInput;
   const visType = select("#input-select").value();
-  if (visType === "frameCount") visInput = frameCount;
-  if (visType === "frameCount60") visInput = frameCount / 60;
-  if (visType === "millis") visInput = millis();
-  if (visType === "millis1000") visInput = (millis() / 1000) % 10;
-  if (visType === "mouseX") visInput = mouseX;
-  if (visType === "mouseXZoom") visInput = (mouseX - 512 - scrollOffset) / zoom;
+  if (visType === "mouseX") visInput = (mouseX - 512 - scrollOffset) / zoom;
+  if (visType === "time") visInput = (millis() / 1000) % 10;
 
   /// smooth zoom changes
   drawZoom = lerp(drawZoom, zoom, 0.25);
@@ -115,14 +109,10 @@ function draw() {
 
   pop();
   drawAllVis(visInput);
-
-  //todo: refactor this, storeInputs should be called on input change, not draw
-  //todo: maybe break input storage up so each change is stored individually
-  storeInputs();
 }
 
 /// DOM setup
-function createEditor(editor) {
+function createExpressionEditor(editor) {
   const editorHTML = `
     <div class="expression-editor" id="editor-${editor.id}">
       <label for="expression-${editor.id}">${editor.id} =</label>
@@ -147,7 +137,7 @@ function createEditor(editor) {
     </div>
   `;
 
-  select("#editors").elt.insertAdjacentHTML("beforeend", editorHTML);
+  select("#expression-editors").elt.insertAdjacentHTML("beforeend", editorHTML);
 
   const editorEl = select(`#editor-${editor.id}`);
   editor.expressionEl = select(`#expression-${editor.id}`, editorEl);
@@ -176,7 +166,7 @@ function createEditor(editor) {
 }
 
 function createCodeEditor() {
-  codeEditor = CodeMirror(document.getElementById("code"), {
+  codeEditor = CodeMirror(document.getElementById("code-input"), {
     mode: "javascript",
     lineNumbers: true,
     theme: "default",
@@ -191,12 +181,13 @@ function createCodeEditor() {
     gutters: ["CodeMirror-lint-markers"],
   });
 
+  codeEditor.setValue(localStorage.getItem("code") ?? "");
+
   codeEditor.on("change", () => {
     localStorage.setItem("code", codeEditor.getValue());
     redraw();
   });
 
-  // Add event listener for code-controls toggle
   select("#show-code").changed(() => {
     runCodeEnabled = select("#show-code").checked();
     redraw();
@@ -334,15 +325,6 @@ function changeZoom(v) {
   zoom *= v > 0 ? 2 : 0.5;
   zoom = constrain(zoom, 1, 256);
   redraw();
-}
-
-/// Local Storage Sync
-function storeInputs() {
-  localStorage.setItem("code", codeEditor.getValue());
-}
-
-function loadInputs() {
-  codeEditor.setValue(localStorage.getItem("code") ?? "");
 }
 
 /// Graph Layer
@@ -575,7 +557,6 @@ function roundTo(value, x) {
   return Math.round(value / x) * x;
 }
 
-
 /*
 x % 10 < 5
 abs(sin(x * 1.7)) + abs(sin(x)) + 1
@@ -590,4 +571,4 @@ for (let x = 0; x < 100; x++) {
   }
 }
 
-*
+*/

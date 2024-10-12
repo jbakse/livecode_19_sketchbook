@@ -167,18 +167,18 @@ canvas {
   background-color: #d70;
 }
 
-.code-wrap {
+.code-editor {
   margin-top: 2em;
   width: 1024px;
   display: flex;
   height: 400px;
 }
 
-.code-wrap > * + * {
+.code-editor > * + * {
   margin-left: 0.5em;
 }
 
-.code {
+.code-input {
   flex: 1;
 }
 
@@ -220,7 +220,8 @@ canvas {
   margin-bottom: 1em;
 }
 
-#notes ul, #notes ol {
+#notes ul,
+#notes ol {
   margin-left: 2em;
   margin-bottom: 1em;
 }

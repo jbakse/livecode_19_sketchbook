@@ -32,14 +32,8 @@
         <label for="input">input</label>
         <select name="input" id="input-select">
           <option value="none" selected>none</option>
-          <!-- <option value="frameCount">frameCount</option> -->
-          <!-- <option value="frameCount60">frameCount/60</option> -->
-          <!-- <option value="millis">millis()</option> -->
-          <!-- <option value="millis1000">millis()/1000</option> -->
-          <!-- <option value="mouseX">mouseX</option> -->
-          <!-- <option value="mouseXZoom">mouseX/zoom</option> -->
-          <option value="millis1000">time</option>
-          <option value="mouseXZoom">mouseX</option>
+          <option value="time">time</option>
+          <option value="mouseX">mouseX</option>
         </select>
       </span>
       <span>
@@ -56,9 +50,9 @@
         <input type="checkbox" id="animate-checkbox" name="animate" checked />
       </span>
     </div>
-    <div id="editors"></div>
-    <div class="code-wrap">
-      <div class="code" id="code"></div>
+    <div id="expression-editors"></div>
+    <div class="code-editor">
+      <div class="code-input" id="code-input"></div>
       <div class="code-controls">
         <div class="toggle">
           <input type="checkbox" id="show-code" />
@@ -73,17 +67,17 @@
     <script src="signals_01.js"></script>
     <script>
       // Load and convert notes.md
-      fetch('notes.md')
-        .then(response => response.text())
-        .then(markdown => {
+      fetch("notes.md")
+        .then((response) => response.text())
+        .then((markdown) => {
           const md = window.markdownit();
           const html = md.render(markdown);
-          const notesDiv = document.createElement('div');
+          const notesDiv = document.createElement("div");
           notesDiv.innerHTML = html;
-          notesDiv.id = 'notes';
+          notesDiv.id = "notes";
           document.body.appendChild(notesDiv);
         })
-        .catch(error => console.error('Error loading notes.md:', error));
+        .catch((error) => console.error("Error loading notes.md:", error));
     </script>
   </body>
 </html>

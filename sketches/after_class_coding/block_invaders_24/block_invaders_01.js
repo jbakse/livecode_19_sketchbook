@@ -54,6 +54,21 @@ const boxBlurEffect = glsl`
     }
   `;
 
+const bulgeEffect = glsl`
+    const float BULGE_STRENGTH = 0.3;
+    const float BULGE_RADIUS = 0.5;
+
+    vec4 effect(vec4 color, float t) {
+      vec2 center = vec2(0.5, 0.5);
+      vec2 uv = v_texCoord;
+      vec2 distVec = uv - center;
+      float dist = length(distVec);
+      float bulgeAmount = 1.0 - smoothstep(0.0, BULGE_RADIUS, dist);
+      vec2 bulgedUV = uv + distVec * bulgeAmount * BULGE_STRENGTH;
+      return texture(u_image, bulgedUV);
+    }
+  `;
+
 function onFrame(t) {
   step();
   draw();
@@ -85,9 +100,11 @@ function draw() {
   graphics.image(images.test_pattern, [150, 10]); // No tint
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
-  // Apply the box blur effect
-  // graphics.effect(boxBlurEffect, t);
-  // Optionally, you can apply both effects in sequence:
-  // graphics.effect(boxBlurEffect, t);
+  
+  // Apply the bulge effect
+  graphics.effect(bulgeEffect, t);
+  
+  // Optionally, you can apply multiple effects in sequence:
+  // graphics.effect(bulgeEffect, t);
   // graphics.effect(retroEffect, t);
 }

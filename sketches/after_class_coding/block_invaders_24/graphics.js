@@ -84,9 +84,13 @@ export class Graphics {
     return this.#canvas.height;
   }
 
-  background(...args) {
-    const color = parseColorArgs(...args);
+  background(...colorArgs) {
+    const color = parseColorArgs(...colorArgs);
     this.#ctx.fillStyle = color;
     this.#ctx.fillRect(0, 0, this.width, this.height);
+  }
+
+  clear() {
+    this.#ctx.clearRect(0, 0, this.width, this.height);
   }
 }

@@ -3,7 +3,8 @@
 import { Controls } from "./controls.js";
 import { Graphics } from "./graphics.js";
 
-const g = new Graphics(256, 256);
+const controls = new Controls();
+const graphics = new Graphics(256, 256);
 
 function onFrame(t) {
   step();
@@ -12,16 +13,21 @@ function onFrame(t) {
   window.requestAnimationFrame(onFrame);
 }
 
+await preload();
 setup();
 onFrame();
 
+async function preload() {
+  await graphics.loadImage("ghost", sketch_directory + "images/ghost.png");
+}
+
 function setup() {
-  console.log(g.width); // This will log 256
+  console.log(graphics.width); // This will log 256
 }
 
 function step() {}
 
 function draw() {
-  console.log("Hello, Canvas");
-  g.background("black");
+  graphics.background(255, 255, 255);
+  graphics.image("ghost", 10, 10, 8, 8, "red");
 }

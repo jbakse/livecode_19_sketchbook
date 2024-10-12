@@ -7,6 +7,19 @@ const controls = new Controls();
 const graphics = new Graphics(256, 256);
 const images = {};
 
+const grayscaleEffect = `
+    vec4 effect(vec4 color) {
+      float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+      return vec4(vec3(gray), color.a);
+    }
+  `;
+
+const retroEffect = `
+    vec4 effect(vec4 color) {
+      
+    }
+  `;
+
 function onFrame(t) {
   step();
   draw();
@@ -38,10 +51,5 @@ function draw() {
   graphics.image(images.test_pattern, [150, 10]); // No tint
 
   // Apply a simple grayscale effect
-  graphics.effect(`
-    vec4 effect(vec4 color) {
-      float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
-      return vec4(vec3(gray), color.a);
-    }
-  `);
+  graphics.effect(retroEffect);
 }

@@ -15,40 +15,16 @@ const grayscaleEffect = `
   `;
 const glsl = (x) => x;
 const retroEffect = glsl`
-    // Configuration variables
-    const float CURVATURE = 0.00;
-    const float SCANLINE_INTENSITY = 0.04;
+    // Configuration variable
     const float COLOR_DISTORTION = 0.005;
-    const float VIGNETTE_INTENSITY = .01;
 
     vec4 effect(vec4 color, float t) {
       vec2 uv = v_texCoord;
       
-      // Apply curvature
-      vec2 curved_uv = uv * 2.0 - 1.0;
-      curved_uv *= 1.0 + CURVATURE;  
-      curved_uv = (curved_uv * 0.5 + 0.5) * (1.0 - CURVATURE * 2.0) + CURVATURE;
-      
-      // Check if we're outside the curved area
-      if (curved_uv.x < 0.0 || curved_uv.x > 1.0 || curved_uv.y < 0.0 || curved_uv.y > 1.0) {
-        return vec4(0.0, 0.0, 0.0, 1.0);
-      }
-      
-      // Sample the texture with the curved coordinates
-      vec4 texColor = texture(u_image, curved_uv);
-      
-      // Apply scanlines with time-based movement
-      float scanline = sin(curved_uv.y * 800.0 + t ) * SCANLINE_INTENSITY;
-      texColor -= scanline;
-      
       // Apply color distortion
-      texColor.r = texture(u_image, curved_uv + vec2(COLOR_DISTORTION, 0.0)).r;
-      texColor.b = texture(u_image, curved_uv - vec2(COLOR_DISTORTION, 0.0)).b;
-      
-      // Apply vignette
-      float vignette = curved_uv.x * curved_uv.y * (1.0 - curved_uv.x) * (1.0 - curved_uv.y);
-      vignette = pow(vignette, VIGNETTE_INTENSITY);
-      texColor *= vignette;
+      vec4 texColor = texture(u_image, uv);
+      texColor.r = texture(u_image, uv + vec2(COLOR_DISTORTION, 0.0)).r;
+      texColor.b = texture(u_image, uv - vec2(COLOR_DISTORTION, 0.0)).b;
       
       return texColor;
     }

@@ -19,8 +19,8 @@ setup();
 onFrame();
 
 async function preload() {
-  images.ghost = await graphics.loadImage(
-    sketch_directory + "images/ghost.png"
+  images.test_pattern = await graphics.loadImage(
+    sketch_directory + "images/test_pattern.png"
   );
 }
 
@@ -30,7 +30,7 @@ function step() {}
 
 function draw() {
   graphics.background(100);
-  graphics.image(images.ghost, [10, 10], { tint: "red" });
-  graphics.image(images.ghost, [80, 10], { tint: "blue" });
-  graphics.image(images.ghost, [150, 10]); // No tint
+  graphics.image(images.test_pattern, [10, 10], { tint: "red" });
+  graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
+  graphics.image(images.test_pattern, [150, 10]); // No tint
 }

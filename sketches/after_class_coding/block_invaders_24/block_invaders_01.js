@@ -15,8 +15,10 @@ const grayscaleEffect = `
   `;
 const glsl = (x) => x;
 const retroEffect = glsl`
-    // Configuration variable
+    // Configuration variables
     const float COLOR_DISTORTION = 0.005;
+    const float SCANLINE_INTENSITY = 0.1;
+    const float SCANLINE_COUNT = 100.0;
 
     vec4 effect(vec4 color, float t) {
       vec2 uv = v_texCoord;
@@ -25,6 +27,10 @@ const retroEffect = glsl`
       vec4 texColor = texture(u_image, uv);
       texColor.r = texture(u_image, uv + vec2(COLOR_DISTORTION, 0.0)).r;
       texColor.b = texture(u_image, uv - vec2(COLOR_DISTORTION, 0.0)).b;
+      
+      // Apply scanline effect
+      float scanline = sin(uv.y * SCANLINE_COUNT * 3.14159);
+      texColor.rgb -= SCANLINE_INTENSITY * scanline;
       
       return texColor;
     }

@@ -31,4 +31,6 @@ function step() {}
 function draw() {
   graphics.background(100);
   graphics.image(images.ghost, [10, 10], { tint: "red" });
+  graphics.image(images.ghost, [80, 10], { tint: "blue" });
+  graphics.image(images.ghost, [150, 10]); // No tint
 }

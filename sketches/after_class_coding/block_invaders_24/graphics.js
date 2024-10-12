@@ -106,12 +106,17 @@ export class Graphics {
     });
   }
 
-  image(img, [left, top, width, height], { smooth = false } = {}) {
+  image(img, [left, top, width, height], { smooth = false, tint = null } = {}) {
     // Save the current context state
     this.#ctx.save();
 
     // Set image smoothing based on the smooth parameter
     this.#ctx.imageSmoothingEnabled = smooth;
+
+    // Apply tint if specified
+    if (tint) {
+      img = this.tint(img, tint);
+    }
 
     // Draw the image
     if (width !== undefined && height !== undefined) {

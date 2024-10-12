@@ -21,7 +21,7 @@ const retroEffect = `
     const float COLOR_DISTORTION = 0.005;
     const float VIGNETTE_INTENSITY = .01;
 
-    vec4 effect(vec4 color) {
+    vec4 effect(vec4 color, float t) {
       vec2 uv = v_texCoord;
       
       // Apply curvature
@@ -37,8 +37,8 @@ const retroEffect = `
       // Sample the texture with the curved coordinates
       vec4 texColor = texture(u_image, curved_uv);
       
-      // Apply scanlines
-      float scanline = sin(curved_uv.y * 800.0) * SCANLINE_INTENSITY;
+      // Apply scanlines with time-based movement
+      float scanline = sin(curved_uv.y * 800.0 + t * 10.0) * SCANLINE_INTENSITY;
       texColor -= scanline;
       
       // Apply color distortion
@@ -86,5 +86,5 @@ function draw() {
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
   // Apply a simple grayscale effect
-  graphics.effect(retroEffect);
+  graphics.effect(retroEffect, t);
 }

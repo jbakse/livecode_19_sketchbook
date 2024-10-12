@@ -172,7 +172,7 @@ export class Graphics {
     return canvas;
   }
 
-  effect(frag) {
+  effect(frag, time) {
     const gl = this.#gl;
     const vertexShaderSource = `#version 300 es
       in vec2 a_position;
@@ -187,11 +187,12 @@ export class Graphics {
     const fragmentShaderSource = `#version 300 es
       precision highp float;
       uniform sampler2D u_image;
+      uniform float u_time;
       in vec2 v_texCoord;
       out vec4 outColor;
       ${frag}
       void main() {
-        outColor = effect(texture(u_image, v_texCoord));
+        outColor = effect(texture(u_image, v_texCoord), u_time);
       }
     `;
 
@@ -204,6 +205,7 @@ export class Graphics {
     const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
     const texCoordAttributeLocation = gl.getAttribLocation(program, "a_texCoord");
     const imageLocation = gl.getUniformLocation(program, "u_image");
+    const timeLocation = gl.getUniformLocation(program, "u_time");
 
     // Create buffers
     const positionBuffer = gl.createBuffer();
@@ -251,6 +253,9 @@ export class Graphics {
 
     // Upload the image to the texture
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.#canvas);
+
+    // Set the time uniform
+    gl.uniform1f(timeLocation, time);
 
     // Render to the WebGL canvas
     gl.drawArrays(gl.TRIANGLES, 0, 6);

@@ -13,12 +13,12 @@ export class EffectManager {
       throw new Error("WebGL2 not supported");
     }
 
-    this.effects = {};
+    this.effects = {
+      grayscale: this.createEffect(grayscaleEffect),
+      retro: this.createEffect(retroEffect),
+      boxBlur: this.createEffect(boxBlurEffect),
+    };
     this.startTime = performance.now();
-  }
-
-  addEffect(name, shaderFunction) {
-    this.effects[name] = this.createEffect(shaderFunction);
   }
 
   createEffect(fragmentShaderSource) {

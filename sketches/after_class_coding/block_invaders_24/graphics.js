@@ -169,7 +169,7 @@ export class Graphics {
     this.#effectManager.addEffect(name, shaderFunction);
   }
 
-  effect(effectName) {
+  applyEffect(effectName) {
     this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectName);
   }
 }

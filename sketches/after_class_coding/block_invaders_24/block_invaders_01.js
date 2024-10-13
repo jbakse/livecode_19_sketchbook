@@ -2,7 +2,7 @@
 
 import { Controls } from "./controls.js";
 import { Graphics } from "./graphics.js";
-import { grayscaleEffect } from "./effects.js";
+import { effects } from "./effects.js";
 
 const controls = new Controls();
 const graphics = new Graphics(256, 256);
@@ -43,5 +43,5 @@ function draw() {
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
 
-  graphics.applyEffect(grayscaleEffect);
+  graphics.applyEffect(effects.grayscale);
 }

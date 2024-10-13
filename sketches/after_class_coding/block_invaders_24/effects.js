@@ -13,11 +13,6 @@ export class EffectManager {
       throw new Error("WebGL2 not supported");
     }
 
-    this.effects = {
-      grayscale: this.createEffect(grayscaleEffect),
-      retro: this.createEffect(retroEffect),
-      boxBlur: this.createEffect(boxBlurEffect),
-    };
     this.startTime = performance.now();
   }
 
@@ -86,13 +81,9 @@ export class EffectManager {
     return program;
   }
 
-  applyEffect(sourceCanvas, ctx, effectName) {
+  applyEffect(sourceCanvas, ctx, effectSource) {
     const gl = this.gl;
-    const effect = this.effects[effectName];
-
-    if (!effect) {
-      throw new Error(`Effect '${effectName}' not found`);
-    }
+    const effect = this.createEffect(effectSource);
 
     gl.useProgram(effect.program);
 

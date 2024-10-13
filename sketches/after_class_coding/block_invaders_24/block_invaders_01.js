@@ -2,8 +2,7 @@
 
 import { Controls } from "./controls.js";
 import { Graphics } from "./graphics.js";
-import { grayscaleEffect, retroEffect, boxBlurEffect } from "./effects.js";
-import { EffectManager } from "./effects.js";
+import { grayscaleEffect } from "./effects.js";
 
 const controls = new Controls();
 const graphics = new Graphics(256, 256);
@@ -26,23 +25,23 @@ async function preload() {
   );
 }
 
-function setup() {
-  graphics.addEffect("grayscale", grayscaleEffect);
-  graphics.addEffect("retro", retroEffect);
-  graphics.addEffect("boxBlur", boxBlurEffect);
-}
+function setup() {}
 
 function step() {}
 
 function draw() {
   graphics.background(100);
-  graphics.image(images.test_pattern, [10 + Math.sin(performance.now() / 1000) * 20, 10], {
-    tint: "red",
-  });
+  graphics.image(
+    images.test_pattern,
+    [10 + Math.sin(performance.now() / 1000) * 20, 10],
+    {
+      tint: "red",
+    }
+  );
   graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
   graphics.image(images.test_pattern, [150, 10]); // No tint
 
   graphics.image(images.test_pattern, [100, 100, 128, 128]);
 
-  graphics.effect("grayscale");
+  graphics.applyEffect(grayscaleEffect);
 }

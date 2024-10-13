@@ -1,3 +1,5 @@
+import { EffectManager } from "./effects.js";
+
 function parseColorArgs(...args) {
   if (args.length === 1) {
     const firstArgument = args[0];
@@ -79,7 +81,6 @@ export class Graphics {
 
     this.#tintCache = new Map();
 
-    // Create EffectManager
     this.#effectManager = new EffectManager(width, height);
   }
 
@@ -165,11 +166,7 @@ export class Graphics {
     return canvas;
   }
 
-  addEffect(name, shaderFunction) {
-    this.#effectManager.addEffect(name, shaderFunction);
-  }
-
-  applyEffect(effectName) {
-    this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectName);
+  applyEffect(effectSource) {
+    this.#effectManager.applyEffect(this.#canvas, this.#ctx, effectSource);
   }
 }

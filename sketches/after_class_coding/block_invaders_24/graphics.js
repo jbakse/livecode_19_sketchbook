@@ -77,6 +77,7 @@ export class Graphics {
         background: #111;
      }
     `;
+
     document.head.appendChild(styles);
 
     this.#tintCache = new Map();
@@ -111,7 +112,11 @@ export class Graphics {
     });
   }
 
-  image(img, [left, top, width, height], { smooth = false, tint = null } = {}) {
+  drawImage(
+    img,
+    [left, top, width, height],
+    { smooth = false, tint = null } = {}
+  ) {
     // Save the current context state
     this.#ctx.save();
 
@@ -126,7 +131,7 @@ export class Graphics {
 
     // Apply tint if specified
     if (tint) {
-      img = this.tint(img, tint);
+      img = this.tintedImage(img, tint);
     }
 
     // Draw the image
@@ -140,7 +145,7 @@ export class Graphics {
     this.#ctx.restore();
   }
 
-  tint(image, ...colorArgs) {
+  tintedImage(image, ...colorArgs) {
     const color = parseColorArgs(...colorArgs);
     const cacheKey = `${image.src}-${color}`;
 

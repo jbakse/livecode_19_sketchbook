@@ -1,39 +1,52 @@
-// glsl template tag for shader string tagging
-const glsl = (strings, ...expressions) =>
-  strings.reduce((acc, str, i) => acc + str + (expressions[i] || ""), "");
-
+// EffectManager.js
 export class EffectManager {
+  // Private Fields
+  #glCanvas;
+  #gl;
+  #width;
+  #height;
+  #startTime;
+  #effectCache;
+  #vao;
+  #positionBuffer;
+  #texCoordBuffer;
+  #texture;
+
   constructor(width, height) {
-    // Initialize properties
-    this.width = width;
-    this.height = height;
-    this.startTime = performance.now();
+    this.#width = width;
+    this.#height = height;
+    this.#startTime = performance.now();
+    this.#effectCache = new Map();
 
-    // Create hidden canvas and get WebGL2 context
-    this.glCanvas = document.createElement("canvas");
-    this.glCanvas.width = width;
-    this.glCanvas.height = height;
-    this.gl = this.glCanvas.getContext("webgl2");
-    if (!this.gl) {
-      throw new Error("WebGL2 is not supported in this environment.");
-    }
-
-    // Initialize caches
-    this.effectCache = new Map();
+    // Initialize WebGL2 context
+    this.#initializeGL();
 
     // Initialize buffers and VAO
-    this._initBuffers();
+    this.#initBuffers();
 
     // Initialize texture
-    this._initTexture();
+    this.#initTexture();
+  }
+
+  /**
+   * Initializes the WebGL2 context.
+   */
+  #initializeGL() {
+    this.#glCanvas = document.createElement("canvas");
+    this.#glCanvas.width = this.#width;
+    this.#glCanvas.height = this.#height;
+    this.#gl = this.#glCanvas.getContext("webgl2");
+
+    if (!this.#gl) {
+      throw new Error("WebGL2 is not supported in this environment.");
+    }
   }
 
   /**
    * Initializes vertex and texture coordinate buffers and sets up a VAO.
-   * This setup is reused for all effect applications.
    */
-  _initBuffers() {
-    const gl = this.gl;
+  #initBuffers() {
+    const gl = this.#gl;
 
     // Define full-screen quad vertices
     const vertices = new Float32Array([
@@ -44,18 +57,18 @@ export class EffectManager {
     const texCoords = new Float32Array([0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0]);
 
     // Create and bind Vertex Array Object
-    this.vao = gl.createVertexArray();
-    gl.bindVertexArray(this.vao);
+    this.#vao = gl.createVertexArray();
+    gl.bindVertexArray(this.#vao);
 
     // Create and bind position buffer
-    this.positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+    this.#positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.#positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
     // Position attribute location will be set per program
 
     // Create and bind texture coordinate buffer
-    this.texCoordBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.texCoordBuffer);
+    this.#texCoordBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.#texCoordBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
     // Texture coordinate attribute location will be set per program
 
@@ -66,11 +79,11 @@ export class EffectManager {
   /**
    * Initializes a single texture to be reused for all effect applications.
    */
-  _initTexture() {
-    const gl = this.gl;
+  #initTexture() {
+    const gl = this.#gl;
 
-    this.texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    this.#texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, this.#texture);
 
     // Set texture parameters
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -83,8 +96,8 @@ export class EffectManager {
       gl.TEXTURE_2D,
       0,
       gl.RGBA,
-      this.width,
-      this.height,
+      this.#width,
+      this.#height,
       0,
       gl.RGBA,
       gl.UNSIGNED_BYTE,
@@ -102,11 +115,11 @@ export class EffectManager {
    */
   createEffect(fragmentShaderSource) {
     // Check if the effect is already cached
-    if (this.effectCache.has(fragmentShaderSource)) {
-      return this.effectCache.get(fragmentShaderSource);
+    if (this.#effectCache.has(fragmentShaderSource)) {
+      return this.#effectCache.get(fragmentShaderSource);
     }
 
-    const gl = this.gl;
+    const gl = this.#gl;
 
     // Define the standard vertex shader
     const vertexShaderSource = `#version 300 es
@@ -142,17 +155,17 @@ export class EffectManager {
     `;
 
     // Compile shaders
-    const vertexShader = this._compileShader(
+    const vertexShader = this.#compileShader(
       gl.VERTEX_SHADER,
       vertexShaderSource
     );
-    const fragmentShader = this._compileShader(
+    const fragmentShader = this.#compileShader(
       gl.FRAGMENT_SHADER,
       fullFragmentShaderSource
     );
 
     // Link shaders into a program
-    const program = this._linkProgram(vertexShader, fragmentShader);
+    const program = this.#linkProgram(vertexShader, fragmentShader);
 
     // Get attribute and uniform locations
     const attributes = {
@@ -167,7 +180,7 @@ export class EffectManager {
 
     // Cache the effect
     const effect = { program, attributes, uniforms };
-    this.effectCache.set(fragmentShaderSource, effect);
+    this.#effectCache.set(fragmentShaderSource, effect);
 
     return effect;
   }
@@ -179,8 +192,8 @@ export class EffectManager {
    * @returns {WebGLShader} - The compiled shader.
    * @throws {Error} - If shader compilation fails.
    */
-  _compileShader(type, source) {
-    const gl = this.gl;
+  #compileShader = (type, source) => {
+    const gl = this.#gl;
     const shader = gl.createShader(type);
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
@@ -194,7 +207,7 @@ export class EffectManager {
     }
 
     return shader;
-  }
+  };
 
   /**
    * Links vertex and fragment shaders into a shader program.
@@ -203,8 +216,8 @@ export class EffectManager {
    * @returns {WebGLProgram} - The linked shader program.
    * @throws {Error} - If program linking fails.
    */
-  _linkProgram(vertexShader, fragmentShader) {
-    const gl = this.gl;
+  #linkProgram = (vertexShader, fragmentShader) => {
+    const gl = this.#gl;
     const program = gl.createProgram();
 
     gl.attachShader(program, vertexShader);
@@ -223,7 +236,7 @@ export class EffectManager {
     gl.deleteShader(fragmentShader);
 
     return program;
-  }
+  };
 
   /**
    * Applies a shader effect to the source canvas and renders it onto the destination 2D context.
@@ -232,7 +245,7 @@ export class EffectManager {
    * @param {string} effectSource - The GLSL fragment shader code for the effect.
    */
   applyEffect(sourceCanvas, ctx, effectSource) {
-    const gl = this.gl;
+    const gl = this.#gl;
 
     // Retrieve or create the shader program for the effect
     const effect = this.createEffect(effectSource);
@@ -241,11 +254,11 @@ export class EffectManager {
     gl.useProgram(effect.program);
 
     // Bind the VAO
-    gl.bindVertexArray(this.vao);
+    gl.bindVertexArray(this.#vao);
 
     // Enable and set up vertex attributes
     if (effect.attributes.position >= 0) {
-      gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.#positionBuffer);
       gl.enableVertexAttribArray(effect.attributes.position);
       gl.vertexAttribPointer(
         effect.attributes.position,
@@ -258,7 +271,7 @@ export class EffectManager {
     }
 
     if (effect.attributes.texCoord >= 0) {
-      gl.bindBuffer(gl.ARRAY_BUFFER, this.texCoordBuffer);
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.#texCoordBuffer);
       gl.enableVertexAttribArray(effect.attributes.texCoord);
       gl.vertexAttribPointer(
         effect.attributes.texCoord,
@@ -272,7 +285,7 @@ export class EffectManager {
 
     // Bind and update the texture with the source image
     gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    gl.bindTexture(gl.TEXTURE_2D, this.#texture);
     gl.texImage2D(
       gl.TEXTURE_2D,
       0,
@@ -286,7 +299,7 @@ export class EffectManager {
     gl.uniform1i(effect.uniforms.image, 0); // Texture unit 0
     gl.uniform1f(
       effect.uniforms.time,
-      (performance.now() - this.startTime) / 1000.0
+      (performance.now() - this.#startTime) / 1000.0
     );
 
     // Set viewport and clear
@@ -302,60 +315,62 @@ export class EffectManager {
     gl.useProgram(null);
 
     // Copy the result from WebGL canvas to 2D canvas
-    ctx.drawImage(this.glCanvas, 0, 0);
+    ctx.drawImage(this.#glCanvas, 0, 0);
   }
 
   /**
-   * Updates the start time. Useful for resetting the time uniform.
+   * Resets the start time. Useful for resetting the time uniform.
    */
   resetTime() {
-    this.startTime = performance.now();
+    this.#startTime = performance.now();
   }
 
   /**
    * Cleans up all WebGL resources. Should be called when the EffectManager is no longer needed.
    */
   dispose() {
-    const gl = this.gl;
+    const gl = this.#gl;
 
     // Delete texture
-    if (this.texture) {
-      gl.deleteTexture(this.texture);
-      this.texture = null;
+    if (this.#texture) {
+      gl.deleteTexture(this.#texture);
+      this.#texture = null;
     }
 
     // Delete buffers
-    if (this.positionBuffer) {
-      gl.deleteBuffer(this.positionBuffer);
-      this.positionBuffer = null;
+    if (this.#positionBuffer) {
+      gl.deleteBuffer(this.#positionBuffer);
+      this.#positionBuffer = null;
     }
 
-    if (this.texCoordBuffer) {
-      gl.deleteBuffer(this.texCoordBuffer);
-      this.texCoordBuffer = null;
+    if (this.#texCoordBuffer) {
+      gl.deleteBuffer(this.#texCoordBuffer);
+      this.#texCoordBuffer = null;
     }
 
     // Delete VAO
-    if (this.vao) {
-      gl.deleteVertexArray(this.vao);
-      this.vao = null;
+    if (this.#vao) {
+      gl.deleteVertexArray(this.#vao);
+      this.#vao = null;
     }
 
     // Delete cached programs
-    for (const effect of this.effectCache.values()) {
+    for (const effect of this.#effectCache.values()) {
       if (effect.program) {
         gl.deleteProgram(effect.program);
       }
     }
-    this.effectCache.clear();
+    this.#effectCache.clear();
 
     // Nullify WebGL context
-    this.gl = null;
-    this.glCanvas = null;
+    this.#gl = null;
+    this.#glCanvas = null;
   }
 }
 
-// Shader Effects Definitions
+// hack so glsl-literal can identify strings to highlight
+const glsl = (x) => x;
+
 export const effects = {
   grayscale: glsl`
     vec4 effect(sampler2D img, vec2 uv, float t) {

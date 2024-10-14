@@ -8,15 +8,14 @@ const controls = new Controls();
 const graphics = new Graphics(256, 256);
 const images = {};
 
+await preload();
+setup();
+
 function onFrame(t) {
   step();
   draw();
-
   window.requestAnimationFrame(onFrame);
 }
-
-await preload();
-setup();
 onFrame();
 
 async function preload() {
@@ -31,17 +30,14 @@ function step() {}
 
 function draw() {
   graphics.background(100);
-  graphics.image(
-    images.test_pattern,
-    [10 + Math.sin(performance.now() / 1000) * 20, 10],
-    {
-      tint: "red",
-    }
-  );
-  graphics.image(images.test_pattern, [80, 10], { tint: "blue" });
-  graphics.image(images.test_pattern, [150, 10]); // No tint
+  const x = 10 + Math.sin(performance.now() / 1000) * 20;
+  graphics.drawImage(images.test_pattern, [x, 10], {
+    tint: "red",
+  });
+  graphics.drawImage(images.test_pattern, [80, 10], { tint: "blue" });
+  graphics.drawImage(images.test_pattern, [150, 10]); // No tint
 
-  graphics.image(images.test_pattern, [100, 100, 128, 128]);
+  graphics.drawImage(images.test_pattern, [100, 100, 128, 128]);
 
-  graphics.applyEffect(effects.grayscale);
+  graphics.applyEffect(effects.retro);
 }

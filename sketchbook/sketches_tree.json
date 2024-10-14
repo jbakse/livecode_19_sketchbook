@@ -104,6 +104,28 @@
                     {
                         "type": "file",
                         "name": "controls_demo.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "effects.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "graphics.js"
+                    },
+                    {
+                        "name": "images",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "ghost.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "test_pattern.png"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1358,6 +1380,10 @@
                     {
                         "type": "file",
                         "name": "snow_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "yield_01.js"
                     }
                 ]
             },

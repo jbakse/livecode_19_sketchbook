@@ -697,11 +697,19 @@
         "children": [
             {
                 "type": "file",
-                "name": "capture.js"
+                "name": "demo.js"
             },
             {
                 "type": "file",
-                "name": "demo.js"
+                "name": "demo_a.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_b.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber.js"
             }
         ]
     },
@@ -720,10 +728,6 @@
             {
                 "type": "file",
                 "name": "notes.md"
-            },
-            {
-                "type": "file",
-                "name": "webm_muxer_cleanup.js"
             },
             {
                 "type": "file",

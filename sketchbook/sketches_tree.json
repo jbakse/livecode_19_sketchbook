@@ -99,6 +99,10 @@
                     },
                     {
                         "type": "file",
+                        "name": "bullet.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "controls.js"
                     },
                     {
@@ -111,7 +115,29 @@
                     },
                     {
                         "type": "file",
+                        "name": "enemy.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "FPS.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "graphics.js"
+                    },
+                    {
+                        "name": "hide",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "enemy.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "player.js"
+                            }
+                        ]
                     },
                     {
                         "name": "images",
@@ -119,13 +145,65 @@
                         "children": [
                             {
                                 "type": "file",
+                                "name": "alien_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "alien_02.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "alien_03.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "base_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "bullet_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "bullet_02.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "bullet_03.png"
+                            },
+                            {
+                                "type": "file",
                                 "name": "ghost.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "ship_01.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "ship_02.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "ship_03.png"
+                            },
+                            {
+                                "type": "file",
+                                "name": "sprites.aseprite"
                             },
                             {
                                 "type": "file",
                                 "name": "test_pattern.png"
                             }
                         ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "player.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "todo.md"
                     }
                 ]
             },
@@ -610,6 +688,46 @@
                         "name": "postcard.js"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "capture_3",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "capture.js"
+            },
+            {
+                "type": "file",
+                "name": "demo.js"
+            }
+        ]
+    },
+    {
+        "name": "capture_3_tests",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "grabber_2_test.js"
+            },
+            {
+                "type": "file",
+                "name": "media_recorder_test.js"
+            },
+            {
+                "type": "file",
+                "name": "notes.md"
+            },
+            {
+                "type": "file",
+                "name": "webm_muxer_cleanup.js"
+            },
+            {
+                "type": "file",
+                "name": "webm_muxer_test.js"
             }
         ]
     },
@@ -1380,6 +1498,10 @@
                     {
                         "type": "file",
                         "name": "snow_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "turtle.js"
                     },
                     {
                         "type": "file",

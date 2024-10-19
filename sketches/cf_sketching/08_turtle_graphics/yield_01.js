@@ -7,18 +7,14 @@
 
 let t, d;
 
-function all(g) {
-  return [...g];
-}
-
 function setup() {
   createCanvas(500, 500);
   angleMode(DEGREES);
   noFill();
-  stroke("white");
-  strokeWeight(1);
+  stroke("black");
+  strokeWeight(2);
   background(100);
-  frameRate(30);
+  frameRate(60);
 
   t = new Turtle();
   d = drawGenerator();
@@ -29,9 +25,11 @@ function draw() {
 }
 
 function* drawGenerator() {
-  background(100);
+  background("#06a");
+  stroke("white");
   yield;
 
+  t.show(true);
   t.penUp();
   t.moveTo(200, 200);
   t.penDown();
@@ -47,7 +45,7 @@ function* drawGenerator() {
   t.penDown();
   for (let i = 0; i < 36; i++) {
     // run the sub-generator all at once
-    // all(circle());
+    // [...circle()];
     // run the sub-generator one step at a time
     yield* circle();
 

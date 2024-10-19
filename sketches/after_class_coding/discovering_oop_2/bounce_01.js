@@ -23,9 +23,6 @@ function setup() {
 }
 
 function draw() {
-  // clear the drawing
-  background("gray");
-
   // move the balls based on their velocity.
   x += deltaX;
   y += deltaY;
@@ -42,6 +39,9 @@ function draw() {
   if (y2 > height) deltaY2 = -abs(deltaY2);
   if (x2 < 0) deltaX2 = abs(deltaX2);
   if (y2 < 0) deltaY2 = abs(deltaY2);
+
+  // clear the drawing
+  background("gray");
 
   // draw the balls
   ellipse(x, y, 20, 20);

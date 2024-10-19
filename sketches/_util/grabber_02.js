@@ -220,7 +220,7 @@ class Grabber {
 }
 
 // let player = new Player();
-// let grabber = new Grabber();
 
 new Player();
-new Grabber();
+// new Grabber();
+let grabber = new Grabber();

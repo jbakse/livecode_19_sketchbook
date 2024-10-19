@@ -12,7 +12,7 @@ console.log(
 
 class Turtle {
   #stateStack;
-  #turtleElement;
+  #turtleElement; // Private reference to the turtle element (polygon)
 
   constructor(x = width * 0.5, y = height * 0.5) {
     this.x = x;
@@ -22,32 +22,45 @@ class Turtle {
     this.#stateStack = [];
 
     this.#createTurtleE();
+    this.hide();
   }
 
   #createTurtleE() {
     const canvasContainer = document.querySelector("canvas").parentElement;
 
-    // Create the SVG element and insert it directly as a string
+    // Create the SVG element as a string and append it to the container
     const svgSource = `
-      <svg id="turtle-svg" width="100%" height="100%" style="position: absolute; top: 1; left: 1; z-index: 1;">
-        <polygon id="turtle" points="0,-15 8,5 -8,5" fill="black" />
+      <svg 
+        width="100%"
+        height="100%"
+        style="position: absolute; top: 0; left: 0; z-index: 1; mix-blend-mode: difference;"
+      >
+        <polygon points="0,-15 8,5 -8,5" fill="white" stroke="white"/>
       </svg>
     `;
-    canvasContainer.insertAdjacentHTML("beforeend", svgSource);
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = svgSource.trim();
+    const svgElement = tempDiv.firstChild;
+
+    // Store the polygon reference
+    this.#turtleElement = svgElement.querySelector("polygon");
+
+    // Append the SVG to the canvas container
+    canvasContainer.appendChild(svgElement);
+
     this.#updateTurtleE();
   }
 
   #updateTurtleE() {
-    const turtle = document.getElementById("turtle");
     // Set new position and rotation
-    turtle.setAttribute(
+    this.#turtleElement.setAttribute(
       "transform",
       `translate(${this.x}, ${this.y}) rotate(${this.bearing + 90})`
     );
+    this.#turtleElement.setAttribute("fill", this.isPenDown ? "white" : "none");
   }
 
   // moveTo
-  // moves the turtle to location (newX,newY), drawing a line if pen is down
   moveTo(newX, newY) {
     if (this.isPenDown) {
       line(this.x, this.y, newX, newY);
@@ -59,7 +72,6 @@ class Turtle {
   }
 
   // moveForward
-  // moves the turtle along its current bearing, drawing a line if pen is down
   moveForward(distance) {
     const newX = this.x + cos(this.bearing) * distance;
     const newY = this.y + sin(this.bearing) * distance;
@@ -67,45 +79,37 @@ class Turtle {
   }
 
   // moveBackward
-  // moves the turtle backward along its current bearing, drawing a line if pen is down
   moveBackward(distance) {
     this.moveForward(-distance);
   }
 
   // turnTo
-  // changes the turtle's bearing to the provided angle in degrees
   turnTo(angleDegrees) {
     this.bearing = angleDegrees;
     this.#updateTurtleE();
   }
 
   // turnRight
-  // rotates the turtle's bearing clockwise by the provided angle in degrees
   turnRight(amountDegrees) {
     this.turnTo(this.bearing + amountDegrees);
   }
 
   // turnLeft
-  // rotates the turtle's bearing counter-clockwise by the provided angle in degrees
   turnLeft(amountDegrees) {
     this.turnRight(-amountDegrees);
   }
 
   // penUp
-  // tells the turtle to not draw while moving
   penUp() {
     this.isPenDown = false;
   }
 
   // penDown
-  // tells the turtle to draw a line when it moves
   penDown() {
     this.isPenDown = true;
   }
 
   // pushState
-  // records the turtle's current state (position, bearing, + pen position)
-  // so that it can be restored later with popState()
   pushState() {
     this.#stateStack.push({
       x: this.x,
@@ -116,7 +120,6 @@ class Turtle {
   }
 
   // popState
-  // restores the turtle's state to the top recorded state on the stack (most recent)
   popState() {
     if (this.#stateStack.length === 0) {
       console.error(
@@ -129,10 +132,10 @@ class Turtle {
     this.y = state.y;
     this.bearing = state.bearing;
     this.isPenDown = state.isPenDown;
+    this.#updateTurtleE();
   }
 
   // image
-  // draws and image centered on the turtle's current location and aligned with the turtle's rotation (forward = up)
   image(i, w, h) {
     push();
     translate(this.x, this.y);
@@ -140,5 +143,19 @@ class Turtle {
     imageMode(CENTER);
     image(i, 0, 0, w, h);
     pop();
+  }
+
+  // show - Makes the turtle visible
+  show(shouldShow = true) {
+    if (shouldShow) {
+      this.#turtleElement.style.display = "block";
+    } else {
+      this.#turtleElement.style.display = "none";
+    }
+  }
+
+  // hide - Hides the turtle
+  hide() {
+    this.show(false);
   }
 }

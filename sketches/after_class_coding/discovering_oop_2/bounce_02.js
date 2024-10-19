@@ -8,6 +8,7 @@
 const balls = [
   { x: 100, y: 10, deltaX: 5, deltaY: 7 },
   { x: 200, y: 10, deltaX: 4, deltaY: 9 },
+  { x: 200, y: 10, deltaX: 2, deltaY: 9 },
 ];
 
 // set up p5 canvas and drawing properties

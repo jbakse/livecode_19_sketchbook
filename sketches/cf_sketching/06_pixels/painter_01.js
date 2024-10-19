@@ -24,7 +24,7 @@ function draw() {
       drawStipples(
         lerp(pmouseX, mouseX, i / 100),
         lerp(pmouseY, mouseY, i / 100),
-        mouseSpeed,
+        mouseSpeed
       );
     }
   }
@@ -45,7 +45,8 @@ function process() {
   let c = getPixel(x, y);
   let cDown = getPixel(x, y + 1);
 
-  let cDarker = [ //
+  let cDarker = [
+    //
     c[0] - 100,
     c[1] - 100,
     c[2] - 100,
@@ -64,10 +65,11 @@ function process() {
 }
 
 function drawStipples(x, y, speed) {
-  setPixel( //
+  setPixel(
+    //
     floor(randomGaussian(x, 10)),
     floor(randomGaussian(y, 10)),
-    [255, 255, 255, 255],
+    [255, 255, 255, 255]
   );
 }
 

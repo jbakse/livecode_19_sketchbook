@@ -701,15 +701,23 @@
             },
             {
                 "type": "file",
-                "name": "demo_a.js"
+                "name": "demo_squares.js"
             },
             {
                 "type": "file",
-                "name": "demo_b.js"
+                "name": "demo_ui.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_waves.js"
             },
             {
                 "type": "file",
                 "name": "grabber.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber_ui.js"
             }
         ]
     },

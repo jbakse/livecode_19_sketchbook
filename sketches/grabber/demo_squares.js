@@ -1,14 +1,12 @@
 // module
-
-import { Grabber } from "./grabber.js";
 import "https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js";
-
-const grabber = new Grabber(1920, 1080, 30);
+import "./grabber_ui.js";
 
 window.setup = function () {
-  pixelDensity(2);
+  pixelDensity(1);
   createCanvas(1920, 1080);
   background(0);
+  frameRate(15);
 };
 
 window.draw = function () {
@@ -32,14 +30,4 @@ window.draw = function () {
     }
   }
   pop();
-
-  grabber.grabFrame(canvas);
-  if (frameCount === 30 * 10) {
-    console.log("downloading");
-    grabber.download(`square_test`);
-  }
-};
-
-window.mousePressed = function () {
-  noLoop();
 };

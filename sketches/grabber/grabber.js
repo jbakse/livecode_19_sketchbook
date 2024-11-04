@@ -38,10 +38,10 @@ const presets = {
     suffix: "mp4",
     keyFrameRate: 30,
     muxerCodec: "avc",
-    encoderCodec: "avc1.640033",
+    encoderCodec: "avc1.640034",
     // 0x64 = High Profile
     // 0x00 = no constraint flags
-    // 0x33 = 51 = level 5.1 supports 4k@30
+    // 0x34 = 52 = level 5.2 supports 4k@30
   },
   mp4_h265: {
     // not supported in chrome
@@ -55,12 +55,33 @@ const presets = {
   },
 };
 export class Grabber {
+  static async isPresetSupported(presetName) {
+    if (!presets[presetName]) {
+      throw new Error(`Unknown grabber preset: ${presetName}`);
+    }
+
+    const settings = presets[presetName];
+    const support = await VideoEncoder.isConfigSupported({
+      codec: settings.encoderCodec,
+      width: 1920 * 2,
+      height: 1080 * 2,
+      bitrate: 40e6,
+    });
+
+    return support.supported;
+  }
+
+  // settings
   #fps; // number the frame rate of the video output or "realtime"
   #settings; // object the settings for the video output
-  #frameCount; // number the number of frames captured
-  #startTime; // number time of construction
-  #finished; // boolean whether the video has been finalized
 
+  // state
+  #frameCount = 0; // number the number of frames captured
+  #startTime = performance.now(); // number time of construction
+  #finished = false; // boolean whether the capture has been finalized
+  #canceled = false; // boolean whether the capture has been canceled
+
+  // components
   #muxer; // WebMMuxer.Muxer | Mp4Muxer.Muxer
   #videoEncoder; // VideoEncoder
 
@@ -81,17 +102,11 @@ export class Grabber {
     presetName = "webm",
     bitrateSetting = "auto"
   ) {
-    // throw if presetName not in presets
+    this.#fps = fps;
     if (!presets[presetName]) {
       throw new Error(`Unknown grabber preset: ${presetName}`);
     }
     this.#settings = presets[presetName];
-
-    this.#fps = fps;
-
-    this.#frameCount = 0;
-    this.#startTime = performance.now();
-    this.#finished = false;
 
     if (this.#settings.muxer === "webm") {
       this.#muxer = new WebMMuxer.Muxer({
@@ -113,8 +128,10 @@ export class Grabber {
           height: height,
         },
 
-        // Use in-memory fast start option
-        // From Docs: This is the preferred option when using ArrayBufferTarget as it will result in a higher-quality output with no change in memory footprint.
+        /**
+        Use in-memory fast start option
+        From Docs: This is the preferred option when using ArrayBufferTarget as it will result in a higher-quality output with no change in memory footprint.
+        */
         fastStart: "in-memory",
         firstTimestampBehavior: "offset",
       });
@@ -123,39 +140,27 @@ export class Grabber {
     }
 
     this.#videoEncoder = new VideoEncoder({
-      output: (chunk, meta) => this.#muxer.addVideoChunk(chunk, meta),
-      error: (e) => console.error(e),
+      output: (chunk, meta) => {
+        this.#muxer.addVideoChunk(chunk, meta);
+      },
+      error: (e) => {
+        this.#canceled = true;
+        console.error(e);
+      },
     });
 
-    let bitrate = 1e6;
-    if (bitrateSetting === "auto") {
-      // const rawBitrate = width * height * fps * 8 * 3; // 8 bits x 3 channels
-      // examples of rawBitrates
-      // 4k@30 = 5 971 968 000 or 5971 Mbits/s
-      // 1080p@30 = 1 492 992 000 or 1492 Mbits/s
-
-      // bitrate = rawBitrate / 10; // very high quality
-      // bitrate = rawBitrate / 20; // high quality
-      // bitrate = rawBitrate / 50; // low quality
-
-      bitrate = 40e6;
-      console.log(`auto bitrate: ${bitrate / 1e3} kbps`);
-    }
-    // if bitrateSetting is a number, use it
-    if (typeof bitrateSetting === "number") {
-      bitrate = bitrateSetting;
-    }
     this.#videoEncoder.configure({
       codec: this.#settings.encoderCodec,
       width: width,
       height: height,
-      bitrate: bitrate,
-      // alpha: "keep",
+      bitrate: typeof bitrateSetting === "number" ? bitrateSetting : 1e6,
+      // alpha: "keep", // keep not supported in any browser yet
     });
   }
 
   grabFrame(source) {
     if (this.#finished) return;
+    if (this.#canceled) return;
 
     const seconds =
       this.#fps === "realtime"
@@ -167,6 +172,7 @@ export class Grabber {
     });
 
     const keyFrame = this.#frameCount % this.#settings.keyFrameRate === 0;
+
     this.#videoEncoder.encode(frame, { keyFrame });
     frame.close();
 
@@ -175,14 +181,27 @@ export class Grabber {
 
   async finish() {
     if (this.#finished) return;
+    if (this.#canceled) return;
     // mark as finished before async flush, so incoming frames are ignored
     this.#finished = true;
+
     await this.#videoEncoder.flush();
     this.#muxer.finalize();
   }
 
+  cancel() {
+    if (this.#finished) return;
+    if (this.#canceled) return;
+
+    this.#canceled = true;
+    this.#videoEncoder.reset();
+    this.#videoEncoder.close();
+  }
+
   async download(fileName = "capture") {
+    if (this.#canceled) return;
     if (!this.#finished) await this.finish();
+
     const blob = new Blob([this.#muxer.target.buffer]);
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -190,5 +209,9 @@ export class Grabber {
     a.download = `${fileName}.${this.#settings.suffix}`;
     a.click();
     window.URL.revokeObjectURL(url);
+  }
+
+  getEncodeQueueSize() {
+    return this.#videoEncoder.encodeQueueSize;
   }
 }

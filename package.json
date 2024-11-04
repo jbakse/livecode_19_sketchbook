@@ -8,12 +8,14 @@
   },
   "devDependencies": {
     "docco": "^0.8.0",
+    "esbuild": "0.24.0",
     "eslint": "^8.33.0",
     "eslint-plugin-react": "^7.32.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "literate": "docco ./sketches/bounce.js"
+    "literate": "docco ./sketches/bounce.js",
+    "build_grabber": "esbuild ./sketches/grabber/grabber_ui.js --bundle --platform=browser --packages=bundle --format=esm --outfile=./sketches/grabber/out.js"
   },
   "author": "",
   "license": "UNLICENSED"

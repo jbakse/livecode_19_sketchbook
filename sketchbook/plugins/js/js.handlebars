@@ -19,7 +19,8 @@
   {{{html}}}
   <script>window.sketch_directory = "{{ fileInfo.directory }}";</script>
   {{#libraries}}
-  <script src="{{.}}"></script>
+
+  <script type="{{type}}" src="{{name}}"></script>
   {{/libraries}}
   <script {{#attributes}}{{{.}}} {{/attributes}}src="{{fileInfo.path}}"></script>
 </body>

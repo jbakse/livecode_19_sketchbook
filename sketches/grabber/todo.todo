@@ -1,0 +1,7 @@
+todo:
+    □ why does safari web codec encode work here? https://dmnsgn.github.io/canvas-record/
+
+
+grabber.js:
+    □ VideoEncoder.isConfigSupported() to check if the codec is supported
+    □ [] merge finished and canceled into a single state enum property

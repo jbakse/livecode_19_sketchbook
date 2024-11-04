@@ -76,7 +76,7 @@ async function showJS(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context,
+    context
   );
 
   const sketchSrcDoc = await buildTemplate("plugins/js/js.handlebars", context);
@@ -166,7 +166,7 @@ async function showMD(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context,
+    context
   );
   const sketchSrcDoc = await buildTemplate("plugins/md/md.handlebars", context);
 
@@ -195,11 +195,11 @@ async function showTXT(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context,
+    context
   );
   const sketchSrcDoc = await buildTemplate(
     "plugins/txt/txt.handlebars",
-    context,
+    context
   );
 
   // inject pages
@@ -226,7 +226,7 @@ async function showHTML(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context,
+    context
   );
 
   // inject pages
@@ -254,7 +254,7 @@ async function showDirect(sourcePath) {
   // build pages from templates
   const sourceSrcDoc = await buildTemplate(
     "plugins/source/source.handlebars",
-    context,
+    context
   );
 
   // inject pages
@@ -281,7 +281,14 @@ function readDirectives(text) {
   const requires = [];
   let match_info;
   while ((match_info = requireRegex.exec(text))) {
-    requires.push(match_info[1]);
+    const match = match_info[1];
+    // if match starts with "module "
+    const isModule = match.startsWith("module ");
+    const type = isModule ? "module" : "";
+    // name with "module " removed, if present
+    const name = isModule ? match.slice(7) : match;
+    // requires.push(match_info[1]);
+    requires.push({ name, isModule, type });
   }
 
   return { requires };

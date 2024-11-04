@@ -692,36 +692,6 @@
         ]
     },
     {
-        "name": "capture_3",
-        "type": "folder",
-        "children": [
-            {
-                "type": "file",
-                "name": "demo.js"
-            },
-            {
-                "type": "file",
-                "name": "demo_squares.js"
-            },
-            {
-                "type": "file",
-                "name": "demo_ui.js"
-            },
-            {
-                "type": "file",
-                "name": "demo_waves.js"
-            },
-            {
-                "type": "file",
-                "name": "grabber.js"
-            },
-            {
-                "type": "file",
-                "name": "grabber_ui.js"
-            }
-        ]
-    },
-    {
         "name": "capture_3_tests",
         "type": "folder",
         "children": [
@@ -1922,6 +1892,44 @@
             {
                 "type": "file",
                 "name": "shayla_face_01.js"
+            }
+        ]
+    },
+    {
+        "name": "grabber",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "demo.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_squares.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_squares_reg.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_ui.js"
+            },
+            {
+                "type": "file",
+                "name": "demo_waves.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber.js"
+            },
+            {
+                "type": "file",
+                "name": "grabber_ui.js"
+            },
+            {
+                "type": "file",
+                "name": "out.js"
             }
         ]
     },

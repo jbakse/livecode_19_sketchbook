@@ -1595,6 +1595,66 @@
                 "children": [
                     {
                         "type": "file",
+                        "name": "bounce_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bounce_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bounce_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_04.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_05.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_06.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_07.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "cellular_08.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "chain_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flock_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flock_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "flock_03.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "sim_plant_01.js"
                     },
                     {
@@ -1930,6 +1990,10 @@
             {
                 "type": "file",
                 "name": "out.js"
+            },
+            {
+                "type": "file",
+                "name": "todo.todo"
             }
         ]
     },
@@ -3218,6 +3282,64 @@
             {
                 "type": "file",
                 "name": "script.md"
+            }
+        ]
+    },
+    {
+        "name": "wantneed",
+        "type": "folder",
+        "children": [
+            {
+                "name": "gregfont",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "css"
+                    },
+                    {
+                        "name": "fonts",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "nassau.js"
+                            },
+                            {
+                                "type": "file",
+                                "name": "nassau_all_60x60.svg"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "file",
+                        "name": "index.html"
+                    },
+                    {
+                        "type": "file",
+                        "name": "jquery-3.1.1.min.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.css"
+                    },
+                    {
+                        "type": "file",
+                        "name": "main.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "paper-full.min.js"
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "wantneed.js"
+            },
+            {
+                "type": "file",
+                "name": "wantneed_02.js"
             }
         ]
     },

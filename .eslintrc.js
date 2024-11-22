@@ -44,7 +44,7 @@ module.exports = {
     camelcase: "off", //	Enforce camelcase naming convention
     "capitalized-comments": "off", //	Enforce or disallow capitalization of the first letter of a comment
     // "class-methods-use-this": "error", //	Enforce that class methods utilize `this`
-    complexity: "error", //	Enforce a maximum cyclomatic complexity allowed in a program
+    // complexity: "error", //	Enforce a maximum cyclomatic complexity allowed in a program
     "consistent-return": "error", //	Require `return` statements to either always or never specify values
     "consistent-this": "error", //	Enforce consistent naming when capturing the current execution context
     curly: "off", //	Enforce consistent brace style for all control statements
@@ -127,7 +127,7 @@ module.exports = {
     // "no-undefined": "error", //	Disallow the use of `undefined` as an identifier
     // "no-underscore-dangle": "error", //	Disallow dangling underscores in identifiers
     "no-unneeded-ternary": "error", //	Disallow ternary operators when simpler alternatives exist
-    "no-unused-expressions": "error", //	Disallow unused expressions
+    "no-unused-expressions": ["error", { allowTernary: true }], //	Disallow unused expressions
     "no-useless-call": "error", //	Disallow unnecessary calls to `.call()` and `.apply()`
     "no-useless-computed-key": "error", //	Disallow unnecessary computed property keys in objects and classes
     "no-useless-concat": "error", //	Disallow unnecessary concatenation of literals or template literals
@@ -160,7 +160,7 @@ module.exports = {
     // "sort-imports": "error", //	Enforce sorted import declarations within modules
     "sort-keys": "off", //	Require object keys to be sorted
     "sort-vars": "off", //	Require variables within the same declaration block to be sorted
-    "spaced-comment": "error", //	Enforce consistent spacing after the `//` or `/*` in a comment
+    "spaced-comment": "off", //	Enforce consistent spacing after the `//` or `/*` in a comment
     // strict: "error", //	Require or disallow strict mode directives
     "symbol-description": "error", //	Require symbol descriptions
     "vars-on-top": "error", //	Require `var` declarations be placed at the top of their containing scope

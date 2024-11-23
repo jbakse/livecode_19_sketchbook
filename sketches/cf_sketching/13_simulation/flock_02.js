@@ -40,7 +40,7 @@ class Bird {
   step() {
     const center = { x: 360, y: 240 };
     const aToCenter = angleBetweenPoints(this.location, center);
-    const t = angleBetween(this.angle, aToCenter);
+    const t = angleBetweenAngles(this.angle, aToCenter);
     this.angle = modAngle(this.angle + t * 0.01);
     this.location.x += cos(this.angle) * this.speed;
     this.location.y += sin(this.angle) * this.speed;
@@ -70,7 +70,7 @@ class Bird {
 // returns the angle you need to rotate a by to get an equivalent angle to B
 // goes clockwise or counterclockwise depending on which way is shorter
 // returns a number between -PI and PI
-function angleBetween(a, b) {
+function angleBetweenAngles(a, b) {
   return modAngle(b - a);
 }
 

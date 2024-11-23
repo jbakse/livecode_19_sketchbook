@@ -1,31 +1,33 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
-
 const birds = [];
 
 function setup() {
   createCanvas(720, 480);
 
-  for (let i = 0; i < 200; i++) {
+  /// populate birds
+  for (const _ of range(100)) {
     const bird = new Bird();
     bird.location.x = random(-500, 500);
     bird.location.y = random(-500, 500);
-    bird.angle = random([-PI / 2, PI / 2]);
-    bird.speed = random(1, 1.1);
+    bird.angle = randomAngle();
+    bird.speed = random([1, 2]);
     birds.push(bird);
   }
 }
 
 function draw() {
+  /// step birds
   for (const bird of birds) {
     bird.step();
   }
+
+  /// draw
   background(0);
   translate(width / 2, height / 2);
-
   for (const bird of birds) {
     bird.draw();
   }
-
+  fill(200);
   ellipse(0, 0, 20, 20);
   ellipse(mouseX - width / 2, mouseY - height / 2, 20, 20);
 }
@@ -43,164 +45,160 @@ class Bird {
   }
 
   step() {
-    /// tend toward center
-    const center = { x: 0, y: 0 };
-    const aToCenter = angleBetweenPoints(this.location, center);
-    const tToCenter = angleBetween(this.angle, aToCenter);
-    this.angle = modAngle(this.angle + tToCenter * 0.005);
-
-    // boids rules
-    // https://en.wikipedia.org/wiki/Boids?useskin=vector
-
-    /// separation: steer to avoid crowding local flockmates
-    for (const bird of birds) {
-      if (bird === this) continue;
-      const d = dist(
-        this.location.x,
-        this.location.y,
-        bird.location.x,
-        bird.location.y
-      );
-      if (d < 20) {
-        const aToBird = angleBetweenPoints(this.location, bird.location);
-        const t = angleBetween(this.angle, aToBird);
-        this.angle = modAngle(this.angle - t * 0.05);
-      }
-    }
-
-    /// alignment: steer towards the average heading of local flockmates
-    // get headings of nearby birds
-    const headings = [];
-    for (const bird of birds) {
-      if (bird === this) continue;
-      const d = dist(
-        this.location.x,
-        this.location.y,
-        bird.location.x,
-        bird.location.y
-      );
-      if (d < 100) {
-        headings.push(bird.angle);
-      }
-    }
-    // get average heading
-    const avgHeading = averageAngle(headings);
-    // adjust heading
-    const tToHeading = angleBetween(this.angle, avgHeading);
-    this.angle = modAngle(this.angle + tToHeading * 0.1);
-
-    /// cohesion: steer to move towards the average position (center of mass) of local flockmates
-    // get center of nearby birds
-    const locations = [];
-    for (const bird of birds) {
-      if (bird === this) continue;
-      const d = dist(
-        this.location.x,
-        this.location.y,
-        bird.location.x,
-        bird.location.y
-      );
-      if (d < 80) {
-        locations.push(bird.location);
-      }
-    }
-    // get average location
-    const avgLocation = averagePoint(locations);
-    // adjust heading
-    const aToAvg = angleBetweenPoints(this.location, avgLocation);
-    const tToAvg = angleBetween(this.angle, aToAvg);
-    this.angle = modAngle(this.angle + tToAvg * 0.005);
-
-    /// avoid mouse
-    const mouse = { x: mouseX - width / 2, y: mouseY - height / 2 };
-    const d = dist(this.location.x, this.location.y, mouse.x, mouse.y);
-    if (d < 50) {
-      const aToMouse = angleBetweenPoints(this.location, mouse);
-      const t = angleBetween(this.angle, aToMouse);
-      this.angle = modAngle(this.angle - t * 0.1);
-    }
-
-    /// avoid center
-    const dToCenter = dist(this.location.x, this.location.y, 0, 0);
-    if (dToCenter < 50) {
-      const aToCenter = angleBetweenPoints(this.location, center);
-      const t = angleBetween(this.angle, aToCenter);
-      this.angle = modAngle(this.angle - t * 0.1);
-    }
+    this.turnTowardCenter();
+    this.applySeparation();
+    this.applyAlignment();
+    this.applyCohesion();
+    this.avoidMouse();
+    this.avoidCenter();
+    this.updatePosition();
 
     this.location.x += cos(this.angle) * this.speed;
     this.location.y += sin(this.angle) * this.speed;
   }
 
+  turnTowardCenter() {
+    const targetA = angleBetweenPoints(this.location, { x: 0, y: 0 });
+    const deltaA = angleBetweenAngles(this.angle, targetA);
+    this.angle = rotateAngle(this.angle, deltaA * 0.005);
+  }
+
+  applySeparation() {
+    for (const bird of birds) {
+      if (bird === this) continue;
+      if (pointDistance(this.location, bird.location) > 20) continue;
+
+      const targetA = angleBetweenPoints(this.location, bird.location);
+      const deltaA = angleBetweenAngles(this.angle, targetA);
+      this.angle = rotateAngle(this.angle, -deltaA * 0.05);
+    }
+  }
+
+  applyAlignment() {
+    const nearbyBirds = this.getNearbyBirds(100);
+    if (nearbyBirds.length === 0) return;
+
+    const angles = nearbyBirds.map((bird) => bird.angle);
+
+    const targetA = averageAngles(angles);
+    const deltaA = angleBetweenAngles(this.angle, targetA);
+    this.angle = rotateAngle(this.angle, deltaA * 0.1);
+  }
+
+  applyCohesion() {
+    const nearbyBirds = this.getNearbyBirds(80);
+    if (nearbyBirds.length === 0) return;
+
+    const locations = nearbyBirds.map((bird) => bird.location);
+    const targetPoint = averagePoints(locations);
+
+    const targetA = angleBetweenPoints(this.location, targetPoint);
+    const deltaA = angleBetweenAngles(this.angle, targetA);
+    this.angle = rotateAngle(this.angle, deltaA * 0.005);
+  }
+
+  avoidMouse() {
+    const mouseLocation = { x: mouseX - width / 2, y: mouseY - height / 2 };
+    const d = pointDistance(this.location, mouseLocation);
+    if (d > 50) return;
+    const targetA = angleBetweenPoints(this.location, mouseLocation);
+    const deltaA = angleBetweenAngles(this.angle, targetA);
+    this.angle = rotateAngle(this.angle, -deltaA * 0.1);
+  }
+
+  avoidCenter() {
+    const d = pointDistance(this.location, { x: 0, y: 0 });
+    if (d > 50) return;
+    const targetA = angleBetweenPoints(this.location, { x: 0, y: 0 });
+    const deltaA = angleBetweenAngles(this.angle, targetA);
+    this.angle = rotateAngle(this.angle, -deltaA * 0.1);
+  }
+
+  getNearbyBirds(radius) {
+    return birds.filter((bird) => {
+      if (bird === this) return false;
+      return pointDistance(this.location, bird.location) < radius;
+    });
+  }
+
   draw() {
     push();
-    translate(this.location.x, this.location.y);
-    rotate(this.angle);
     fill("white");
     noStroke();
 
-    beginShape();
-    vertex(9, 0);
-    vertex(0, 2);
-    vertex(0, -2);
-    endShape(CLOSE);
+    translate(this.location.x, this.location.y);
+    rotate(this.angle);
+
+    triangle(8, 0, 0, 3, 0, -3);
+
     pop();
   }
 }
 
-// returns the angle you need to rotate a by to get an equivalent angle to B
-// goes clockwise or counterclockwise depending on which way is shorter
-// returns a number between -PI and PI
-function angleBetween(a, b) {
-  return modAngle(b - a);
-}
+/// angle functions
 
-// return random angle -PI to PI
-function randomAngle() {
-  return modAngle(random(TWO_PI));
-}
-
-// return equivalent angle between -PI and PI
+// returns the equivalent angle between -PI and PI
 function modAngle(a) {
   return mod(a + PI, TWO_PI) - PI;
 }
 
-function angleBetweenPoints(p1, p2) {
-  const a = modAngle(atan2(p2.y - p1.y, p2.x - p1.x));
-  return isNaN(a) ? 0 : a;
+// returns a random angle between -PI and PI
+function randomAngle() {
+  return modAngle(random(TWO_PI));
 }
 
-// Computes the average of an array of angles between -PI and PI
-function averageAngle(angles) {
+// adds amount to angle, wrapping around at -PI and PI
+function rotateAngle(angle, amount) {
+  return modAngle(angle + amount);
+}
+
+// returns the smallest angle from angle a to angle b, in range -PI to PI
+// understands wrapping, looks clockwise or counterclockwise
+function angleBetweenAngles(a, b) {
+  return modAngle(b - a);
+}
+
+// returns the average of the provided angles
+// supports wrapping by converting them to unit vectors, averaging the vectors, and converting back to an angle
+// e.g. average of -3 and 3 is PI, not 0.
+function averageAngles(angles) {
   let x = 0;
   let y = 0;
 
-  // Convert each angle to a vector and sum the components
   for (const angle of angles) {
     x += Math.cos(angle);
     y += Math.sin(angle);
   }
 
-  // Compute the average angle using atan2
-  return Math.atan2(y, x); // Returns the angle in the range [-PI, PI]
+  return Math.atan2(y, x);
 }
 
-// Computes the average of an array of points
-function averagePoint(points) {
+// returns the average of the provided points
+function averagePoints(points) {
   let x = 0;
   let y = 0;
 
-  // Sum the x and y components
   for (const point of points) {
     x += point.x;
     y += point.y;
   }
 
-  // Compute the average
   return { x: x / points.length, y: y / points.length };
 }
 
-// returns the bounds of an array of points
+/// point functions
+
+// returns distance between two points
+function pointDistance(a, b) {
+  return dist(a.x, a.y, b.x, b.y);
+}
+
+// returns the angle from point a to point b, in range -PI to PI
+function angleBetweenPoints(a, b) {
+  return atan2(b.y - a.y, b.x - a.x);
+}
+
+// finds the bounds of the provided points
 function pointsBounds(points) {
   let minX = Infinity;
   let maxX = -Infinity;
@@ -217,9 +215,30 @@ function pointsBounds(points) {
   return { minX, minY, maxX, maxY };
 }
 
-// a mod function that does not return negative numbers
-// -2 % 5 = -2 // javascript % operator returns negative numbers
-// mod(-2, 5) = 3 // we want 3
+/// scalar functions
+
+// returns n modulo m [0, m)
+// javascript % provides a remainder, not a modulo
+// -1 % 5 = -1
+// mod(-1, 5) = 4
 function mod(n, m) {
   return ((n % m) + m) % m;
+}
+
+/// utility functions
+
+// returns an array of numbers from start to end (exclusive) with optional step
+function range(start, end, step) {
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  if (step === undefined) {
+    step = 1;
+  }
+  const result = [];
+  for (let i = start; i < end; i += step) {
+    result.push(i);
+  }
+  return result;
 }

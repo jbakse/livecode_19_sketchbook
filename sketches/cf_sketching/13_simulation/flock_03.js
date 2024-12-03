@@ -1,16 +1,23 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
+
+// notes
+// i use angle/magnitude for velocity, an xy vector might be better
+// collision detection is n^2, a quad tree might be better
+// https://github.com/timohausmann/quadtree-js/blob/master/quadtree.js
+
 const birds = [];
 
 function setup() {
   createCanvas(720, 480);
+  background(0);
 
   /// populate birds
   for (const _ of range(100)) {
     const bird = new Bird();
     bird.location.x = random(-500, 500);
     bird.location.y = random(-500, 500);
-    bird.angle = randomAngle();
-    bird.speed = random([1, 2]);
+    bird.angle = 0;
+    bird.speed = random([1, 3]);
     birds.push(bird);
   }
 }
@@ -45,32 +52,35 @@ class Bird {
   }
 
   step() {
-    this.turnTowardCenter();
+    /// flocking behaviors
+    // https://en.wikipedia.org/wiki/Boids?useskin=vector
+    // separation: steer to avoid crowding local flockmates
+    // alignment: steer towards the average heading of local flockmates
+    // cohesion: steer to move towards the (center of mass) of local flockmates
+
     this.applySeparation();
     this.applyAlignment();
     this.applyCohesion();
+
+    /// additional behaviors
+    this.turnTowardCenter();
     this.avoidMouse();
     this.avoidCenter();
-    this.updatePosition();
 
+    /// move
     this.location.x += cos(this.angle) * this.speed;
     this.location.y += sin(this.angle) * this.speed;
   }
 
   turnTowardCenter() {
-    const targetA = angleBetweenPoints(this.location, { x: 0, y: 0 });
-    const deltaA = angleBetweenAngles(this.angle, targetA);
-    this.angle = rotateAngle(this.angle, deltaA * 0.005);
+    this.turnTowardPoint({ x: 0, y: 0 }, 0.005);
   }
 
   applySeparation() {
     for (const bird of birds) {
       if (bird === this) continue;
       if (pointDistance(this.location, bird.location) > 20) continue;
-
-      const targetA = angleBetweenPoints(this.location, bird.location);
-      const deltaA = angleBetweenAngles(this.angle, targetA);
-      this.angle = rotateAngle(this.angle, -deltaA * 0.05);
+      this.turnTowardPoint(bird.location, -0.05, true);
     }
   }
 
@@ -79,39 +89,37 @@ class Bird {
     if (nearbyBirds.length === 0) return;
 
     const angles = nearbyBirds.map((bird) => bird.angle);
-
     const targetA = averageAngles(angles);
     const deltaA = angleBetweenAngles(this.angle, targetA);
     this.angle = rotateAngle(this.angle, deltaA * 0.1);
   }
 
   applyCohesion() {
-    const nearbyBirds = this.getNearbyBirds(80);
+    const nearbyBirds = this.getNearbyBirds(100);
     if (nearbyBirds.length === 0) return;
 
     const locations = nearbyBirds.map((bird) => bird.location);
     const targetPoint = averagePoints(locations);
-
-    const targetA = angleBetweenPoints(this.location, targetPoint);
-    const deltaA = angleBetweenAngles(this.angle, targetA);
-    this.angle = rotateAngle(this.angle, deltaA * 0.005);
+    this.turnTowardPoint(targetPoint, 0.005);
   }
 
   avoidMouse() {
     const mouseLocation = { x: mouseX - width / 2, y: mouseY - height / 2 };
-    const d = pointDistance(this.location, mouseLocation);
-    if (d > 50) return;
-    const targetA = angleBetweenPoints(this.location, mouseLocation);
-    const deltaA = angleBetweenAngles(this.angle, targetA);
-    this.angle = rotateAngle(this.angle, -deltaA * 0.1);
+    if (pointDistance(this.location, mouseLocation) > 50) return;
+    this.turnTowardPoint(mouseLocation, -0.05, true);
   }
 
   avoidCenter() {
-    const d = pointDistance(this.location, { x: 0, y: 0 });
-    if (d > 50) return;
-    const targetA = angleBetweenPoints(this.location, { x: 0, y: 0 });
+    const center = { x: 0, y: 0 };
+    if (pointDistance(this.location, center) > 50) return;
+    this.turnTowardPoint(center, -0.1, true);
+  }
+
+  turnTowardPoint(point, amount, fixed = false) {
+    const targetA = angleBetweenPoints(this.location, point);
     const deltaA = angleBetweenAngles(this.angle, targetA);
-    this.angle = rotateAngle(this.angle, -deltaA * 0.1);
+    const turnAmount = fixed ? sign(deltaA) * amount : deltaA * amount;
+    this.angle = rotateAngle(this.angle, turnAmount);
   }
 
   getNearbyBirds(radius) {
@@ -123,12 +131,12 @@ class Bird {
 
   draw() {
     push();
-    fill("white");
-    noStroke();
 
     translate(this.location.x, this.location.y);
     rotate(this.angle);
 
+    fill("white");
+    noStroke();
     triangle(8, 0, 0, 3, 0, -3);
 
     pop();
@@ -138,24 +146,24 @@ class Bird {
 /// angle functions
 
 // returns the equivalent angle between -PI and PI
-function modAngle(a) {
-  return mod(a + PI, TWO_PI) - PI;
+function normalizeAngle(a) {
+  return modulo(a + PI, TWO_PI) - PI;
 }
 
 // returns a random angle between -PI and PI
 function randomAngle() {
-  return modAngle(random(TWO_PI));
+  return normalizeAngle(random(TWO_PI));
 }
 
 // adds amount to angle, wrapping around at -PI and PI
 function rotateAngle(angle, amount) {
-  return modAngle(angle + amount);
+  return normalizeAngle(angle + amount);
 }
 
 // returns the smallest angle from angle a to angle b, in range -PI to PI
 // understands wrapping, looks clockwise or counterclockwise
 function angleBetweenAngles(a, b) {
-  return modAngle(b - a);
+  return normalizeAngle(b - a);
 }
 
 // returns the average of the provided angles
@@ -221,8 +229,13 @@ function pointsBounds(points) {
 // javascript % provides a remainder, not a modulo
 // -1 % 5 = -1
 // mod(-1, 5) = 4
-function mod(n, m) {
+function modulo(n, m) {
   return ((n % m) + m) % m;
+}
+
+// returns the sign of a number
+function sign(n) {
+  return n >= 0 ? 1 : -1;
 }
 
 /// utility functions

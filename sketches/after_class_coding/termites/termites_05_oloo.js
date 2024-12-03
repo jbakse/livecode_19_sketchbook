@@ -6,6 +6,7 @@
 //   into another wood chip, put down the wood chip
 //   you are carrying.
 
+// rather then Classes, use oloo (objects linked to other objects)
 const Termite = {
   init(x = 0, y = 0) {
     this.x = x;
@@ -85,9 +86,9 @@ const Woodchip = {
   },
 };
 
-let termites = [];
-let woodchips = [];
-let sprites = [];
+const termites = [];
+const woodchips = [];
+const sprites = [];
 
 function setup() {
   createCanvas(600, 600);
@@ -113,7 +114,7 @@ function draw() {
 }
 
 function times(t, f) {
-  let a = [];
+  const a = [];
   for (let i = 0; i < t; i++) {
     a.push(f(i));
   }
@@ -137,7 +138,7 @@ function drawUI() {
   fill(255);
   noStroke();
   text("termites — mousedown to fast forward", 10, 20);
-  if (mouseIsPressed) text(mouseX + "x", mouseX, 40);
+  if (mouseIsPressed) text(`${mouseX}x`, mouseX, 40);
 }
 
 function compareDist(x1, y1, x2, y2, n) {

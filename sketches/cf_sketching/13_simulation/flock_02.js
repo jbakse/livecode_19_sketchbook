@@ -41,7 +41,7 @@ class Bird {
     const center = { x: 360, y: 240 };
     const aToCenter = angleBetweenPoints(this.location, center);
     const t = angleBetweenAngles(this.angle, aToCenter);
-    this.angle = modAngle(this.angle + t * 0.01);
+    this.angle = normalizeAngle(this.angle + t * 0.01);
     this.location.x += cos(this.angle) * this.speed;
     this.location.y += sin(this.angle) * this.speed;
   }
@@ -71,27 +71,27 @@ class Bird {
 // goes clockwise or counterclockwise depending on which way is shorter
 // returns a number between -PI and PI
 function angleBetweenAngles(a, b) {
-  return modAngle(b - a);
+  return normalizeAngle(b - a);
 }
 
 // finds the angle from p1 to p2
 function angleBetweenPoints(p1, p2) {
-  return modAngle(atan2(p2.y - p1.y, p2.x - p1.x));
+  return normalizeAngle(atan2(p2.y - p1.y, p2.x - p1.x));
 }
 
 // return random angle -PI to PI
 function randomAngle() {
-  return modAngle(random(TWO_PI));
+  return normalizeAngle(random(TWO_PI));
 }
 
 // return equivalent angle between -PI and PI
-function modAngle(a) {
-  return mod(a + PI, TWO_PI) - PI;
+function normalizeAngle(a) {
+  return modulo(a + PI, TWO_PI) - PI;
 }
 
 // a mod function that does not return negative numbers
 // -2 % 5 = -2 // javascript % operator returns negative numbers
 // mod(-2, 5) = 3 // we want 3
-function mod(n, m) {
+function modulo(n, m) {
   return ((n % m) + m) % m;
 }

@@ -80,9 +80,9 @@ class Woodchip {
   }
 }
 
-let termites = [];
-let woodchips = [];
-let sprites = [];
+const termites = [];
+const woodchips = [];
+const sprites = [];
 
 function setup() {
   createCanvas(600, 600);

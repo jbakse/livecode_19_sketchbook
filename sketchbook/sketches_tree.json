@@ -72,6 +72,22 @@
             {
                 "type": "file",
                 "name": "day_4_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_5a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_5b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_5_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_5_data_test.txt"
             }
         ]
     },
@@ -1738,6 +1754,14 @@
                     {
                         "type": "file",
                         "name": "snow_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_01.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_02.js"
                     }
                 ]
             }

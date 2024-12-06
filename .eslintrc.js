@@ -13,7 +13,7 @@ module.exports = {
   globals: require("./p5Globals.js"),
 
   rules: {
-    indent: ["error", 2],
+    // indent: ["error", 2],
     quotes: [
       "error",
       "double",

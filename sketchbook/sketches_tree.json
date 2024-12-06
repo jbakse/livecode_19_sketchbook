@@ -14,6 +14,68 @@
         ]
     },
     {
+        "name": "advent_24",
+        "type": "folder",
+        "children": [
+            {
+                "type": "file",
+                "name": "day_1a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_1b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_1_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_2a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_2b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_2_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_2_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_3a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_3b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_3_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_4a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_4b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_4_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_4_data_test.txt"
+            }
+        ]
+    },
+    {
         "name": "after_class_coding",
         "type": "folder",
         "children": [
@@ -1593,6 +1655,10 @@
                 "name": "13_simulation",
                 "type": "folder",
                 "children": [
+                    {
+                        "type": "file",
+                        "name": "bacteria_01.js"
+                    },
                     {
                         "type": "file",
                         "name": "bounce_01.js"

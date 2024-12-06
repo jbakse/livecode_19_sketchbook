@@ -6,13 +6,9 @@
  * - particles have mass
  * - particles have a force accumulator, springs add to this instead of directly modifying velocity
  * - fix divide by zero error in normalize()
- *
- * Needs:
- * - improve integration method (improved Euler, half step velocity, or Runge-Kutta)
- * - stiffen spring until unstable, then chck if improved integration helps
  */
-const kDRAG = 0.001;
-const kG = { x: 0, y: 0.1 };
+const kDRAG = 0.01;
+const kG = { x: 0, y: 0.0 };
 const kRESTITUTION = 0.9;
 const kFRICTION = 0.1;
 
@@ -24,22 +20,24 @@ function setup() {
 
   // make particles at corners of a square
   const size = 30;
-  const tl = new Particle({ x: 360 - size, y: 240 - size }, { x: 0, y: -40 });
-  const tr = new Particle({ x: 360 + size, y: 240 - size });
-  const br = new Particle({ x: 360 + size, y: 240 + size });
-  const bl = new Particle({ x: 360 - size, y: 240 + size });
+  const root = new Particle({ x: 360, y: 340 });
+  particles.push(root);
 
-  particles.push(tl, tr, br, bl);
+  sprout(root, 5, 50);
+}
 
-  // connect the edges and a diagonal
-  springs.push(
-    new Spring(tl, tr),
-    new Spring(tr, br),
-    new Spring(br, bl),
-    new Spring(bl, tl),
-    new Spring(tl, br),
-    new Spring(tr, bl)
-  );
+function sprout(root, count, length) {
+  if (count === 0) return;
+  times(count, () => {
+    const r = randomNormalVector();
+    const p = new Particle({
+      x: root.position.x + r.x * length,
+      y: root.position.y + r.y * length,
+    });
+    particles.push(p);
+    springs.push(new Spring(root, p));
+    sprout(p, count - 1, length * 0.75);
+  });
 }
 
 // Vector2DDebug class is currently just a debuging tool
@@ -162,12 +160,36 @@ function draw() {
 }
 
 function step(t = 1) {
+  relax(particles, 30, 0.1);
+
   for (const s of springs) {
     s.step(t);
   }
 
   for (const p of particles) {
     p.step(t);
+  }
+}
+
+function relax(particles, radius = 100, k = 0.01) {
+  for (const a of particles) {
+    for (const b of particles) {
+      if (a === b) continue;
+      const dP = {
+        x: b.position.x - a.position.x,
+        y: b.position.y - a.position.y,
+      };
+
+      const nP = normalize(dP);
+      const mP = magnitude(dP);
+      if (mP > radius) continue;
+      const relaxForce = ((mP - radius) / radius) * k;
+
+      a.forces.x += nP.x * relaxForce;
+      a.forces.y += nP.y * relaxForce;
+      b.forces.x += nP.x * -relaxForce;
+      b.forces.y += nP.y * -relaxForce;
+    }
   }
 }
 
@@ -199,6 +221,11 @@ function magnitude(v) {
 
 function dot(v1, v2) {
   return v1.x * v2.x + v1.y * v2.y;
+}
+
+function randomNormalVector() {
+  const angle = random(TWO_PI);
+  return { x: cos(angle), y: sin(angle) };
 }
 
 /// Helper functions

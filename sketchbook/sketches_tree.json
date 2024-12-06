@@ -1762,6 +1762,10 @@
                     {
                         "type": "file",
                         "name": "spring_02.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_02_force_directed_graph.js"
                     }
                 ]
             }

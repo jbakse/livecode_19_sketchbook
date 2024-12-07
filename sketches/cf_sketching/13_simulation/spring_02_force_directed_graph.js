@@ -1,11 +1,8 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
 /**
- * spring_02
- * Additions:
- * - particles have mass
- * - particles have a force accumulator, springs add to this instead of directly modifying velocity
- * - fix divide by zero error in normalize()
+ * spring_02_force_directed_graph
+ *
  */
 const kDRAG = 0.01;
 const kG = { x: 0, y: 0.0 };

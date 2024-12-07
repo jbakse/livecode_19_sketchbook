@@ -1,47 +1,50 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
-
+// require https://unpkg.com/@timohausmann/quadtree-js/quadtree.min.js
+/* global Quadtree */
 /**
- * spring_02
- * Additions:
- * - particles have mass
- * - particles have a force accumulator, springs add to this instead of directly modifying velocity
- * - fix divide by zero error in normalize()
+ *  spring_03_force_directed_graph
  *
- * Needs:
- * - improve integration method (improved Euler, half step velocity, or Runge-Kutta)
- * - stiffen spring until unstable, then chck if improved integration helps
  */
-const kDRAG = 0.001;
-const kG = { x: 0, y: 0.1 };
+const kDRAG = 0.01;
+const kG = { x: 0, y: 0.0 };
 const kRESTITUTION = 0.9;
 const kFRICTION = 0.1;
+const STEPS = 1;
+const METHOD = "HALF"; // EULER, HALF
 
 const particles = [];
 const springs = [];
+
+let debugInfo;
+
+console.log("quadtree", Quadtree);
 
 function setup() {
   createCanvas(720, 480);
 
   // make particles at corners of a square
   const size = 30;
-  const tl = new Particle({ x: 360 - size, y: 240 - size }, { x: 0, y: -40 });
-  const tr = new Particle({ x: 360 + size, y: 240 - size });
-  const br = new Particle({ x: 360 + size, y: 240 + size });
-  const bl = new Particle({ x: 360 - size, y: 240 + size });
+  const root = new Particle({ x: 360, y: 340 });
+  particles.push(root);
 
-  particles.push(tl, tr, br, bl);
+  sprout(root, 6, 100);
 
-  // connect the edges and a diagonal
-  springs.push(
-    new Spring(tl, tr),
-    new Spring(tr, br),
-    new Spring(br, bl),
-    new Spring(bl, tl),
-    new Spring(tl, br),
-    new Spring(tr, bl)
-  );
+  debugInfo = createDiv();
 }
 
+function sprout(root, count, length) {
+  if (count === 0) return;
+  times(count, () => {
+    const r = randomNormalVector();
+    const p = new Particle({
+      x: root.position.x + r.x * length,
+      y: root.position.y + r.y * length,
+    });
+    particles.push(p);
+    springs.push(new Spring(root, p));
+    sprout(p, count - 1, length * 0.75);
+  });
+}
 // Vector2DDebug class is currently just a debuging tool
 // it throws if you try to set x or y to NaN
 // helping you identify where NaN values are coming from
@@ -98,13 +101,33 @@ class Particle {
     this.forces.x += dragVector.x * dragMagnitude;
     this.forces.y += dragVector.y * dragMagnitude;
 
-    // apply forces
-    this.velocity.x += (this.forces.x / this.mass) * t;
-    this.velocity.y += (this.forces.y / this.mass) * t;
+    if (METHOD === "EULER") {
+      // Semi-implicit Euler integration
+      // apply forces
+      this.velocity.x += (this.forces.x / this.mass) * t;
+      this.velocity.y += (this.forces.y / this.mass) * t;
 
-    // momentum
-    this.position.x += this.velocity.x * t;
-    this.position.y += this.velocity.y * t;
+      // momentum
+      this.position.x += this.velocity.x * t;
+      this.position.y += this.velocity.y * t;
+    }
+
+    if (METHOD === "HALF") {
+      // this is the half step velocity
+      // same as verlet, but i like the readability of this better
+
+      // apply half the acceleration
+      this.velocity.x += 0.5 * (this.forces.x / this.mass) * t;
+      this.velocity.y += 0.5 * (this.forces.y / this.mass) * t;
+
+      // move
+      this.position.x += this.velocity.x * t;
+      this.position.y += this.velocity.y * t;
+
+      // apply half the acceleration
+      this.velocity.x += 0.5 * (this.forces.x / this.mass) * t;
+      this.velocity.y += 0.5 * (this.forces.y / this.mass) * t;
+    }
 
     this.forces.x = 0;
     this.forces.y = 0;
@@ -156,12 +179,13 @@ class Spring {
 }
 
 function draw() {
-  const STEPS = 1;
   times(STEPS, () => step(1 / STEPS));
   render();
 }
 
 function step(t = 1) {
+  relax(particles, 30, 0.1);
+
   for (const s of springs) {
     s.step(t);
   }
@@ -169,6 +193,47 @@ function step(t = 1) {
   for (const p of particles) {
     p.step(t);
   }
+}
+const tree = new Quadtree({ x: 0, y: 0, width: 720, height: 480 });
+
+function relax(particles, radius = 100, k = 0.01) {
+  const startTime = performance.now();
+
+  tree.clear();
+  particles.forEach((p) => {
+    tree.insert({ x: p.position.x, y: p.position.y, width: 0, height: 0, p });
+  });
+
+  for (const a of particles) {
+    const nearBy = tree.retrieve({
+      x: a.position.x - radius,
+      y: a.position.y - radius,
+      width: radius * 2,
+      height: radius * 2,
+    });
+
+    for (const bPtr of nearBy) {
+      const b = bPtr.p;
+      if (a === b) continue;
+      const dP = {
+        x: b.position.x - a.position.x,
+        y: b.position.y - a.position.y,
+      };
+
+      const nP = normalize(dP);
+      const mP = magnitude(dP);
+      if (mP > radius) continue;
+      const relaxForce = ((mP - radius) / radius) * k;
+
+      a.forces.x += nP.x * relaxForce;
+      a.forces.y += nP.y * relaxForce;
+      b.forces.x += nP.x * -relaxForce;
+      b.forces.y += nP.y * -relaxForce;
+    }
+  }
+
+  const endTime = performance.now();
+  debugInfo.html(`relax time: ${(endTime - startTime).toFixed(2)}ms`);
 }
 
 function render() {
@@ -200,7 +265,10 @@ function magnitude(v) {
 function dot(v1, v2) {
   return v1.x * v2.x + v1.y * v2.y;
 }
-
+function randomNormalVector() {
+  const angle = random(TWO_PI);
+  return { x: cos(angle), y: sin(angle) };
+}
 /// Helper functions
 function times(t, f) {
   const a = [];

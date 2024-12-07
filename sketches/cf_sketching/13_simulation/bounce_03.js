@@ -4,7 +4,7 @@
 // Numerical integration approximates the motion step-by-step, while analytical integration calculates an exact position formula.
 
 // Ball object representing the current state (position and velocity) of the ball
-const STEPS = 10;
+const STEPS = 1;
 
 const ballStart = {
   position: { x: 180, y: 240 },
@@ -25,7 +25,7 @@ function setup() {
 
 function draw() {
   for (let i = 0; i < STEPS; i++) {
-    numericallyStepBall(1 / STEPS);
+    numericallyStepBallHalf(1 / STEPS);
   }
 
   fill("white");
@@ -70,6 +70,21 @@ function numericallyStepBall(dT = 1) {
   // Update position by adding the change caused by velocity over the time step (dT)
   ball.position.x += ball.velocity.x * dT;
   ball.position.y += ball.velocity.y * dT;
+}
+
+function numericallyStepBallHalf(dT = 1) {
+  // this is the same as Improved below, just arranged bit differently
+  // Update velocity halfway
+  ball.velocity.x += 0.5 * gravity.x * dT;
+  ball.velocity.y += 0.5 * gravity.y * dT;
+
+  // Update position by adding the change caused by velocity over the time step (dT)
+  ball.position.x += ball.velocity.x * dT;
+  ball.position.y += ball.velocity.y * dT;
+
+  // the other half of the way
+  ball.velocity.x += 0.5 * gravity.x * dT;
+  ball.velocity.y += 0.5 * gravity.y * dT;
 }
 
 // improved Euler's method

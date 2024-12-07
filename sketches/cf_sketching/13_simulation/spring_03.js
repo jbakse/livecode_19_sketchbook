@@ -1,20 +1,20 @@
 // require https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js
 
 /**
- * spring_02
+ * spring_03
  * Additions:
- * - particles have mass
- * - particles have a force accumulator, springs add to this instead of directly modifying velocity
- * - fix divide by zero error in normalize()
+ * - option to use "HALF" step velocity integration (leapfrog)
+ * - i expected this to be more stable, but it seems to be less stable
+ * - with the current settings
+ * - maybe half will work better with a different set of settings?
  *
- * Needs:
- * - improve integration method (improved Euler, half step velocity, or Runge-Kutta)
- * - stiffen spring until unstable, then chck if improved integration helps
  */
 const kDRAG = 0.001;
 const kG = { x: 0, y: 0.1 };
 const kRESTITUTION = 0.9;
 const kFRICTION = 0.1;
+const STEPS = 1;
+const METHOD = "EULER"; // EULER, HALF
 
 const particles = [];
 const springs = [];
@@ -98,13 +98,33 @@ class Particle {
     this.forces.x += dragVector.x * dragMagnitude;
     this.forces.y += dragVector.y * dragMagnitude;
 
-    // apply forces
-    this.velocity.x += (this.forces.x / this.mass) * t;
-    this.velocity.y += (this.forces.y / this.mass) * t;
+    if (METHOD === "EULER") {
+      // Semi-implicit Euler integration
+      // apply forces
+      this.velocity.x += (this.forces.x / this.mass) * t;
+      this.velocity.y += (this.forces.y / this.mass) * t;
 
-    // momentum
-    this.position.x += this.velocity.x * t;
-    this.position.y += this.velocity.y * t;
+      // momentum
+      this.position.x += this.velocity.x * t;
+      this.position.y += this.velocity.y * t;
+    }
+
+    if (METHOD === "HALF") {
+      // this is the half step velocity
+      // same as verlet, but i like the readability of this better
+
+      // apply half the acceleration
+      this.velocity.x += 0.5 * (this.forces.x / this.mass) * t;
+      this.velocity.y += 0.5 * (this.forces.y / this.mass) * t;
+
+      // move
+      this.position.x += this.velocity.x * t;
+      this.position.y += this.velocity.y * t;
+
+      // apply half the acceleration
+      this.velocity.x += 0.5 * (this.forces.x / this.mass) * t;
+      this.velocity.y += 0.5 * (this.forces.y / this.mass) * t;
+    }
 
     this.forces.x = 0;
     this.forces.y = 0;
@@ -126,7 +146,7 @@ class Spring {
     this.b = b;
     this.length =
       length ?? dist(a.position.x, a.position.y, b.position.x, b.position.y);
-    this.k = k ?? 0.1;
+    this.k = k ?? 0.5;
     this.damp = 0.1;
   }
 
@@ -156,7 +176,6 @@ class Spring {
 }
 
 function draw() {
-  const STEPS = 1;
   times(STEPS, () => step(1 / STEPS));
   render();
 }

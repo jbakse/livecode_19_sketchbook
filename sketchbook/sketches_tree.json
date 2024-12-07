@@ -88,6 +88,22 @@
             {
                 "type": "file",
                 "name": "day_5_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_6a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_6b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_6_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_6_data_test.txt"
             }
         ]
     },
@@ -1766,6 +1782,18 @@
                     {
                         "type": "file",
                         "name": "spring_02_force_directed_graph.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_03_force_directed_graph.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "spring_03_force_directed_graph_quad.js"
                     }
                 ]
             }

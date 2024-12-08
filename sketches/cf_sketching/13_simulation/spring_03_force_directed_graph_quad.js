@@ -194,12 +194,12 @@ function step(t = 1) {
     p.step(t);
   }
 }
-const tree = new Quadtree({ x: 0, y: 0, width: 720, height: 480 });
 
 function relax(particles, radius = 100, k = 0.01) {
   const startTime = performance.now();
 
-  tree.clear();
+  const tree = new Quadtree({ x: 0, y: 0, width: 720, height: 480 });
+
   particles.forEach((p) => {
     tree.insert({ x: p.position.x, y: p.position.y, width: 0, height: 0, p });
   });

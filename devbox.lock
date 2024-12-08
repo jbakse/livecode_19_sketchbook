@@ -65,6 +65,54 @@
           "store_path": "/nix/store/0xvgzkl74v6jrh79ibh7ss770dh4hb69-nodejs-22.10.0"
         }
       }
+    },
+    "nodemon@latest": {
+      "last_modified": "2024-11-30T03:39:21Z",
+      "resolved": "github:NixOS/nixpkgs/4703b8d2c708e13a8cab03d865f90973536dcdf5#nodemon",
+      "source": "devbox-search",
+      "version": "3.1.7",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6kr0zcx0dh0bhg4ia2xs4h8k3imrhm8v-nodemon-3.1.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6kr0zcx0dh0bhg4ia2xs4h8k3imrhm8v-nodemon-3.1.7"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cldp84i4fm6181w8mz3dvfzsfx8i39ad-nodemon-3.1.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/cldp84i4fm6181w8mz3dvfzsfx8i39ad-nodemon-3.1.7"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2zbkk02r5xl2brca351x8hyl9bbvj3j2-nodemon-3.1.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2zbkk02r5xl2brca351x8hyl9bbvj3j2-nodemon-3.1.7"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/720jbclw0png99x2q2626zxlmqamawpi-nodemon-3.1.7",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/720jbclw0png99x2q2626zxlmqamawpi-nodemon-3.1.7"
+        }
+      }
     }
   }
 }

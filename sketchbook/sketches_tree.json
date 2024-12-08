@@ -1693,6 +1693,22 @@
                     },
                     {
                         "type": "file",
+                        "name": "bacteria_02_improve_physics.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bacteria_03_improve_growth.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bacteria_04_improve_render.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "bacteria_05.js"
+                    },
+                    {
+                        "type": "file",
                         "name": "bounce_01.js"
                     },
                     {

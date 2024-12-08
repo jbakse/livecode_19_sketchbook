@@ -104,6 +104,50 @@
             {
                 "type": "file",
                 "name": "day_6_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_7a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_7b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_7b_improved.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_7b_recursive.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_7_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_7_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_8a.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_8b.mjs"
+            },
+            {
+                "type": "file",
+                "name": "day_8_data.txt"
+            },
+            {
+                "type": "file",
+                "name": "day_8_data_test.txt"
+            },
+            {
+                "type": "file",
+                "name": "nodemon.json"
             }
         ]
     },
@@ -1705,7 +1749,7 @@
                     },
                     {
                         "type": "file",
-                        "name": "bacteria_05.js"
+                        "name": "bacteria_05_code_review_and_perf.js"
                     },
                     {
                         "type": "file",

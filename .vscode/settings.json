@@ -1,4 +1,9 @@
 {
   "liveServer.settings.port": 5502,
-  "cSpell.words": ["deepstream", "herokuapp"]
+  "eslint.debug": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
+  "eslint.problems.shortenToSingleLine": true,
+  "eslint.lintTask.enable": true
 }

@@ -1,4 +1,13 @@
+# node package manager files — build product
 node_modules
+npm-debug.log*
+
+# macOS finder metadata
 .DS_Store
-.env
+
+# aider files
+# https://aider.chat/
 .aider*
+
+# environment variables — contains secrets
+.env

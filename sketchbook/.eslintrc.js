@@ -1,20 +1,16 @@
 module.exports = {
-  extends: ["eslint:recommended", "plugin:react/recommended"],
   env: {
     browser: true,
+    node: true,
   },
-  settings: {
-    react: {
-      version: "17.00",
-    },
-  },
+  extends: ["eslint:recommended"],
+
   parserOptions: {
     ecmaVersion: 8,
     sourceType: "module",
     jsx: true,
   },
   rules: {
-    "react/react-in-jsx-scope": "off",
     indent: ["error", 2],
     quotes: ["error", "double", { avoidEscape: true }],
     semi: ["error", "always"],

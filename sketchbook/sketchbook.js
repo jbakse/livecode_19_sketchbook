@@ -1,4 +1,3 @@
-/* global Handlebars js2md*/
 console.log("%c Sketchbook ", "color: yellow; background: #000;");
 
 import Tree from "./js/tree.js";

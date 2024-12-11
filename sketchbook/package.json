@@ -13,9 +13,10 @@
     "watch": "watch 'npm run start' ../sketches"
   },
   "devDependencies": {
+    "@eslint/js": "^9.16.0",
     "directory-structure-json": "^1.0.0",
-    "eslint": "^7.19.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint": "^9.16.0",
+    "globals": "^15.13.0",
     "watch": "^1.0.2"
   }
 }

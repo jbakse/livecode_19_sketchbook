@@ -1,3 +1,3 @@
 export default {
-  sketchBase: "../sketches/",
+  sketchesRoot: "../sketches/",
 };

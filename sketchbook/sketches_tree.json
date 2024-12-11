@@ -2299,6 +2299,10 @@
     },
     {
         "type": "file",
+        "name": "hello.md"
+    },
+    {
+        "type": "file",
         "name": "index.md"
     },
     {

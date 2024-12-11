@@ -1,13 +1,13 @@
-import Tree from "./tree.js";
+import * as tree from "./tree.js";
 /* globals Handlebars */
 
-async function buildNav(tree, path) {
+export function buildNav(_tree, path) {
   const pathParts = path.split("/");
   if (pathParts[0] === "") {
     pathParts.shift();
   }
 
-  const folders = Tree.getFolders(tree, path);
+  const folders = tree.getFolders(_tree, path);
 
   // console.log("pathParts", pathParts);
   // console.log("folders", folders);
@@ -17,12 +17,12 @@ async function buildNav(tree, path) {
       const title = pathParts[i];
 
       folders[i].children.sort((a, b) => {
-        if (a.type === "file" && b.type == "folder") return -1;
-        if (a.type === "folder" && b.type == "file") return 1;
+        if (a.type === "file" && b.type === "folder") return -1;
+        if (a.type === "folder" && b.type === "file") return 1;
         return 0;
       });
       const items = folders[i].children.map((child) => {
-        let filePath = pathParts.slice(0, i).concat(child.name).join("/");
+        const filePath = pathParts.slice(0, i).concat(child.name).join("/");
         const source = "";
         return {
           title: child.name,
@@ -60,11 +60,7 @@ function buildDropdown(context) {
 }
 
 function createElementFromHTML(htmlString) {
-  var div = document.createElement("div");
+  const div = document.createElement("div");
   div.innerHTML = htmlString.trim();
   return div.firstChild;
 }
-
-export default {
-  buildNav,
-};

@@ -58,7 +58,6 @@ table,
 pre {
   margin: 15px 0;
   font-size: 30px;
-
 }
 
 img {
@@ -119,9 +118,7 @@ blockquote {
 .ls {
   font-size: 14px;
   line-height: 1.5;
-   width: 100%;
-
-  
+  width: 100%;
 }
 
 /* classic */
@@ -149,10 +146,9 @@ blockquote {
 }  */
 
 /* column of columns */
-.ls>ul>li.folder>ul {
+.ls > ul > li.folder > ul {
   columns: 250px;
 }
-
 
 .ls ul,
 .ls li {
@@ -181,32 +177,28 @@ blockquote {
 .ls .folder .folder:nth-child(7n-1) h3 {
   background: #faa;
 }
-.ls .folder .folder:nth-child(7n+0) h3 {
+.ls .folder .folder:nth-child(7n + 0) h3 {
   background: #fca;
 }
-.ls .folder .folder:nth-child(7n+1) h3 {
+.ls .folder .folder:nth-child(7n + 1) h3 {
   background: #ffa;
 }
-.ls .folder .folder:nth-child(7n+2) h3 {
+.ls .folder .folder:nth-child(7n + 2) h3 {
   background: #afa;
 }
-.ls .folder .folder:nth-child(7n+3) h3 {
+.ls .folder .folder:nth-child(7n + 3) h3 {
   background: #aaf;
 }
-.ls .folder .folder:nth-child(7n+4) h3 {
+.ls .folder .folder:nth-child(7n + 4) h3 {
   background: #caf;
 }
-.ls .folder .folder:nth-child(7n+5) h3 {
+.ls .folder .folder:nth-child(7n + 5) h3 {
   background: #faf;
 }
-
 
 .ls h4 {
   color: #555;
 }
-
-
-
 
 .ls a.folder {
   color: inherit;
@@ -220,7 +212,6 @@ blockquote {
 .ls li.folder.hidden {
   display: none;
 }
-
 
 .ls a.file {
   margin-left: 4px;
@@ -240,32 +231,31 @@ blockquote {
   box-shadow: inset 0 -15px var(--box-shadow-color);
 }
 
-
 .ls .folder .folder:nth-child(7n-1) a.file {
   --box-shadow-color: #faa;
 }
 
-.ls .folder .folder:nth-child(7n+0) a.file {
+.ls .folder .folder:nth-child(7n + 0) a.file {
   --box-shadow-color: #fca;
 }
 
-.ls .folder .folder:nth-child(7n+1) a.file {
+.ls .folder .folder:nth-child(7n + 1) a.file {
   --box-shadow-color: #ffa;
 }
 
-.ls .folder .folder:nth-child(7n+2) a.file {
+.ls .folder .folder:nth-child(7n + 2) a.file {
   --box-shadow-color: #afa;
 }
 
-.ls .folder .folder:nth-child(7n+3) a.file {
+.ls .folder .folder:nth-child(7n + 3) a.file {
   --box-shadow-color: #aaf;
 }
 
-.ls .folder .folder:nth-child(7n+4) a.file {
+.ls .folder .folder:nth-child(7n + 4) a.file {
   --box-shadow-color: #caf;
 }
 
-.ls .folder .folder:nth-child(7n+5) a.file {
+.ls .folder .folder:nth-child(7n + 5) a.file {
   --box-shadow-color: #faf;
 }
 
@@ -279,11 +269,6 @@ blockquote {
   list-style: none;
 
   margin: 0;
-}
-
-
-.ls > ul > .index {
-  display: none;
 }
 
 /* two up figures */
@@ -342,6 +327,10 @@ pre,
 }
 */
 
+/* todo these are more "app" than "sketch" styles, can they be moved */
+/* .ls > ul > .index {
+  display: none;
+} */
 
 #search {
   font-size: 3rem;
@@ -350,8 +339,7 @@ pre,
   margin-bottom: 1rem;
 }
 
-#search:focus
-{
+#search:focus {
   border: none;
   outline: none;
 }

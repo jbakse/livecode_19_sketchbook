@@ -1,21 +1,15 @@
-export default {
-  load,
-  defaultFile,
-  getFolders,
-  getItem,
-};
-
-async function load(data, initialPath) {
-  const response = await fetch(data);
+export async function load(jsonFile) {
+  const response = await fetch(jsonFile);
   const tree = {
-    name: initialPath,
+    name: "root",
     type: "folder",
     children: await response.json(),
   };
+  console.log("tree", tree);
   return tree;
 }
 
-function defaultFile(tree, path) {
+export function defaultFile(tree, path) {
   const item = getItem(tree, path);
 
   if (!item) return path;
@@ -35,7 +29,7 @@ function defaultFile(tree, path) {
   return defaultFile(tree, path);
 }
 
-function getFolders(tree, path) {
+export function getFolders(tree, path) {
   const pathParts = path.split("/");
   const folders = [tree];
   for (const pathPart of pathParts) {
@@ -51,7 +45,7 @@ function getFolders(tree, path) {
 //////////////////////////////////////////////////////////////////////
 // Private
 
-function getItem(tree, path) {
+export function getItem(tree, path) {
   const pathParts = path.split("/");
   const items = [tree];
 

@@ -11,3 +11,6 @@ npm-debug.log*
 
 # environment variables — contains secrets
 .env
+
+# temporary files
+temp*

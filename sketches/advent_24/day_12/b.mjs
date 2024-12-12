@@ -37,22 +37,6 @@ const endTime = performance.now();
 console.log(`time: ${(endTime - startTime).toFixed(2)}ms`);
 
 function countSides(sides) {
-  //   sides.sort((a, b) => {
-  //     // if sides equal, sort by y
-  //     if (a.side === b.side) {
-  //       // if y equal, sort by x
-  //       if (a.y === b.y) {
-  //         return a.x - b.x;
-  //       }
-  //       return a.y - b.y;
-  //     }
-  //     // sort by side
-  //     return (
-  //       ["north", "east", "south", "west"].indexOf(a.side) -
-  //       ["north", "east", "south", "west"].indexOf(b.side)
-  //     );
-  //   });
-
   const xy = (a, b) => {
     if (a.y === b.y) {
       return a.x - b.x;

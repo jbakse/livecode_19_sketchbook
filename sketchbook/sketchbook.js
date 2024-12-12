@@ -1,8 +1,8 @@
 import * as tree from "./js/tree.js";
-import Path from "./js/path.js";
+import * as path from "./js/path.js";
 import * as nav from "./js/nav.js";
 import builders from "./js/template_builders.js";
-import settings from "./settings.js";
+import config from "./config.js";
 
 let sketchTree = null;
 
@@ -35,16 +35,16 @@ async function main() {
 
   // determine the full path of the sketch to display
   const urlParams = new URLSearchParams(window.location.search);
-  const sketchPath = tree.defaultFile(
+  const currentSketch = tree.defaultFile(
     sketchTree,
     urlParams.get("sketch") || ""
   );
 
   // log the sketch path
-  console.log(`%c ${sketchPath} `, "color: yellow; background: #000;");
+  console.log(`%c ${currentSketch} `, "color: yellow; background: #000;");
 
   // build the navigation ui
-  nav.buildNav(sketchTree, sketchPath);
+  nav.buildNav(sketchTree, currentSketch);
 
   // hide/show the source frame
   document
@@ -53,8 +53,8 @@ async function main() {
 
   // build the sketch based on the sketch extensions
   // a sketch might have multiple extensions (e.g. sketch.md.js => md.js)
-  const sourcePath = settings.sketchesRoot + sketchPath;
-  const extensions = Path.extensions(sourcePath);
+  const sourcePath = config.sketchesRoot + currentSketch;
+  const extensions = path.extensions(sourcePath);
 
   // check if there is a builder for the extension
   if (builders.hasOwnProperty(extensions)) {
@@ -113,12 +113,12 @@ main();
  * function provided for listing the sketches from a html/md file in sketches
  */
 
-window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
+window.ls = (sketchPath = "", maxDepth = 3, currentDepth = 1) => {
   // base case, if we've passed the max depth we are done
   if (currentDepth > maxDepth) return "";
 
   let markup = "<ul>";
-  const branch = tree.getItem(sketchTree, path);
+  const branch = tree.getItem(sketchTree, sketchPath);
 
   // sort files before folders
   branch.children.sort((a, b) => {
@@ -131,15 +131,19 @@ window.ls = (path = "", maxDepth = 3, currentDepth = 1) => {
   branch.children.forEach((item) => {
     // files are <li><a></a></li>
     if (item.type === "file") {
-      markup += `<li class="file"><a class="file" href="?sketch=${path}/${item.name}">${item.name}</a></li>`;
+      markup += `<li class="file"><a class="file" href="?sketch=${sketchPath}/${item.name}">${item.name}</a></li>`;
     }
     // folders are <li><h#><a></a></h#>(sublist)</li>
     if (item.type === "folder") {
       markup += '<li class="folder">';
       markup += `<h${currentDepth + 1}>`;
-      markup += `<a class="folder" href="?sketch=${path}/${item.name}">${item.name}</a>`;
+      markup += `<a class="folder" href="?sketch=${sketchPath}/${item.name}">${item.name}</a>`;
       markup += "</h1>";
-      markup += window.ls(`${path}/${item.name}`, maxDepth, currentDepth + 1);
+      markup += window.ls(
+        `${sketchPath}/${item.name}`,
+        maxDepth,
+        currentDepth + 1
+      );
       markup += "</li>";
     }
   });

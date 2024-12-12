@@ -1,13 +1,15 @@
 import * as tree from "./tree.js";
 /* globals Handlebars */
 
-export function buildNav(_tree, path) {
-  const pathParts = path.split("/");
+export function buildNav(sketchTree, currentSketch) {
+  // get each part of the path
+  // a/b/c.md.js -> [a, b, c.md.js]
+  const pathParts = currentSketch.split("/");
   if (pathParts[0] === "") {
     pathParts.shift();
   }
 
-  const folders = tree.getFolders(_tree, path);
+  const folders = tree.getFolders(sketchTree, currentSketch);
 
   // console.log("pathParts", pathParts);
   // console.log("folders", folders);
@@ -35,7 +37,9 @@ export function buildNav(_tree, path) {
       document.getElementById("breadcrumbs").appendChild(el);
     }
   } else {
-    const el = createElementFromHTML(`<div class="path">${path}</div>`);
+    const el = createElementFromHTML(
+      `<div class="path">${currentSketch}</div>`
+    );
     document.getElementById("breadcrumbs").appendChild(el);
   }
 }

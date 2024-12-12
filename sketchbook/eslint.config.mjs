@@ -26,6 +26,10 @@ export default [
       "no-plusplus": "off",
       "no-warning-comments": "off",
       "prefer-template": "off",
+      "no-inline-comments": "off",
+      "no-undefined": "off",
+      "no-continue": "off",
+      "prefer-destructuring": "off",
     },
   },
 ];

@@ -1,14 +1,14 @@
-import Path from "./path.js";
+import * as path from "./path.js";
 /*globals Handlebars*/
 
 export default {
-  js: showJS,
-  md: showMD,
+  "js": showJS,
+  "md": showMD,
   "md.js": showMDJS,
-  txt: showTXT,
-  frag: showTXT,
-  html: showHTML,
-  direct: showDirect,
+  "txt": showTXT,
+  "frag": showTXT,
+  "html": showHTML,
+  "direct": showDirect,
 };
 
 // context_format = {
@@ -70,7 +70,7 @@ async function showJS(sourcePath) {
     libraries: directives.requires,
     attributes,
     html,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates
@@ -126,7 +126,7 @@ async function showMDJS(sourcePath) {
     libraries: directives.requires,
     attributes,
     html,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates
@@ -160,7 +160,7 @@ async function showMD(sourcePath) {
     rawSource,
     formattedSource,
     content,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates
@@ -189,7 +189,7 @@ async function showTXT(sourcePath) {
     rawSource,
     formattedSource,
     content,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates
@@ -220,7 +220,7 @@ async function showHTML(sourcePath) {
   const context = {
     formattedSource,
     content,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates
@@ -248,7 +248,7 @@ async function showDirect(sourcePath) {
     rawSource,
     // formattedSource,
     content,
-    fileInfo: Path.info(sourcePath),
+    fileInfo: path.info(sourcePath),
   };
 
   // build pages from templates

@@ -2256,6 +2256,11 @@
         ]
     },
     {
+        "name": "empty",
+        "type": "folder",
+        "children": []
+    },
+    {
         "name": "grabber",
         "type": "folder",
         "children": [

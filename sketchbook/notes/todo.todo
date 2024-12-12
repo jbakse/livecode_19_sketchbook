@@ -1,0 +1,4 @@
+Refactor Plugins:
+    □ "template_builders" or "plugins" pick a name and make it consistent
+    □ move the code that does the building into the plugins folders
+    □ remove handlebars dep?

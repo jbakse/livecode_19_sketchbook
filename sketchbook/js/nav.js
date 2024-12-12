@@ -1,5 +1,4 @@
 import * as tree from "./tree.js";
-/* globals Handlebars */
 
 export function buildNav(sketchTree, currentSketch) {
   // get each part of the path
@@ -9,63 +8,64 @@ export function buildNav(sketchTree, currentSketch) {
     pathParts.shift();
   }
 
-  console.log("currentSketch", currentSketch);
+  // get the folders for each part of the path
   const folders = tree.getFolders(sketchTree, currentSketch);
+  if (!folders) return;
 
-  // console.log("pathParts", pathParts);
-  // console.log("folders", folders);
+  // create a breadcrumb menu for each part of the path
+  for (const [i, title] of pathParts.entries()) {
+    // sort the folder
+    folders[i].children.sort((a, b) => {
+      if (a.type === "file" && b.type === "folder") return -1;
+      if (a.type === "folder" && b.type === "file") return 1;
+      return 0;
+    });
 
-  if (folders) {
-    for (let i = 0; i < pathParts.length; i++) {
-      const title = pathParts[i];
+    // prepare data for the dropdown template
+    const items = folders[i].children.map((child) => {
+      const filePath = pathParts.slice(0, i).concat(child.name).join("/");
+      const source = "";
+      return {
+        title: child.name,
+        href: `?sketch=${filePath}&amp;${source}`,
+        type: child.type,
+      };
+    });
 
-      folders[i].children.sort((a, b) => {
-        if (a.type === "file" && b.type === "folder") return -1;
-        if (a.type === "folder" && b.type === "file") return 1;
-        return 0;
-      });
-      const items = folders[i].children.map((child) => {
-        const filePath = pathParts.slice(0, i).concat(child.name).join("/");
-        const source = "";
-        return {
-          title: child.name,
-          href: `?sketch=${filePath}&amp;${source}`,
-          type: child.type,
-        };
-      });
-
-      const el = buildDropdown({ title, items });
-      document.getElementById("breadcrumbs").appendChild(el);
-    }
-  } else {
-    const el = createElementFromHTML(
-      `<div class="path">${currentSketch}</div>`
-    );
-    document.getElementById("breadcrumbs").appendChild(el);
+    // build and append the dropdown
+    const dropdownElement = buildDropdown({ title, items });
+    document.getElementById("breadcrumbs").appendChild(dropdownElement);
   }
 }
 
 function buildDropdown(context) {
-  const templateText = `
-  <div class="dropdown">
-    <div class="title">
-      {{title}}
-    </div>
-    <ul class="items">
-        {{#items}}
-        <li class="{{this.type}}"><a href="{{this.href}}">{{this.title}}</a></li>
-        {{/items}}
-    </ul>
-  </div>`;
+  // dropdown
+  const dropdown = document.createElement("div");
+  dropdown.className = "dropdown";
 
-  const template = Handlebars.compile(templateText);
-  const markup = template(context);
-  const el = createElementFromHTML(markup);
-  return el;
-}
+  // title
+  const titleDiv = document.createElement("div");
+  titleDiv.className = "title";
+  titleDiv.textContent = context.title;
+  dropdown.appendChild(titleDiv);
 
-function createElementFromHTML(htmlString) {
-  const div = document.createElement("div");
-  div.innerHTML = htmlString.trim();
-  return div.firstChild;
+  // item list
+  const ul = document.createElement("ul");
+  ul.className = "items";
+
+  // items
+  context.items.forEach((item) => {
+    const li = document.createElement("li");
+    li.className = item.type;
+
+    const a = document.createElement("a");
+    a.href = item.href;
+    a.textContent = item.title;
+
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  dropdown.appendChild(ul);
+  return dropdown;
 }

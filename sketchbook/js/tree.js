@@ -75,9 +75,11 @@ export function defaultFile(tree, path) {
 export function getFolders(tree, path) {
   const pathParts = path.split("/");
   const folders = [tree];
+  let currentTree = tree;
   for (const pathPart of pathParts) {
     if (pathPart === "") continue;
-    const currentTree = tree.children.find((o) => o.name === pathPart);
+    currentTree = currentTree.children.find((o) => o.name === pathPart);
+
     if (currentTree === undefined) return false;
     if (currentTree.type === "file") break;
     folders.push(currentTree);

@@ -1,9 +1,6 @@
 /* global Deno */
 
-import {
-  assertEquals,
-  assertThrows,
-} from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals, assertThrows } from "jsr:@std/assert";
 import { name, root, lastExtension, extensions, directory } from "./path.js";
 
 Deno.test("name function", () => {

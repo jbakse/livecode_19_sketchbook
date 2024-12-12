@@ -9,6 +9,7 @@ export function buildNav(sketchTree, currentSketch) {
     pathParts.shift();
   }
 
+  console.log("currentSketch", currentSketch);
   const folders = tree.getFolders(sketchTree, currentSketch);
 
   // console.log("pathParts", pathParts);

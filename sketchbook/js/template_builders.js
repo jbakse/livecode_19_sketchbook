@@ -25,6 +25,61 @@ export default {
 //     extensions: "example.md.js -> md.js",
 //   },
 // };
+async function getText(textPath) {
+  try {
+    const response = await fetch(textPath);
+    if (!response.ok) {
+      throw new Error(`Network response was not "ok": ${response.statusText}`);
+    }
+    const text = await response.text();
+    return text;
+  } catch (error) {
+    console.error(`Failed to fetch text from ${textPath}`);
+    throw error;
+  }
+}
+
+async function showTXT(sourcePath) {
+  const rawSource = await getText(sourcePath);
+
+  // build pages from templates
+  const sourceDoc = await buildTemplate("plugins/source/source.handlebars", {
+    formattedSource: rawSource,
+    fileInfo: path.info(sourcePath),
+  });
+  const sketchDoc = await buildTemplate("plugins/txt/txt.handlebars", {
+    content: rawSource,
+    fileInfo: path.info(sourcePath),
+  });
+
+  // inject pages
+  document.getElementById("source-frame").srcdoc = sourceDoc;
+  document.getElementById("sketch-frame").srcdoc = sketchDoc;
+}
+
+async function showMD(sourcePath) {
+  const rawSource = await getText(sourcePath);
+
+  // render content
+  /* global markdownit */
+  // eslint-disable-next-line new-cap
+  const md = new markdownit({ html: true });
+  const content = md.render(rawSource);
+
+  // build pages from templates
+  const sourceDoc = await buildTemplate("plugins/source/source.handlebars", {
+    rawSource,
+    fileInfo: path.info(sourcePath),
+  });
+  const sketchDoc = await buildTemplate("plugins/md/md.handlebars", {
+    content,
+    fileInfo: path.info(sourcePath),
+  });
+
+  // inject pages
+  document.getElementById("sketch-frame").srcdoc = sketchDoc;
+  document.getElementById("source-frame").srcdoc = sourceDoc;
+}
 
 async function showJS(sourcePath) {
   const rawSource = await getText(sourcePath);
@@ -138,75 +193,6 @@ async function showMDJS(sourcePath) {
   document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
 }
 
-// async function showMDJS() {
-// var markdownSource = js2md(rawSource);
-// const md = new markdownit();
-// const formattedSource = `<div class="md">${md.render(markdownSource)}</div>`;
-// }
-
-async function showMD(sourcePath) {
-  let rawSource = await getText(sourcePath);
-
-  // format source
-  const formattedSource = false;
-
-  // render source
-  /* global markdownit */
-  const md = new markdownit({ html: true });
-  const content = md.render(rawSource);
-
-  // prepare template info
-  const context = {
-    rawSource,
-    formattedSource,
-    content,
-    fileInfo: path.info(sourcePath),
-  };
-
-  // build pages from templates
-  const sourceSrcDoc = await buildTemplate(
-    "plugins/source/source.handlebars",
-    context
-  );
-  const sketchSrcDoc = await buildTemplate("plugins/md/md.handlebars", context);
-
-  // inject pages
-  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
-  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
-}
-
-async function showTXT(sourcePath) {
-  let rawSource = await getText(sourcePath);
-
-  // format source
-  const formattedSource = rawSource;
-
-  // render source
-  const content = rawSource;
-
-  // prepare template info
-  const context = {
-    rawSource,
-    formattedSource,
-    content,
-    fileInfo: path.info(sourcePath),
-  };
-
-  // build pages from templates
-  const sourceSrcDoc = await buildTemplate(
-    "plugins/source/source.handlebars",
-    context
-  );
-  const sketchSrcDoc = await buildTemplate(
-    "plugins/txt/txt.handlebars",
-    context
-  );
-
-  // inject pages
-  document.getElementById("source-frame").srcdoc = sourceSrcDoc;
-  document.getElementById("sketch-frame").srcdoc = sketchSrcDoc;
-}
-
 async function showHTML(sourcePath) {
   let rawSource = await getText(sourcePath);
 
@@ -261,12 +247,6 @@ async function showDirect(sourcePath) {
   document.getElementById("source-frame").srcdoc = sourceSrcDoc;
 
   document.getElementById("sketch-frame").src = sourcePath;
-}
-
-async function getText(path) {
-  const response = await fetch(path);
-  const text = await response.text();
-  return text;
 }
 
 async function buildTemplate(templatePath, context) {

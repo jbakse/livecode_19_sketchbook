@@ -9,6 +9,11 @@
   color: #fff;
 } */
 
+body {
+  /* gradient from black to white */
+  /* background: #ddd; */
+}
+
 h1,
 h2,
 h3,
@@ -337,6 +342,11 @@ pre,
   border: none;
   background: #fefefe;
   margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+#search::placeholder {
+  color: #ccc;
 }
 
 #search:focus {

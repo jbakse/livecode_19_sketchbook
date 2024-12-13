@@ -1,4 +1,4 @@
-<input type="text" id="search" name="search" placeholder="" />
+<input type="text" id="search" name="search" placeholder="search" />
 <div id="ls" class="ls">
 
 <script>

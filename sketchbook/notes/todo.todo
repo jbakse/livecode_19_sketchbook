@@ -1,4 +1,8 @@
 Refactor Plugins:
     □ "template_builders" or "plugins" pick a name and make it consistent
-    □ move the code that does the building into the plugins folders
+    □ move the code that does the building out of template_builders and into the plugins folders
     □ remove handlebars dep?
+    □ remove the jdi dep, or move it into the md.js plugin
+    □ move to modules (actually its pretty much modules already, other than the vendor deps)
+
+

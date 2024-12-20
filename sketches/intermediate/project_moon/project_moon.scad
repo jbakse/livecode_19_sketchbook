@@ -582,7 +582,7 @@ scale(L) {
     }
 
     // moebius wing
-    union(){
+    *union(){
         tile(3, 1);
         sstud();
         color("red") 

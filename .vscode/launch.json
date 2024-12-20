@@ -5,11 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-chrome",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://localhost:5501",
-      "webRoot": "${workspaceFolder}"
+      "name": "Launch Program",
+      "type": "node",
+      "program": "${workspaceFolder}/sketches/advent_24/day_20/b.mjs",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "runtimeExecutable": "/Users/jbakse/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/deno",
+      "runtimeArgs": ["run", "--unstable", "--inspect-brk", "--allow-all"],
+      "attachSimplePort": 9229
     }
   ]
 }

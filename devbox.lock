@@ -113,6 +113,54 @@
           "store_path": "/nix/store/720jbclw0png99x2q2626zxlmqamawpi-nodemon-3.1.7"
         }
       }
+    },
+    "rename@latest": {
+      "last_modified": "2024-11-28T07:51:56Z",
+      "resolved": "github:NixOS/nixpkgs/226216574ada4c3ecefcbbec41f39ce4655f78ef#rename",
+      "source": "devbox-search",
+      "version": "1.11",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yh03hdgc4dz9jqwiprra2aid0xa66m3s-perl5.40.0-rename-1.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yh03hdgc4dz9jqwiprra2aid0xa66m3s-perl5.40.0-rename-1.11"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mcbja2wks861rq37bcid27cyfcn8cip5-perl5.40.0-rename-1.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mcbja2wks861rq37bcid27cyfcn8cip5-perl5.40.0-rename-1.11"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/w4855sa3kfai6zy6d0jljnxqdcdgs924-perl5.40.0-rename-1.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/w4855sa3kfai6zy6d0jljnxqdcdgs924-perl5.40.0-rename-1.11"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ywwhaf52d1i2f3f61ck1ywan1dqizfni-perl5.40.0-rename-1.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ywwhaf52d1i2f3f61ck1ywan1dqizfni-perl5.40.0-rename-1.11"
+        }
+      }
     }
   }
 }

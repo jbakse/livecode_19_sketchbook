@@ -18,132 +18,628 @@
         "type": "folder",
         "children": [
             {
-                "type": "file",
-                "name": "day_1a.mjs"
+                "name": "day_10",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_memoized.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_1b.mjs"
+                "name": "day_11",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b-tryfirst.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b-tryrecurse.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_1_data.txt"
+                "name": "day_12_garden_plots",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_2a.mjs"
+                "name": "day_13_claw_game",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_algebra.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_inspect.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_inspect2.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_leastmost.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_uh.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_2.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m1.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m2.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    },
+                    {
+                        "type": "file",
+                        "name": "table.mjs"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_2b.mjs"
+                "name": "day_14_xmas_tree",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "clear.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_2_data.txt"
+                "name": "day_15_sokobann",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_small.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_smallb.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_2_data_test.txt"
+                "name": "day_16",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a_clean2.mjs"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_3a.mjs"
+                "name": "day_16_maze_race",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "a_clean.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "a_clean2.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_clean.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_sm.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test1.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test2.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_3b.mjs"
+                "name": "day_17_three_bit",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_hard.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_hard_big.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_testb.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_3_data.txt"
+                "name": "day_18_byte_fall",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_4a.mjs"
+                "name": "day_19",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "a_faster.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_count.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_4b.mjs"
+                "name": "day_1_list_similarity",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_4_data.txt"
+                "name": "day_20",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_4_data_test.txt"
+                "name": "day_21_keypad",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a_brute.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "a_pick.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "notes.md"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_5a.mjs"
+                "name": "day_2_safety_reports",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_5b.mjs"
+                "name": "day_3",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_5_data.txt"
+                "name": "day_4",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_5_data_test.txt"
+                "name": "day_5",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_6a.mjs"
+                "name": "day_6",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_6b.mjs"
+                "name": "day_7",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_improved.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b_recursive.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_6_data.txt"
+                "name": "day_8",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_6_data_test.txt"
+                "name": "day_9",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_7a.mjs"
+                "name": "day_template",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
             },
             {
-                "type": "file",
-                "name": "day_7b.mjs"
-            },
-            {
-                "type": "file",
-                "name": "day_7b_improved.mjs"
-            },
-            {
-                "type": "file",
-                "name": "day_7b_recursive.mjs"
-            },
-            {
-                "type": "file",
-                "name": "day_7_data.txt"
-            },
-            {
-                "type": "file",
-                "name": "day_7_data_test.txt"
-            },
-            {
-                "type": "file",
-                "name": "day_8a.mjs"
-            },
-            {
-                "type": "file",
-                "name": "day_8b.mjs"
-            },
-            {
-                "type": "file",
-                "name": "day_8_data.txt"
-            },
-            {
-                "type": "file",
-                "name": "day_8_data_test.txt"
+                "name": "library",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "logger.ts"
+                    }
+                ]
             },
             {
                 "type": "file",
@@ -2138,6 +2634,337 @@
         ]
     },
     {
+        "name": "empty",
+        "type": "folder",
+        "children": []
+    },
+    {
+        "name": "genuary_25",
+        "type": "folder",
+        "children": [
+            {
+                "name": "Inconsolata",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "Inconsolata-VariableFont_wdth,wght.ttf"
+                    },
+                    {
+                        "type": "file",
+                        "name": "OFL.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "README.txt"
+                    },
+                    {
+                        "name": "static",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Condensed-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_Expanded-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraCondensed-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_ExtraExpanded-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiCondensed-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_SemiExpanded-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraCondensed-SemiBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-Black.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-Bold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-ExtraBold.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-ExtraLight.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-Light.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-Medium.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-Regular.ttf"
+                            },
+                            {
+                                "type": "file",
+                                "name": "Inconsolata_UltraExpanded-SemiBold.ttf"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "file",
+                "name": "jan_1_horizontal.js"
+            },
+            {
+                "type": "file",
+                "name": "jan_1_horizontal_01.js"
+            }
+        ]
+    },
+    {
         "name": "grabber",
         "type": "folder",
         "children": [
@@ -3434,6 +4261,10 @@
             {
                 "type": "file",
                 "name": "break_01.js"
+            },
+            {
+                "type": "file",
+                "name": "eslint_test.js"
             },
             {
                 "type": "file",

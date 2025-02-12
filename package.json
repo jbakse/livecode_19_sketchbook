@@ -7,7 +7,7 @@
   "main": "index.html",
   "dependencies": {},
   "devDependencies": {
-    "esbuild": "0.24.0",
+    "esbuild": "0.25.0",
     "eslint": "^8.33.0"
   },
   "scripts": {

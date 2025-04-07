@@ -3649,6 +3649,14 @@
             {
                 "type": "file",
                 "name": "admission_gpt_01.js"
+            },
+            {
+                "type": "file",
+                "name": "index.html"
+            },
+            {
+                "type": "file",
+                "name": "main.js"
             }
         ]
     },

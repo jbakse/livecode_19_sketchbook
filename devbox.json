@@ -3,7 +3,8 @@
   "packages": [
     "nodejs@22",
     "nodemon@latest",
-    "rename@latest"
+    "rename@latest",
+    "git@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!'"]

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assigner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-700 text-gray-200 flex">
+    <!-- left side -->
+    <div class="w-96 p-4 flex-none">
+      <label class="block mt-5" for="applicants">Applicants</label>
+      <textarea id="applicants" class="w-full h-64 text-black p-4"></textarea>
+      <label class="block mt-5" for="reviewers">Reviewers</label>
+      <textarea id="reviewers" class="w-full h-64 text-black p-4"></textarea>
+
+      <label class="block mt-5" for="reviewCount">Reviews Per Applicant</label>
+      <select id="reviewCount" class="w-full text-black p-4">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <div class="block mt-5">
+        <p class="mt-2">
+          This tool assigns applicants to reviewers. The applicants are first
+          shuffled. Then the assignments are made. Then the assignments are then
+          sorted. This avoids one reviewer being assigned a group of applicants
+          that start with the same letter.
+        </p>
+
+        <p class="mt-2">Enter the applicants and reviewers one per line.</p>
+        <p class="mt-2">
+          You can use numbers or names for applicants and reviewers.
+        </p>
+        <p class="mt-2">
+          The assignments are listed one per line, tab delimited. They can be
+          pasted into a google sheet.
+        </p>
+      </div>
+    </div>
+    <!-- right side -->
+    <div class="flex-auto p-4">
+      <label class="block mt-5" for="assignments">Assignments</label>
+      <textarea
+        id="assignments"
+        class="w-full h-full text-black p-4"
+      ></textarea>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

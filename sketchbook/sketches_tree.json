@@ -58,6 +58,228 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_11",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b-tryfirst.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b-tryrecurse.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "data.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_12",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "a.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "b.mjs"
+                    },
+                    {
+                        "type": "file",
+                        "name": "data.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "data_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_12_garden_plots",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_13_claw_game",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_2.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m1.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_m2.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_14_xmas_tree",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_15_sokobann",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_small.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test_smallb.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_16_maze_race",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_sm.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test1.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test2.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_17_three_bit",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_testb.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_18_byte_fall",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_19",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_1_list_similarity",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
                     }
                 ]
             },
@@ -84,6 +306,48 @@
                 ]
             },
             {
+                "name": "day_20",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_21_keypad",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
+                "name": "day_2_safety_reports",
+                "type": "folder",
+                "children": [
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
+                    }
+                ]
+            },
+            {
                 "name": "day_3",
                 "type": "folder",
                 "children": [
@@ -98,6 +362,10 @@
                     {
                         "type": "file",
                         "name": "data.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
                     }
                 ]
             },
@@ -120,6 +388,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -142,6 +418,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -164,6 +448,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -194,6 +486,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -216,6 +516,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -238,6 +546,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -260,6 +576,14 @@
                     {
                         "type": "file",
                         "name": "data_test.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input.txt"
+                    },
+                    {
+                        "type": "file",
+                        "name": "input_test.txt"
                     }
                 ]
             },
@@ -2259,6 +2583,17 @@
         "name": "empty",
         "type": "folder",
         "children": []
+    },
+    {
+        "name": "genuary_25",
+        "type": "folder",
+        "children": [
+            {
+                "name": "Inconsolata",
+                "type": "folder",
+                "children": []
+            }
+        ]
     },
     {
         "name": "grabber",

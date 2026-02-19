@@ -930,6 +930,10 @@
                     {
                         "type": "file",
                         "name": "bounce_03.js"
+                    },
+                    {
+                        "type": "file",
+                        "name": "oop_procedural.js"
                     }
                 ]
             },
@@ -2227,6 +2231,10 @@
                 "name": "13_simulation",
                 "type": "folder",
                 "children": [
+                    {
+                        "type": "file",
+                        "name": "ants_01.js"
+                    },
                     {
                         "type": "file",
                         "name": "bacteria_01.js"
